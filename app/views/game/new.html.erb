@@ -1,0 +1,28 @@
+<h1> >> Comenzando Juego</h1>
+<h5>Pon a prueba tu conocimiento!!!</h5>
+<%= bootstrap_flash %>
+<div class="container">
+  <h3>Pregunta</h3>
+  <%= form_for @question, url: "/game/eval_answer" do |f| %>
+
+    <%= hidden_field_tag "question[id]", @question.id%>
+    <% if @question.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
+        <ul>
+        <% @question.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <label><p> <%= @question.description %> </p></label>
+
+    <h3>Respuesta:</h3>
+    <div class="input-group">
+      <%= text_field_tag "answer", "", class: "input-medium" %>
+      <%= f.submit "Validar Respuesta", class: 'btn btn-success' %>
+    </div>
+  <% end %>
+</div>
