@@ -49,7 +49,7 @@
           <a class="brand" href="#">Alberto Vaccaro pregunta... </a>
           <div class="container-fluid nav-collapse">
             <ul class="nav navbar-nav">
-              <li><%= link_to "Nuevo Juego", "/path1"  %></li>
+              <li><%= link_to "Nuevo Juego", game_reset_path  %></li>
               <li><%= link_to "Historico", "/path2"  %></li>
               <li><%= link_to "Records", "/path3"  %></li>
             </ul>
@@ -66,10 +66,16 @@
         <div class="span3">
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
-              <li class="nav-header">Sidebar</li>
-              <li><%= link_to "Nuevo Juego", "/path1"  %></li>
+              <li class="nav-header"><h4>Opciones</h4></li>
+              <li><%= link_to "Nuevo Juego", game_reset_path  %></li>
               <li><%= link_to "Historico", "/path2"  %></li>
               <li><%= link_to "Records", "/path3"  %></li>
+            </ul>
+          </div>
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header"><h4>Puntaje</h4></li>
+              <li><h4><%= session[:score] %></h4></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->

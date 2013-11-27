@@ -1,0 +1,27 @@
+<h4> Pregunta: </h4>
+<p><b> <%= @question.description %> </b> </p>
+
+<h4>Respuesta correcta: </h4>
+<p><%= @correct_answer %></p>
+
+<h4>Tu respuesta fue:  </h4>
+<p> <%= @answer %> <p>
+
+<% if @was_correct %>
+    <% if flash[:notice] %>
+      <div class="result alert alert-success">
+        <%= flash[:notice] %>
+      </div>
+    <%end%>
+<% else %>
+    <% if flash[:error] %>
+      <div class="result alert alert-danger">
+        <%= flash[:error] %>
+      </div>
+    <%end%>
+<% end %>
+
+<div>
+  <%= link_to "Nueva Pregunta", game_question_path, class: 'btn' %>
+</div>
+

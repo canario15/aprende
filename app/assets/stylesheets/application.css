@@ -25,3 +25,7 @@ p {
 .input-medium {
   width: 50%;
 }
+.result {
+  margin-top: 10px;
+  font-size: 22px;
+}

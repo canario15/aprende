@@ -5,14 +5,16 @@ gem 'rails', '4.0.0'
 
 gem 'devise'
 
-gem 'debugger', group: :development
-
 gem "therubyracer"
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
+
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0.0.beta'
+end
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -50,4 +52,4 @@ end
 # gem 'capistrano', group: :development
 
 # Use debugger
-# gem 'debugger', group: [:development, :test]
+gem 'debugger', group: [:development, :test]

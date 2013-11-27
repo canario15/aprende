@@ -1,6 +1,7 @@
 JuegoAstronomia::Application.routes.draw do
 
   get "game/new"
+  get "game/question"
   patch "game/eval_answer"
   get "game/reset"
   get "game/finish"
