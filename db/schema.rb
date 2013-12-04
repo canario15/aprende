@@ -15,12 +15,14 @@ ActiveRecord::Schema.define(version: 20131126142035) do
 
   create_table "answers", force: true do |t|
     t.integer  "question_id"
+    t.integer  "game_id"
     t.boolean  "was_correct"
     t.string   "answer"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "answers", ["game_id"], name: "index_answers_on_game_id"
   add_index "answers", ["question_id"], name: "index_answers_on_question_id"
 
   create_table "categories", force: true do |t|

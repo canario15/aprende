@@ -78,6 +78,7 @@ GEM
       actionpack (>= 3.1)
       less (~> 2.4.0)
     libv8 (3.16.14.3)
+    machinist (2.0)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -170,6 +171,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   less-rails
+  machinist (>= 2.0.0.beta2)
   rails (= 4.0.0)
   rspec-rails (~> 3.0.0.beta)
   sass-rails (~> 4.0.0)
