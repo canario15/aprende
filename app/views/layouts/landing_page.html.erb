@@ -50,13 +50,13 @@
         <div class="navbar-collapse collapse" id="navbar-main">
           <ul class="nav navbar-nav">
             <li>
-              <a href="../help/">Help</a>
+              <a href="../help/">Ayuda</a>
             </li>
             <li>
               <a href="http://news.bootswatch.com">Blog</a>
             </li>
             <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="download">Download <span class="caret"></span></a>
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="download">Informacion <span class="caret"></span></a>
               <ul class="dropdown-menu" aria-labelledby="download">
                 <li><a tabindex="-1" href="./bootstrap.min.css">bootstrap.min.css</a></li>
                 <li><a tabindex="-1" href="./bootstrap.css">bootstrap.css</a></li>
@@ -67,63 +67,23 @@
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="http://builtwithbootstrap.com/" target="_blank">Soy Profesor</a></li>
-            <li><a href="https://wrapbootstrap.com/?ref=bsw" target="_blank">Soy Alumno</a></li>
+            <li><a href="/teacher/sign_in">Soy Profesor</a></li>
+            <li><a href="/users/sign_in">Soy Alumno</a></li>
           </ul>
         </div>
       </div>
     </div>
 
 
-
-    <div class="navbar navbar-fluid-top">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="#">Alberto Vaccaro pregunta... </a>
-          <div class="container-fluid nav-collapse">
-            <ul class="nav navbar-nav">
-              <li><%= link_to "Nuevo Juego", game_reset_path  %></li>
-              <li><%= link_to "Historico", "/path2"  %></li>
-              <li><%= link_to "Records", "/path3"  %></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-              <li><%= link_to current_user.email, edit_user_path(current_user) if current_user %></li> 
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
-
-    <div class="container-fluid">
-      <div class="row-fluid">
-        <div class="span3">
-          <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header"><h4>Opciones</h4></li>
-              <li><%= link_to "Nuevo Juego", game_reset_path  %></li>
-              <li><%= link_to "Historico", "/path2"  %></li>
-              <li><%= link_to "Records", "/path3"  %></li>
-            </ul>
-          </div>
-          <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header"><h4>Puntaje</h4></li>
-              <li><h4><%= session[:score] %></h4></li>
-            </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
-        <div class="span9">
+    <div class="container">
+      <div class="page-header" id="banner">
+        <div class="row">
           <%= yield %>
         </div>
-      </div><!--/row-->
+      </div>
 
       <footer>
-        <p>&copy; VAIRIX 2013</p>
+        &copy; VAIRIX 2013
       </footer>
 
     </div> <!-- /container -->

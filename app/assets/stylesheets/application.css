@@ -8,18 +8,20 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require_tree .
+ *= require bootstrap.min
+ *= require variables.less
+ *= require bootswatch.less
  *= require_self
  */
 
 body{
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: #108ACF;
 }
 
 p {
-    margin-bottom: 20px;
-    font-size: 21px;
-    line-height: 1.4;
+  margin-bottom: 20px;
+  font-size: 21px;
+  line-height: 1.4;
 }
 
 .input-medium {
@@ -28,4 +30,9 @@ p {
 .result {
   margin-top: 10px;
   font-size: 22px;
+}
+
+.well {
+  background-color: #0D74C7;
+  border: 1px solid #0A569E;
 }

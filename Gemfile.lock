@@ -172,6 +172,7 @@ DEPENDENCIES
   devise
   jbuilder (~> 1.2)
   jquery-rails
+  less
   less-rails
   machinist (>= 2.0.0.beta2)
   rails (= 4.0.0)

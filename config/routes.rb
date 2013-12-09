@@ -1,5 +1,6 @@
 Aprende::Application.routes.draw do
 
+  get "landing/index"
   get "game/new"
   get "game/question"
   patch "game/eval_answer"
@@ -14,7 +15,7 @@ Aprende::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'game#new'
+  root 'landing#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
