@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-JuegoAstronomia::Application.load_tasks
+Aprende::Application.load_tasks

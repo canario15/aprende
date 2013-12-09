@@ -1,4 +1,4 @@
-JuegoAstronomia::Application.routes.draw do
+Aprende::Application.routes.draw do
 
   get "game/new"
   get "game/question"

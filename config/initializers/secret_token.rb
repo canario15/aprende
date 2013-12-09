@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-JuegoAstronomia::Application.config.secret_key_base = '53e72ea5635c6efd3fe231fa2f69fe04a1cf3d455a62ef59e644843040224e7c2f4dd1a28a204573200eefa4a0af4015364982ad5f91410ff315f778df0de650'
+Aprende::Application.config.secret_key_base = '53e72ea5635c6efd3fe231fa2f69fe04a1cf3d455a62ef59e644843040224e7c2f4dd1a28a204573200eefa4a0af4015364982ad5f91410ff315f778df0de650'
