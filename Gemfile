@@ -14,6 +14,7 @@ gem 'sqlite3'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0.beta'
+  gem 'database_cleaner'
   gem 'machinist', '>= 2.0.0.beta2'
 end
 

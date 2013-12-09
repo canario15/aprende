@@ -1,4 +1,7 @@
 class GameController < ApplicationController
+
+  before_filter :get_game
+
   def new
   end
 
@@ -70,6 +73,11 @@ private
   def reset_game
     session[:answereds] = []
     session[:score] = 0
+  end
+
+
+  def get_game
+    @game = Game.find(params[:game_id]) if params[:game_id]
   end
 
 end

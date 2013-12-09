@@ -4,38 +4,71 @@ describe Game do
 
   describe "Starting a new game" do
     before :each do
-      @user = User.create(email: "am@vairix.com", password: "1234567890", password_confirmation: "1234567890")
+      question_1 = Question.make!(:one)
+      question_2 = Question.make!(:two)
+      @user = User.make!
     end
 
     it "starts a new game from a user" do
-      expect{Game.start_game(@user)}.to change{Game.count}.by(1)
+      expect{Game.create_game(@user)}.to change{Game.count}.by(1)
     end
 
+    it "starts an empty game" do
+      game = Game.create_game @user
+      expect(game.questions).to be_empty
+    end
   end
 
   describe "playing the game" do
 
+    let!(:question_default) { Question.make!(:one) }
+
     before :each do
-      @user = User.create(email: "am@vairix.com", password: "1234567890", password_confirmation: "1234567890")
-      @game = Game.start_game(@user)
+      @question_1 = Question.make!(description: 'who?', answer: 'You')
+      @question_2 = Question.make!(description: 'Really, who?', answer: 'Me')
+      @user = User.make! 
+      @game = Game.create_game(@user)
     end
 
     it "gets a new question" do
       made_questions = @game.questions
       question = @game.new_question
+      expect(question).to_not be_nil 
       expect(made_questions).to_not include(question)
     end
 
-    it "evaluates an answer" do
-      pending
+    it "evaluates a wrong answer responding false" do
+      answer = "Me"
+      res = @game.eval_answer(@question_1, answer)
+      expect(res).to be false
+    end
+
+    it "evaluates a right answer responding true" do
+      answer = "Me"
+      res = @game.eval_answer(@question_2, answer)
+      expect(res).to be true
+    end
+
+    it "evaluates a wrong answer not changing the score" do
+      answer = "Me"
+      expect{ @game.eval_answer(@question_1, answer) }.
+        to change{@game.score}.
+        by(0)
+    end
+
+    it "evaluates a right answer changing the score" do
+      answer = "Me"
+      expect{ @game.eval_answer(@question_2, answer) }.
+        to change{@game.score}.
+        by(Game::POINTS[@question_1.dificulty])    
     end
 
     it "finishes the game" do
-      pending
+      expect{@game.finish}.to change{@game.status}.to(Game::STATUS[:finished])
     end
 
     it "resets the game" do
-      pending
+      expect{@game.reset}.to change{@game.status}.to(Game::STATUS[:aborted])
     end
   end
 
