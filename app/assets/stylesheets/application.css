@@ -15,7 +15,7 @@
  */
 
 body{
-  background-color: #108ACF;
+  background-color: #25D500;
 }
 
 p {
@@ -33,6 +33,15 @@ p {
 }
 
 .well {
-  background-color: #0D74C7;
-  border: 1px solid #0A569E;
+  background-color: #188A00;
+  border: 1px solid #188A00;
+}
+
+.navbar-default {
+  background-color: #ff670f;  
+}
+
+.btn-primary {
+  background-color: #ff670f;
+  border-color: #ff670f;
 }
