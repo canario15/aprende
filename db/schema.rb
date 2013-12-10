@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131126142035) do
+ActiveRecord::Schema.define(version: 20131210035818) do
 
   create_table "answers", force: true do |t|
     t.integer  "question_id"
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 20131126142035) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "name"
+    t.string   "first_name"
     t.string   "group"
     t.string   "school"
     t.datetime "created_at"
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 20131126142035) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "last_name"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
