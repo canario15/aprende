@@ -1,5 +1,17 @@
 require 'spec_helper'
 
-describe "landing/index.html.erb" do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe "landing page" do
+  before :each do
+    visit '/'
+  end
+
+  describe "Registration from landing page" do
+    context "valid data" do
+      pending
+    end
+
+    context "invalid data" do
+      pending
+    end
+  end
 end

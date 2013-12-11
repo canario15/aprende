@@ -18,6 +18,10 @@ group :development, :test do
   gem 'machinist', '>= 2.0.0.beta2'
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
+  gem 'guard-rspec'
+  gem 'capybara', git: 'git://github.com/jnicklas/capybara.git'
+  gem 'capybara-webkit', git: 'git://github.com/thoughtbot/capybara-webkit.git'
+  gem 'selenium-webdriver'
 end
 
 group :production do
