@@ -18,7 +18,6 @@ User.blueprint do
 	school { "Escuela #{sn}" }
 end
 
-
 Question.blueprint do
 	description { "¿Cual es la capital de Uruguay?" }
 	dificulty { 1 }
@@ -64,3 +63,10 @@ Course.blueprint do
   level
 end
 
+Trivia.blueprint do
+  title {"Trivia de Paises"}
+  tag {"paises, ciudades, geografia, uruguay"}
+  description {"Primera trivia sobre geografia uruguaya"}
+  course
+
+end
