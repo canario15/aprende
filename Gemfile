@@ -12,16 +12,20 @@ gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) support
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 
 
-group :development, :test do
+group :development do
+  # Use sqlite3 as the database for Active Record
+  gem 'sqlite3'
+end
+
+group :test do
   gem 'rspec-rails', '~> 3.0.0.beta'
   gem 'database_cleaner'
   gem 'machinist', '>= 2.0.0.beta2'
-  # Use sqlite3 as the database for Active Record
-  gem 'sqlite3'
   gem 'guard-rspec'
   gem 'capybara', git: 'git://github.com/jnicklas/capybara.git'
   gem 'capybara-webkit', git: 'git://github.com/thoughtbot/capybara-webkit.git'
   gem 'selenium-webdriver'
+  gem 'shoulda-matchers'
 end
 
 group :production do
