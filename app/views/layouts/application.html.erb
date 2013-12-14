@@ -40,7 +40,7 @@
     <div class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <a href="../" class="navbar-brand">Aprende</a>
+          <a href="/home" class="navbar-brand">Aprende</a>
           <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -49,18 +49,17 @@
         </div>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Active</a></li>
-            <li><a href="#">Link</a></li>
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#">Cursos</a></li>
             <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Game<b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
+              <li><a href="#">Nuevo</a></li>
+              <li><a href="#">Historico</a></li>
               <li class="divider"></li>
-              <li class="dropdown-header">Dropdown header</li>
-              <li><a href="#">Separated link</a></li>
-              <li><a href="#">One more separated link</a></li>
+              <li class="dropdown-header">Ranking</li>
+              <li><a href="#">Institution</a></li>
+              <li><a href="#">Pais</a></li>
             </ul>
             </li>
           </ul>
@@ -68,7 +67,6 @@
             <input type="text" class="form-control col-lg-8" placeholder="Search">
           </form>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Link</a></li>
             <li class="dropdown">
             <% if current_user %>
               <%= link_to(edit_user_path(current_user), class: 'dropdown-toggle', 'data-toggle' => 'dropdown') do %>
@@ -79,27 +77,22 @@
               <li><a href="#">Ver cuenta</a></li>
               <li><a href="#">Preferencias</a></li>
               <li class="divider"></li>
-              <li><a href="#">Salir</a></li>
+              <li><%= link_to('Salir', destroy_user_session_path, :method => :delete) %></li>
             </ul>
             </li>
           </ul>
         </div>
       </div>
     </div>
-
-        <div class="container">
-          <div class="page-header" id="banner">
-            <div class="row">
-              <%= yield %>
-            </div>
-          </div>
-
-
-          <footer>
-          <p>&copy; VAIRIX 2013</p>
-          </footer>
-
-        </div> <!-- /container -->
-
-      </body>
-    </html>
+    <div class="container">
+      <div class="page-header" id="banner">
+        <div class="row">
+          <%= yield %>
+        </div>
+      </div>
+      <footer>
+      <p>&copy; VAIRIX 2013</p>
+      </footer>
+    </div> <!-- /container -->
+  </body>
+</html>
