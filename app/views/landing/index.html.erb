@@ -20,6 +20,7 @@
         <%= form_for(:user, :url => registration_path(:user), :html => {class: 'bs-example form-horizontal'}) do |f| %>
           <fieldset>
             <legend>Registrate!</legend>
+            <%= devise_error_messages! %>
             <div class="form-group">
               <label for="inputName" class="col-lg-2 control-label">Nombre</label>
               <div class="col-lg-10">

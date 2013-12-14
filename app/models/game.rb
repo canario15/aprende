@@ -4,19 +4,19 @@ class Game < ActiveRecord::Base
   has_many :questions, through: :answers
 
   STATUS = {
-  	:created => 1,
-  	:started => 2,
-  	:finished => 3,
-  	:aborted => 4
+    :created => 1,
+    :started => 2,
+    :finished => 3,
+    :aborted => 4
   }
 
-	#POINTS depends on difficulty
+  #POINTS depends on difficulty
   POINTS = {
-  	1 => 100,
-  	2 => 300, 
-  	3 => 500, 
-  	4 => 800, 
-  	5 => 1500
+    1 => 100,
+    2 => 300,
+    3 => 500,
+    4 => 800,
+    5 => 1500
   }
 
   def self.create_game(user)
@@ -24,47 +24,46 @@ class Game < ActiveRecord::Base
   end
 
   def new_question
-  	mark_as_started if self.status == STATUS[:created]
-  	answered = questions.map { |q| q.id }.join(',')
-  	unless answered.empty?
-  		possible_questions = Question.where("id not in (#{answered})")
-  	else
-  		possible_questions = Question.all
-  	end
-  	random_question = rand(possible_questions.size) + 1
-  	possible_questions[random_question]
+    mark_as_started if self.status == STATUS[:created]
+    answered = questions.map { |q| q.id }.join(',')
+    unless answered.empty?
+      possible_questions = Question.where("id not in (#{answered})")
+    else
+      possible_questions = Question.all
+    end
+    random_question = rand(possible_questions.size)
+    possible_questions[random_question]
   end
 
   def eval_answer(question, answer)
-  	right_answer 	= transform_answer question.answer
-  	user_answer 	= transform_answer answer
-  	resp = right_answer == user_answer
-  	if resp
-  		self.score += POINTS[question.dificulty]
-  		self.save!
-  	end
-  	resp
+    right_answer = transform_answer question.answer
+    user_answer  = transform_answer answer
+    resp = right_answer == user_answer
+    if resp
+      self.score += POINTS[question.dificulty]
+      self.save!
+    end
+    resp
   end
 
   def finish
-  	self.status = Game::STATUS[:finished]
-  	save!	
+    self.status = Game::STATUS[:finished]
+    save!
   end
 
   def reset
-  	self.status = Game::STATUS[:aborted]
-  	save!	
+    self.status = Game::STATUS[:aborted]
+    save!
   end
 
-private
+  private
 
-	def mark_as_started
-		self.status = STATUS[:started]
-		self.save
-	end
+  def mark_as_started
+    self.status = STATUS[:started]
+    self.save
+  end
 
-	def transform_answer(answer)
-		answer.downcase
-	end
-
+  def transform_answer(answer)
+    answer.downcase
+  end
 end

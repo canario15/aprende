@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131210035818) do
+ActiveRecord::Schema.define(version: 20131212194123) do
 
   create_table "answers", force: true do |t|
     t.integer  "question_id"
@@ -32,6 +32,15 @@ ActiveRecord::Schema.define(version: 20131210035818) do
     t.datetime "updated_at"
   end
 
+  create_table "courses", force: true do |t|
+    t.string   "title"
+    t.integer  "level_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "courses", ["level_id"], name: "index_courses_on_level_id"
+
   create_table "games", force: true do |t|
     t.integer  "score"
     t.integer  "status"
@@ -42,6 +51,12 @@ ActiveRecord::Schema.define(version: 20131210035818) do
 
   add_index "games", ["user_id"], name: "index_games_on_user_id"
 
+  create_table "levels", force: true do |t|
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "questions", force: true do |t|
     t.text     "description"
     t.integer  "dificulty"
@@ -50,6 +65,17 @@ ActiveRecord::Schema.define(version: 20131210035818) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "trivia", force: true do |t|
+    t.string   "title"
+    t.text     "tag"
+    t.text     "description"
+    t.integer  "course_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "trivia", ["course_id"], name: "index_trivia_on_course_id"
 
   create_table "users", force: true do |t|
     t.string   "first_name"
