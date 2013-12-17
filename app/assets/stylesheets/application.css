@@ -15,7 +15,8 @@
  */
 
 body{
-  background-color: #25D500;
+  background: #f1f1f1;
+  color: #000000;
 }
 
 p {
@@ -35,6 +36,7 @@ p {
 .well {
   background-color: #188A00;
   border: 1px solid #188A00;
+  color: #fff;
 }
 
 .navbar-default {
@@ -47,4 +49,21 @@ p {
 }
 .jumbotron {
   background-color: #188A00;
+}
+blockquote small, blockquote .small {
+  color: #fff;
+}
+
+#courses-container {
+  padding-right: 22px;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  padding-top: 20px;
+  opacity: 0;
+  transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
 }
