@@ -47,9 +47,11 @@ p {
   background-color: #ff670f;
   border-color: #ff670f;
 }
+
 .jumbotron {
-  background-color: #188A00;
+  background-color: #188A58;
 }
+
 blockquote small, blockquote .small {
   color: #fff;
 }
@@ -66,4 +68,34 @@ blockquote small, blockquote .small {
   -moz-transition: all 0.4s;
   -webkit-transition: all 0.4s;
   -o-transition: all 0.4s;
+}
+
+.thumbnail>img, .thumbnail a>img {
+  height: 120px;
+  margin-top: 15px;
+}
+
+.caption p{
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.caption h1, h2, h3 {
+  margin-top: 5px;
+  text-align: center;
+}
+
+.caption .btn {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-left: 25%;
+  width: 140px;
+}
+
+#close{
+  display:block;
+  float:right;
+  width:30px;
+  height:29px;
+  background:url(/assets/icon-close.png) no-repeat center center;
 }

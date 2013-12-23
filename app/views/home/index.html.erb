@@ -2,9 +2,10 @@
   <div class="row">
     <div class="col-lg-12">
       <div class="page-header">
-        <h1 id="container">Bienvenido a Aprende <%= current_user.first_name %>!</h1>
+        <h1 id="container"><%= current_user.first_name %>, Bienvenido a Aprende!</h1>
       </div>
-      <div class="bs-example">
+      <div id="welcome-message" class="bs-example">
+        <a id="close"></a>
         <div class="jumbotron">
           <span style="float: left; margin-right: 35px;">
             <%= image_tag 'computer-arms.jpg', height: '230', style: 'border-radius: 4px' %>
@@ -30,142 +31,7 @@
   </div>
 </section>
 <section class="new_courses">
-<div id="courses-container" style="position: relative; overflow: hidden; height: 358px; width: 984px; opacity: 1;" class="isotope">
-  <div class="isotope-post  graphics illustration  span4 isotope-item" style="position: absolute; left: 0px; top: 0px; -webkit-transform: translate3d(0px, 20px, 0px);">
-    <div id="post-70" class="post-70 my_portfolio type-my_portfolio status-publish format-image hentry">
-      <a href="http://demo.zeotheory.com/ztudio/wp-content/uploads/2013/05/oreo-ios-icon_1x.jpg" class="fancybox entry-image"> 
-        <span class="entry-image-overlay"></span> 
-        <img src="http://demo.zeotheory.com/ztudio/wp-content/uploads/2013/05/oreo-ios-icon_1x.jpg" alt="">
-      </a>
-      <div class="entry drop-shadow curved ">
-        <h1 class="heading"> 
-          <a href="http://demo.zeotheory.com/ztudio/my_portfolio/this-is-cool/"> Roman Jusdado </a>
-        </h1>
-        <div class="clearboth">
-        </div>
-        <ul class="entry-meta">
-          <li class="time"> 7 months ago</li>
-          <li class="meta-comment">
-          <a href="http://demo.zeotheory.com/ztudio/my_portfolio/this-is-cool/">
-            <div class="meta-icon"></div> 0
-          </a>
-          </li>
-          <li class="meta-like">
-          <a href="#" data-post_id="70">
-            <span class="meta-icon"></span>
-            <span class="count">193</span>
-          </a>
-          </li>
-        </ul>
-      </div>
-    </div>
+  <div id="courses-container" style="position: relative; overflow: hidden; width: 984px; opacity: 1;" class="isotope">
+    <%= render partial: 'new_courses' %>
   </div>
-  <div class="isotope-post  3d  span4 isotope-item" style="position: absolute; left: 0px; top: 0px; -webkit-transform: translate3d(328px, 20px, 0px);">
-    <div id="post-69" class="post-69 my_portfolio type-my_portfolio status-publish format-gallery hentry">
-      <div class="widget-slider">
-        <div class="flexslider">
-          <div class="flex-viewport" style="overflow: hidden; position: relative;">
-            <ul class="slides" style="width: 1000%; -webkit-transition: 0s; transition: 0s; -webkit-transform: translate3d(-306px, 0, 0);">
-              <li class="clone" style="width: 306px; float: left; display: block;">
-              <div class="entry-image"> 
-                <a href="http://demo.zeotheory.com/ztudio/wp-content/uploads/2013/05/prince_orehov.jpg" class="fancybox entry-image"> 
-                  <img src="http://demo.zeotheory.com/ztudio/wp-content/uploads/2013/05/telly-ios-icon.jpg" alt=""> 
-                </a>
-              </div>
-              </li>
-              <li style="width: 306px; float: left; display: block;" class="flex-active-slide">
-              <div class="entry-image"> 
-                <a href="http://demo.zeotheory.com/ztudio/wp-content/uploads/2013/05/prince_orehov.jpg" class="fancybox entry-image"> 
-                  <img src="http://demo.zeotheory.com/ztudio/wp-content/uploads/2013/05/cassette_player.jpg" alt=""> 
-                </a>
-              </div>
-              </li>
-              <li style="width: 306px; float: left; display: block;" class="">
-              <div class="entry-image"> 
-                <a href="http://demo.zeotheory.com/ztudio/wp-content/uploads/2013/05/prince_orehov.jpg" class="fancybox entry-image"> 
-                  <img src="http://demo.zeotheory.com/ztudio/wp-content/uploads/2013/05/book_1x.jpg" alt=""> 
-                </a>
-              </div>
-              </li>
-              <li style="width: 306px; float: left; display: block;" class="">
-              <div class="entry-image"> 
-                <a href="http://demo.zeotheory.com/ztudio/wp-content/uploads/2013/05/prince_orehov.jpg" class="fancybox entry-image"> 
-                  <img src="http://demo.zeotheory.com/ztudio/wp-content/uploads/2013/05/telly-ios-icon.jpg" alt=""> 
-                </a>
-              </div>
-              </li>
-              <li style="width: 306px; float: left; display: block;" class="clone">
-              <div class="entry-image"> 
-                <a href="http://demo.zeotheory.com/ztudio/wp-content/uploads/2013/05/prince_orehov.jpg" class="fancybox entry-image"> 
-                  <img src="http://demo.zeotheory.com/ztudio/wp-content/uploads/2013/05/cassette_player.jpg" alt=""> 
-                </a>
-              </div>
-              </li>
-            </ul>
-          </div>
-          <ol class="flex-control-nav flex-control-paging">
-            <li>
-            <a class="flex-active">1</a>
-            </li>
-            <li>
-            <a class="">2</a>
-            </li>
-            <li>
-            <a class="">3</a>
-            </li>
-          </ol>
-        </div>
-      </div>
-      <div class="entry drop-shadow curved ">
-        <h5 class="heading"> 
-          <a href="http://demo.zeotheory.com/ztudio/my_portfolio/another-project/"> More Roman </a>
-        </h5>
-        <div class="clearboth"></div>
-        <ul class="entry-meta">
-          <li class="time"> 7 months ago</li>
-          <li class="meta-comment">
-          <a href="http://demo.zeotheory.com/ztudio/my_portfolio/another-project/">
-            <div class="meta-icon"></div> 3
-          </a>
-          </li>
-          <li class="meta-like">
-          <a href="#" data-post_id="69">
-            <span class="meta-icon"></span>
-            <span class="count">232</span>
-          </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="isotope-post  illustration minimal  span4 isotope-item" style="position: absolute; left: 0px; top: 0px; -webkit-transform: translate3d(656px, 20px, 0px);">
-    <div id="post-68" class="post-68 my_portfolio type-my_portfolio status-publish format-image hentry"> 
-      <a href="http://demo.zeotheory.com/ztudio/wp-content/uploads/2013/05/radio-ios-icon.jpg" class="fancybox entry-image"> 
-        <span class="entry-image-overlay"></span> 
-        <img src="http://demo.zeotheory.com/ztudio/wp-content/uploads/2013/05/radio-ios-icon.jpg" alt=""> 
-      </a>
-      <div class="entry drop-shadow curved ">
-        <h1 class="heading"> <a href="http://demo.zeotheory.com/ztudio/my_portfolio/more-awesome-work/"> More Awesome Work </a></h1>
-        <ul class="social">
-          <li class="social-button-team right">
-          <a href="http://dribbble.com/romanjusdado" rel="alternate" data-original-title="Roman Jusdado">
-            <img height="20" src="http://demo.zeotheory.com/ztudio/wp-content/themes/ztudio/img/icons/glyphicons_374_dribbble@2x.png" alt=""></a>
-          </li>
-        </ul>
-        <div class="clearboth"></div>
-        <ul class="entry-meta">
-          <li class="time"> 7 months ago</li>
-          <li class="meta-comment">
-          <a href="http://demo.zeotheory.com/ztudio/my_portfolio/more-awesome-work/">
-            <div class="meta-icon"></div> 0
-          </a>
-          </li>
-          <li class="meta-like">
-          <a href="#" data-post_id="68"><span class="meta-icon"></span><span class="count">133</span></a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
 </section>
