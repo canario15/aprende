@@ -1,6 +1,6 @@
-class CreateTrivia < ActiveRecord::Migration
+class CreateTrivium < ActiveRecord::Migration
   def change
-    create_table :trivia do |t|
+    create_table :trivium do |t|
       t.string :title
       t.text :tag
       t.text :description

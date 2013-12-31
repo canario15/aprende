@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131212194123) do
+ActiveRecord::Schema.define(version: 20131213203225) do
 
   create_table "answers", force: true do |t|
     t.integer  "question_id"
@@ -64,9 +64,16 @@ ActiveRecord::Schema.define(version: 20131212194123) do
     t.string   "answer"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "incorrect_answer_one"
+    t.string   "incorrect_answer_two"
+    t.string   "incorrect_answer_three"
+    t.string   "incorrect_answer_four"
+    t.integer  "trivia_id"
   end
 
-  create_table "trivia", force: true do |t|
+  add_index "questions", ["trivia_id"], name: "index_questions_on_trivia_id"
+
+  create_table "trivium", force: true do |t|
     t.string   "title"
     t.text     "tag"
     t.text     "description"
@@ -75,7 +82,7 @@ ActiveRecord::Schema.define(version: 20131212194123) do
     t.datetime "updated_at"
   end
 
-  add_index "trivia", ["course_id"], name: "index_trivia_on_course_id"
+  add_index "trivium", ["course_id"], name: "index_trivium_on_course_id"
 
   create_table "users", force: true do |t|
     t.string   "first_name"

@@ -1,0 +1,44 @@
+<%= form_for @trivia, :html => {:class => "bs-example form-horizontal"} do |f| %>
+  <fieldset>
+    <div class="form-group">
+      <label for="title" class="col-lg-2 control-label">Titulo</label>
+      <div class="col-lg-10">
+        <%= f.text_field :title, :autofocus => true, class: 'form-control', placeholder: 'Nueva trivia' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="select" class="col-lg-2 control-label">Año</label>
+      <div class="col-lg-10">
+        <% if @trivia.level -%>
+          <%= select_tag "trivia_level", options_from_collection_for_select(@levels, "id", "title", @trivia.level.id), :class=> "form-control" %>
+        <% else -%>
+            <%= select_tag "trivia_level", options_from_collection_for_select(@levels, "id", "title"), :class=> "form-control" %>
+        <% end -%>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="select" class="col-lg-2 control-label">Cursos</label>
+      <div id="trivia_courses" class="col-lg-10">
+        <%= f.collection_select(:course_id, @courses, :id, :title, {}, {:class=> "form-control"}) %>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="tag" class="col-lg-2 control-label">Etiqueta</label>
+      <div class="col-lg-10">
+        <%= f.text_area :tag, class: 'form-control', placeholder: 'etiqueta, etiqueta 1, etiqueta 2' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="description" class="col-lg-2 control-label">Descriptión</label>
+      <div class="col-lg-10">
+        <%= f.text_area :description, class: 'form-control', placeholder: 'Descripción de la trivia' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+        <%= link_to 'Cancelar', trivium_path %>
+        <%= f.submit "Siguiente", class: 'btn btn-primary' %>
+      </div>
+    </div>
+  </fieldset>
+<% end -%>

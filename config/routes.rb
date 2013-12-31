@@ -6,7 +6,20 @@ Aprende::Application.routes.draw do
   patch "game/eval_answer"
   get "game/reset"
   get "game/finish"
+
   resources :questions
+  resources :courses
+  resources :trivium do
+    collection do
+      get 'update_course'
+    end
+    member do
+      get  'question' => 'trivium#new_question', as: :new_question
+      post 'question' => 'trivium#create_question', as: :create_question
+      get  'question/:question_id/edit' => 'trivium#edit_question', as: :edit_question
+      patch 'question/:question_id/edit' => 'trivium#update_question', as: :update_question
+    end
+  end
 
   devise_for :users, :controllers => {:registrations => "users/registrations"}
   resources :users

@@ -1,0 +1,22 @@
+<%= form_for @course, :html => {:class => "bs-example form-horizontal"} do |f| %>
+  <fieldset>
+    <div class="form-group">
+      <label for="title" class="col-lg-2 control-label">Titulo</label>
+      <div class="col-lg-10">
+        <%= f.text_field :title, :autofocus => true, class: 'form-control', placeholder: 'Historia' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="select" class="col-lg-2 control-label">Año</label>
+      <div class="col-lg-10">
+        <%= f.collection_select(:level_id, @levels, :id, :title, {}, {:class=> "form-control"}) %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+        <%= link_to 'Cancelar', courses_path %>
+        <%= f.submit "Guardar", class: 'btn btn-primary' %>
+      </div>
+    </div>
+  </fieldset>
+<% end -%>

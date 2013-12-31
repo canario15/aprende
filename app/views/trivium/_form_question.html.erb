@@ -1,0 +1,52 @@
+<%= hidden_field_tag 'finish', 'false'%>
+<fieldset>
+  <div class="form-group">
+    <label for="tag" class="col-lg-2 control-label">Pregunta</label>
+    <div class="col-lg-10">
+      <%= f.text_area :description, :autofocus => true, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="select" class="col-lg-2 control-label">Dificultad</label>
+    <div class="col-lg-10">
+      <%= f.select :dificulty, options_for_select(Question::DIFICULTY,:selected => "#{@question.dificulty}"),{}, { :class=> "form-control"} %>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="title" class="col-lg-2 control-label">Respuesta correcta</label>
+    <div class="col-lg-10">
+      <%= f.text_field :answer, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="title" class="col-lg-2 control-label">Respuesta Incorrecta 1</label>
+    <div class="col-lg-10">
+      <%= f.text_field :incorrect_answer_one, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="title" class="col-lg-2 control-label">Respuesta Incorrecta 2</label>
+    <div class="col-lg-10">
+      <%= f.text_field :incorrect_answer_two, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="title" class="col-lg-2 control-label">Respuesta Incorrecta 3</label>
+    <div class="col-lg-10">
+      <%= f.text_field :incorrect_answer_three, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="title" class="col-lg-2 control-label">Respuesta Incorrecta 4</label>
+    <div class="col-lg-10">
+      <%= f.text_field :incorrect_answer_four, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-lg-10 col-lg-offset-2">
+      <%= link_to 'Cancelar', trivium_path %>
+      <%= f.submit "Guardar", class: 'btn btn-primary' %>
+      <%= f.submit "Finalizar y Guardar", id: "save_and_finish", class: 'btn btn-primary' %>
+    </div>
+  </div>
+</fieldset>

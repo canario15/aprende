@@ -11,6 +11,7 @@
  *= require bootstrap.min
  *= require variables.less
  *= require bootswatch.less
+ *= require admin
  *= require_self
  */
 
@@ -40,7 +41,7 @@ p {
 }
 
 .navbar-default {
-  background-color: #ff670f;  
+  background-color: #ff670f;
 }
 
 .btn-primary {

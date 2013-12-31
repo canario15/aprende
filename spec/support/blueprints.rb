@@ -68,5 +68,15 @@ Trivia.blueprint do
   tag {"paises, ciudades, geografia, uruguay"}
   description {"Primera trivia sobre geografia uruguaya"}
   course
+end
 
+Question.blueprint do
+	answer {"Caul es el color de vairix"}
+	dificulty {1}
+	description {"Verde"}
+	incorrect_answer_one {"Azul"}
+	incorrect_answer_two {"Negro"}
+	incorrect_answer_three {"Rojo"}
+	incorrect_answer_four {"Celeset"}
+	trivia
 end
