@@ -71,9 +71,9 @@ Trivia.blueprint do
 end
 
 Question.blueprint do
-	answer {"Caul es el color de vairix"}
+	description {"Caul es el color de vairix"}
+	answer {"Verde"}
 	dificulty {1}
-	description {"Verde"}
 	incorrect_answer_one {"Azul"}
 	incorrect_answer_two {"Negro"}
 	incorrect_answer_three {"Rojo"}
