@@ -79,7 +79,7 @@ class TriviumController < ApplicationController
   end
 
   def question_params
-    params.require(:question).permit(:answer, :dificulty, :description, :incorrect_answer_one, :incorrect_answer_two, :incorrect_answer_three, :incorrect_answer_four)
+    params.require(:question).permit(:answer, :dificulty, :description, :image, :incorrect_answer_one, :incorrect_answer_two, :incorrect_answer_three, :incorrect_answer_four)
   end
 
 end

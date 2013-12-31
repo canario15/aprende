@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131213203225) do
+ActiveRecord::Schema.define(version: 20131231135851) do
 
   create_table "answers", force: true do |t|
     t.integer  "question_id"
@@ -60,7 +60,6 @@ ActiveRecord::Schema.define(version: 20131213203225) do
   create_table "questions", force: true do |t|
     t.text     "description"
     t.integer  "dificulty"
-    t.binary   "image"
     t.string   "answer"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -69,6 +68,10 @@ ActiveRecord::Schema.define(version: 20131213203225) do
     t.string   "incorrect_answer_three"
     t.string   "incorrect_answer_four"
     t.integer  "trivia_id"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   add_index "questions", ["trivia_id"], name: "index_questions_on_trivia_id"
