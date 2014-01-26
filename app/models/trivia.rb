@@ -8,6 +8,6 @@ class Trivia < ActiveRecord::Base
   validates :course, :presence => true
 
   def level_courses
-  	self.try(:level).try(:courses)
+    self.try(:level).try(:courses)
   end
 end
