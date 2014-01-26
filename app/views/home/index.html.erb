@@ -4,29 +4,7 @@
       <div class="page-header">
         <h1 id="container"><%= current_user.first_name %>, Bienvenido a Aprende!</h1>
       </div>
-      <div id="welcome-message" class="bs-example">
-        <a id="close"></a>
-        <div class="jumbotron">
-          <span style="float: left; margin-right: 35px;">
-            <%= image_tag 'computer-arms.jpg', height: '230', style: 'border-radius: 4px' %>
-          </span>
-          <blockquote>
-            <cite title="Aprenda">
-              <small> 
-                Hola!! Mi nombre es <b>Aprenda</b> y mi mision es que salves todas las materias que estas cursando. 
-                <br> 
-                Aunque no lo creas, jugando a mis trivias vas a poder aprender muchisimo y sorprender a tu profesores.
-              </small>
-              <small> 
-                Invita a tus amigos a que aprendan y jueguen contigo. 
-                <br> 
-                Juntos podran competir contra otros grupos o instituciones de todo el pais.    
-              </small>
-            </cite>
-          </blockquote>
-          <p><a class="btn btn-primary btn-lg">Como vamos a hacer?</a></p>
-        </div>
-      </div>
+      <%= render partial: 'welcome_message' %>
     </div>
   </div>
 </section>
