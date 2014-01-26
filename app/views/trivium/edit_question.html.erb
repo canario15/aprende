@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h1 id="tables">Editar Preunta y Respuestas</h1>
+  <h1 id="tables">Editar Pregunta y Respuestas</h1>
 </div>
 <%= form_for @question, :url => update_question_trivia_path(@question.trivia.id, @question.id), :html => {:class => "bs-example form-horizontal"} do |f| %>
   <%= render 'form_question', f: f %>

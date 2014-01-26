@@ -1,6 +1,6 @@
 class RemoveImageAndAddImagePaperclipToQuestion < ActiveRecord::Migration
-   def self.up
-   	remove_column :questions, :image
+  def self.up
+    remove_column :questions, :image
     add_attachment :questions, :image
   end
 

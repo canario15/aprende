@@ -6,6 +6,11 @@ describe Course do
     it { should respond_to(:level) }
   end
 
+  describe "attributes" do
+    it { should respond_to(:title) }
+    it { should respond_to(:image) }
+  end
+
   describe "create Course" do
 
     it 'with title and level' do
