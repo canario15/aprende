@@ -26,14 +26,14 @@ describe Game do
     before :each do
       @question_1 = Question.make!(description: 'who?', answer: 'You')
       @question_2 = Question.make!(description: 'Really, who?', answer: 'Me')
-      @user = User.make! 
+      @user = User.make!
       @game = Game.create_game(@user)
     end
 
     it "gets a new question" do
       made_questions = @game.questions
       question = @game.new_question
-      expect(question).to_not be_nil 
+      expect(question).to_not be_nil
       expect(made_questions).to_not include(question)
     end
 
@@ -60,15 +60,15 @@ describe Game do
       answer = "Me"
       expect{ @game.eval_answer(@question_2, answer) }.
         to change{@game.score}.
-        by(Game::POINTS[@question_1.dificulty])    
+        by(Game::POINTS[@question_1.dificulty])
     end
 
     it "finishes the game" do
       expect{@game.finish}.to change{@game.status}.to(Game::STATUS[:finished])
     end
 
-    it "resets the game" do
-      expect{@game.reset}.to change{@game.status}.to(Game::STATUS[:aborted])
+    it "abort the game" do
+      expect{@game.abort}.to change{@game.status}.to(Game::STATUS[:aborted])
     end
   end
 
