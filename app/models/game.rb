@@ -51,7 +51,7 @@ class Game < ActiveRecord::Base
     save!
   end
 
-  def reset
+  def abort
     self.status = Game::STATUS[:aborted]
     save!
   end
