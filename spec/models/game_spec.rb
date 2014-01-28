@@ -2,6 +2,20 @@ require 'spec_helper'
 
 describe Game do
 
+  describe "attributes" do
+    it { should respond_to(:score) }
+    it { should respond_to(:status) }
+    it { should respond_to(:user_id) }
+    it { should respond_to(:trivia_id) }
+  end
+
+  describe "relations" do
+    it { should respond_to(:user) }
+    it { should respond_to(:trivia) }
+    it { should have_many(:answers) }
+    it { should have_many(:questions) }
+  end
+
   describe "Starting a new game" do
     before :each do
       question_1 = Question.make!(:one)

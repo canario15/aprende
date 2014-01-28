@@ -2,8 +2,19 @@ require 'spec_helper'
 
 describe Trivia do
 
+  describe "attributes" do
+    it { should respond_to(:title) }
+    it { should respond_to(:tag) }
+    it { should respond_to(:description) }
+    it { should respond_to(:course_id) }
+    it { should respond_to(:type) }
+  end
+
   describe "relations" do
     it { should respond_to(:course) }
+    it { should have_one(:level) }
+    it { should have_many(:questions) }
+    it { should have_many(:games) }
   end
 
   describe "create Trivia" do

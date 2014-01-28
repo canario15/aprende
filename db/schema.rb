@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140128131927) do
+ActiveRecord::Schema.define(version: 20140128153228) do
 
   create_table "answers", force: true do |t|
     t.integer  "question_id"
@@ -51,8 +51,10 @@ ActiveRecord::Schema.define(version: 20140128131927) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "trivia_id"
   end
 
+  add_index "games", ["trivia_id"], name: "index_games_on_trivia_id"
   add_index "games", ["user_id"], name: "index_games_on_user_id"
 
   create_table "levels", force: true do |t|

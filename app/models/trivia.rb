@@ -5,6 +5,7 @@ class Trivia < ActiveRecord::Base
 
   has_one :level, :through => :course
   has_many :questions
+  has_many :games
 
   validates :title, :presence => true
   validates :course, :presence => true
