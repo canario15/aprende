@@ -77,6 +77,11 @@ describe Game do
         by(Game::POINTS[@question_1.dificulty])
     end
 
+    it "evalueates answer and create Answer" do
+      answer = "Me"
+      expect {@game.eval_answer(@question_2, answer)}.to change{Answer.count}.by(1)
+    end
+
     it "finishes the game" do
       expect{@game.finish}.to change{@game.status}.to(Game::STATUS[:finished])
     end

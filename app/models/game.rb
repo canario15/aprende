@@ -40,10 +40,15 @@ class Game < ActiveRecord::Base
     right_answer = transform_answer question.answer
     user_answer  = transform_answer answer
     resp = right_answer == user_answer
+    answer = Answer.new(question: question, game: self, answer: answer)
     if resp
+      answer.was_correct = true
       self.score += POINTS[question.dificulty]
       self.save!
+    else
+      answer.was_correct = false
     end
+    answer.save!
     resp
   end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140128153228) do
+ActiveRecord::Schema.define(version: 20140128160426) do
 
   create_table "answers", force: true do |t|
     t.integer  "question_id"
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 20140128153228) do
   add_index "courses", ["level_id"], name: "index_courses_on_level_id"
 
   create_table "games", force: true do |t|
-    t.integer  "score"
+    t.integer  "score",      default: 0
     t.integer  "status"
     t.integer  "user_id"
     t.datetime "created_at"
