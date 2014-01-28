@@ -65,8 +65,7 @@ end
 
 Trivia.blueprint do
   title {"Trivia de Paises"}
-  tag {"paises, ciudades, geografia, uruguay"}
-  description {"Primera trivia sobre geografia uruguaya"}
+  type {1}
   course
 end
 

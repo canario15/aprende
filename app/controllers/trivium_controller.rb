@@ -8,6 +8,7 @@ class TriviumController < ApplicationController
   def new
     @trivia = Trivia.new
     @levels = Level.all
+    @types = Trivia::TYPES
     @courses = @levels.first.try(:courses)
   end
 
@@ -27,6 +28,7 @@ class TriviumController < ApplicationController
   def edit
     @trivia = Trivia.find(params[:id])
     @levels = Level.all
+    @types = Trivia::TYPES
     @courses = @trivia.level_courses
   end
 
@@ -58,6 +60,7 @@ class TriviumController < ApplicationController
 
   def edit_question
     @question = Question.find(params[:question_id])
+    @trivia = @question.trivia
   end
 
   def update_question
@@ -75,7 +78,7 @@ class TriviumController < ApplicationController
   private
 
   def trivia_params
-    params.require(:trivia).permit(:title, :course_id, :tag, :description)
+    params.require(:trivia).permit(:title, :course_id, :tag, :description,:type)
   end
 
   def question_params

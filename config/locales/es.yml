@@ -1,0 +1,5 @@
+es:
+  trivia:
+    type:
+      multiple_choice: "Multiple Opción"
+      free: "Libre"

@@ -8,7 +8,7 @@ describe Trivia do
 
   describe "create Trivia" do
 
-    it 'with title and tag and description and course' do
+    it 'with valid attributes' do
       expect{Trivia.make!}.to change{Trivia.count}.by(1)
     end
 
@@ -22,6 +22,10 @@ describe Trivia do
 
     it 'without course and with title' do
       expect{Trivia.make!(course: nil)}.to raise_error
+    end
+
+    it 'without type' do
+      expect{Trivia.make!(type: nil)}.to raise_error
     end
   end
 

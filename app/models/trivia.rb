@@ -1,4 +1,6 @@
 class Trivia < ActiveRecord::Base
+  self.inheritance_column = nil
+
   belongs_to :course
 
   has_one :level, :through => :course
@@ -6,6 +8,11 @@ class Trivia < ActiveRecord::Base
 
   validates :title, :presence => true
   validates :course, :presence => true
+  validates :type, :presence => true
+
+  TYPES = {1 => I18n.t('trivia.type.multiple_choice'), 2 => I18n.t('trivia.type.free')}
+
+  TYPE_MULTIPLE_CHOICE = TYPES.keys.first
 
   def level_courses
     self.try(:level).try(:courses)
