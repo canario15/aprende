@@ -6,13 +6,25 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+Level.delete_all
 level1 = Level.create(title: "Primer año")
 level2 = Level.create(title: "Segundo año")
 level3 = Level.create(title: "Tercer año")
 
+Course.delete_all
 Course.create(title: "Ciencias sociales",level: level1)
 Course.create(title: "Ciencias Matematicas",level: level1)
 Course.create(title: "Ingles",level: level2)
 Course.create(title: "Geografia",level: level2)
 Course.create(title: "Matematica B",level: level3)
 Course.create(title: "Historia",level: level3)
+
+State.delete_all
+['Montevideo','Canelones  ', 'Maldonado ','Salto  ','Colonia  ',
+  'Paysandú ','San José ','Rivera ','Tacuarembó ','Cerro Largo  ',
+  'Soriano  ','Artigas  ','Rocha  ','Florida  ','Lavalleja  ',
+  'Durazno  ','Río Negro  ','Treinta y Tres ','Flores'].each.with_index do |state, i|
+  state = State.new(name: state.strip)
+  state.id = i+1
+  state.save
+end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140128171648) do
+ActiveRecord::Schema.define(version: 20140129172833) do
 
   create_table "answers", force: true do |t|
     t.integer  "question_id"
@@ -103,6 +103,12 @@ ActiveRecord::Schema.define(version: 20140128171648) do
 
   add_index "teachers", ["email"], name: "index_teachers_on_email", unique: true
   add_index "teachers", ["reset_password_token"], name: "index_teachers_on_reset_password_token", unique: true
+
+  create_table "states", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "trivium", force: true do |t|
     t.string   "title"
