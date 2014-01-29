@@ -1,0 +1,35 @@
+<h2>Registrate</h2>
+<div class="col-lg-5">
+  <div class="well">
+    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
+
+      <div><%= f.label :email %><br />
+      <%= f.email_field :email, :autofocus => true %></div>
+
+      <div><%= f.label :contraseña %><br />
+      <%= f.password_field :password %></div>
+
+      <div><%= f.label :confirmación_contraseña %><br />
+      <%= f.password_field :password_confirmation %></div>
+
+       <div><%= f.label :nombre %><br />
+      <%= f.text_field :first_name %></div>
+
+      <div><%= f.label :apellido%><br />
+      	<%= f.text_field :last_name %>
+      </div>
+
+      <div><%= f.label :teléfono %><br />
+      	<%= f.text_field :phone %>
+      </div>
+
+      <div><%= f.label :descripción %><br />
+      	<%= f.text_field :description %>
+      </div>
+      <div><%= f.submit "Registrate!", class: 'btn btn-primary'%></div>
+    <% end %>
+
+    <%= render "teachers/shared/links" %>
+  </div>
+</div>

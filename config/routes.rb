@@ -1,4 +1,5 @@
 Aprende::Application.routes.draw do
+
   get "home", to: "home#index"
   get "welcome/index"
   get "game/new"
@@ -23,6 +24,9 @@ Aprende::Application.routes.draw do
 
   devise_for :users, :controllers => {:registrations => "users/registrations"}
   resources :users
+
+  devise_for :teachers, :controllers => {:registrations => "teachers/registrations"}
+  resources :teachers
 
   root 'welcome#index'
 end

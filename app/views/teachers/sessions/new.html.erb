@@ -1,7 +1,7 @@
-<h2>Entra a aprender!!</h2>
+<h2>Entra a enseñar!!</h2>
 <div class="col-lg-5">
   <div class="well">
-    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), class: 'form-horizontal') do |f| %>
+		  <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), class: 'form-horizontal') do |f| %>
       <div class="form-group">
         <%= f.label :email, class: 'col-lg-2 control-label' %>
         <%= f.email_field :email, autofocus: true, class: 'form-control' %>
@@ -17,6 +17,6 @@
 
       <div><%= f.submit "Entra!", class: 'btn btn-primary' %></div>
     <% end %>
-    <%= render "users/shared/links" %>
-  </div>
+		<%= render "teachers/shared/links" %>
+	</div>
 </div>
