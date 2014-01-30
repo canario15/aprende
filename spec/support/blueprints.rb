@@ -67,6 +67,7 @@ Trivia.blueprint do
   title {"Trivia de Paises"}
   type {1}
   course
+  teacher
 end
 
 Question.blueprint do

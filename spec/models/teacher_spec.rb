@@ -12,6 +12,10 @@ describe Teacher do
     it { should respond_to(:description) }
   end
 
+  describe "relations" do
+    it { should have_many(:trivium)}
+  end
+
   describe 'Teacher Create' do
     it 'Creates a Teacher'do
       expect{ Teacher.make! }.to (change(Teacher, :count).by(1))

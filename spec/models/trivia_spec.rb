@@ -15,6 +15,7 @@ describe Trivia do
     it { should have_one(:level) }
     it { should have_many(:questions) }
     it { should have_many(:games) }
+    it { should respond_to(:teacher) }
   end
 
   describe "create Trivia" do

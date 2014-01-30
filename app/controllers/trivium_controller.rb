@@ -1,8 +1,12 @@
 class TriviumController < ApplicationController
-  layout 'landing_page'
+  layout 'application'
 
   def index
-    @trivias = Trivia.all
+    if current_teacher
+      @trivias = current_teacher.trivium
+    else
+      @trivias = []
+    end
   end
 
   def new
@@ -19,7 +23,7 @@ class TriviumController < ApplicationController
   end
 
   def create
-    trivia =Trivia.create(trivia_params)
+    trivia =Trivia.create(trivia_params.merge(teacher: current_teacher))
     respond_to do |format|
       format.html { redirect_to new_question_trivia_url(trivia.id) }
     end
