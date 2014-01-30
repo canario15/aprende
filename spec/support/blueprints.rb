@@ -89,3 +89,8 @@ end
 State.blueprint do
   name {"Colonia"}
 end
+
+City.blueprint do
+  name {"Carmelo"}
+  state {State.make!}
+end

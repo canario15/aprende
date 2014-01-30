@@ -6,6 +6,10 @@ describe State do
     it { should respond_to(:name) }
   end
 
+  describe "relations" do
+    it { should have_many(:cities)}
+  end
+
   describe "validates" do
 
     it 'validate presence' do
@@ -13,7 +17,6 @@ describe State do
     end
 
   end
-
 
   describe "create State" do
 

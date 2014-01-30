@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140129172833) do
+ActiveRecord::Schema.define(version: 20140130142741) do
 
   create_table "answers", force: true do |t|
     t.integer  "question_id"
@@ -31,6 +31,15 @@ ActiveRecord::Schema.define(version: 20140129172833) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "cities", force: true do |t|
+    t.string   "name"
+    t.integer  "state_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "cities", ["state_id"], name: "index_cities_on_state_id"
 
   create_table "courses", force: true do |t|
     t.string   "title"
@@ -82,6 +91,12 @@ ActiveRecord::Schema.define(version: 20140129172833) do
 
   add_index "questions", ["trivia_id"], name: "index_questions_on_trivia_id"
 
+  create_table "states", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "teachers", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -103,12 +118,6 @@ ActiveRecord::Schema.define(version: 20140129172833) do
 
   add_index "teachers", ["email"], name: "index_teachers_on_email", unique: true
   add_index "teachers", ["reset_password_token"], name: "index_teachers_on_reset_password_token", unique: true
-
-  create_table "states", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "trivium", force: true do |t|
     t.string   "title"
