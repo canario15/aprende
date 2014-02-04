@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     if resource.class.to_s == Constants::RESOURCE_TYPE[:teacher]
-      teachers_path
+      games_path
     else
       home_path
     end

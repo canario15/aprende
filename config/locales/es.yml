@@ -198,6 +198,10 @@ es:
     errors:
       <<: *errors
 
+  dictionary:
+    'true': "Si"
+    'false': "No"
+
   trivia:
     type:
       multiple_choice: "Multiple Opción"

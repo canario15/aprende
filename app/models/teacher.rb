@@ -5,6 +5,7 @@ class Teacher < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :trivium
+  has_many :games, through: :trivium
 
   scope :system_teachers, -> { order(first_name: :asc)}
 end

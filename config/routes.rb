@@ -7,6 +7,8 @@ Aprende::Application.routes.draw do
   patch "game/eval_answer"
   get "game/reset"
   get "game/finish"
+  get "games" => "game#index", as: :games
+  get "game/:id/game_results" => "game#game_results", as: :game_results
 
   resources :questions
   resources :courses
@@ -27,6 +29,7 @@ Aprende::Application.routes.draw do
 
   devise_for :teachers, :controllers => {:registrations => "teachers/registrations"}
   resources :teachers
+
 
   root 'welcome#index'
 end

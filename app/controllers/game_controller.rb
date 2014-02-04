@@ -1,5 +1,5 @@
 class GameController < ApplicationController
-
+  before_filter :authenticate_teacher!, [:index]
   before_filter :get_game
 
   def new
@@ -16,7 +16,7 @@ class GameController < ApplicationController
   def eval_answer
     question_id = params[:question][:id]
     save_answered_question question_id
-    @question = Question.find question_id 
+    @question = Question.find question_id
     @answer = params[:answer]
     @correct_answer = @question.answer
     @was_correct = validate_answer @question, params[:answer]
@@ -34,6 +34,15 @@ class GameController < ApplicationController
   def reset
     reset_game
     redirect_to action: :new
+  end
+
+  def index
+    @games_results = current_teacher.games
+  end
+
+  def game_results
+    @game = Game.find params[:id]
+    @game_answers = @game.answers
   end
 
   def finish

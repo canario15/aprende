@@ -62,6 +62,10 @@ class Game < ActiveRecord::Base
     save!
   end
 
+  def correct_answers
+    answers.where(:was_correct => true)
+  end
+
   private
 
   def mark_as_started

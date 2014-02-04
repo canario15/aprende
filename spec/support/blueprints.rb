@@ -95,3 +95,13 @@ City.blueprint do
   name {"Carmelo"}
   state {State.make!}
 end
+
+Game.blueprint do
+  trivia
+end
+
+Answer.blueprint do
+  was_correct {true}
+  question
+  game
+end

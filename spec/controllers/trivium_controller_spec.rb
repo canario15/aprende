@@ -5,6 +5,11 @@ describe TriviumController do
     @course = Course.make!
   end
 
+  before :each do
+    @teacher = Teacher.make!
+    sign_in @teacher
+  end
+
   describe "GET 'index'" do
     it "returns http success(code=200)" do
       get 'index'
@@ -20,10 +25,6 @@ describe TriviumController do
   end
 
   describe "POST 'create'" do
-    before :each do
-      @teacher = Teacher.make!
-      sign_in @teacher
-    end
 
     it "create a new trivia" do
       get 'new'
