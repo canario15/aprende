@@ -16,6 +16,11 @@ describe Teacher do
     it { should have_many(:trivium)}
   end
 
+  describe "validate the presence of attributes in User:" do
+    it { should validate_presence_of :email}
+    it { should validate_presence_of :password}
+  end
+
   describe 'Teacher Create' do
     it 'Creates a Teacher'do
       expect{ Teacher.make! }.to (change(Teacher, :count).by(1))
@@ -31,11 +36,12 @@ describe Teacher do
 
   end
 
-  describe "validate the presence of attributes in Teacher:" do
-    it "must have an email and password" do
-      expect(subject).to validate_presence_of :email
-      expect(subject).to validate_presence_of :password
+  describe 'Teacher scope order by name asc' do
+    it'Creates teachers'do
+      b_teacher = Teacher.make!(first_name: 'b_teacher')
+      a_teacher = Teacher.make!(first_name: 'a_teacher')
+      expect(Teacher.system_teachers).to eq([a_teacher,b_teacher])
     end
   end
-
+  
 end

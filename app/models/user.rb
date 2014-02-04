@@ -5,4 +5,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   attr_accessor :course
+
+  scope :system_users, ->{order(first_name: :asc)}
 end
