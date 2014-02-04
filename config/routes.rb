@@ -29,6 +29,11 @@ Aprende::Application.routes.draw do
 
   devise_for :teachers, :controllers => {:registrations => "teachers/registrations"}
   resources :teachers
+  resources :institutes do
+    collection do
+      get 'update_city'
+    end
+  end
 
 
   root 'welcome#index'

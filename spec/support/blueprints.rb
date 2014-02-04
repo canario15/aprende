@@ -105,3 +105,8 @@ Answer.blueprint do
   question
   game
 end
+
+Institute.blueprint do
+  name {"Liceo N° 1"}
+  city
+end
