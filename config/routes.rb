@@ -34,7 +34,8 @@ Aprende::Application.routes.draw do
       get 'update_city'
     end
   end
-
+  devise_for :admins
+  resources :admins
 
   root 'welcome#index'
 end

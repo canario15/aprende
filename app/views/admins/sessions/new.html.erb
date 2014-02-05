@@ -1,0 +1,21 @@
+<h2>Entra Administrador</h2>
+<div class="col-lg-5">
+  <div class="well">
+          <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), class: 'form-horizontal') do |f| %>
+      <div class="form-group">
+        <%= f.label :email, class: 'col-lg-2 control-label' %>
+        <%= f.email_field :email, autofocus: true, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :contraseña, class: 'col-lg-2 control-label'%>
+        <%= f.password_field :password, class: 'form-control'%>
+      </div>
+
+      <% if devise_mapping.rememberable? -%>
+        <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+      <% end -%>
+
+      <div><%= f.submit "Entra!", class: 'btn btn-primary' %></div>
+    <% end %>
+    </div>
+</div>

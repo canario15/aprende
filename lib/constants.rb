@@ -2,7 +2,8 @@
 
   RESOURCE_TYPE = {
       user: 'User',
-      teacher: 'Teacher'
+      teacher: 'Teacher',
+      admin: 'Admin'
   }
 
 end

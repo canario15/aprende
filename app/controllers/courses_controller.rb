@@ -1,5 +1,6 @@
 class CoursesController < ApplicationController
-  layout 'landing_page'
+  layout 'application'
+  before_filter :authenticate_admin!
 
   def index
     @courses = Course.all

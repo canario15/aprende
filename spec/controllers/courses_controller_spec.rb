@@ -1,8 +1,15 @@
 require 'spec_helper'
 
 describe CoursesController do
+  render_views
   before :all do
     @level = Level.make!
+  end
+
+
+  before :each do
+    @admin = Admin.make!
+    sign_in @admin
   end
 
   describe "GET 'index'" do

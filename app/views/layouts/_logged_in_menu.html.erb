@@ -39,6 +39,11 @@
             <%= current_teacher.email %><b class="caret"></b>
           <% end %>
         <% end %>
+          <% if current_admin %>
+          <%= link_to(edit_admin_path(current_admin), class: 'dropdown-toggle', 'data-toggle' => 'dropdown') do %>
+            <%= current_admin.email %><b class="caret"></b>
+          <% end %>
+        <% end %>
         <ul class="dropdown-menu">
           <li><a href="#">Ver cuenta</a></li>
           <li><a href="#">Preferencias</a></li>
@@ -48,6 +53,9 @@
           <%end%>
           <% if current_teacher %>
             <li><%= link_to('Salir', destroy_teacher_session_path, :method => :delete) %></li>
+          <%end%>
+           <% if current_admin %>
+            <li><%= link_to('Salir', destroy_admin_session_path, :method => :delete) %></li>
           <%end%>
         </ul>
         </li>

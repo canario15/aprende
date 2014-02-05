@@ -28,3 +28,6 @@ State.delete_all
   state.id = i+1
   state.save
 end
+
+Admin.delete_all
+Admin.create!(email: "admin@vairix.com", password: "123456789")
