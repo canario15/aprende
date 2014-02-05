@@ -14,10 +14,10 @@ describe HomeController do
 
     it 'render the index template' do
       get 'index'
-      expect(response.body).to match("Home")
+      expect(response.body).to match("Inicio")
     end
   end
-  
+
   describe "GET 'index' without user" do
     it "returns http success" do
       get 'index'
