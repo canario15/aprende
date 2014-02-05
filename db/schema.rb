@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140205160852) do
+ActiveRecord::Schema.define(version: 20140205161713) do
 
   create_table "answers", force: true do |t|
     t.integer  "question_id"
@@ -163,9 +163,11 @@ ActiveRecord::Schema.define(version: 20140205160852) do
     t.string   "last_sign_in_ip"
     t.string   "last_name"
     t.integer  "level_id"
+    t.integer  "institute_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["institute_id"], name: "index_users_on_institute_id"
   add_index "users", ["level_id"], name: "index_users_on_level_id"
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 

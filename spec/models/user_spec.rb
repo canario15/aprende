@@ -14,6 +14,7 @@ describe User do
 
   describe "relations" do
     it { should respond_to(:level) }
+    it { should respond_to(:institute) }
   end
 
   describe "validate the presence of attributes in User:" do

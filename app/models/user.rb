@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   belongs_to :level
+  belongs_to :institute
 
   scope :system_users, ->{order(first_name: :asc)}
 end
