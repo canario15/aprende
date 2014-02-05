@@ -100,3 +100,7 @@ blockquote small, blockquote .small {
   height:29px;
   background:url(/assets/icon-close.png) no-repeat center center;
 }
+
+.course_h3 {
+  height: 50px;
+}

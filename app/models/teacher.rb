@@ -8,4 +8,8 @@ class Teacher < ActiveRecord::Base
   has_many :games, through: :trivium
 
   scope :system_teachers, -> { order(first_name: :asc)}
+
+  def name
+    (first_name.nil? ? "" : first_name) + " " + (last_name.nil? ? "" : last_name)
+  end
 end
