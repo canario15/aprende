@@ -1,0 +1,47 @@
+<%= form_for(:user, :url => registration_path(:user), :html => {class: 'bs-example form-horizontal'}) do |f| %>
+  <fieldset>
+    <legend>Registrate!</legend>
+    <%= devise_error_messages! %>
+    <div class="form-group">
+      <label for="inputName" class="col-lg-2 control-label">Nombre</label>
+      <div class="col-lg-10">
+        <%= f.text_field :first_name, :autofocus => true, class: 'form-control', placeholder: 'Nombre' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputApellido" class="col-lg-2 control-label">Apellido</label>
+      <div class="col-lg-10">
+        <%= f.text_field :last_name, :autofocus => true, class: 'form-control', placeholder: 'Apellido' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :email, class: "col-lg-2 control-label" %>
+      <div class="col-lg-10">
+        <%= f.email_field :email, :autofocus => true, class: 'form-control', placeholder: 'Email' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputPassword" class="col-lg-2 control-label">Contraseña</label>
+      <div class="col-lg-10">
+        <%= f.password_field :password, class: 'form-control', placeholder: 'Contraseña' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputPassword" class="col-lg-2 control-label">Confirma contraseña</label>
+      <div class="col-lg-10">
+        <%= f.password_field :password_confirmation, class: 'form-control', placeholder: 'Confirmacion de contraseña' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="select" class="col-lg-2 control-label">Cursando:</label>
+      <div id="trivia_courses" class="col-lg-10">
+        <%= f.collection_select(:level_id, all_levels, :id, :title, {}, {:class=> "form-control"}) %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+        <button type="submit" class="btn btn-primary">Registrarme</button>
+      </div>
+    </div>
+  </fieldset>
+<% end %>

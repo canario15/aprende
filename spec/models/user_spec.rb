@@ -11,7 +11,11 @@ describe User do
     it { should respond_to(:group) }
     it { should respond_to(:school) }
   end
-  
+
+  describe "relations" do
+    it { should respond_to(:level) }
+  end
+
   describe "validate the presence of attributes in User:" do
     it { should validate_presence_of :email}
     it { should validate_presence_of :password}
