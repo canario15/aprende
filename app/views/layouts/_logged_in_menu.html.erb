@@ -9,21 +9,12 @@
       </button>
     </div>
     <div class="navbar-collapse collapse navbar-responsive-collapse">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">Cursos</a></li>
-        <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Juego<b class="caret"></b></a>
-        <ul class="dropdown-menu">
-          <li><a href="#">Nuevo</a></li>
-          <li><a href="#">Historico</a></li>
-          <li class="divider"></li>
-          <li class="dropdown-header">Ranking</li>
-          <li><a href="#">Institution</a></li>
-          <li><a href="#">Pais</a></li>
-        </ul>
-        </li>
-      </ul>
+      <% if current_user -%>
+        <%= render partial: 'layouts/menu_options_user'%>
+      <% end -%>
+      <% if current_teacher -%>
+        <%= render partial: 'layouts/menu_options_teacher'%>
+      <% end -%>
       <form class="navbar-form navbar-left">
         <input type="text" class="form-control col-lg-8" placeholder="Search">
       </form>

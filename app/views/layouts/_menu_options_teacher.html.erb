@@ -1,0 +1,11 @@
+<ul class="nav navbar-nav">
+  <li class="active"><%= link_to "Inicio", "#" %></li>
+  <li><%= link_to "Mis Trivias", trivium_path %></a></li>
+  <li><%= link_to "Institutos", institutes_path %></a></li>
+  <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Estadisticas<b class="caret"></b></a>
+  <ul class="dropdown-menu">
+    <li><%= link_to "Trivias realizadas", games_path %></li>
+  </ul>
+  </li>
+</ul>
