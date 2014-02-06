@@ -197,7 +197,11 @@ es:
   activerecord:
     errors:
       <<: *errors
-
+    attributes:
+      trivia:
+        title: "Título"
+        type: "Tipo"
+        course: "Curso"
   dictionary:
     'true': "Si"
     'false': "No"

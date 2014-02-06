@@ -25,7 +25,11 @@ describe TriviumController do
   end
 
   describe "POST 'create'" do
+    before :each do
+      @trivia = Trivia.make(:filled)
+    end
 
+    render_views
     it "create a new trivia" do
       get 'new'
       expect(response.code).to eq("200")
@@ -42,6 +46,30 @@ describe TriviumController do
       expect {post('create', params) }.to change{Trivia.count}.by(0)
     end
 
+    it "error without title" do
+      @trivia.title = nil
+      post(:create,trivia_level:  @trivia.course.level, trivia: @trivia.attributes)
+      expect(assigns[:trivia].errors.full_messages.first).to eq("Title can't be blank")
+    end
+
+    it "error without type" do
+      @trivia.type = nil
+      post(:create,trivia_level:  @trivia.course.level,trivia: @trivia.attributes)
+      expect(assigns[:trivia].errors.full_messages.first).to eq("Type can't be blank")
+    end
+
+    it "error without course" do
+      @trivia.course =  nil
+      post(:create,trivia_level:  1 ,trivia: @trivia.attributes)
+      expect(assigns[:trivia].errors.full_messages.first).to eq("Course can't be blank")
+    end
+
+    it "error render new" do
+      @trivia.title = nil
+      post(:create,trivia_level:  @trivia.course.level,trivia: @trivia.attributes)
+      expect(response.body).to match("Title can\.*t be blank")
+    end
+
   end
 
   describe "GET 'edit'" do
@@ -56,6 +84,8 @@ describe TriviumController do
   end
 
   describe "POST 'update'" do
+    render_views
+
     before :each do
       @trivia = Trivia.make!
     end
@@ -64,6 +94,30 @@ describe TriviumController do
       params = {:id=> @trivia.id, :trivia => {:title => "update trivia", :course_id => @course.id, :tag => "mathematic", :description => "Trivia the mathematic"}}
       post 'update', params
       expect(response).to redirect_to(new_question_trivia_url(@trivia.id))
+    end
+
+    it "error without title" do
+      @trivia.title = nil
+      post(:update,:id => @trivia.id,trivia_level:  @trivia.course.level,trivia: @trivia.attributes)
+      expect(assigns[:trivia].errors.full_messages.first).to eq("Title can't be blank")
+    end
+
+    it "error without type" do
+      @trivia.type = nil
+      post(:update,:id => @trivia.id,trivia_level:  @trivia.course.level,trivia: @trivia.attributes)
+      expect(assigns[:trivia].errors.full_messages.first).to eq("Type can't be blank")
+    end
+
+    it "error without course" do
+      @trivia.course = nil
+      post(:update,:id => @trivia.id,trivia_level:  1 ,trivia: @trivia.attributes)
+      expect(assigns[:trivia].errors.full_messages.first).to eq("Course can't be blank")
+    end
+
+    it "error render new" do
+      @trivia.title = nil
+      post(:update,:id => @trivia.id,trivia_level:  @trivia.course.level,trivia: @trivia.attributes)
+      expect(response.body).to match("Title can\.*t be blank")
     end
   end
 

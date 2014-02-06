@@ -70,6 +70,13 @@ Trivia.blueprint do
   teacher
 end
 
+Trivia.blueprint(:filled) do
+  title { "Trivia de Paises"  }
+  type { 1 }
+  course { Course.make!  }
+  teacher  { Teacher.make! }
+end
+
 Question.blueprint do
   description {"Caul es el color de vairix"}
   answer {"Verde"}

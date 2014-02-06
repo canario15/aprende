@@ -1,6 +1,5 @@
 class TriviumController < ApplicationController
   before_filter :authenticate_teacher!
-
   layout 'application'
 
   def index
@@ -25,9 +24,19 @@ class TriviumController < ApplicationController
   end
 
   def create
-    trivia =Trivia.create(trivia_params.merge(teacher: current_teacher))
-    respond_to do |format|
-      format.html { redirect_to new_question_trivia_url(trivia.id) }
+    @trivia =Trivia.new(trivia_params.merge(teacher: current_teacher))
+    if @trivia.save
+      respond_to do |format|
+        format.html { redirect_to new_question_trivia_url(@trivia.id) }
+      end
+    else
+      @levels = Level.all
+      @types = Trivia::TYPES
+      @courses = Level.find(params[:trivia_level]).courses
+
+      respond_to do |format|
+        format.html { render :new }
+      end
     end
   end
 
@@ -39,10 +48,19 @@ class TriviumController < ApplicationController
   end
 
   def update
-    trivia = Trivia.find(params[:id])
-    trivia.update_attributes(trivia_params)
-    respond_to do |format|
-      format.html { redirect_to new_question_trivia_url(trivia.id) }
+    @trivia = Trivia.find(params[:id])
+    if @trivia.update_attributes(trivia_params)
+      respond_to do |format|
+        format.html { redirect_to new_question_trivia_url(@trivia.id) }
+      end
+    else
+      @levels = Level.all
+      @types = Trivia::TYPES
+      @courses = Level.find(params[:trivia_level]).courses
+
+      respond_to do |format|
+        format.html { render :edit }
+      end
     end
   end
 
@@ -90,5 +108,4 @@ class TriviumController < ApplicationController
   def question_params
     params.require(:question).permit(:answer, :dificulty, :description, :image, :incorrect_answer_one, :incorrect_answer_two, :incorrect_answer_three, :incorrect_answer_four)
   end
-
 end

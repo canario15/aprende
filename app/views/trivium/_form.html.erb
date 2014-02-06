@@ -1,3 +1,15 @@
+<% if @trivia.errors.any? -%>
+  <div class="row">
+    <div class="col-lg-offset-2">
+      <div class="alert alert-dismissable alert-danger">
+        <h4>Se encontro <%= pluralize(@trivia.errors.count, "error") %> no es posible crear la Trivia</h4>
+        <% @trivia.errors.full_messages.each do |msg| %>
+          <%= content_tag :label, msg %>
+        <% end -%>
+      </div>
+    </div>
+  </div>
+<% end -%>
 <%= form_for @trivia, :html => {:class => "bs-example form-horizontal"} do |f| %>
   <fieldset>
     <div class="form-group">
