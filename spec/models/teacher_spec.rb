@@ -10,13 +10,15 @@ describe Teacher do
     it { should respond_to(:password_confirmation) }
     it { should respond_to(:phone) }
     it { should respond_to(:description) }
+    it { should respond_to(:avatar) }
   end
 
   describe "relations" do
     it { should have_many(:trivium)}
+    it { should belong_to(:city)}
   end
 
-  describe "validate the presence of attributes in User:" do
+  describe "validate the presence of attributes in Teacher:" do
     it { should validate_presence_of :email}
     it { should validate_presence_of :password}
   end
@@ -43,5 +45,5 @@ describe Teacher do
       expect(Teacher.system_teachers).to eq([a_teacher,b_teacher])
     end
   end
-  
+
 end

@@ -27,8 +27,12 @@ Aprende::Application.routes.draw do
   devise_for :users, :controllers => {:registrations => "users/registrations"}
   resources :users
 
-  devise_for :teachers, :controllers => {:registrations => "teachers/registrations"}
+  devise_for :teachers, :controllers => {:registrations => "teachers/registrations" }
+
+  match 'cities/state_cities', controller: 'cities', action: 'state_cities', as: 'state_cities', via: :get
+
   resources :teachers
+
   resources :institutes do
     collection do
       get 'update_city'

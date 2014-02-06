@@ -6,10 +6,14 @@ class Teacher < ActiveRecord::Base
 
   has_many :trivium
   has_many :games, through: :trivium
+  belongs_to :city
+
+  has_attached_file :avatar, :styles => { :large => "300x300>", :medium => "100x100>", :small => "50x50" }, :default_url => "/assets/:style/missing.jpg"
 
   scope :system_teachers, -> { order(first_name: :asc)}
 
   def name
     (first_name.nil? ? "" : first_name) + " " + (last_name.nil? ? "" : last_name)
   end
+
 end

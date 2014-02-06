@@ -104,3 +104,20 @@ blockquote small, blockquote .small {
 .course_h3 {
   height: 50px;
 }
+
+.border_error {
+  border: 1px solid #EF4C23 !important;
+  box-shadow: 0 0 10px #EF4C23;
+}
+
+.form-avatar {
+  float: left;
+  margin-bottom: 23px;
+  margin-left: 10px;
+  width: 100%;
+  margin-top: 18px;
+}
+
+#form_teacher_states {
+  margin-top: 20px;
+}

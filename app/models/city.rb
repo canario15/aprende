@@ -4,6 +4,7 @@ class City < ActiveRecord::Base
   validates :name, :presence => true
   validates :state_id, :presence => true
   has_many :institutes
+  has_many :teachers
   scope :order_name, -> { order('name') }
 
   def to_s
