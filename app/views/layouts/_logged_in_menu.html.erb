@@ -15,6 +15,9 @@
       <% if current_teacher -%>
         <%= render partial: 'layouts/menu_options_teacher'%>
       <% end -%>
+      <% if current_admin -%>
+        <%= render partial: 'layouts/menu_options_admin'%>
+      <% end -%>
       <form class="navbar-form navbar-left">
         <input type="text" class="form-control col-lg-8" placeholder="Search">
       </form>
