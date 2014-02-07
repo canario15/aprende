@@ -49,6 +49,12 @@ p {
   border-color: #ff670f;
 }
 
+.btn-secondary {
+  background-color: #d92432;
+  border-color: #d92432;
+  color: #fff;
+}
+
 .jumbotron {
   background-color: #188A58;
 }

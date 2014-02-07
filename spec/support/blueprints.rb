@@ -71,10 +71,11 @@ Trivia.blueprint do
 end
 
 Trivia.blueprint(:filled) do
-  title { "Trivia de Paises"  }
+  title { "Trivia Title #{sn}" }
+  tag { "Trivia Tag #{sn}" }
   type { 1 }
   course { Course.make!  }
-  teacher  { Teacher.make! }
+  teacher { Teacher.make!(:filled) }
 end
 
 Question.blueprint do
@@ -92,6 +93,15 @@ Teacher.blueprint do
   email { "#{sn}@vairix.com" }
   password { "1234567890" }
   password_confirmation { "1234567890" }
+end
+
+Teacher.blueprint(:filled) do
+  first_name { "#First Name {sn}" }
+  last_name { "#Last Name {sn}" }
+  email { "#{sn}@vairix.com" }
+  password { "1234567890" }
+  password_confirmation { "1234567890" }
+  city { City.make! }
 end
 
 State.blueprint do
