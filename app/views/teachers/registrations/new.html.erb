@@ -1,55 +1,7 @@
-<h2>Registrate</h2>
-<div class="col-lg-5">
+<h2>Registrate como profesor</h2>
+<div class="col-lg-6">
   <div class="well">
-    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-      <%= devise_error_messages! %>
-      <div>
-        <%= f.label :email %><br />
-        <%= f.email_field :email, :autofocus => true %>
-      </div>
-      <div>
-        <%= f.label :contraseña %><br />
-        <%= f.password_field :password %>
-      </div>
-      <div>
-        <%= f.label :confirmación_contraseña %><br />
-        <%= f.password_field :password_confirmation%>
-      </div>
-      <div>
-        <%= f.label :nombre %><br />
-        <%= f.text_field :first_name %>
-      </div>
-      <div>
-        <%= f.label :apellido%><br />
-      	<%= f.text_field :last_name %>
-      </div>
-      <div>
-        <%= f.label :teléfono %><br />
-      	<%= f.text_field :phone %>
-      </div>
-      <div>
-        <%= f.label :descripción %><br />
-      	<%= f.text_field :description %>
-      </div>
-      <div class="form-group" id="form_teacher_states">
-        <label for="select" class="col-lg-2 control-label">Departamento</label>
-        <div class="col-lg-10">
-          <%= select_tag "teacher_state", options_from_collection_for_select(all_state, "id", "name"), :class=> "form-control" %>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="select" class="col-lg-2 control-label">Ciudad</label>
-        <div id="teacher_cities" class="col-lg-10">
-          <%= f.collection_select(:city_id, cities_from_first_state, :id, :name, {}, {:class=> "form-control"}) %>
-        </div>
-      </div>
-      <div class="form-avatar">
-        <%= f.file_field :avatar %>
-      </div>
-      <div>
-        <%= f.submit "Registrate!", class: 'btn btn-primary'%>
-      </div>
-    <% end %>
+    <%= render partial: 'form' %>
     <%= render "teachers/shared/links" %>
   </div>
 </div>
