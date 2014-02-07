@@ -71,13 +71,18 @@ class TriviumController < ApplicationController
   end
 
   def create_question
-    trivia = Trivia.find(params[:id])
-    question = Question.create(question_params.merge({trivia_id: trivia.id}))
+    @trivia = Trivia.find(params[:id])
+    @question = Question.new(question_params.merge({trivia_id: @trivia.id}))
     respond_to do |format|
-      if (params[:finish] == "true")
-        format.html { redirect_to trivium_url }
+      if @question.save
+        if (params[:finish] == "true")
+          format.html { redirect_to trivium_url }
+        else
+          format.html { redirect_to new_question_trivia_url(@trivia.id) }
+        end
       else
-        format.html { redirect_to new_question_trivia_url(trivia.id) }
+        @questions = @trivia.questions
+        format.html { render :new_question }
       end
     end
   end
@@ -88,13 +93,17 @@ class TriviumController < ApplicationController
   end
 
   def update_question
-    question = Question.find(params[:question_id])
-    question.update_attributes(question_params)
+    @question = Question.find(params[:question_id])
     respond_to do |format|
-      if (params[:finish] == "true")
-        format.html { redirect_to trivium_url }
+      if @question.update_attributes(question_params)
+        if (params[:finish] == "true")
+          format.html { redirect_to trivium_url }
+        else
+          format.html { redirect_to new_question_trivia_url(@question.trivia.id) }
+        end
       else
-        format.html { redirect_to new_question_trivia_url(question.trivia.id) }
+        @trivia = @question.trivia
+        format.html { render :edit_question }
       end
     end
   end

@@ -2,7 +2,15 @@
   <h1>Preguntas y Respuestas</h1>
   <button type="button" id="display_question_trivia" class="btn btn-primary btn-sm">Nueva Pregunta</button>
 </div>
-<%= form_for @question, :url => create_question_trivia_path(@trivia.id), :html => {:class => "bs-example form-horizontal question_trivia hide"} do |f| %>
-  <%= render 'form_question', f: f %>
+
+<% unless @question.errors.any? -%>
+  <%= form_for @question, :url => create_question_trivia_path(@trivia.id), :html => {:class => "bs-example form-horizontal question_trivia hide"} do |f| %>
+    <%= render 'form_question', f: f %>
+  <% end -%>
+<% else -%>
+  <%= form_for @question, :url => create_question_trivia_path(@trivia.id), :html => {:class => "bs-example form-horizontal question_trivia"} do |f| %>
+    <%= render 'form_question', f: f %>
+  <% end -%>
 <% end -%>
+
 <%= render 'index_question' %>

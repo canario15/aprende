@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe TriviumController do
-	before :all do
+  before :all do
     @course = Course.make!
   end
 
@@ -122,12 +122,12 @@ describe TriviumController do
   end
 
   describe "GET 'new_question'" do
-  	before :each do
+    before :each do
       @trivia = Trivia.make!
       @question = Question.make!
     end
 
-  	it "returns http success(code=200) without question" do
+    it "returns http success(code=200) without question" do
       get 'new_question', {:id => @trivia.id}
       expect(response.code).to eq("200")
     end
@@ -138,8 +138,9 @@ describe TriviumController do
     end
   end
 
-	describe "POST 'create_question'" do
-  	before :each do
+  describe "POST 'create_question'" do
+    render_views
+    before :each do
       @trivia = Trivia.make!
     end
 
@@ -159,35 +160,52 @@ describe TriviumController do
       post 'create_question', params
       expect(response).to redirect_to(trivium_url)
     end
+
+    it "does not create a question to the trivia without a question description " do
+      params = {:id => @trivia.id, :finish => "false", :question => {:answer => "De que color es el logo de vairix", :dificulty => "1", :description => nil, :incorrect_answer_one => "Negro", :incorrect_answer_two => "Amarillo", :incorrect_answer_three => "Azul", :incorrect_answer_four => "Rojo" }}
+      expect {post('create_question', params) }.to change{Question.count}.by(0)
+    end
+
+    it "with description nil it redirects to the new question action again " do
+      params = {:id => @trivia.id, :finish => "false", :question => {:answer => "De que color es el logo de vairix", :dificulty => "1", :description => nil, :incorrect_answer_one => "Negro", :incorrect_answer_two => "Amarillo", :incorrect_answer_three => "Azul", :incorrect_answer_four => "Rojo" }}
+      post 'create_question', params
+      expect(response.body).to match /Preguntas y Respuestas/
+    end
   end
 
   describe "GET 'edit_question'" do
-  	before :each do
+    before :each do
       @question = Question.make!
     end
 
-  	it "returns http success(code= 200)" do
+    it "returns http success(code= 200)" do
       get 'edit_question', {:id => @question.trivia.id, :question_id => @question.id}
       expect(response.code).to eq("200")
     end
   end
 
   describe "GET 'update_question'" do
-  	before :each do
+    render_views
+    before :each do
       @question = Question.make!
     end
 
-  	it "returns http success, return 'new_question_trivia_url' " do
+    it "returns http success, return 'new_question_trivia_url' " do
       params = {:id => @question.trivia.id, :question_id => @question.id, :finish => "false", :question => {:answer => "De que color es el logo de vairix", :dificulty => "1", :description => "Verde", :incorrect_answer_one => "Negro", :incorrect_answer_two => "Amarillo", :incorrect_answer_three => "Azul", :incorrect_answer_four => "Rojo" }}
       post 'update_question', params
       expect(response).to redirect_to(new_question_trivia_url)
     end
 
-   	it "returns http success, return 'trivium_url' " do
+    it "returns http success, return 'trivium_url' " do
       params = {:id => @question.trivia.id, :question_id => @question.id, :finish => "true", :question => {:answer => "De que color es el logo de vairix", :dificulty => "1", :description => "Verde", :incorrect_answer_one => "Negro", :incorrect_answer_two => "Amarillo", :incorrect_answer_three => "Azul", :incorrect_answer_four => "Rojo" }}
       post 'update_question', params
       expect(response).to redirect_to(trivium_url)
     end
-  end
 
+    it "with description nil does not update the question" do
+      params = {:id => @question.trivia.id, :question_id => @question.id, :finish => "true", :question => {:answer => "De que color es el logo de vairix", :dificulty => "1", :description => nil, :incorrect_answer_one => "Negro", :incorrect_answer_two => "Amarillo", :incorrect_answer_three => "Azul", :incorrect_answer_four => "Rojo" }}
+      post 'update_question', params
+      expect(response.body).to match /Editar Pregunta y Respuestas de Trivia/
+    end
+  end
 end

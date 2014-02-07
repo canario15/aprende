@@ -1,3 +1,17 @@
+<% if @question.errors.any? -%>
+  <div class="row">
+    <div class="col-lg-offset-2">
+      <div class="alert alert-dismissable alert-danger">
+        <h4>Se encontro <%= pluralize(@question.errors.count, "error") %> no es posible crear la Pregunta</h4>
+        <ul>
+          <% @question.errors.full_messages.each do |msg| %>
+            <%= content_tag :label, msg %>
+          <% end -%>
+        </ul>
+      </div>
+    </div>
+  </div>
+<% end -%>
 <%= hidden_field_tag 'finish', 'false'%>
 <fieldset>
   <div class="form-group">
