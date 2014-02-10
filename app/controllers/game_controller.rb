@@ -1,5 +1,5 @@
 class GameController < ApplicationController
-  before_filter :authenticate_teacher!, [:index]
+  before_filter :check_user_or_teacher_logged_in!, :only => [:index]
   before_filter :get_game
 
   def new
@@ -37,7 +37,12 @@ class GameController < ApplicationController
   end
 
   def index
-    @games_results = current_teacher.games
+    if current_teacher
+      @games_results = current_teacher.games
+    end
+    if current_user
+      @games_results = current_user.games
+    end
   end
 
   def game_results
@@ -84,9 +89,15 @@ private
     session[:score] = 0
   end
 
-
   def get_game
     @game = Game.find(params[:game_id]) if params[:game_id]
+  end
+
+  def check_user_or_teacher_logged_in!
+    if !teacher_signed_in? && !user_signed_in?
+      flash[:error] = "Para ver los juegos debe logearse"
+      redirect_to root_path
+    end
   end
 
 end

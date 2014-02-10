@@ -6,6 +6,6 @@ class User < ActiveRecord::Base
 
   belongs_to :level
   belongs_to :institute
-
+  has_many :games
   scope :system_users, ->{order(first_name: :asc)}
 end
