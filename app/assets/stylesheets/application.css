@@ -12,6 +12,7 @@
  *= require variables.less
  *= require bootswatch.less
  *= require admin
+ *= require game
  *= require_self
  */
 
@@ -126,4 +127,16 @@ blockquote small, blockquote .small {
 
 #form_teacher_states {
   margin-top: 20px;
+}
+
+.pull-none{
+  float: none !important;
+}
+
+.link-black{
+  color: #000;
+}
+
+.link-black:hover{
+  color: #fff;
 }

@@ -7,7 +7,9 @@
           <h3 class="course_h3"><%= trivia.course%></h3>
           <p><%= trivia.title%></p>
           <p>Liceo 5 - Maldonado</p><span> <%=trivia.try(&:teacher).try(&:name) %></span>
-          <p><a href="#" class="btn btn-primary" role="button">Jugar</a></p>
+          <p>
+            <%=link_to "Seleccionar", game_new_path(trivia.id), class: "btn btn-primary"%>
+          </p>
         </div>
       </div>
     </div>

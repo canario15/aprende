@@ -19,4 +19,8 @@ class Trivia < ActiveRecord::Base
   def level_courses
     self.try(:level).try(:courses)
   end
+
+  def type_name
+    TYPES[self.type]
+  end
 end

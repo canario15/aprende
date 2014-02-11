@@ -1,34 +1,43 @@
 class GameController < ApplicationController
   before_filter :check_user_or_teacher_logged_in!, :only => [:index]
-  before_filter :get_game
+  before_filter :authenticate_user!, :only => [:new, :create, :eval_answer]
 
   def new
+    set_trivia
+    reset_game
   end
 
-  def question
-    @question = new_question
-    if @question.nil?
-      flash[:notice] = "Ya ha respondido todas las preguntas!! Su puntaje fue: #{session[:score]}"
-      redirect_to action: :finish
-    end
+  def create
+    set_trivia
+    @game = Game.create_game(current_user,@trivia)
+    save_game(@game.id)
+    @question = @game.new_question(answereds,@trivia)
+    @count_answereds = answereds.count + 1
+    @total_questions = @trivia.questions.count
+    render :eval_answer
   end
 
   def eval_answer
-    question_id = params[:question][:id]
-    save_answered_question question_id
-    @question = Question.find question_id
-    @answer = params[:answer]
-    @correct_answer = @question.answer
-    @was_correct = validate_answer @question, params[:answer]
-
-    if @was_correct
-      session[:score] ||= 0
-      session[:score] += 100
+    question_id = params[:question_id]
+    save_answered_question(question_id)
+    select_answer = params[:select_answer]
+    set_game
+    @answer = @game.eval_answer(question_id,select_answer)
+    @show_answer = true
+    if @answer.was_correct
       flash[:notice] = "Ud. ha acertado!! Felicitaciones!"
     else
-      flash[:error] = "Respuesta equivocada :(. Siga intentando.."
+      flash[:notice] = "Respuesta equivocada :(. Siga intentando.."
     end
-    render :response
+    set_trivia
+    @count_answereds = answereds.count + 1
+    @total_questions = @trivia.questions.count
+    @question = @game.new_question(answereds,@trivia)
+    if @question.nil?
+      @finish = true
+      flash[:finish] = "Ya ha respondido todas las preguntas!! Su puntaje fue: #{@game.score}"
+      render :finish
+    end
   end
 
   def reset
@@ -46,33 +55,14 @@ class GameController < ApplicationController
   end
 
   def game_results
-    @game = Game.find params[:id]
+    @game = Game.find(params[:id])
     @game_answers = @game.answers
   end
 
-  def finish
-  end
-
 private
-  def validate_answer question, answer
-    if question.answer.downcase == answer.downcase
-      true
-    else
-      false
-    end
-  end
 
-  def new_question
-    question = nil
-    count = Question.count
-    if count == answereds.count
-      return nil
-    end
-    while !question
-      random_id = rand(count) + 1
-      question = Question.find_by_id random_id unless answereds.include?(random_id)
-    end
-    question
+  def set_trivia
+    @trivia = Trivia.find(params[:trivia_id])
   end
 
   def save_answered_question question_id
@@ -81,16 +71,24 @@ private
   end
 
   def answereds
-    session[:answereds]
+    session[:answereds] ||= []
+  end
+
+  def get_game_id
+    session[:game]
+  end
+
+  def save_game(game_id)
+    session[:game] = game_id
   end
 
   def reset_game
     session[:answereds] = []
-    session[:score] = 0
+    session[:game] = nil
   end
 
-  def get_game
-    @game = Game.find(params[:game_id]) if params[:game_id]
+  def set_game
+    @game = Game.find(get_game_id) if get_game_id
   end
 
   def check_user_or_teacher_logged_in!

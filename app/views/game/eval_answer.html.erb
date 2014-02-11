@@ -1,2 +1,37 @@
-<h1>Game#eval_answer</h1>
-<p>Find me in app/views/game/eval_answer.html.erb</p>
+<%= render "show_answer" %>
+<div id="user_question" class="game_container <%=show_question(@show_answer)%>">
+  <h1 class="text-center">Siga sumando puntos!!!</h1>
+  <h2 class="col-lg-6">Pregunta <%=@count_answereds %> de <%=@total_questions%></h2>
+  <h2 class="col-lg-6">Puntaje acumulado <%=@game.score %></h2>
+  <%= form_for :game, url: game_eval_answer_path(@trivia.id), :html => {:class => "bs-example form-horizontal"} do |f| %>
+    <h3><%= @question.description %></h3>
+    <fieldset>
+      <%= hidden_field_tag "question_id", @question.id %>
+      <div class="form-group">
+        <% if type_multiple_choice?(@trivia.type) -%>
+          <label class="col-lg-2 control-label">Opciones</label>
+          <div class="col-lg-10">
+            <% random_order_question(@question).each do |answer| -%>
+              <div class="radio">
+                <label>
+                  <%= radio_button_tag "select_answer", answer, false, :class => "pull-none" %>
+                  <%= answer  %>
+                </label>
+              </div>
+            <% end -%>
+          <div/>
+        <% else -%>
+          <div class="form-group">
+            <label for="tag" class="col-lg-2 control-label">Respuesta</label>
+            <div class="col-lg-10">
+              <%= text_area_tag "select_answer", nil, class: 'form-control' %>
+            </div>
+          </div>
+        <% end -%>
+      <div/>
+      <p>
+        <%= f.submit "Validar", id: "validate_answer", class: "btn btn-primary btn-lg validate", disabled:true %>
+      </p>
+    <fieldset>
+  <% end -%>
+</div>

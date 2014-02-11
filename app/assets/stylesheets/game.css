@@ -1,0 +1,33 @@
+.game_container {
+  background-color: #0d747c;
+  color: inherit;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  padding: 30px;
+}
+
+.game_container
+.btn-primary {
+  color: #ffffff;
+  background-color: #ad1d28;
+  border-color: #ad1d28;
+}
+.game_container
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open .dropdown-toggle.btn-primary {
+  color: #ffffff;
+  background-color: #8a1720;
+  border-color: #79141c;
+}
+
+.game_container
+.validate {
+  margin-top: 10px;
+}
+
+.message-answer{
+  margin-top: 30px;
+}

@@ -58,6 +58,9 @@ GEM
     atomic (1.1.14)
     bcrypt-ruby (3.1.2)
     builder (3.1.4)
+    byebug (2.5.0)
+      columnize (~> 0.3.6)
+      debugger-linecache (~> 1.2.0)
     celluloid (0.15.2)
       timers (~> 1.1.0)
     childprocess (0.3.9)
@@ -77,12 +80,7 @@ GEM
     columnize (0.3.6)
     commonjs (0.2.7)
     database_cleaner (1.2.0)
-    debugger (1.6.2)
-      columnize (>= 0.3.1)
-      debugger-linecache (~> 1.2.0)
-      debugger-ruby_core_source (~> 1.2.3)
     debugger-linecache (1.2.0)
-    debugger-ruby_core_source (1.2.3)
     devise (3.1.1)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -266,11 +264,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  byebug
   capybara!
   capybara-webkit!
   coffee-rails (~> 4.0.0)
   database_cleaner
-  debugger
   devise
   guard-rspec
   jbuilder (~> 1.2)

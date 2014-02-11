@@ -20,27 +20,30 @@ class Game < ActiveRecord::Base
     5 => 1500
   }
 
-  def self.create_game(user)
-    self.create(user: user, score: 0, status: 1)
+  def self.create_game(user, trivia)
+    create(user: user, score: 0, trivia_id: trivia.id, status: STATUS[:created])
   end
 
-  def new_question
+  def new_question(answereds,trivia)
+    question = nil
     mark_as_started if self.status == STATUS[:created]
-    answered = questions.map { |q| q.id }.join(',')
-    unless answered.empty?
-      possible_questions = Question.where("id not in (#{answered})")
-    else
-      possible_questions = Question.all
+    count = trivia.questions.count
+    questions = trivia.questions.map{|q| q.id} - answereds.map { |a| a.to_i}
+    if count == answereds.count || questions.empty?
+      finish
+      return nil
     end
-    random_question = rand(possible_questions.size)
-    possible_questions[random_question]
+    while !question
+      random_id = questions.sample
+      question = Question.find(random_id)
+    end
+    question
   end
 
-  def eval_answer(question, answer)
-    right_answer = transform_answer question.answer
-    user_answer  = transform_answer answer
-    resp = right_answer == user_answer
-    answer = Answer.new(question: question, game: self, answer: answer)
+  def eval_answer(question_id, answer_text)
+    question = Question.find(question_id)
+    resp = validate_answer?(question.answer, answer_text)
+    answer = Answer.new(question: question, game: self, answer: answer_text)
     if resp
       answer.was_correct = true
       self.score += POINTS[question.dificulty]
@@ -48,8 +51,8 @@ class Game < ActiveRecord::Base
     else
       answer.was_correct = false
     end
-    answer.save!
-    resp
+    answer.save
+    answer
   end
 
   def finish
@@ -75,5 +78,9 @@ class Game < ActiveRecord::Base
 
   def transform_answer(answer)
     answer.downcase
+  end
+
+  def validate_answer?(correct_answer, user_answer)
+    transform_answer(correct_answer) == transform_answer(user_answer)
   end
 end
