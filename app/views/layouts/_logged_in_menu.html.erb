@@ -60,12 +60,12 @@
         <% end %>
         <ul class="dropdown-menu">
           <li><a href="#">Ver cuenta</a></li>
-          <li><a href="#">Preferencias</a></li>
           <li class="divider"></li>
           <% if current_user %>
             <li><%= link_to('Salir', destroy_user_session_path, :method => :delete) %></li>
           <%end%>
           <% if current_teacher %>
+            <li><%= link_to 'Edite sus datos', edit_teacher_path(current_teacher.id) %></li>
             <li><%= link_to('Salir', destroy_teacher_session_path, :method => :delete) %></li>
           <%end%>
            <% if current_admin %>
