@@ -24,7 +24,7 @@ Aprende::Application.routes.draw do
     end
   end
 
-  devise_for :users, :controllers => {:registrations => "users/registrations"}
+  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" , registrations:  "users/registrations" }
   resources :users
 
   devise_for :teachers, :controllers => {:registrations => "teachers/registrations" }
