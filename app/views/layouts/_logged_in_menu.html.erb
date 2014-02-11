@@ -62,6 +62,7 @@
           <li><a href="#">Ver cuenta</a></li>
           <li class="divider"></li>
           <% if current_user %>
+            <li><%= link_to 'Edite sus datos', edit_user_path(current_user.id) %></li>
             <li><%= link_to('Salir', destroy_user_session_path, :method => :delete) %></li>
           <%end%>
           <% if current_teacher %>

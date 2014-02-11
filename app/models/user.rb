@@ -19,4 +19,12 @@ class User < ActiveRecord::Base
       user.last_name = auth.info.last_name
     end
   end
+
+  def name
+    (first_name.nil? ? "" : first_name) + " " + (last_name.nil? ? "" : last_name)
+  end
+
+  def to_s
+    self.name
+  end
 end
