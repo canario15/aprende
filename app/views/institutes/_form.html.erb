@@ -1,9 +1,21 @@
+<% if @institute.errors.any? -%>
+  <div class="row">
+    <div class="col-lg-offset-2">
+      <div class="alert alert-dismissable alert-danger">
+        <h4>Se encontro <%= pluralize(@institute.errors.count, "error") %> no es posible crear el Instituto</h4>
+        <% @institute.errors.full_messages.each do |msg| %>
+          <%= content_tag :label, msg %>
+        <% end -%>
+      </div>
+    </div>
+  </div>
+<% end -%>
 <%= form_for @institute, :html => {:class => "bs-example form-horizontal"} do |f| %>
   <fieldset>
     <div class="form-group">
       <label for="name" class="col-lg-2 control-label">Nombre</label>
       <div class="col-lg-10">
-        <%= f.text_field :name, :autofocus => true, class: 'form-control', placeholder: 'Nuevo Instituto', :required => true %>
+        <%= f.text_field :name, :autofocus => true, class: 'form-control', placeholder: 'Nuevo Instituto' %>
       </div>
     </div>
     <div class="form-group">

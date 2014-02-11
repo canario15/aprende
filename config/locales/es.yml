@@ -204,6 +204,8 @@ es:
         course: "Curso"
       question:
         description: "La pregunta"
+      institute:
+        name: "El nombre"
   dictionary:
     'true': "Si"
     'false': "No"
