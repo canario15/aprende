@@ -104,6 +104,7 @@ describe GameController do
     render_views
     before :each do
       @user = User.make!
+      @user.confirm!
       sign_in @user
       @teacher = Teacher.make!
       @trivia = Trivia.make!(teacher: @teacher)
