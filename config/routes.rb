@@ -27,7 +27,7 @@ Aprende::Application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" , registrations:  "users/registrations" }
   resources :users
 
-  devise_for :teachers, :controllers => {:registrations => "teachers/registrations" }
+  devise_for :teachers, :controllers => {:registrations => "teachers/registrations", :sessions => "teachers/sessions" }
 
   match 'cities/state_cities', controller: 'cities', action: 'state_cities', as: 'state_cities', via: :get
 
@@ -40,6 +40,8 @@ Aprende::Application.routes.draw do
   end
   devise_for :admins
   resources :admins
+
+  post 'teachers/inactivate_or_activate' => 'teachers#inactivate_or_activate', as: 'inactivate_or_activate'
 
   root 'welcome#index'
 end

@@ -1,4 +1,14 @@
 <h2>Entra Administrador</h2>
+<% if flash[:error] -%>
+  <div class="row">
+    <div class="col-lg-5">
+      <div class="alert alert-dismissable alert-danger">
+        <button data-dismiss="alert" class="close" type="button">×</button>
+        <%= content_tag :label, flash[:error], id: "flash_error" %>
+      </div>
+    </div>
+  </div>
+<% end -%>
 <div class="col-lg-5">
   <%= render "flash/error" %>
   <div class="well">

@@ -93,6 +93,7 @@ Teacher.blueprint do
   email { "#{sn}@vairix.com" }
   password { "1234567890" }
   password_confirmation { "1234567890" }
+  inactive {false}
 end
 
 Teacher.blueprint(:filled) do
@@ -101,6 +102,7 @@ Teacher.blueprint(:filled) do
   email { "#{sn}@vairix.com" }
   password { "1234567890" }
   password_confirmation { "1234567890" }
+  inactive {false}
   city { City.make! }
 end
 

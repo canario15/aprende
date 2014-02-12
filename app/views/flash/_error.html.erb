@@ -1,5 +1,6 @@
 <% if flash[:alert]%>
   <div class="alert alert-dismissable alert-danger">
+    <button class="close" data-dismiss="alert" type="button">×</button>
     <%= content_tag :label, flash[:alert], id: "flash_alert" %>
   </div>
 <% end %>

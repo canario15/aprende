@@ -12,7 +12,7 @@
   </div>
 <% end -%>
 <% unless @teachers.empty? -%>
-  <table class="table table-striped table-bordered table-hover">
+  <table id="teachers-table-admin" class="table table-striped table-bordered table-hover">
     <thead>
       <tr>
         <th>Nombre</th>
@@ -20,6 +20,7 @@
         <th>Mail</th>
         <th>Teléfono</th>
         <th>Descripción</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -30,6 +31,9 @@
           <td><%= teacher.email %></td>
           <td><%= teacher.phone %></td>
           <td><%= teacher.description %></td>
+          <td>
+           <%= link_to teacher_name_inactive(teacher), '', {id: "teacher_#{teacher.id}", class: "change-status", data: { id: teacher.id } } %>
+          </td>
         </tr>
       <% end -%>
     </tbody>

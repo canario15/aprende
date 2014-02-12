@@ -2,10 +2,11 @@ require 'spec_helper'
 
 describe TeachersController do
 
-  describe "GET 'index' " do
+  describe "GET 'index' logged in as Admin" do
     before :each do
       @teacher = Teacher.make!
-      sign_in @teacher
+      @admin = Admin.make!
+      sign_in @admin
     end
 
     it "returns http success" do
@@ -23,6 +24,22 @@ describe TeachersController do
       a_teacher = Teacher.make!(first_name: 'a_teacher')
       get 'index'
       expect(assigns(:teachers)).to eq([@teacher,a_teacher,b_teacher])
+    end
+  end
+
+  describe "GET 'index' logged in as a Teacher" do
+    before :each do
+      @teacher = Teacher.make!
+      sign_in @teacher
+      get 'index'
+    end
+
+    it "redirects to the Admin login" do
+      expect(response).to redirect_to(new_admin_session_path)
+    end
+
+    it "flash alert has the value assigned" do
+      expect(flash[:alert]).to eq ("You need to sign in or sign up before continuing.")
     end
   end
 
@@ -46,7 +63,7 @@ describe TeachersController do
     it "redirects to the index of teachers" do
       params = {:id => @teacher.id, :teacher => {:phone => "2222" }}
       patch 'update', params
-      expect(response).to redirect_to(teachers_path)
+      expect(response).to redirect_to(teacher_path)
     end
 
     it "the teacher data, and assigns its value to the flash notice" do
@@ -54,6 +71,24 @@ describe TeachersController do
       patch 'update', params
       name = Teacher.find @teacher.id
       expect(flash[:notice]).to eq ("Datos de #{name} actualizados.")
+    end
+  end
+
+  describe "change teacher status" do
+
+    it "inactivate teacher" do
+      @teacher = Teacher.make!
+      xhr :post, :inactivate_or_activate, {teacher_id: @teacher.id}
+      t = Teacher.find @teacher.id
+      expect(t.inactive).to be(true)
+
+    end
+
+    it "activate teacher" do
+      @teacher = Teacher.make!(inactive: true)
+      xhr :post, :inactivate_or_activate, {teacher_id: @teacher.id}
+      teacher = Teacher.find @teacher.id
+      expect(teacher.inactive).to be(false)
     end
   end
 end

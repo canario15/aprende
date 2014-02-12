@@ -1,0 +1,14 @@
+<div class="page-header"></div>
+<h1>Mis datos </h1>
+<% if flash[:notice] -%>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="alert alert-dismissable alert-success">
+        <button class="close" data-dismiss="alert" type="button">×</button>
+        <%= flash[:notice] %>
+      </div>
+    </div>
+  </div>
+<% end -%>
+
+<h2><%= @teacher %></h2>
