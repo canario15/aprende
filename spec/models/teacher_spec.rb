@@ -46,4 +46,22 @@ describe Teacher do
     end
   end
 
+ describe "Mailers at Create" do
+    before(:each) do
+      @teacher = Teacher.make!
+    end
+
+    it 'to'do
+      expect(ActionMailer::Base.deliveries.last.to.first ).to eq(@teacher.email)
+    end
+
+    it 'subject 'do
+      expect(ActionMailer::Base.deliveries.last.subject ).to match("Confirmation instructions")
+    end
+
+    it 'body'do
+      expect(ActionMailer::Base.deliveries.last.body ).to match("confirmation_token")
+    end
+
+  end
 end

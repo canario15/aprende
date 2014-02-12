@@ -48,8 +48,8 @@ es:
       failure: 'No pudimos autentificar tu cuenta de %{kind} por la siguiente razón: %{reason}.'
     mailer:
       confirmation_instructions:
-        subject: 'Instrucciones de confirmación'
+        subject: 'Instrucciones de confirmación de Aprende'
       reset_password_instructions:
-        subject: 'Instrucciones de cambio de contraseña'
+        subject: 'Instrucciones de cambio de contraseña de Aprende'
       unlock_instructions:
         subject: 'Instrucciones de desbloqueo'

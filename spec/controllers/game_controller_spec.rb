@@ -5,6 +5,7 @@ describe GameController do
   describe "GET 'index', teacher without game" do
     before :each do
       @teacher = Teacher.make!
+      @teacher.confirm!
       sign_in @teacher
     end
 
@@ -17,6 +18,7 @@ describe GameController do
   describe "GET 'index', user without games" do
     before :each do
       @user = User.make!
+      @user.confirm!
       sign_in @user
     end
 
@@ -29,6 +31,7 @@ describe GameController do
   describe "GET 'index', teacher with trivia" do
     before :each do
       @teacher = Teacher.make!
+      @teacher.confirm!
       sign_in @teacher
       @trivia = Trivia.make!(teacher: @teacher)
       @question = Question.make!(trivia: @trivia)
@@ -63,6 +66,7 @@ describe GameController do
     before :each do
       @teacher = Teacher.make!
       @user = User.make!
+      @user.confirm!
       @trivia = Trivia.make!(teacher: @teacher)
       @question = Question.make!(trivia: @trivia)
       @game = Game.make!(trivia: @trivia)
@@ -158,4 +162,48 @@ describe GameController do
     end
   end
 
+  describe "sign in confrim" do
+    before :each do
+      @teacher = Teacher.make!
+    end
+
+    context "with confirmation" do
+      render_views
+      before :each do
+        @teacher.confirm!
+        sign_in @teacher
+      end
+
+      it "return http success" do
+        get :index
+        expect(response).to be_success
+      end
+
+      it "return render view" do
+        get :index
+        expect(response.body).to match(@teacher.email)
+      end
+    end
+
+    context "without confirmation" do
+      before :each do
+        sign_in @teacher
+      end
+
+      it "return http redirect" do
+        get :index
+        expect(response).to be_redirect
+      end
+
+      it "return http flash message" do
+        get :index
+        expect(flash[:alert]).to match("You have to confirm your account before continuing.")
+      end
+
+      it "return location" do
+        get :index
+        expect(response.location).to match(teacher_session_path)
+      end
+    end
+  end
 end

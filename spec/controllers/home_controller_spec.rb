@@ -5,6 +5,7 @@ describe HomeController do
   describe "GET 'index' with user" do
     before :each do
       @user = User.make!
+      @user.confirm!
       sign_in @user
     end
     it "returns http success" do
@@ -74,6 +75,52 @@ describe HomeController do
     it "returns http success" do
       get 'index'
       expect(response).not_to be_success
+    end
+  end
+
+  describe "Sign in confrim" do
+
+    before :each do
+      @user = User.make!
+    end
+
+    context "with confirmation" do
+      render_views
+      before :each do
+        @user.confirm!
+        sign_in @user
+      end
+
+      it "return http success" do
+        get :index
+        expect(response).to be_success
+      end
+
+      it "return render view" do
+        get :index
+        expect(response.body).to match(@user.email)
+      end
+    end
+
+    context "without confirmation" do
+      before :each do
+        sign_in @user
+      end
+
+      it "return http redirect" do
+        get :index
+        expect(response).to be_redirect
+      end
+
+      it "return http flash message" do
+        get :index
+        expect(flash[:alert]).to match("You have to confirm your account before continuing.")
+      end
+
+      it "return location" do
+        get :index
+        expect(response.location).to match(user_session_path)
+      end
     end
   end
 

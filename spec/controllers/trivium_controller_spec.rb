@@ -7,6 +7,7 @@ describe TriviumController do
 
   before :each do
     @teacher = Teacher.make!
+    @teacher.confirm!
     sign_in @teacher
   end
 

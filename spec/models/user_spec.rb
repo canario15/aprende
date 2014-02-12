@@ -38,7 +38,7 @@ describe User do
 
   end
 
-describe 'User scope order by name asc' do
+  describe 'User scope order by name asc' do
     it'Creates users'do
       b_user = User.make!(first_name: 'b_user')
       a_user = User.make!(first_name: 'a_user')
@@ -46,4 +46,22 @@ describe 'User scope order by name asc' do
     end
   end
 
+  describe "Mailers at Create" do
+    before(:each) do
+      @user = User.make!
+    end
+
+    it 'to'do
+      expect(ActionMailer::Base.deliveries.last.to.first ).to eq(@user.email)
+    end
+
+    it 'subject 'do
+      expect(ActionMailer::Base.deliveries.last.subject ).to match("Confirmation instructions")
+    end
+
+    it 'body'do
+      expect(ActionMailer::Base.deliveries.last.body ).to match("confirmation_token")
+    end
+
+  end
 end

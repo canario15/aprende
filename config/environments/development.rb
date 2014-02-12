@@ -27,4 +27,19 @@ Aprende::Application.configure do
   # number of complex assets.
   config.assets.debug = true
   I18n.default_locale = :es
+
+  # Gmail User
+  # user.vairix@gmail.com
+  # xiriav3102
+  ActionMailer::Base.delivery_method = :smtp
+  ActionMailer::Base.smtp_settings = {
+    :address              => "smtp.gmail.com",
+    :port                 => 587,
+    :domain               => "info@gmail.com",
+    :user_name            => "user.vairix",
+    :password             => "xiriav3102",
+    :authentication       => "plain",
+    :enable_starttls_auto => true}
+
+  config.action_mailer.default_url_options = { :host => "http://localhost:3000" }
 end
