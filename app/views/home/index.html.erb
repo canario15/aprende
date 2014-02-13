@@ -1,3 +1,16 @@
+
+<% if flash[:notice] -%>
+  <div class="page-header" id="banner">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="alert alert-dismissable alert-success">
+          <button data-dismiss="alert" class="close" type="button">×</button>
+          <%= content_tag :label, flash[:notice], id: "flash_notice" %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end -%>
 <section class="welcome">
   <div class="row">
     <div class="col-lg-12">
@@ -13,3 +26,4 @@
     <%= render partial: 'new_trivum' %>
   </div>
 </section>
+
