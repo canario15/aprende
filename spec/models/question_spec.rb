@@ -22,5 +22,14 @@ describe Question do
     it 'with description nil' do
       expect{Question.make!(description: nil)}.to raise_error
     end
+
+    it 'with answer nil' do
+      expect{Question.make!(answer: nil)}.to raise_error
+    end
+
+    it 'with incorrect_answer_1 nil' do
+      expect{Question.make!(incorrect_answer_1: nil)}.to raise_error
+    end
+
   end
 end

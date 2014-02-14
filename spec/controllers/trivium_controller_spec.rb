@@ -145,6 +145,8 @@ describe TriviumController do
       @trivia = Trivia.make!
     end
 
+    let(:question){Question.make(:filled)}
+
     it "created a new question to trivia " do
       params = {:id => @trivia.id, :finish => "false", :question => {:answer => "De que color es el logo de vairix", :dificulty => "1", :description => "Verde", :incorrect_answer_one => "Negro", :incorrect_answer_two => "Amarillo", :incorrect_answer_three => "Azul", :incorrect_answer_four => "Rojo" }}
       expect {post('create_question', params) }.to change{Question.count}.by(1)
@@ -171,6 +173,62 @@ describe TriviumController do
       params = {:id => @trivia.id, :finish => "false", :question => {:answer => "De que color es el logo de vairix", :dificulty => "1", :description => nil, :incorrect_answer_one => "Negro", :incorrect_answer_two => "Amarillo", :incorrect_answer_three => "Azul", :incorrect_answer_four => "Rojo" }}
       post 'create_question', params
       expect(response.body).to match /Preguntas y Respuestas/
+    end
+
+    context "does not create a question" do
+      it "without a question answer" do
+        question.answer = nil
+        expect { post :create_question ,{ id:@trivia.id, finish: :false , question: question.attributes } }.to change{Question.count}.by(0)
+      end
+
+      it "on trivia type multiple chooise and without a question incorrect answer one" do
+        question.incorrect_answer_one = nil
+        expect { post :create_question ,{ id:@trivia.id, finish: :false , question: question.attributes } }.to change{Question.count}.by(0)
+      end
+    end
+
+    context "render the new question view again and finish create questions" do
+      it "without a question answer" do
+        question.answer = nil
+        post :create_question ,{ id:@trivia.id, finish: :true , question: question.attributes }
+        expect(response.body).to match /Preguntas y Respuestas/
+      end
+
+      it "on trivia type multiple chooise and without a question  incorrect answer one" do
+        question.incorrect_answer_one = nil
+        post :create_question ,{ id:@trivia.id, finish: :true , question: question.attributes }
+        expect(response.body).to match /Preguntas y Respuestas/
+      end
+
+    end
+
+    context "error messages" do
+      it "without a question answer" do
+        question.answer = nil
+        post :create_question ,{ id:@trivia.id, finish: :false , question: question.attributes }
+        expect(assigns[:question].errors.full_messages.first).to match /Answer can't be blank/
+      end
+
+      it "on trivia type multiple chooise and  without a question  incorrect answer one" do
+        question.incorrect_answer_one = nil
+        post :create_question ,{ id:@trivia.id, finish: :false , question: question.attributes }
+        expect(assigns[:question].errors.full_messages.first).to match /Incorrect answer one can't be blank/
+      end
+    end
+
+    context "does create a question on trivia type free" do
+       it "without a question incorrect answer one" do
+        question.incorrect_answer_one = nil
+        @trivia.update(type: 2)
+        expect { post :create_question ,{ id:@trivia.id, finish: :false , question: question.attributes } }.to change{Question.count}.by(1)
+      end
+
+      it "on trivia type multiple chooise and without a question  incorrect answer one" do
+        question.incorrect_answer_one = nil
+        @trivia.update(type: 2)
+        post :create_question ,{ id:@trivia.id, finish: :false , question: question.attributes }
+        expect(response.body).to match new_question_trivia_path(@trivia)
+      end
     end
   end
 

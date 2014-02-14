@@ -1,0 +1,17 @@
+<div class="row">
+  <% trivium.each do |trivia| -%>
+    <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+        <%= image_tag(trivia.course.image.url(:small), class: "thumbnail", alt: "") unless trivia.course.nil?%>
+        <div class="caption">
+          <h3 class="course_h3"><%= trivia.course%></h3>
+          <p><%= trivia.title%></p>
+          <p>Liceo 5 - Maldonado</p><span> <%=trivia.try(&:teacher).try(&:name) %></span>
+          <p>
+            <%=link_to "Seleccionar", game_new_path(trivia.id), class: "btn btn-primary"%>
+          </p>
+        </div>
+      </div>
+    </div>
+  <% end -%>
+</div>

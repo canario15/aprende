@@ -54,8 +54,22 @@ Question.blueprint(:five) do
   answer { "21 de diciembre" }
 end
 
+Question.blueprint(:filled) do
+  description { "¿Que dia arranca el Verano en Uruguay?" }
+  dificulty { 3 }
+  answer { "21 de diciembre" }
+  incorrect_answer_one { "21 de enero" }
+  incorrect_answer_two { "21 de febrero" }
+  incorrect_answer_three { "21 de marzo" }
+  incorrect_answer_four { "21 de abril" }
+end
+
 Level.blueprint do
   title {"Primero"}
+end
+
+Level.blueprint(:second) do
+  title {"Second"}
 end
 
 Course.blueprint do

@@ -4,6 +4,7 @@ describe Level do
 
   describe "relations" do
     it { should have_many(:courses) }
+    it { should have_many(:trivium) }
   end
 
   describe "create Level" do

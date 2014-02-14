@@ -1,6 +1,6 @@
 class GameController < ApplicationController
-  before_filter :check_user_or_teacher_logged_in!, :only => [:index]
-  before_filter :authenticate_user!, :only => [:new, :create, :eval_answer]
+  before_filter :authenticate_teacher!, only: [:index_teacher,:game_results_teacher]
+  before_filter :authenticate_user!, only:[:new, :create, :eval_answer,:index_user,:game_results_user]
 
   def new
     set_trivia
@@ -45,18 +45,21 @@ class GameController < ApplicationController
     redirect_to action: :new
   end
 
-  def index
-    if current_teacher
-      @games_results = current_teacher.games
-    end
-    if current_user
-      @games_results = current_user.games
-    end
+  def index_teacher
+    @games_results = current_teacher.games
   end
 
-  def game_results
+  def index_user
+    @games_results = current_user.games
+  end
+
+  def game_results_teacher
     @game = Game.find(params[:id])
     @game_answers = @game.answers
+  end
+
+  def game_results_user
+    @presenter =  Game::GameResultsUserPresenter.new(Game.find(params[:id]))
   end
 
 private
@@ -89,13 +92,6 @@ private
 
   def set_game
     @game = Game.find(get_game_id) if get_game_id
-  end
-
-  def check_user_or_teacher_logged_in!
-    if !teacher_signed_in? && !user_signed_in?
-      flash[:error] = "Para ver los juegos debe logearse"
-      redirect_to root_path
-    end
   end
 
 end

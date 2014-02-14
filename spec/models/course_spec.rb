@@ -4,6 +4,7 @@ describe Course do
 
   describe "relations" do
     it { should respond_to(:level) }
+    it { should respond_to(:trivium) }
   end
 
   describe "attributes" do

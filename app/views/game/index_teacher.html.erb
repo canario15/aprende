@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h1 id="tables">Trivias realizadas</h1>
+  <h1 id="tables">Trivias realizadas - Profesor</h1>
 </div>
 <% unless @games_results.empty? -%>
   <table class="table table-striped table-bordered table-hover ">
@@ -23,7 +23,7 @@
           <td><%= game.trivia.questions.count %></td>
           <td><%= game.correct_answers.count %></td>
           <td><%= game.score%></td>
-          <td><%= link_to 'Ver Detalles', game_results_path(game) %></td>
+          <td><%= link_to 'Ver Detalles', game_results_teacher_path(game) %></td>
         </tr>
       <% end -%>
     </tbody>

@@ -10,7 +10,7 @@ describe GameController do
     end
 
     it "returns http success " do
-      get 'index'
+      get :index_teacher
       expect(response).to be_success
     end
   end
@@ -23,7 +23,7 @@ describe GameController do
     end
 
     it "returns http success " do
-      get 'index'
+      get :index_user
       expect(response).to be_success
     end
   end
@@ -40,14 +40,15 @@ describe GameController do
     end
 
     it "returns http success " do
-      get 'index'
+      get :index_teacher
       expect(response).to be_success
     end
   end
 
-  describe "GET 'game_results'" do
+  describe "GET 'game_results_teacher'" do
     before :each do
       @teacher = Teacher.make!
+      @teacher.confirm!
       sign_in @teacher
       @trivia = Trivia.make!(teacher: @teacher)
       @question = Question.make!(trivia: @trivia)
@@ -56,9 +57,10 @@ describe GameController do
     end
 
     it "returns http success " do
-      get 'game_results', {:id => @game.id}
+      get :game_results_teacher, {:id => @game.id}
       expect(response).to be_success
     end
+
   end
 
   describe "GET 'games_played'" do
@@ -76,27 +78,55 @@ describe GameController do
     end
 
     it "returns http success " do
-      get 'index'
+      get :index_user
       expect(response).to be_success
     end
 
     it "has the trivia with title" do
-      get 'index'
+      get :index_user
       expect(response.body).to match(@user.games.first.trivia.title)
+    end
+
+    it "returns http success " do
+      get :game_results_user, {:id => @game.id}
+      expect(response).to be_success
+    end
+
+    context 'trivium_top3_at_level' do
+      before :each do
+        level = @game.trivia.level
+        other_level = Level.make!(:second)
+
+        Trivia.make!(course: Course.make!( level: level))
+        Trivia.make!(course: Course.make!( level: level))
+        @trivia1= Trivia.make!(course: Course.make!( level: other_level))
+        Trivia.make!(course: Course.make!( level: level))
+        Trivia.make!(course: Course.make!( level: level))
+        @trivia2 = Trivia.make!(course: Course.make!( level: other_level))
+        get :game_results_user, {:id => @game.id}
+      end
+
+      it'top 3'do
+        expect(assigns[:presenter].trivium.count).to eq(3)
+      end
+
+      it'at level by game'do
+        expect(assigns[:presenter].trivium).not_to include(@trivia1,@trivia2)
+      end
     end
   end
 
   describe "GET 'games_played_not_logged_in'" do
     before :each do
-      get 'index'
+      get :index_user
     end
 
-    it "redirects to root_path" do
-      expect(response).to redirect_to root_path
+    it "redirects to user sign in" do
+      expect(response).to redirect_to new_user_session_path
     end
 
     it "shows an error message " do
-      expect(flash[:error]).to eq ("Para ver los juegos debe logearse")
+      expect(flash[:alert]).to eq ("You need to sign in or sign up before continuing.")
     end
   end
 
@@ -176,12 +206,12 @@ describe GameController do
       end
 
       it "return http success" do
-        get :index
+        get :index_teacher
         expect(response).to be_success
       end
 
       it "return render view" do
-        get :index
+        get :index_teacher
         expect(response.body).to match(@teacher.email)
       end
     end
@@ -192,17 +222,17 @@ describe GameController do
       end
 
       it "return http redirect" do
-        get :index
+        get :index_teacher
         expect(response).to be_redirect
       end
 
       it "return http flash message" do
-        get :index
+        get :index_teacher
         expect(flash[:alert]).to match("You have to confirm your account before continuing.")
       end
 
       it "return location" do
-        get :index
+        get :index_teacher
         expect(response.location).to match(teacher_session_path)
       end
     end

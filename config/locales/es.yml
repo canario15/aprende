@@ -204,6 +204,8 @@ es:
         course: "Curso"
       question:
         description: "La pregunta"
+        answer: "La respuesta"
+        incorrect_answer_one: "La respuesta incorrecta 1"
       institute:
         name: "El nombre"
       teacher:

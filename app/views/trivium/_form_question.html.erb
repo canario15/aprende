@@ -3,11 +3,11 @@
     <div class="col-lg-offset-2">
       <div class="alert alert-dismissable alert-danger">
         <h4>Se encontro <%= pluralize(@question.errors.count, "error") %> no es posible crear la Pregunta</h4>
-        <ul>
-          <% @question.errors.full_messages.each do |msg| %>
+        <% @question.errors.full_messages.each do |msg| %>
+          <ul>
             <%= content_tag :label, msg %>
-          <% end -%>
-        </ul>
+          </ul>
+        <% end -%>
       </div>
     </div>
   </div>

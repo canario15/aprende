@@ -23,7 +23,7 @@
 </section>
 <section class="new_courses">
   <div id="courses-container" style="position: relative; overflow: hidden; width: 984px; opacity: 1;" class="isotope">
-    <%= render partial: 'new_trivum' %>
+    <%= render "trivium/index_paginated",  trivium: @trivium %>
   </div>
 </section>
 

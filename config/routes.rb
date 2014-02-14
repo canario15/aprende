@@ -7,8 +7,11 @@ Aprende::Application.routes.draw do
   post "trivium/:trivia_id/game/eval_answer" => "game#eval_answer", as: :game_eval_answer
   get "game/reset"
   get "game/finish"
-  get "games" => "game#index", as: :games
-  get "game/:id/game_results" => "game#game_results", as: :game_results
+  get "games_teacher" => "game#index_teacher", as: :games_teacher
+  get "games_user" => "game#index_user", as: :games_user
+  get "game/:id/game_results_teacher" => "game#game_results_teacher", as: :game_results_teacher
+  get "game/:id/game_results_user" => "game#game_results_user", as: :game_results_user
+
 
   resources :questions
   resources :courses
