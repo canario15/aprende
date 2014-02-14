@@ -28,4 +28,8 @@ class User < ActiveRecord::Base
   def to_s
     self.name
   end
+
+  def games_finished
+    self.games.finished
+  end
 end

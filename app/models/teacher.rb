@@ -20,4 +20,7 @@ class Teacher < ActiveRecord::Base
     self.name
   end
 
+  def games_finished
+    self.games.finished
+  end
 end

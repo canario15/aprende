@@ -73,6 +73,7 @@ describe GameController do
       @question = Question.make!(trivia: @trivia)
       @game = Game.make!(trivia: @trivia)
       Answer.make!(game:@game, question: @question)
+      @game.finish
       @user.games << @game
       sign_in @user
     end

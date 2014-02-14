@@ -46,6 +46,31 @@ describe User do
     end
   end
 
+  describe 'games' do
+    it' finished'do
+      @user = User.make!
+      expect{
+        @teacher = Teacher.make!
+        @trivia = Trivia.make!(teacher: @teacher)
+        @question = Question.make!(trivia: @trivia)
+        @game = Game.make!(user:@user,trivia: @trivia)
+        Answer.make!(game:@game, question: @question)
+        @game.finish
+      }.to change {@user.games_finished.count}.by(1)
+    end
+
+    it'not finished'do
+      @user = User.make!
+      expect{
+        @teacher = Teacher.make!
+        @trivia = Trivia.make!(teacher: @teacher)
+        @question = Question.make!(trivia: @trivia)
+        @game = Game.make!(user:@user,trivia: @trivia)
+        Answer.make!(game:@game, question: @question)
+      }.to change {@user.games_finished.count}.by(0)
+    end
+  end
+
   describe "Mailers at Create" do
     before(:each) do
       @user = User.make!

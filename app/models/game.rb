@@ -3,6 +3,7 @@ class Game < ActiveRecord::Base
   belongs_to :trivia
   has_many :answers
   has_many :questions, through: :trivia
+  scope :finished ,-> {where(status: Game::STATUS[:finished])}
 
   STATUS = {
     :created => 1,

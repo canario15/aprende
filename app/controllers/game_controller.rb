@@ -46,11 +46,11 @@ class GameController < ApplicationController
   end
 
   def index_teacher
-    @games_results = current_teacher.games
+    @games_results = current_teacher.games_finished
   end
 
   def index_user
-    @games_results = current_user.games
+    @games_results = current_user.games_finished
   end
 
   def game_results_teacher
