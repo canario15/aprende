@@ -90,6 +90,7 @@ Trivia.blueprint(:filled) do
   type { 1 }
   course { Course.make!  }
   teacher { Teacher.make!(:filled) }
+  questions (1)
 end
 
 Question.blueprint do

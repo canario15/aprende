@@ -4,9 +4,9 @@ class HomeController < ApplicationController
   def index
     if params[:search]
       @q_value = params[:search][:q]
-      @trivium = Trivia.search({teacher_city_name_or_teacher_first_name_or_teacher_last_name_or_title_or_tag_cont: @q_value}).result(distinct: true)
+      @trivium = Trivia.search_with_questions(@q_value)
     else
-      @trivium = Trivia.all
+      @trivium = Trivia.with_questions
     end
   end
 end

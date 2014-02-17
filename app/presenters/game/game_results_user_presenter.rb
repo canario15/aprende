@@ -24,6 +24,6 @@ class Game::GameResultsUserPresenter
   end
 
   def trivium
-    @game.trivia.level.trivium.limit(3)
+    @game.trivia.level.trivium.with_questions_and_limit
   end
 end

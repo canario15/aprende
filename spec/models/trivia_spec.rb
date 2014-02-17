@@ -51,4 +51,35 @@ describe Trivia do
       expect(subject).to validate_presence_of :course
     end
   end
+
+  describe 'trivium scope' do
+    before :each do
+      @t1 = Trivia.make!(:filled)
+      @t2 = Trivia.make!(:filled)
+      @t3 = Trivia.make!(:filled)
+      Trivia.make!
+      Trivia.make!
+      @t6 = Trivia.make!(:filled)
+      @t7 = Trivia.make!(:filled)
+    end
+
+    it'with questions'do
+      expect(Trivia.with_questions).to include(@t1,@t2,@t3,@t6,@t7)
+    end
+
+    it'with questions limit 3'do
+      expect(Trivia.with_questions_and_limit).to include(@t1,@t2,@t3)
+    end
+
+    it'search with questions all'do
+      expect(Trivia.search_with_questions("trivia")).to include(@t1,@t2,@t3,@t6,@t7)
+    end
+
+    it'search with questions two'do
+      @t2.update(title: "Test")
+      @t6.update(title: "Test")
+      expect(Trivia.search_with_questions("Test")).to include(@t2,@t6)
+    end
+  end
+
 end

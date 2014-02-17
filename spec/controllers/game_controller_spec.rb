@@ -98,12 +98,12 @@ describe GameController do
         level = @game.trivia.level
         other_level = Level.make!(:second)
 
-        Trivia.make!(course: Course.make!( level: level))
-        Trivia.make!(course: Course.make!( level: level))
-        @trivia1= Trivia.make!(course: Course.make!( level: other_level))
-        Trivia.make!(course: Course.make!( level: level))
-        Trivia.make!(course: Course.make!( level: level))
-        @trivia2 = Trivia.make!(course: Course.make!( level: other_level))
+        Trivia.make!(:filled,course: Course.make!( level: level))
+        Trivia.make!(:filled,course: Course.make!( level: level))
+        @trivia1= Trivia.make!(:filled,course: Course.make!( level: other_level))
+        Trivia.make!(:filled,course: Course.make!( level: level))
+        Trivia.make!(:filled,course: Course.make!( level: level))
+        @trivia2 = Trivia.make!(:filled,course: Course.make!( level: other_level))
         get :game_results_user, {:id => @game.id}
       end
 
