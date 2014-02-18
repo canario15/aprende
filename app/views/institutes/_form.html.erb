@@ -37,25 +37,7 @@
         <%= f.text_field :email, :autofocus => true, class: 'form-control'%>
       </div>
     </div>
-
-    <div class="form-group">
-      <label for="select" class="col-lg-2 control-label">Departamento</label>
-      <div class="col-lg-10">
-        <% if @institute.state -%>
-          <%= select_tag "institute_state", options_from_collection_for_select(@states, "id", "name", @institute.state.id), :class=> "form-control" %>
-        <% else -%>
-          <%= select_tag "institute_state", options_from_collection_for_select(@states, "id", "name"), :class=> "form-control" %>
-        <% end -%>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="select" class="col-lg-2 control-label">Ciudad</label>
-      <div id="institute_cities" class="col-lg-10">
-        <%= f.collection_select(:city_id, @cities, :id, :name, {}, {:class=> "form-control"}) %>
-      </div>
-    </div>
-
+    <%= render "cities/cities", f: f %>
     <div class="form-group">
       <div class="col-lg-10 col-lg-offset-2">
         <%= link_to 'Cancelar', institutes_path %>

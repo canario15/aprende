@@ -10,12 +10,14 @@ describe User do
     it { should respond_to(:password_confirmation) }
     it { should respond_to(:group) }
     it { should respond_to(:school) }
+    it { should respond_to(:avatar) }
   end
 
   describe "relations" do
     it { should respond_to(:level) }
     it { should respond_to(:institute) }
     it { should have_many(:games)}
+    it { should respond_to(:city) }
   end
 
   describe "validate the presence of attributes in User:" do

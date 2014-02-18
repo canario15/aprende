@@ -26,6 +26,20 @@
         <%= f.collection_select(:institute_id, all_institutes, :id, :name, {:include_blank => true}, {:class=> "form-control"}) %>
       </div>
     </div>
+    <%= render "cities/cities", f: f %>
+    <div class="form-group">
+      <label for="avatar" class="col-lg-2 control-label">Avatar</label>
+      <div class="col-lg-10">
+        <output id="avatar_preview">
+          <span>
+          <%= image_tag @user.avatar.url(:large),class: "img-thumbnail" %>
+          </span>
+        </output>
+         <span class="btn btn-default btn-file">
+          Cargar Avatar<%= f.file_field :avatar,id: "avatar_field" %>
+        </span>
+      </div>
+    </div>
     <div class="form-group">
       <div class="col-lg-10 col-lg-offset-2">
         <%= link_to 'Cancelar', users_path %>

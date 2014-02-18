@@ -44,18 +44,7 @@
         <%= f.text_field :description, :autofocus => true, class: 'form-control', placeholder: 'Descripción' %>
       </div>
     </div>
-    <div class="form-group" id="form_teacher_states">
-      <label for="select" class="col-lg-2 control-label">Departamento</label>
-      <div class="col-lg-10">
-        <%= select_tag "teacher_state", options_from_collection_for_select(all_state, "id", "name"), :class=> "form-control" %>
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="select" class="col-lg-2 control-label">Ciudad</label>
-      <div id="teacher_cities" class="col-lg-10">
-        <%= f.collection_select(:city_id, cities_from_first_state, :id, :name, {}, {:class=> "form-control"}) %>
-      </div>
-    </div>
+    <%= render "cities/cities", f: f %>
     <div class="form-avatar">
       <%= f.file_field :avatar %>
     </div>

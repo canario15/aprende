@@ -19,6 +19,7 @@
 body{
   background: #f1f1f1;
   color: #000000;
+  padding-top: 30px;
 }
 
 p {
@@ -139,4 +140,20 @@ blockquote small, blockquote .small {
 
 .link-black:hover{
   color: #fff;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    cursor: inherit;
+    display: block;
 }

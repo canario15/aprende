@@ -26,9 +26,10 @@
          <%= f.text_area :description, :autofocus => true, class: 'form-control' %>
       </div>
     </div>
+    <%= render "cities/cities", f: f %>
     <div class="form-group">
       <div class="col-lg-10 col-lg-offset-2">
-        <%= link_to 'Cancelar', games_path %>
+        <%= link_to 'Cancelar', games_teacher_path %>
         <%= f.submit "Confirmar", class: 'btn btn-primary' %>
         <%= link_to "Cambiar contraseña", edit_teacher_registration_path %>
       </div>

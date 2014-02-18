@@ -2,7 +2,7 @@ class CitiesController < ApplicationController
 
   def state_cities
     @cities = State.find(params[:state_id]).cities.order_name
-    render :json => { :cities => @cities}
+    respond_to { |format| format.js }
   end
 
 end

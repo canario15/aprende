@@ -33,6 +33,7 @@ es:
       send_instructions: 'Recibirás instrucciones para confirmar tu cuenta en tu email en unos minutos.'
       send_paranoid_instructions: 'Si tu email existe en el sistema, recibirás instrucciones para confirmar tu cuenta en tu email en unos minutos.'
       confirmed: 'Tu cuenta fue confirmada. Has iniciado sesión.'
+      confirmed_and_signed_in: "Tu cuenta fue confirmada con exito. Has iniciciado sesión."
     registrations:
       signed_up: 'Bienvenido! Te has registrado correctamente.'
       signed_up_but_unconfirmed: 'Te hemos enviado un email con instrucciones para que confirmes tu cuenta.'

@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe "landing page" do
   before :each do
+    City.make!
     visit '/'
   end
 

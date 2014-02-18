@@ -1,0 +1,13 @@
+<% state_id = f.object.try(&:city).try(&:state).try(&:id) %>
+<div class="form-group">
+  <label for="select" class="col-lg-2 control-label">Departamento</label>
+  <div class="col-lg-10">
+    <%= select_tag :state_id, options_from_collection_for_select(all_state, :id, :name,state_id ), class: "form-control",data:  {remote: :true, url: state_cities_path(state_id, format: :js )} %>
+  </div>
+</div>
+<div class="form-group">
+  <label for="select" class="col-lg-2 control-label">Ciudad</label>
+  <div class="col-lg-10">
+    <%= f.collection_select(:city_id, cities_from_state(state_id), :id, :name,{},{:class=> "form-control", id: :cities}) %>
+  </div>
+</div>

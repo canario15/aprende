@@ -4,8 +4,7 @@ module StatesHelper
     State.all
   end
 
-  def cities_from_first_state
-    state = State.first
-    state.cities.order_name
+  def cities_from_state(state_id)
+    (state_id ? State.find(state_id) : State.first).cities.order_name
   end
 end
