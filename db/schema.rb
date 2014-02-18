@@ -99,6 +99,14 @@ ActiveRecord::Schema.define(version: 20140218114215) do
 
   add_index "institutes", ["city_id"], name: "index_institutes_on_city_id"
 
+  create_table "institutes_teachers", force: true do |t|
+    t.integer "institute_id"
+    t.integer "teacher_id"
+  end
+
+  add_index "institutes_teachers", ["institute_id"], name: "index_institutes_teachers_on_institute_id"
+  add_index "institutes_teachers", ["teacher_id"], name: "index_institutes_teachers_on_teacher_id"
+
   create_table "levels", force: true do |t|
     t.string   "title"
     t.datetime "created_at"

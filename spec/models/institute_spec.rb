@@ -8,9 +8,10 @@ describe Institute do
     it { should respond_to(:email) }
   end
 
-  describe "relationships" do
+  describe "relations" do
      it { should respond_to(:state) }
      it { should respond_to(:city) }
+     it { should have_and_belong_to_many(:teachers)}
   end
 
   describe "validate the presence of attributes in Institutes:" do

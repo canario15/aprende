@@ -10,6 +10,12 @@ class Teacher < ActiveRecord::Base
 
   has_attached_file :avatar, :styles => { :large => "300x300>", :medium => "100x100>", :small => "50x50" }, :default_url => "/assets/:style/missing.jpg"
 
+  has_and_belongs_to_many :institutes,
+      class_name: "Institute",
+      foreign_key: "teacher_id",
+      association_foreign_key: "institute_id",
+      join_table: "institutes_teachers"
+
   scope :system_teachers, -> { order(first_name: :asc)}
 
   def name

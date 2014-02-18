@@ -74,6 +74,27 @@ describe TeachersController do
     end
   end
 
+  describe "POST 'update with institutes ids'" do
+    before :each do
+      @teacher = Teacher.make!(:filled)
+      @institute1 = Institute.make!
+      @institute2 = Institute.make!
+      sign_in @teacher
+    end
+
+    it "updates the teacher's with institutes and redirect to the teacher path" do
+      params = {:id => @teacher.id, :teacher => {:phone => "2222", institute_ids:[ @institute1.id, @institute2.id]}}
+      patch 'update', params
+      expect(@teacher.institutes.count).to be(2)
+      expect(response).to redirect_to(teacher_path)
+    end
+
+    it "doesn't update the teacher with invalid literals for the institutes ids" do
+      params = {:id => @teacher.id, :teacher => {:phone => "2222", institute_ids:[ 'a', 'b']}}
+      expect{patch 'update', params}.to raise_error
+    end
+  end
+
   describe "change teacher status" do
 
     it "inactivate teacher" do

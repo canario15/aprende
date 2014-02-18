@@ -16,6 +16,7 @@ describe Teacher do
   describe "relations" do
     it { should have_many(:trivium)}
     it { should belong_to(:city)}
+    it { should have_and_belong_to_many(:institutes)}
   end
 
   describe "validate the presence of attributes in Teacher:" do
