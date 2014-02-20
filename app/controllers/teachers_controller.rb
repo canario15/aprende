@@ -7,6 +7,7 @@ class TeachersController < ApplicationController
 
   def edit
     @teacher = Teacher.find(params[:id])
+    @institutes = Institute.all
   end
 
   def update

@@ -28,6 +28,12 @@
     </div>
     <%= render "cities/cities", f: f %>
     <div class="form-group">
+      <label for="institutes" class="col-lg-2 control-label">Institutos</label>
+      <div class="col-lg-10">
+        <%= f.collection_select :institute_ids, @institutes,:id,:name, { include_blank: true },  { multiple: true, class: 'chosen-select' } %>
+      </div>
+    </div>
+    <div class="form-group">
       <div class="col-lg-10 col-lg-offset-2">
         <%= link_to 'Cancelar', games_teacher_path %>
         <%= f.submit "Confirmar", class: 'btn btn-primary' %>
