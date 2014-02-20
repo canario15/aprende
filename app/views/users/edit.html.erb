@@ -42,7 +42,7 @@
     </div>
     <div class="form-group">
       <div class="col-lg-10 col-lg-offset-2">
-        <%= link_to 'Cancelar', users_path %>
+        <%= link_to 'Cancelar', home_path %>
         <%= f.submit "Confirmar", class: 'btn btn-primary' %>
         <%= link_to "Cambiar contraseña", edit_user_registration_path  unless @user.provider %>
       </div>

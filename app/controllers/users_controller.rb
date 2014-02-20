@@ -42,7 +42,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html {redirect_to users_path, :notice => "Datos de #{@user.name} actualizados."}
+        format.html {redirect_to home_path, :notice => "Datos de #{@user.name} actualizados."}
       else
         format.html { render action: 'edit' }
       end

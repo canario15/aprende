@@ -43,10 +43,10 @@ describe UsersController do
       sign_in @user
     end
 
-    it "redirects to the index of users" do
+    it "redirects to home" do
       params = {:id => @user.id, :user => {:first_name => 'John'}}
       patch 'update', params
-      expect(response).to redirect_to(users_path)
+      expect(response).to redirect_to(home_path)
     end
 
     it "the user data, and assigns its value to the flash notice" do
