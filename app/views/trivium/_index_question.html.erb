@@ -2,22 +2,39 @@
   <h1 id="tables">Listado de Preguntas de trivia: <%=@trivia.title%></h1>
 </div>
 <% unless @questions.empty? -%>
-	<table class="table table-striped table-bordered table-hover ">
-	  <thead>
-	    <tr>
-	      <th>Pregunta</th>
-	      <th></th>
-	    </tr>
-	  </thead>
-	  <tbody>
-	    <% @questions.each do |question| -%>
-		    <tr>
-		      <td><%= question.description %></td>
-		      <td><%= link_to 'Editar', edit_question_trivia_path(question.trivia.id,question.id) %></td>
-		    </tr>
-	    <% end -%>
-	  </tbody>
-	</table>
+  <table class="table table-striped table-bordered table-hover ">
+    <% if @trivia.with_no_games? -%>
+      <thead>
+        <tr>
+          <th>Pregunta</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @questions.each do |question| -%>
+          <tr>
+            <td><%= question.description %></td>
+            <td>
+              <%= link_to 'Editar', edit_question_trivia_path(question.trivia.id,question.id) %>
+            </td>
+          </tr>
+        <% end -%>
+      </tbody>
+    <% else %>
+      <thead>
+        <tr>
+          <th>Pregunta</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @questions.each do |question| -%>
+          <tr>
+            <td><%= question.description %></td>
+          </tr>
+        <% end -%>
+      </tbody>
+    <% end -%>
+  </table>
 <% else -%>
-	<p>No existen preguntas</p>
+  <p>No existen preguntas</p>
 <% end -%>

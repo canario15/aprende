@@ -26,4 +26,9 @@ class Trivia < ActiveRecord::Base
   def type_name
     TYPES[self.type]
   end
+
+  def with_no_games?
+    self.games.blank?
+  end
+
 end

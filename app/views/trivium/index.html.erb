@@ -3,30 +3,34 @@
 </div>
 <%= (link_to 'Nueva Trivia', new_trivia_path) if current_teacher %>
 <% unless @trivias.empty? -%>
-	<table class="table table-striped table-bordered table-hover ">
-	  <thead>
-	    <tr>
-	      <th>Titulo</th>
-	      <th>Curso</th>
-	      <th>Etiquetas</th>
-	      <th>descripción</th>
-	      <th></th>
-	      <th></th>
-	    </tr>
-	  </thead>
-	  <tbody>
-	    <% @trivias.each do |trivia| -%>
-		    <tr>
-		      <td><%= trivia.title %></td>
-		      <td><%= trivia.course %></td>
-		      <td><%= trivia.tag %></td>
-		      <td><%= trivia.description %></td>
-		      <td><%= link_to 'Editar', edit_trivia_path(trivia.id) %></td>
-		      <td><%= link_to 'Preguntas', new_question_trivia_url(trivia.id) %></td>
-		    </tr>
-	    <% end -%>
-	  </tbody>
-	</table>
+  <table class="table table-striped table-bordered table-hover ">
+    <thead>
+      <tr>
+        <th>Titulo</th>
+        <th>Curso</th>
+        <th>Etiquetas</th>
+        <th>descripción</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @trivias.each do |trivia| -%>
+        <tr>
+          <td><%= trivia.title %></td>
+          <td><%= trivia.course %></td>
+          <td><%= trivia.tag %></td>
+          <td><%= trivia.description %></td>
+          <% if trivia.with_no_games? -%>
+            <td><%= link_to 'Editar', edit_trivia_path(trivia.id) %></td>
+          <% else -%>
+            <td></td>
+          <% end -%>
+          <td><%= link_to 'Preguntas', new_question_trivia_url(trivia.id) %></td>
+        </tr>
+      <% end -%>
+    </tbody>
+  </table>
 <% else -%>
-	<p>No existen trivias</p>
+  <p>No existen trivias</p>
 <% end -%>

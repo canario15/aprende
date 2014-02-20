@@ -18,6 +18,23 @@ describe Trivia do
     it { should respond_to(:teacher) }
   end
 
+  describe '#with_no_games?' do
+
+    before :each do
+      @trivia_with_games = Trivia.make!
+      @game = Game.make!(trivia: @trivia_with_games)
+      @trivia = Trivia.make!
+    end
+
+    it 'returns false when the trivia has games' do
+      expect(@trivia_with_games.with_no_games?).to eq(false)
+    end
+
+    it 'returns true when the trivia has games' do
+      expect(@trivia.with_no_games?).to eq(true)
+    end
+  end
+
   describe "create Trivia" do
 
     it 'with valid attributes' do

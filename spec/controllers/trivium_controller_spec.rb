@@ -122,6 +122,19 @@ describe TriviumController do
     end
   end
 
+  describe "POST 'cannot update trivia with games'" do
+    before :each do
+      @trivia = Trivia.make!
+      @game = Game.make!
+      @trivia.games << @game
+    end
+
+    it "assigns the value to the flash notice" do
+      post(:update,:id => @trivia.id,trivia_level:  @trivia.course.level,trivia: @trivia.attributes)
+      expect(flash[:alert]).to eq ("No se puede editar una trivia si tiene juegos asociados")
+    end
+  end
+
   describe "GET 'new_question'" do
     before :each do
       @trivia = Trivia.make!
@@ -232,6 +245,22 @@ describe TriviumController do
     end
   end
 
+  describe "POST 'cannot create_question if the trivia has a game'" do
+    render_views
+    before :each do
+      @trivia = Trivia.make!
+      @game = Game.make!
+      @trivia.games << @game
+    end
+
+    it "cannot create a new question to a trivia with games " do
+      params = {:id => @trivia.id, :finish => "false", :question => {:answer => "De que color es el logo de vairix", :dificulty => "1", :description => "Verde", :incorrect_answer_one => "Negro", :incorrect_answer_two => "Amarillo", :incorrect_answer_three => "Azul", :incorrect_answer_four => "Rojo" }}
+      expect {post('create_question', params) }.to change{Question.count}.by(0)
+      expect(flash[:alert]).to eq ("No se puede crear una pregunta si su trivia tiene juegos asociados")
+    end
+
+  end
+
   describe "GET 'edit_question'" do
     before :each do
       @question = Question.make!
@@ -266,5 +295,22 @@ describe TriviumController do
       post 'update_question', params
       expect(response.body).to match /Editar Pregunta y Respuestas de Trivia/
     end
+  end
+
+  describe "POST 'cannot update_question of a trivia with games'" do
+    render_views
+    before :each do
+      @trivia = Trivia.make!
+      @question = Question.make!(trivia: @trivia)
+      @game = Game.make!(trivia: @trivia)
+    end
+
+    it "cannot edit a question of a trivia with games ' " do
+      params = {:id => @trivia.id, :question_id => @question.id, :finish => "false", :question => {:answer => "De que color es el logo de vairix", :dificulty => "1", :description => "Verde", :incorrect_answer_one => "Negro", :incorrect_answer_two => "Amarillo", :incorrect_answer_three => "Azul", :incorrect_answer_four => "Rojo" }}
+      post 'update_question', params
+      expect(response.code).to eq("200")
+      expect(flash[:alert]).to eq("No se puede editar una pregunta si su trivia tiene juegos asociados")
+    end
+
   end
 end
