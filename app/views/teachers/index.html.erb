@@ -20,6 +20,7 @@
         <th>Mail</th>
         <th>Teléfono</th>
         <th>Descripción</th>
+        <th>Ciudad</th>
         <th></th>
       </tr>
     </thead>
@@ -31,6 +32,7 @@
           <td><%= teacher.email %></td>
           <td><%= teacher.phone %></td>
           <td><%= teacher.description %></td>
+          <td><%= teacher.city %></td>
           <td>
            <%= link_to teacher_name_inactive(teacher), '', {id: "teacher_#{teacher.id}", class: "change-status", data: { id: teacher.id } } %>
           </td>

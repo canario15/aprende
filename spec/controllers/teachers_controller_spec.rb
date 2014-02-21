@@ -27,6 +27,22 @@ describe TeachersController do
     end
   end
 
+  describe "GET 'index with teachers' cities' logged in as Admin" do
+    render_views
+    before :each do
+      @teacher = Teacher.make!(:filled)
+      @admin = Admin.make!
+      sign_in @admin
+    end
+
+    it "shows the teachers' cities'" do
+      get 'index'
+      expect(response.body).to match /Listado de maestros/
+      expect(response.body).to match /Ciudad/
+      expect(response.body).to match (@teacher.city.name)
+    end
+  end
+
   describe "GET 'index' logged in as a Teacher" do
     before :each do
       @teacher = Teacher.make!
