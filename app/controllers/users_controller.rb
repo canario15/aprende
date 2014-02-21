@@ -67,6 +67,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :institute_id, :level_id, :city_id, :avatar)
+      (params[:user]).merge!(update_without_password: true)
+      params.require(:user).permit(:first_name, :last_name, :institute_id, :level_id, :city_id, :avatar, :update_without_password)
     end
 end

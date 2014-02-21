@@ -160,10 +160,10 @@ ActiveRecord::Schema.define(version: 20140218114215) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.boolean  "inactive",               default: false
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.boolean  "inactive",               default: false
   end
 
   add_index "teachers", ["city_id"], name: "index_teachers_on_city_id"

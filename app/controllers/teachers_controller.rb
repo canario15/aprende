@@ -27,14 +27,15 @@ class TeachersController < ApplicationController
 
   def inactivate_or_activate
     teacher = Teacher.find(params[:teacher_id])
+    inactive = nil
     if teacher.inactive
-      teacher.inactive = false
+      inactive = false
     else
-      teacher.inactive = true
+      inactive = true
     end
-
+    params.merge!({teacher: {inactive: inactive}})
     respond_to do |format|
-      if teacher.save
+      if teacher.update(teacher_params)
         format.json { render json: { result: true, inactive: teacher.inactive } }
       else
         format.json { render json: { result: false, inactive: teacher.inactive } }
@@ -42,8 +43,11 @@ class TeachersController < ApplicationController
     end
   end
 
+  private
+
   def teacher_params
-    params.require(:teacher).permit(:first_name, :last_name, :phone, :description, :city_id, {institute_ids: []})
+    (params[:teacher]).merge!(update_without_password: true)
+    params.require(:teacher).permit(:first_name, :last_name, :phone, :description, :city_id, {institute_ids: []}, :inactive, :update_without_password)
   end
 
 end

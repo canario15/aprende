@@ -49,17 +49,17 @@ describe HomeController do
       end
 
       it 'trivia teacher first name' do
-        @trivia1.teacher.update(first_name: "First Name Test 1")
-        @trivia2.teacher.update(first_name: "First Name Test 2")
-        @trivia3.teacher.update(first_name: "First Name Test 3")
+        @trivia1.teacher.update(first_name: "First Name Test 1",update_without_password: true)
+        @trivia2.teacher.update(first_name: "First Name Test 2",update_without_password: true)
+        @trivia3.teacher.update(first_name: "First Name Test 3",update_without_password: true)
         get :index, @params
         expect(assigns[:trivium]).to eq([@trivia1,@trivia2,@trivia3])
       end
 
       it 'trivia teacher last name' do
-        @trivia0.teacher.update(last_name: "Last Name Test 0")
-        @trivia1.teacher.update(last_name: "Last Name Test 1")
-        @trivia2.teacher.update(last_name: "Last Name Test 2")
+        @trivia0.teacher.update(last_name: "Last Name Test 0",update_without_password: true)
+        @trivia1.teacher.update(last_name: "Last Name Test 1",update_without_password: true)
+        @trivia2.teacher.update(last_name: "Last Name Test 2",update_without_password: true)
         get :index, @params
         expect(assigns[:trivium]).to eq([@trivia0,@trivia1,@trivia2])
       end

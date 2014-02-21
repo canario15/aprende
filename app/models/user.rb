@@ -8,6 +8,9 @@ class User < ActiveRecord::Base
   belongs_to :institute
   has_many :games
   belongs_to :city
+  attr_accessor :update_without_password
+
+  validates :password, :presence => true, :unless => :update_without_password?
 
   scope :system_users, ->{order(first_name: :asc)}
   has_attached_file :avatar, :styles => { :large => "300x300>", :medium => "100x100>", :small => "50x50" }, :default_url => "/assets/:style/missing.jpg"
@@ -34,5 +37,9 @@ class User < ActiveRecord::Base
 
   def games_finished
     self.games.finished
+  end
+
+  def update_without_password?
+    update_without_password
   end
 end

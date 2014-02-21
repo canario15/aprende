@@ -8,6 +8,10 @@ class Teacher < ActiveRecord::Base
   has_many :games, through: :trivium
   belongs_to :city
 
+  attr_accessor :update_without_password
+
+  validates :password, :presence => true, :unless => :update_without_password?
+
   has_attached_file :avatar, :styles => { :large => "300x300>", :medium => "100x100>", :small => "50x50" }, :default_url => "/assets/:style/missing.jpg"
 
   has_and_belongs_to_many :institutes,
@@ -28,5 +32,9 @@ class Teacher < ActiveRecord::Base
 
   def games_finished
     self.games.finished
+  end
+
+  def update_without_password?
+    update_without_password
   end
 end
