@@ -42,4 +42,8 @@ class User < ActiveRecord::Base
   def update_without_password?
     update_without_password
   end
+
+  def first_sign_in?
+    self.sign_in_count == 1
+  end
 end

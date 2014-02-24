@@ -128,4 +128,22 @@ describe TeachersController do
       expect(teacher.inactive).to be(false)
     end
   end
+
+   describe "GET 'sign_in'" do
+    before :each do
+      @teacher = Teacher.make!
+      @teacher.confirm!
+      sign_in @teacher
+    end
+
+    it "first login" do
+      @teacher.sign_in_count = 1
+      expect(controller.after_sign_in_path_for(@teacher)).to eq(edit_teacher_path(@teacher))
+    end
+
+    it "not first login" do
+      @teacher.sign_in_count = 2
+      expect(controller.after_sign_in_path_for(@teacher)).to eq(games_teacher_path)
+    end
+  end
 end

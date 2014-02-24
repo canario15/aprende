@@ -57,4 +57,22 @@ describe UsersController do
     end
   end
 
+  describe "GET 'sign_in'" do
+    before :each do
+      @user = User.make!
+      @user.confirm!
+      sign_in @user
+    end
+
+    it "first login" do
+      @user.sign_in_count = 1
+      expect(controller.after_sign_in_path_for(@user)).to eq(edit_user_path(@user))
+    end
+
+    it "not first login" do
+      @user.sign_in_count = 2
+      expect(controller.after_sign_in_path_for(@user)).to eq(home_path)
+    end
+  end
+
 end

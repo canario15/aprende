@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe "home/index.html.erb" do
   before :each do
+    City.make!
     @user = User.make!
     @user.confirm!
     visit new_user_session_path

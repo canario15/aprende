@@ -3,9 +3,9 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     if resource.class.to_s == Constants::RESOURCE_TYPE[:teacher]
-      games_teacher_path
+      resource.first_sign_in? ? edit_teacher_path(resource) : games_teacher_path
     elsif resource.class.to_s == Constants::RESOURCE_TYPE[:user]
-      home_path
+      resource.first_sign_in? ? edit_user_path(resource) : home_path
     elsif resource.class.to_s == Constants::RESOURCE_TYPE[:admin]
       courses_path
     else
