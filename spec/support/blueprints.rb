@@ -64,6 +64,17 @@ Question.blueprint(:filled) do
   incorrect_answer_four { "21 de abril" }
 end
 
+Question.blueprint(:filled_image) do
+  description { "¿Que dia arranca el Verano en Uruguay?" }
+  dificulty { 3 }
+  answer { "21 de diciembre" }
+  incorrect_answer_one { "21 de enero" }
+  incorrect_answer_two { "21 de febrero" }
+  incorrect_answer_three { "21 de marzo" }
+  incorrect_answer_four { "21 de abril" }
+  image {File.new(File.join(Rails.root, 'spec', 'fixtures', 'Test.jpeg'))}
+end
+
 Level.blueprint do
   title {"Primero"}
 end
@@ -91,6 +102,15 @@ Trivia.blueprint(:filled) do
   course { Course.make!  }
   teacher { Teacher.make!(:filled) }
   questions (1)
+end
+
+Trivia.blueprint(:filled_image) do
+  title { "Trivia Title #{sn}" }
+  tag { "Trivia Tag #{sn}" }
+  type { 1 }
+  course { Course.make!  }
+  teacher { Teacher.make!(:filled) }
+  questions {[Question.make!(:filled_image)]}
 end
 
 Question.blueprint do

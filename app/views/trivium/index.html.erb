@@ -1,6 +1,7 @@
 <div class="page-header">
   <h1 id="tables">Mis Trivias</h1>
 </div>
+<%= render "flash/error_notice" %>
 <%= (link_to 'Nueva Trivia', new_trivia_path) if current_teacher %>
 <% unless @trivias.empty? -%>
   <table class="table table-striped table-bordered table-hover ">
@@ -10,8 +11,7 @@
         <th>Curso</th>
         <th>Etiquetas</th>
         <th>descripción</th>
-        <th></th>
-        <th></th>
+        <th colspan=3  class="text-center" >Acciones</th>
       </tr>
     </thead>
     <tbody>
@@ -21,12 +21,9 @@
           <td><%= trivia.course %></td>
           <td><%= trivia.tag %></td>
           <td><%= trivia.description %></td>
-          <% if trivia.with_no_games? -%>
-            <td><%= link_to 'Editar', edit_trivia_path(trivia.id) %></td>
-          <% else -%>
-            <td></td>
-          <% end -%>
+          <td><%= link_to 'Editar', edit_trivia_path(trivia.id) if trivia.with_no_games? -%></td>
           <td><%= link_to 'Preguntas', new_question_trivia_url(trivia.id) %></td>
+          <td><%= link_to 'Clonar', clone_trivia_url(trivia.id), method: :post %></td>
         </tr>
       <% end -%>
     </tbody>

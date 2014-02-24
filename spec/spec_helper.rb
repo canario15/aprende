@@ -29,6 +29,11 @@ RSpec.configure do |config|
   config.order = "random"
   config.include Capybara::DSL
 
+  Paperclip::Attachment.default_options[:path] = ":rails_root/public/system/:rails_env/:class/:attachment/:id_partition/:filename"
+  config.after(:all) do
+    FileUtils.rm_rf(Dir["#{Rails.root}/public/system/#{Rails.env}"])
+  end
+
 end
 
 OmniAuth.config.test_mode = true

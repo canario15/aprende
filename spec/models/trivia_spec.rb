@@ -99,4 +99,31 @@ describe Trivia do
     end
   end
 
+  describe "clone Trivia" do
+    it 'without associations' do
+      @trivia = Trivia.make!
+      expect{@trivia.clone_with_associations}.to change{Trivia.count}.by(1)
+    end
+
+    it 'with course' do
+      @trivia = Trivia.make!(:filled)
+      expect(@trivia.clone_with_associations.course).to eq(@trivia.course)
+    end
+
+    it 'with questions' do
+      @trivia = Trivia.make!(:filled)
+      expect(@trivia.clone_with_associations.questions.last.description).to eq(@trivia.questions.last.description)
+    end
+
+    it 'with questions with image' do
+      @trivia = Trivia.make!(:filled_image)
+      expect(@trivia.clone_with_associations.questions.first.image.file?).to eq(true)
+    end
+
+    it 'with questions without image' do
+      @trivia = Trivia.make!(:filled)
+      expect(@trivia.clone_with_associations.questions.first.image.file?).to eq(false)
+    end
+
+  end
 end

@@ -5,6 +5,7 @@ Aprende::Application.routes.draw do
   get "trivium/:trivia_id/game/new" => "game#new", as: :game_new
   post "trivium/:trivia_id/game/new" => "game#create", as: :game_create
   post "trivium/:trivia_id/game/eval_answer" => "game#eval_answer", as: :game_eval_answer
+  post "trivium/:id/clone" => "trivium#clone", as: :clone_trivia
   get "game/reset"
   get "game/finish"
   get "games_teacher" => "game#index_teacher", as: :games_teacher

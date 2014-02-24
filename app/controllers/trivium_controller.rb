@@ -65,6 +65,12 @@ class TriviumController < ApplicationController
     end
   end
 
+  def clone
+    trivia = Trivia.find(params[:id])
+    trivia.clone_with_associations
+    redirect_to trivium_url, notice: "Nueva trivia clonada: ", flash: { link: {title: trivia.title,url: edit_trivia_path(trivia)}}
+  end
+
   def new_question
     @trivia = Trivia.find(params[:id])
     @question = Question.new

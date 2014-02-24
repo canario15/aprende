@@ -313,4 +313,26 @@ describe TriviumController do
     end
 
   end
+
+ describe "POST 'clone'" do
+    before :each do
+      @trivia = Trivia.make!(:filled)
+    end
+
+    it "clone a trivia" do
+      post :clone, id: @trivia.id
+      expect(response.code).to eq("302")
+    end
+
+    it "redirect to index" do
+      post :clone, id: @trivia.id
+      expect(response).to redirect_to(trivium_url)
+    end
+
+     it "notice messages" do
+      post :clone, id: @trivia.id
+      expect(flash[:notice]).to match("Nueva trivia clonada: ")
+    end
+  end
+
 end

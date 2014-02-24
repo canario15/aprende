@@ -31,4 +31,16 @@ class Trivia < ActiveRecord::Base
     self.games.blank?
   end
 
+  def clone_with_associations
+    new_trivia = self.dup
+    new_trivia.course = self.course
+    new_trivia.questions << self.questions.map do |old_q|
+     new_q = old_q.dup
+     new_q.image = old_q.image
+     new_q
+    end
+    new_trivia.save!
+    new_trivia
+  end
+
 end
