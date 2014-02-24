@@ -42,38 +42,15 @@
         </div>
       <% end -%>
       <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-        <% if current_user %>
-          <%= link_to(edit_user_path(current_user), class: 'dropdown-toggle', 'data-toggle' => 'dropdown') do %>
-            <%= current_user.email %><b class="caret"></b>
-          <% end %>
-        <% end %>
-        <% if current_teacher %>
-          <%= link_to(edit_teacher_path(current_teacher), class: 'dropdown-toggle', 'data-toggle' => 'dropdown') do %>
-            <%= current_teacher.email %><b class="caret"></b>
-          <% end %>
-        <% end %>
-          <% if current_admin %>
-          <%= link_to(edit_admin_path(current_admin), class: 'dropdown-toggle', 'data-toggle' => 'dropdown') do %>
-            <%= current_admin.email %><b class="caret"></b>
-          <% end %>
-        <% end %>
-        <ul class="dropdown-menu">
-          <li><a href="#">Ver cuenta</a></li>
-          <li class="divider"></li>
-          <% if current_user %>
-            <li><%= link_to 'Edite sus datos', edit_user_path(current_user.id) %></li>
-            <li><%= link_to('Salir', destroy_user_session_path, :method => :delete) %></li>
-          <%end%>
-          <% if current_teacher %>
-            <li><%= link_to 'Edite sus datos', edit_teacher_path(current_teacher.id) %></li>
-            <li><%= link_to('Salir', destroy_teacher_session_path, :method => :delete) %></li>
-          <%end%>
-           <% if current_admin %>
-            <li><%= link_to('Salir', destroy_admin_session_path, :method => :delete) %></li>
-          <%end%>
-        </ul>
-        </li>
+        <% if current_teacher -%>
+          <%= li_ul_current_page? current_teacher.email,"#",[["Ver cuenta","#"]],[["Edite sus datos",edit_teacher_path(current_teacher.id)],["Salir",destroy_teacher_session_path, method: :delete]] %>
+        <% end-%>
+        <% if current_user -%>
+          <%= li_ul_current_page? current_user.email,"#",[["Ver cuenta","#"]],[["Edite sus datos",edit_user_path(current_user.id)],["Salir",destroy_user_session_path, method: :delete]] %>
+        <% end-%>
+        <% if current_admin -%>
+          <%= li_ul_current_page? current_admin.email,"#",[["Salir",destroy_admin_session_path, method: :delete]] %>
+        <% end-%>
       </ul>
     </div>
   </div>
