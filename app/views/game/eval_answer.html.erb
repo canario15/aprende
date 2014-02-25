@@ -8,6 +8,11 @@
     <fieldset>
       <%= hidden_field_tag "question_id", @question.id %>
       <div class="form-group">
+        <% if @question.image -%>
+          <div class="text-center">
+            <%= image_tag @question.image.url(:medium), alt: "Imagen de la pregunta" %>
+          </div>
+        <% end -%>
         <% if type_multiple_choice?(@trivia.type) -%>
           <label class="col-lg-2 control-label">Opciones</label>
           <div class="col-lg-10">
@@ -32,6 +37,6 @@
       <p>
         <%= f.submit "Validar", id: "validate_answer", class: "btn btn-primary btn-lg validate", disabled:true %>
       </p>
-    <fieldset>
+    </fieldset>
   <% end -%>
 </div>

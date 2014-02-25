@@ -3,6 +3,7 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
 require 'capybara/rspec'
+require "paperclip/matchers"
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
@@ -28,6 +29,7 @@ RSpec.configure do |config|
   config.infer_base_class_for_anonymous_controllers = false
   config.order = "random"
   config.include Capybara::DSL
+  config.include Paperclip::Shoulda::Matchers
 
   Paperclip::Attachment.default_options[:path] = ":rails_root/public/system/:rails_env/:class/:attachment/:id_partition/:filename"
   config.after(:all) do

@@ -8,6 +8,7 @@ describe Question do
     it { should respond_to(:answer) }
     it { should respond_to(:trivia_id) }
     it { should respond_to(:image_file_name) }
+    it { should have_attached_file(:image) }
   end
 
   describe "relations" do
