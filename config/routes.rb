@@ -44,8 +44,10 @@ Aprende::Application.routes.draw do
   end
   devise_for :admins
   resources :admins
+  resources :notifications
 
   post 'teachers/inactivate_or_activate' => 'teachers#inactivate_or_activate', as: 'inactivate_or_activate'
+  post 'notifications/logic_delete' => 'notifications#logic_delete', as: 'logic_delete'
 
   root 'welcome#index'
 end
