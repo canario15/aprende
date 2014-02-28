@@ -1,0 +1,24 @@
+Estatidística de los juegos
+<%= @teacher %>
+<% @teacher.games_average_score.each do |g| %>
+  <% average_score = g.avg_score.to_i.to_s %>
+  Trivia: <%= g.trivium_title %>
+
+  Cantidad de Juegos: <%= g.count.to_s %>
+  Promedio de Puntos: <%= average_score %>
+
+<% end -%>
+
+<% @teacher.trivium.each do |tri| %>
+   "Trivia: " <%= tri.title %>
+    "Cant Juegos: "<%=  tri.games.count %>
+
+    <% total_score = 0 %>
+    <% tri.games.each do |g| %>
+      <% total_score += g.score %>
+    <% end -%>
+    <% average = total_score/tri.games.count %>
+    "Promedio: " <%= average %>
+<% end -%>
+
+<%= @greeting %>

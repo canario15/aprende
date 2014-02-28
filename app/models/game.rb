@@ -3,7 +3,9 @@ class Game < ActiveRecord::Base
   belongs_to :trivia
   has_many :answers
   has_many :questions, through: :trivia
-  scope :finished ,-> {where(status: Game::STATUS[:finished])}
+  scope :finished ,-> { where(status: Game::STATUS[:finished]) }
+  scope :week_ago , -> { where("games.created_at >=?", 1.week.ago) }
+  scope :count_correct_answers , -> { includes(:answers).where(answers: {was_correct: true}).count }
 
   STATUS = {
     :created => 1,
@@ -56,6 +58,10 @@ class Game < ActiveRecord::Base
     answer
   end
 
+  def to_s
+    self.score
+  end
+
   def finish
     self.status = Game::STATUS[:finished]
     save!
@@ -69,6 +75,8 @@ class Game < ActiveRecord::Base
   def correct_answers
     answers.where(:was_correct => true)
   end
+
+
 
   private
 
