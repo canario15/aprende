@@ -70,3 +70,5 @@ end
 
 # Use debugger
 gem 'byebug', group: [:development, :test]
+
+gem 'whenever', require: false
