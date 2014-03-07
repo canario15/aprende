@@ -172,5 +172,15 @@ Admin.blueprint do
 end
 
 Notification.blueprint do
+end
 
+Pdf.blueprint do
+  document {File.new(File.join(Rails.root, 'spec', 'fixtures', 'Test.pdf'))}
+end
+
+Written.blueprint do
+  document {"Conteido de texto"}
+end
+
+Content.blueprint do
 end

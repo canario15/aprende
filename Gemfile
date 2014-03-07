@@ -14,6 +14,10 @@ gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootst
 gem "paperclip", "~> 3.0"
 gem "ransack"
 
+# PDF
+gem 'prawn'
+gem 'prawn_rails'
+
 group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
@@ -70,3 +74,5 @@ end
 
 # Use debugger
 gem 'byebug', group: [:development, :test]
+
+gem 'ckeditor_rails'

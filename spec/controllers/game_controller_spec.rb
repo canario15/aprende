@@ -9,7 +9,7 @@ describe GameController do
       sign_in @teacher
     end
 
-    it "returns http success " do
+    it "returns http success" do
       get :index_teacher
       expect(response).to be_success
     end
@@ -22,30 +22,64 @@ describe GameController do
       sign_in @user
     end
 
-    it "returns http success " do
+    it "returns http success" do
       get :index_user
       expect(response).to be_success
     end
   end
 
   describe "GET 'index', teacher with trivia" do
+    render_views
     before :each do
       @teacher = Teacher.make!
       @teacher.confirm!
       sign_in @teacher
       @trivia = Trivia.make!(teacher: @teacher)
       @question = Question.make!(trivia: @trivia)
-      game = Game.make!(trivia: @trivia)
+      @game = Game.make!(trivia: @trivia)
       Answer.make!(game:@game, question: @question)
+      @game.finish
     end
 
-    it "returns http success " do
+    it "returns http success" do
       get :index_teacher
       expect(response).to be_success
+    end
+
+    it "render have pdf link" do
+      get :index_teacher
+      expect(response.body).to match(game_results_teacher_path(@game, format: :pdf))
+    end
+  end
+
+  describe "GET 'index', user with trivia" do
+    render_views
+    before :each do
+      @teacher = Teacher.make!
+      @user = User.make!
+      @user.confirm!
+      @trivia = Trivia.make!(teacher: @teacher)
+      @question = Question.make!(trivia: @trivia)
+      @game = Game.make!(trivia: @trivia)
+      Answer.make!(game:@game, question: @question)
+      @game.finish
+      @user.games << @game
+      sign_in @user
+    end
+
+    it "returns http success" do
+      get :index_user
+      expect(response).to be_success
+    end
+
+    it "render have pdf link" do
+      get :index_user
+      expect(response.body).to match(game_results_user_path(@game, format: :pdf))
     end
   end
 
   describe "GET 'game_results_teacher'" do
+    render_views
     before :each do
       @teacher = Teacher.make!
       @teacher.confirm!
@@ -56,11 +90,20 @@ describe GameController do
       Answer.make!(game:@game, question: @question)
     end
 
-    it "returns http success " do
+    it "returns http success" do
       get :game_results_teacher, {:id => @game.id}
       expect(response).to be_success
     end
 
+    it "pdf returns http success" do
+      get :game_results_teacher, {id: @game.id, format: :pdf}
+      expect(response).to be_success
+    end
+
+    it "render have pdf link" do
+      get :game_results_teacher, {id: @game.id}
+      expect(response.body).to match(game_results_teacher_path(@game, format: :pdf))
+    end
   end
 
   describe "GET 'games_played'" do
@@ -78,7 +121,7 @@ describe GameController do
       sign_in @user
     end
 
-    it "returns http success " do
+    it "returns http success" do
       get :index_user
       expect(response).to be_success
     end
@@ -88,8 +131,13 @@ describe GameController do
       expect(response.body).to match(@user.games.first.trivia.title)
     end
 
-    it "returns http success " do
+    it "returns http success" do
       get :game_results_user, {:id => @game.id}
+      expect(response).to be_success
+    end
+
+    it "pdf returns http success" do
+      get :game_results_user, {id: @game.id, format: :pdf}
       expect(response).to be_success
     end
 
@@ -115,6 +163,11 @@ describe GameController do
         expect(assigns[:presenter].trivium).not_to include(@trivia1,@trivia2)
       end
     end
+
+    it "render have pdf link" do
+      get :game_results_user, {id: @game.id}
+      expect(response.body).to match(game_results_user_path(@game, format: :pdf))
+    end
   end
 
   describe "GET 'games_played_not_logged_in'" do
@@ -126,7 +179,7 @@ describe GameController do
       expect(response).to redirect_to new_user_session_path
     end
 
-    it "shows an error message " do
+    it "shows an error message" do
       expect(flash[:alert]).to eq ("You need to sign in or sign up before continuing.")
     end
   end

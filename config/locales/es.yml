@@ -202,6 +202,7 @@ es:
         title: "Título"
         type: "Tipo"
         course: "Curso"
+        content/containable: "Documento"
       question:
         description: "La pregunta"
         answer: "La respuesta"
@@ -216,6 +217,11 @@ es:
         current_password: "Contraseña actual"
         password_confirmation: "La confirmación de la contraseña"
         password: "Contraseña"
+      content:
+        containable: "Contentido"
+      content/containable:
+        document: "Documento"
+        document_content_type: "Tipo"
   dictionary:
     'true': "Si"
     'false': "No"

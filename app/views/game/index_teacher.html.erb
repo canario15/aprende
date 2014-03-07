@@ -11,7 +11,7 @@
         <th>Cant. Preguntas</th>
         <th>Preguntas Correctas</th>
         <th>Puntaje</th>
-        <th></th>
+        <th colspan=2 >Acciones</th>
       </tr>
     </thead>
     <tbody>
@@ -24,6 +24,7 @@
           <td><%= game.correct_answers.count %></td>
           <td><%= game.score%></td>
           <td><%= link_to 'Ver Detalles', game_results_teacher_path(game) %></td>
+          <td><%= link_to "PDF", game_results_teacher_path(game, format: :pdf) %></td>
         </tr>
       <% end -%>
     </tbody>

@@ -6,6 +6,8 @@ class Trivia < ActiveRecord::Base
   has_one :level, :through => :course
   has_many :questions
   has_many :games
+  belongs_to :content, dependent: :destroy
+  accepts_nested_attributes_for :content
 
   validates :title, :presence => true
   validates :course, :presence => true
@@ -39,8 +41,67 @@ class Trivia < ActiveRecord::Base
      new_q.image = old_q.image
      new_q
     end
+
+    if self.content.present?
+      new_trivia.content = self.content.dup
+      new_trivia.content.containable = self.content.containable.dup
+      new_trivia.content.containable.document = self.content.containable.document
+    end
     new_trivia.save!
     new_trivia
+  end
+
+  def content_attributes=(attributes)
+
+    attributes = {} if attributes.all?{|key,value| value[:containable_type].blank?}
+    old_attributes = attributes
+
+    is_valid = true
+    if attributes.present?
+      attributes.each do |key,value|
+        value.symbolize_keys
+        if value[:containable_type].present?
+          attributes = value
+        end
+      end
+      is_valid = Content.new(attributes).valid?
+    end
+
+    if is_valid and self.valid?
+      if old_attributes.empty? and self.content.present?
+        self.content.destroy
+      end
+
+      if old_attributes.any?{|key,value| value[:containable_type].blank? and not value[:id].blank?} and self.content.present?
+        self.content.destroy
+      end
+    end
+
+
+    super unless old_attributes.empty?
+
+  end
+
+  def contents_init
+    if ( self.content.present?  and  not ( self.content.containable.present? and self.content.containable.document.present?))
+      if self.persisted?
+        if self.content.persisted?
+          self.content.reload
+          self.reload
+        else
+          self.reload
+        end
+      else
+        self.content = nil
+      end
+    end
+    contents_edit = self.content.present? ? [self.content] : []
+    Content::TYPE.each do |model|
+      unless self.content.present? and self.content.containable_type == model
+        contents_edit << Content.new(containable: eval(model).new)
+      end
+    end
+    contents_edit
   end
 
 end

@@ -71,6 +71,98 @@ describe TriviumController do
       expect(response.body).to match("Title can\.*t be blank")
     end
 
+     context "not select contents" do
+        let(:contents){ @trivia.contents_init.each{|c|c[:containable_type] = "" } }
+
+        it "redirect to questions" do
+          contents_params = {content_attributes:
+            Hash[contents.map.with_index do |content,index|
+                [index.to_s,Hash[
+                    containable_attributes:
+                    Hash[ document:
+                      content.containable.document
+                    ].reverse_merge(content.containable.attributes)
+                  ].reverse_merge(content.attributes)
+                ]
+            end
+            ]
+          }
+          params = contents_params.reverse_merge(@trivia.attributes)
+          post(:create, trivia: params)
+          expect(response.location).to eq(new_question_trivia_url(assigns[:trivia].id))
+        end
+      end
+
+    #Content::TYPE =["Pdf",  "Written"]
+    Content::TYPE.each do |type|
+      context "contents #{type} selected" do
+       let(:trivia){ Trivia.make(:filled)}
+        let(:contents){
+          trivia.contents_init.each{|c|
+            c[:containable_type] = "" unless c[:containable_type] == type
+          }
+        }
+        let(:doc) {
+          type == "Pdf" ?
+            Rack::Test::UploadedFile.new('spec/fixtures/Test.pdf', 'application/pdf')
+          :
+            eval(type).make.document
+        }
+
+        it "valid #{type}"  do
+          contents_params = {content_attributes:
+            Hash[contents.map.with_index do |content,index|
+              content[:containable_type] == type ?
+                [index.to_s,Hash[
+                    containable_attributes:
+                    Hash[ document:
+                      content.containable.document = doc
+                    ].reverse_merge(content.containable.attributes)
+                  ].reverse_merge(content.attributes)
+                ]
+              :
+                [index.to_s,content.attributes]
+            end
+            ]
+          }
+          post(:create, trivia_level:  1 , trivia: contents_params.reverse_merge(trivia.attributes))
+          expect(response.location).to eq(new_question_trivia_url(assigns[:trivia].id))
+        end
+
+        it "not document #{type}" do
+          contents_params = {content_attributes:
+            Hash[contents.map.with_index do |content,index|
+              content[:containable_type] == type ?
+                [index.to_s,Hash[
+                    containable_attributes:
+                    Hash[ document: nil].reverse_merge(content.containable.attributes)
+                  ].reverse_merge(Hash["containable_type" => type])
+                ]
+              :
+                [index.to_s,content.attributes]
+              end
+              ]
+            }
+          post(:create, trivia_level:  1 , trivia: contents_params.reverse_merge(trivia.attributes))
+          expect(response.body).to match "Content containable document can\.*t be blank"
+        end
+
+        it "not conteinable #{type}" do
+          contents_params = {content_attributes:
+            Hash[contents.map.with_index do |content,index|
+              content[:containable_type] == type ?
+                [index.to_s,Hash["containable_type" => type]]
+              :
+                [index.to_s,content.attributes]
+            end
+            ]
+          }
+          post(:create, trivia_level:  1 , trivia: contents_params.reverse_merge(trivia.attributes))
+          expect(response.body).to match "Content containable can\.*t be blank"
+        end
+
+      end
+    end
   end
 
   describe "GET 'edit'" do
@@ -120,7 +212,155 @@ describe TriviumController do
       post(:update,:id => @trivia.id,trivia_level:  @trivia.course.level,trivia: @trivia.attributes)
       expect(response.body).to match("Title can\.*t be blank")
     end
+
+    #Content::TYPE =["Pdf",  "Written"]
+    Content::TYPE.each do |type|
+      context "contents #{type} redirect to questions"  do
+        let(:trivia){ Trivia.make!(content: Content.make!(containable: eval(type).make!))}
+        let(:contents){ trivia.contents_init }
+
+        it "not select" do
+          contents_params = {content_attributes:
+            Hash[contents.map.with_index do |content,index|
+                if content[:containable_type] == type
+                  [index.to_s,Hash[
+                      containable_attributes:
+                      Hash[ document:
+                        content.containable.document
+                      ].reverse_merge(content.containable.attributes)
+                    ].reverse_merge(Hash["containable_type" => ""])
+                  ]
+                else
+                  doc = content.containable_type == "Pdf" ?
+                    Rack::Test::UploadedFile.new('spec/fixtures/Test.pdf', 'application/pdf')
+                  :
+                    eval(content.containable_type).make.document
+                 [index.to_s,Hash[
+                      containable_attributes:
+                      Hash[ document:
+                        content.containable.document = doc
+                      ].reverse_merge(content.containable.attributes)
+                    ].reverse_merge(Hash["containable_type" => ""])
+                  ]
+                end
+              end
+            ]
+          }
+          params = contents_params.reverse_merge(trivia.attributes)
+          post(:update, id: trivia.id,trivia: params)
+          expect(response.location).to eq(new_question_trivia_url(assigns[:trivia].id))
+        end
+
+        it "select other" do
+          contents_params = {content_attributes:
+            Hash[contents.map.with_index do |content,index|
+                if content[:containable_type] == type
+                  [index.to_s,Hash[
+                      containable_attributes:
+                      Hash[ document:
+                        content.containable.document
+                      ].reverse_merge(content.containable.attributes)
+                    ].reverse_merge(Hash["containable_type" => ""])
+                  ]
+                else
+                  doc = content.containable_type == "Pdf" ?
+                    Rack::Test::UploadedFile.new('spec/fixtures/Test.pdf', 'application/pdf')
+                  :
+                    eval(content.containable_type).make.document
+                 [index.to_s,Hash[
+                      containable_attributes:
+                      Hash[ document:
+                        content.containable.document = doc
+                      ].reverse_merge(content.containable.attributes)
+                    ].reverse_merge(content.attributes)
+                  ]
+                end
+              end
+            ]
+          }
+          params = contents_params.reverse_merge(trivia.attributes)
+          post(:update, id: trivia.id,trivia: params)
+          expect(response.location).to eq(new_question_trivia_url(assigns[:trivia].id))
+        end
+
+         it "select same" do
+          contents_params = {content_attributes:
+            Hash[contents.map.with_index do |content,index|
+                doc = content.containable_type == "Pdf" ?
+                    Rack::Test::UploadedFile.new('spec/fixtures/Test.pdf', 'application/pdf')
+                  :
+                    eval(content.containable_type).make.document
+                if content[:containable_type] == type
+                  [index.to_s,Hash[
+                      containable_attributes:
+                      Hash[ document:
+                        content.containable.document = doc
+                      ].reverse_merge(content.containable.attributes)
+                    ].reverse_merge(content.attributes)
+                  ]
+                else
+                 [index.to_s,Hash[
+                      containable_attributes:
+                      Hash[ document:
+                        content.containable.document = doc
+                      ].reverse_merge(content.containable.attributes)
+                    ].reverse_merge(Hash["containable_type" => ""])
+                  ]
+                end
+              end
+            ]
+          }
+          params = contents_params.reverse_merge(trivia.attributes)
+          post(:update, id: trivia.id,trivia: params)
+          expect(response.location).to eq(new_question_trivia_url(assigns[:trivia].id))
+        end
+      end
+
+      context "contents #{type} fail"  do
+        let(:trivia){ Trivia.make!(:filled,content: Content.make!(containable: eval(type).make!))}
+        let(:contents){
+          trivia.contents_init.each{|c|
+            c[:containable_type] = "" unless c[:containable_type] == type
+          }
+        }
+
+        it "not document #{type}" do
+          contents_params = {content_attributes:
+            Hash[contents.map.with_index do |content,index|
+              content[:containable_type] == type ?
+                [index.to_s,Hash[
+                    containable_attributes:
+                    Hash[ document: nil].reverse_merge(content.containable.attributes)
+                  ].reverse_merge(Hash["containable_type" => type])
+                ]
+              :
+                [index.to_s,content.attributes]
+              end
+              ]
+            }
+          params = contents_params.reverse_merge(trivia.attributes)
+          post(:update, id: trivia.id,trivia_level:  @trivia.course.level,trivia: params)
+          expect(response.body).to match "Content containable document can\.*t be blank"
+        end
+
+        it "not conteinable #{type}" do
+          contents_params = {content_attributes:
+            Hash[contents.map.with_index do |content,index|
+              content[:containable_type] == type ?
+                [index.to_s,Hash["containable_type" => type]]
+              :
+                [index.to_s,content.attributes]
+            end
+            ]
+          }
+          params = contents_params.reverse_merge(trivia.attributes)
+          post(:update, id: trivia.id,trivia_level:  @trivia.course.level,trivia: params)
+          expect(response.body).to match "Content containable can\.*t be blank"
+        end
+      end
+    end
   end
+
 
   describe "POST 'cannot update trivia with games'" do
     before :each do

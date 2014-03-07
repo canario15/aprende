@@ -19,7 +19,6 @@ class TriviumController < ApplicationController
 
   def update_course
     @courses = Level.find(params[:level_id]).courses
-
     render :json => { :courses => @courses}
   end
 
@@ -33,7 +32,6 @@ class TriviumController < ApplicationController
       @levels = Level.all
       @types = Trivia::TYPES
       @courses = Level.find(params[:trivia_level]).courses
-
       respond_to do |format|
         format.html { render :new }
       end
@@ -122,7 +120,7 @@ class TriviumController < ApplicationController
   private
 
   def trivia_params
-    params.require(:trivia).permit(:title, :course_id, :tag, :description,:type)
+    params.require(:trivia).permit(:title, :course_id, :tag, :description, :type, content_attributes: [:id, :containable_type, containable_attributes: [:document, :id]])
   end
 
   def question_params

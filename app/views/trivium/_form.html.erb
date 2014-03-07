@@ -8,18 +8,15 @@
     </div>
   </div>
 <% end -%>
-<% if @trivia.errors.any? -%>
-  <div class="row">
-    <div class="col-lg-offset-2">
-      <div class="alert alert-dismissable alert-danger">
-        <h4>Se encontro <%= pluralize(@trivia.errors.count, "error") %> no es posible crear la Trivia</h4>
-        <% @trivia.errors.full_messages.each do |msg| %>
-          <%= content_tag :label, msg %>
-        <% end -%>
-      </div>
-    </div>
+
+<div class="row">
+  <div class="col-lg-offset-2">
+    <%= error_messages @trivia%>
   </div>
-<% end -%>
+</div>
+
+
+
 <%= form_for @trivia, :html => {:class => "bs-example form-horizontal"} do |f| %>
   <fieldset>
     <div class="form-group">
@@ -62,6 +59,7 @@
         <%= f.text_area :description, class: 'form-control', placeholder: 'Descripción de la trivia' %>
       </div>
     </div>
+    <%= f.fields_for_contents %>
     <div class="form-group">
       <div class="col-lg-10 col-lg-offset-2">
         <%= link_to 'Cancelar', trivium_path %>
