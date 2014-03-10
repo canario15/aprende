@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require ckeditor-jquery
 //= require twitter/bootstrap
 //= require chosen-jquery
 //= require_tree .
@@ -20,5 +21,17 @@ $(document).ready(function(){
   $("#close").on("click", function() {
       $("#welcome-message").hide();
   });
+
+  $('.ckeditor').ckeditor();
+
+  $(".contents_selection").change(function() {
+    $("div[id*='div_containable_']").addClass("hidden").removeClass("show");
+    $("input[class*='hidden_field_'").val("");
+
+    var selected = $(".contents_selection option:selected").text();
+    $(".hidden_field_"+selected).val(selected);
+    $("div[id*='div_containable_"+selected+"']").addClass("show").removeClass("hidden");
+  });
+
 });
 

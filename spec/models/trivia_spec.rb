@@ -16,6 +16,8 @@ describe Trivia do
     it { should have_many(:questions) }
     it { should have_many(:games) }
     it { should respond_to(:teacher) }
+    it { should respond_to(:content) }
+    it { should accept_nested_attributes_for :content }
   end
 
   describe '#with_no_games?' do
@@ -58,7 +60,7 @@ describe Trivia do
     end
   end
 
-  describe "validate Trivia:" do
+  describe "validate Trivia" do
 
     it "must have a title" do
       expect(subject).to validate_presence_of :title
@@ -80,19 +82,19 @@ describe Trivia do
       @t7 = Trivia.make!(:filled)
     end
 
-    it'with questions'do
+    it 'with questions' do
       expect(Trivia.with_questions).to include(@t1,@t2,@t3,@t6,@t7)
     end
 
-    it'with questions limit 3'do
+    it 'with questions limit 3' do
       expect(Trivia.with_questions_and_limit).to include(@t1,@t2,@t3)
     end
 
-    it'search with questions all'do
+    it 'search with questions all' do
       expect(Trivia.search_with_questions("trivia")).to include(@t1,@t2,@t3,@t6,@t7)
     end
 
-    it'search with questions two'do
+    it 'search with questions two' do
       @t2.update(title: "Test")
       @t6.update(title: "Test")
       expect(Trivia.search_with_questions("Test")).to include(@t2,@t6)
@@ -125,5 +127,56 @@ describe Trivia do
       expect(@trivia.clone_with_associations.questions.first.image.file?).to eq(false)
     end
 
+    #Content::TYPE =["Pdf",  "Written"]
+    Content::TYPE.each do |type|
+      context "with contents #{type}" do
+        let(:trivia){ Trivia.make!(content: Content.make!(containable: eval(type).make!)) }
+
+        it "content #{type}" do
+          expect(trivia.clone_with_associations.content).not_to eq(trivia.content)
+        end
+
+        it "containable #{type}" do
+          expect(trivia.clone_with_associations.content.containable).not_to eq(trivia.content.containable)
+        end
+      end
+    end
+  end
+
+  describe 'contents init' do
+    it 'empty with all types contents' do
+      expect(Trivia.make!.contents_init.count).to eq(2)
+    end
+
+    #Content::TYPE =["Pdf",  "Written"]
+    Content::TYPE.each do |type|
+      describe "contents type" do
+        let(:"empty_#{type}"){ Trivia.make! }
+        let(:trivia){ Trivia.make!(content: Content.make!(containable: eval(type).make!)) }
+
+        it "#{type} new instance" do
+          empty = eval("empty_#{type}")
+          empty_class = eval(type)
+          expect(empty.contents_init.find{ |content|
+            content.containable_type == type}.containable
+            ).to be_a_new(empty_class)
+        end
+
+        it 'all types contents' do
+          expect(trivia.contents_init.count).to eq(2)
+        end
+
+        it "content #{type}" do
+          expect(trivia.contents_init).to include(trivia.content)
+        end
+
+        it "containable #{type}" do
+          expect(trivia.contents_init.find{|content|
+              content.containable_type == type
+            }.containable
+          ).to eq(trivia.content.containable)
+        end
+      end
+    end
   end
 end

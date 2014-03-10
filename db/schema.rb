@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140225133148) do
+ActiveRecord::Schema.define(version: 20140305120541) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -61,6 +61,13 @@ ActiveRecord::Schema.define(version: 20140225133148) do
   end
 
   add_index "cities", ["state_id"], name: "index_cities_on_state_id"
+
+  create_table "contents", force: true do |t|
+    t.integer  "containable_id"
+    t.string   "containable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "courses", force: true do |t|
     t.string   "title"
@@ -117,6 +124,15 @@ ActiveRecord::Schema.define(version: 20140225133148) do
     t.text     "description"
     t.string   "title"
     t.boolean  "active",      default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pdfs", force: true do |t|
+    t.string   "document_file_name"
+    t.string   "document_content_type"
+    t.integer  "document_file_size"
+    t.datetime "document_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -188,8 +204,10 @@ ActiveRecord::Schema.define(version: 20140225133148) do
     t.datetime "updated_at"
     t.integer  "type"
     t.integer  "teacher_id"
+    t.integer  "content_id"
   end
 
+  add_index "trivium", ["content_id"], name: "index_trivium_on_content_id"
   add_index "trivium", ["course_id"], name: "index_trivium_on_course_id"
   add_index "trivium", ["teacher_id"], name: "index_trivium_on_teacher_id"
 
@@ -230,5 +248,11 @@ ActiveRecord::Schema.define(version: 20140225133148) do
   add_index "users", ["institute_id"], name: "index_users_on_institute_id"
   add_index "users", ["level_id"], name: "index_users_on_level_id"
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+
+  create_table "writtens", force: true do |t|
+    t.text     "document"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
