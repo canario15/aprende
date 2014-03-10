@@ -361,7 +361,6 @@ describe TriviumController do
     end
   end
 
-
   describe "POST 'cannot update trivia with games'" do
     before :each do
       @trivia = Trivia.make!

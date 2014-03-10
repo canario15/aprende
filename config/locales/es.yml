@@ -218,7 +218,7 @@ es:
         password_confirmation: "La confirmación de la contraseña"
         password: "Contraseña"
       content:
-        containable: "Contentido"
+        containable: "Contenido"
       content/containable:
         document: "Documento"
         document_content_type: "Tipo"
