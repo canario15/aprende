@@ -25,12 +25,12 @@ $(document).ready(function(){
   $('.ckeditor').ckeditor();
 
   $(".contents_selection").change(function() {
-    $("div[id*='div_containable_']").addClass("hidden").removeClass("show")
-    $("input[class*='hidden_field_'").val("")
+    $("div[id*='div_containable_']").addClass("hidden").removeClass("show");
+    $("input[class*='hidden_field_'").val("");
 
-    var selected = $(".contents_selection option:selected").text()
-    $(".hidden_field_"+selected).val(selected)
-    $("div[id*='div_containable_"+selected+"']").addClass("show").removeClass("hidden")
+    var selected = $(".contents_selection option:selected").text();
+    $(".hidden_field_"+selected).val(selected);
+    $("div[id*='div_containable_"+selected+"']").addClass("show").removeClass("hidden");
   });
 
 });

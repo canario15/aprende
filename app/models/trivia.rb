@@ -52,11 +52,10 @@ class Trivia < ActiveRecord::Base
   end
 
   def content_attributes=(attributes)
-
     attributes = {} if attributes.all?{|key,value| value[:containable_type].blank?}
     old_attributes = attributes
-
     is_valid = true
+
     if attributes.present?
       attributes.each do |key,value|
         value.symbolize_keys
@@ -71,15 +70,12 @@ class Trivia < ActiveRecord::Base
       if old_attributes.empty? and self.content.present?
         self.content.destroy
       end
-
       if old_attributes.any?{|key,value| value[:containable_type].blank? and not value[:id].blank?} and self.content.present?
         self.content.destroy
       end
     end
 
-
     super unless old_attributes.empty?
-
   end
 
   def contents_init
