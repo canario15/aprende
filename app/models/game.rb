@@ -4,8 +4,9 @@ class Game < ActiveRecord::Base
   has_many :answers
   has_many :questions, through: :trivia
   scope :finished ,-> { where(status: Game::STATUS[:finished]) }
-  scope :week_ago , -> { where("games.created_at >=?", 1.week.ago) }
-  scope :count_correct_answers , -> { includes(:answers).where(answers: {was_correct: true}).count }
+  scope :week_ago_group_by_trivia , -> { finished.where("games.updated_at >=?", 1.week.ago).group(:trivia_id) }
+  scope :joins_answers , -> { joins(:answers) }
+  scope :answers_was_correct , -> { joins_answers.where(answers: { was_correct: true }) }
 
   STATUS = {
     :created => 1,

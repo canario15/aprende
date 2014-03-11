@@ -12,13 +12,8 @@ class TeachersController < ApplicationController
 
   def update
     @teacher = Teacher.find_by(id: params[:id])
-    @teachers_with_games = Teacher.games_played
     respond_to do |format|
       if @teacher.update(teacher_params)
-         @teachers_with_games.each do |t|
-            @teacher = t
-            TeacherMailer.trivia_statistics(@teacher).deliver
-         end
         format.html {redirect_to teacher_path, :notice => "Datos de #{@teacher.name} actualizados."}
       else
         format.html { render action: 'edit' }

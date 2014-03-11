@@ -36,14 +36,63 @@ describe Teacher do
     it 'with password nil' do
       expect{Teacher.make!(password: nil)}.to raise_error
     end
-
   end
 
-  describe 'Teacher scope order by name asc' do
-    it'Creates teachers'do
-      b_teacher = Teacher.make!(first_name: 'b_teacher')
-      a_teacher = Teacher.make!(first_name: 'a_teacher')
-      expect(Teacher.system_teachers).to eq([a_teacher,b_teacher])
+  describe 'scope' do
+    describe 'order by name asc' do
+      it 'Creates teachers'do
+        b_teacher = Teacher.make!(first_name: 'b_teacher')
+        a_teacher = Teacher.make!(first_name: 'a_teacher')
+        expect(Teacher.system_teachers).to eq([a_teacher,b_teacher])
+      end
+    end
+
+    describe "with games week ago" do
+      before :each do
+        (1..4).each do |index_t|
+          teacher = Teacher.make!
+          user = User.make!
+          user.confirm!
+          trivia = Trivia.make!(teacher: teacher)
+
+          (1..4).each do |index_g|
+            question = Question.make!(trivia:trivia)
+            game = Game.make!(trivia: trivia)
+            Answer.make!(game:game, question: question)
+            game.finish
+            user.games << game
+          end
+        end
+      end
+
+      it "all games in this weeks" do
+        teachers = Teacher.with_games_week_ago
+        expect(teachers.length).to eq(4)
+      end
+
+      it "half of the games in this week" do
+        Game.all.each_slice(8).first.each do |g|
+          g.update(updated_at: 1.week.ago)
+        end
+        teachers = Teacher.with_games_week_ago
+        expect(teachers.length).to eq(2)
+      end
+
+      it "even games in this week" do
+        Game.all.each_with_index do |g,index|
+          g.update(updated_at: 1.week.ago)  if index.even?
+        end
+        teachers = Teacher.with_games_week_ago
+        expect(teachers.length).to eq(4)
+      end
+
+      it "empty games in this week" do
+        Game.all.each do |g|
+          g.update(updated_at: 1.week.ago)
+        end
+        teachers = Teacher.with_games_week_ago
+        expect(teachers.length).to eq(0)
+      end
     end
   end
 
@@ -72,22 +121,49 @@ describe Teacher do
     end
   end
 
- describe "Mailers at Create" do
+  describe "Mailers at Create" do
     before(:each) do
       @teacher = Teacher.make!
     end
 
-    it 'to'do
+    it 'to' do
       expect(ActionMailer::Base.deliveries.last.to.first ).to eq(@teacher.email)
     end
 
-    it 'subject 'do
+    it 'subject' do
       expect(ActionMailer::Base.deliveries.last.subject ).to match("Confirmation instructions")
     end
 
-    it 'body'do
+    it 'body' do
       expect(ActionMailer::Base.deliveries.last.body ).to match("confirmation_token")
     end
+  end
 
+  describe "send email with games statistics" do
+    before :each do
+      @teacher = Teacher.make!
+      user = User.make!
+      user.confirm!
+      trivia = Trivia.make!(teacher: @teacher)
+      question = Question.make!(trivia:trivia)
+      game = Game.make!(trivia: trivia)
+      Answer.make!(game:game, question: question)
+      game.finish
+      user.games << game
+      Teacher.send_email
+    end
+
+
+    it 'to' do
+      expect(ActionMailer::Base.deliveries.last.to.first ).to eq(@teacher.email)
+    end
+
+    it 'subject' do
+      expect(ActionMailer::Base.deliveries.last.subject ).to match("Estadística de los juegos")
+    end
+
+    it 'body' do
+      expect(ActionMailer::Base.deliveries.last.body ).to match("Estadística de los juegos")
+    end
   end
 end
