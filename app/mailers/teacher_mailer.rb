@@ -1,24 +1,12 @@
 class TeacherMailer < ActionMailer::Base
-  default from: "from@example.com"
+  default from: "user.vairix@gmail.com"
 
-  # Subject can be set in your I18n file at config/locales/en.yml
-  # with the following lookup:
-  #
-  #   en.teacher_mailer.trivia_statistics.subject
-  #
   def trivia_statistics(teacher)
-    @greeting = "Hi"
-    @teacher = teacher
-    mail to: @teacher.email, subject: "Estadistica de juegos"
-  end
-
-  def trivia_statistics_teacher(teacher)
-    debugger
-    teachers.each do |t|
-
-      @greeting = "Hi"
-      @teacher = t
-      mail to:  @teacher.email, subject: "Estadistica de juegos"
-    end
+    @games = teacher.games.week_ago_group_by_trivia
+    @games_count = @games.count
+    @games_avg = @games.average(:score)
+    @answers_corrects_count= @games.answers_was_correct.count
+    @answers_count= @games.joins_answers.count
+    mail to:  teacher.email, subject: "Estadística de los juegos"
   end
 end
