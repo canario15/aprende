@@ -1,13 +1,12 @@
 Estadística de los juegos
 
 <% @games.each do |g| %>
-  Trivia: <%= g.trivia.title %>
-  <% t_id = g.trivia.id %>
-    -Cantidad de Juegos: <%= @games_count[t_id] %>
-    -Promedio de Puntos: <%= @games_avg[t_id].to_f.round(0) %>
-    <% result = 100 * @answers_corrects_count[t_id].to_f / @answers_count[t_id].to_f%>
-    <% result = result.nan? ? 0 : result %>
-    -Promedio de Preguntas Correctas: <%= result.round(0) %>%
+  Trivia: <%= g.trivia_title %>
+    -Cantidad de Juegos: <%= g.count_games %>
+    -Promedio de Puntos: <%= g.avg_score.to_f.round(0) %>
+    <% result = g.count_answers_was_correct.to_f / g.count_answers.to_f%>
+    <% result = result.nan? ? 0 : (100 * result).round(0) %>
+    -Promedio de Preguntas Correctas: <%= result %>%
 
 <% end -%>
 

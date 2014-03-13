@@ -4,9 +4,6 @@ class Game < ActiveRecord::Base
   has_many :answers
   has_many :questions, through: :trivia
   scope :finished ,-> { where(status: Game::STATUS[:finished]) }
-  scope :week_ago_group_by_trivia , -> { finished.where("games.updated_at >=?", 1.week.ago).group(:trivia_id) }
-  scope :joins_answers , -> { joins(:answers) }
-  scope :answers_was_correct , -> { joins_answers.where(answers: { was_correct: true }) }
 
   STATUS = {
     :created => 1,
@@ -77,7 +74,19 @@ class Game < ActiveRecord::Base
     answers.where(:was_correct => true)
   end
 
-
+  def self.week_ago_group_by_trivia
+    Game.joins(:answers,:trivia).
+    finished.
+    where("games.updated_at >=?", 1.week.ago).
+    select("games.id",
+      "count(answers.id) as count_answers",
+      "sum(answers.was_correct='t') as count_answers_was_correct",
+      :trivia_id,
+      "trivium.title as trivia_title",
+      "count(DISTINCT games.id) as count_games",
+      "avg(score) as avg_score").
+    group(:trivia_id)
+  end
 
   private
 
