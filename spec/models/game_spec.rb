@@ -110,143 +110,159 @@ describe Game do
     end
   end
 
-  describe 'scope' do
 
-    context "Games with teacher,trivia and answers" do
-      before :each do
-        (1..4).each do |index_t|
-          teacher = Teacher.make!
-          user = User.make!
-          user.confirm!
-          trivia = Trivia.make!(teacher: teacher)
+  describe "Week ago group by trivia" do
+    before :each do
+      (1..4).each do |index_t|
+        teacher = Teacher.make!
+        user = User.make!
+        user.confirm!
+        trivia = Trivia.make!(teacher: teacher)
 
-          (1..4).each do |index_g|
-            question = Question.make!(trivia:trivia)
-            game = Game.make!(trivia: trivia)
-            Answer.make!(game:game, question: question, was_correct: true)
-            game.finish
-            user.games << game
-          end
+        (1..4).each do |index_g|
+          question = Question.make!(trivia:trivia)
+          game = Game.make!(trivia: trivia, score: 100.0)
+          Answer.make!(game:game, question: question, was_correct: true)
+          game.finish
+          user.games << game
+        end
+      end
+    end
+    let(:games){ Game.week_ago_group_by_trivia }
+
+    describe "games" do
+      it "all games in this weeks" do
+        expect(games.length).to eq(4)
+      end
+
+      it "half of the games in this week" do
+        Game.all.each_slice(8).first.each do |g|
+          g.update(updated_at: 1.week.ago)
+        end
+        expect(games.length).to eq(2)
+      end
+
+
+      it "even games in this week" do
+        Game.all.each_with_index do |g,index|
+          g.update(updated_at: 1.week.ago)  if index.even?
+        end
+        expect(games.length).to eq(4)
+      end
+
+
+      it "empty games in this week" do
+        Game.all.each do |g|
+          g.update(updated_at: 1.week.ago)
+        end
+        expect(games.length).to eq(0)
+      end
+    end
+
+    describe "counts games" do
+      it "all games in this weeks" do
+        games.each do |g|
+          expect(g.count_games).to eq(4)
         end
       end
 
-      describe "week ago by trivia" do
-        it "all games in this weeks" do
-          games = Game.week_ago_group_by_trivia
-          expect(games.length).to eq(4)
+      it "half of the games in this week" do
+        Game.all.each_slice(8).first.each do |g|
+          g.update(updated_at: 1.week.ago)
         end
-
-        it "count all games in this weeks" do
-          games = Game.week_ago_group_by_trivia
-          games.each do |g|
-            expect(games.count[g.trivia.id]).to eq(4)
-          end
-        end
-
-        it "half of the games in this week" do
-          Game.all.each_slice(8).first.each do |g|
-            g.update(updated_at: 1.week.ago)
-          end
-          games = Game.week_ago_group_by_trivia
-          expect(games.length).to eq(2)
-        end
-
-        it "count half of the games in this week" do
-          Game.all.each_slice(8).first.each do |g|
-            g.update(updated_at: 1.week.ago)
-          end
-          games = Game.week_ago_group_by_trivia
-          games.each do |g|
-            expect(games.count[g.trivia.id]).to eq(4)
-          end
-        end
-
-        it "even games in this week" do
-          Game.all.each_with_index do |g,index|
-            g.update(updated_at: 1.week.ago)  if index.even?
-          end
-          games = Game.week_ago_group_by_trivia
-          expect(games.length).to eq(4)
-        end
-
-        it "count even games in this week" do
-          Game.all.each_with_index do |g,index|
-            g.update(updated_at: 1.week.ago)  if index.even?
-          end
-          games = Game.week_ago_group_by_trivia
-          games.each do |g|
-            expect(games.count[g.trivia.id]).to eq(2)
-          end
-        end
-
-        it "empty games in this week" do
-          Game.all.each do |g|
-            g.update(updated_at: 1.week.ago)
-          end
-          games = Game.week_ago_group_by_trivia
-          expect(games.length).to eq(0)
+        games.each do |g|
+          expect(g.count_games).to eq(4)
         end
       end
 
-      describe "joins answers" do
-        it "joins games with answers" do
-          games = Game.joins_answers
-          expect(games.length).to eq(16)
+      it " even games in this week" do
+        Game.all.each_with_index do |g,index|
+          g.update(updated_at: 1.week.ago)  if index.even?
         end
-
-        it "half joins games with answers" do
-          Game.all.each_slice(8).first.each do |g|
-            g.update(answers: [])
-          end
-          games = Game.joins_answers
-          expect(games.length).to eq(8)
+        games.each do |g|
+          expect(g.count_games).to eq(2)
         end
+      end
+    end
 
-        it "even joins games with answers" do
-          Game.all.each_with_index do |g,index|
-            g.update(answers: []) if index.even?
-          end
-          games = Game.joins_answers
-          expect(games.length).to eq(8)
-        end
-
-        it "empty joins games with answers" do
-          Game.all.each do |g|
-            g.update(answers: [])
-          end
-          games = Game.joins_answers
-          expect(games.length).to eq(0)
+    describe "average score" do
+      it "all games in this weeks" do
+        games.each do |g|
+          expect(g.avg_score).to eq(100.0)
         end
       end
 
-      describe "answers was correct" do
-        it "games answers was correct" do
-          games = Game.answers_was_correct
-          expect(games.length).to eq(16)
+      it "half of the games in this week" do
+        Game.all.each_slice(8).first.each do |g|
+           g.update(answers: [])
         end
+        games.each do |g|
+          expect(g.avg_score).to eq(100.0)
+        end
+      end
 
-        it "half games answers was correct" do
-          Game.all.each_slice(8).first.each do |g|
+      it "even games in this week" do
+        Game.all.each_with_index do |g,index|
+           g.update(answers: [])  if index.even?
+        end
+        games.each do |g|
+          expect(g.avg_score).to eq(100.0)
+        end
+      end
+    end
+
+    describe "count answers" do
+      it "all games in this weeks" do
+        games.each do |g|
+          expect(g.count_answers).to eq(4)
+        end
+      end
+
+      it "half of the games in this week" do
+        Game.all.each_slice(8).first.each do |g|
+           g.update(answers: [])
+        end
+        games.each do |g|
+          expect(g.count_answers).to eq(4)
+        end
+      end
+
+      it "even games in this week" do
+        Game.all.each_with_index do |g,index|
+           g.update(answers: [])  if index.even?
+        end
+        games.each do |g|
+          expect(g.count_answers).to eq(2)
+        end
+      end
+    end
+
+    describe "count answers was correct" do
+      it "all games in this weeks" do
+        games.each do |g|
+          expect(g.count_answers_was_correct).to eq(4)
+        end
+      end
+
+      it "half of the games in this week" do
+        result = Game.all.each_slice(4).to_a
+        [result[0],result[2]].each do |array|
+          array.each do |g|
             g.answers.first.update(was_correct: false)
           end
-          games = Game.answers_was_correct
-          expect(games.length).to eq(8)
         end
-
-        it "even games answers was correct" do
-          Game.all.each_with_index do |g,index|
-            g.answers.first.update(was_correct: false) if index.even?
-          end
-          games = Game.answers_was_correct
-          expect(games.length).to eq(8)
+        games.each_with_index do |g,index|
+          value = index.even? ? 0:4
+          expect(g.count_answers_was_correct).to eq(value)
         end
+      end
 
-        it "empty games answers was correct" do
-          Game.all.each do |g|
-            g.answers.first.update(was_correct: false)
-          end
-          games = Game.answers_was_correct
-          expect(games.length).to eq(0)
+      it "even games in this week" do
+        Game.all.each_with_index do |g,index|
+          g.answers.first.update(was_correct: false)  if index.even?
+        end
+        games.each do |g|
+          expect(g.count_answers_was_correct).to eq(2)
         end
       end
     end
