@@ -1,6 +1,5 @@
 <h2>Reenviar instrucción de confirmación</h2>
 <div class="col-lg-6">
-  <%= devise_error_messages! %>
   <div class="well">
     <%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post, class: 'bs-example form-horizontal'}) do |f| %>
       <fieldset>

@@ -25,9 +25,9 @@ class GameController < ApplicationController
     @answer = @game.eval_answer(question_id,select_answer)
     @show_answer = true
     if @answer.was_correct
-      flash[:notice] = "Ud. ha acertado!! Felicitaciones!"
+      flash.now[:notice] = "Ud. ha acertado!! Felicitaciones!"
     else
-      flash[:notice] = "Respuesta equivocada :(. Siga intentando.."
+      flash.now[:alert] = "Respuesta equivocada :(. Siga intentando.."
     end
     set_trivia
     @count_answereds = answereds.count + 1
@@ -35,7 +35,7 @@ class GameController < ApplicationController
     @question = @game.new_question(answereds,@trivia)
     if @question.nil?
       @finish = true
-      flash[:finish] = "Ya ha respondido todas las preguntas!! Su puntaje fue: #{@game.score}"
+      flash.now[:finish] = "Ya ha respondido todas las preguntas!! Su puntaje fue: #{@game.score}"
       render :finish
     end
   end
