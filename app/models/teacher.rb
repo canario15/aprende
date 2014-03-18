@@ -20,6 +20,8 @@ class Teacher < ActiveRecord::Base
       association_foreign_key: "institute_id",
       join_table: "institutes_teachers"
 
+  before_save :capitalize_first_name
+
   scope :system_teachers, -> { order(first_name: :asc) }
   scope :with_games_week_ago, -> { includes(:games).where("games.updated_at >= ?",1.week.ago).references(:games) }
 
@@ -48,6 +50,12 @@ class Teacher < ActiveRecord::Base
     teachers.each do |teacher|
       TeacherMailer.trivia_statistics(teacher).deliver
     end
+  end
+
+  private
+
+  def capitalize_first_name
+    self.first_name = self.first_name.try(&:humanize).try(&:titleize)
   end
 
 end
