@@ -22,7 +22,7 @@ describe UsersController do
       b_user = User.make!(first_name: 'b_user')
       a_user = User.make!(first_name: 'a_user')
       get 'index'
-      expect(assigns(:users)).to eq([@user,a_user,b_user])
+      expect(assigns(:users)).to eq([a_user,b_user,@user])
     end
   end
 

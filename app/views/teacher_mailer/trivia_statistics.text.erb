@@ -1,0 +1,10 @@
+Estadística de los juegos
+
+<% @games.each do |g| -%>
+  Trivia: <%= g.trivia_title %>
+    -Cantidad de Juegos: <%= g.count_games %>
+    -Promedio de Puntos: <%= g.avg_score.round(0) %>
+    -Promedio de Preguntas Correctas: <%= g.avg_answers_was_correct.round(0) %>%
+
+<% end -%>
+

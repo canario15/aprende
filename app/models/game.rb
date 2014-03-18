@@ -3,7 +3,7 @@ class Game < ActiveRecord::Base
   belongs_to :trivia
   has_many :answers
   has_many :questions, through: :trivia
-  scope :finished ,-> {where(status: Game::STATUS[:finished])}
+  scope :finished ,-> { where(status: Game::STATUS[:finished]) }
 
   STATUS = {
     :created => 1,
@@ -56,6 +56,10 @@ class Game < ActiveRecord::Base
     answer
   end
 
+  def to_s
+    self.score
+  end
+
   def finish
     self.status = Game::STATUS[:finished]
     save!
@@ -68,6 +72,20 @@ class Game < ActiveRecord::Base
 
   def correct_answers
     answers.where(:was_correct => true)
+  end
+
+  def self.week_ago_group_by_trivia
+    column = Answer.arel_table[:was_correct].eq(true).to_sql
+    Game.joins(:answers,:trivia).
+    finished.
+    where("games.updated_at >=?", 1.week.ago).
+    select("games.id",
+      "SUM( #{column}) * 100 / COUNT(answers.id) AS avg_answers_was_correct",
+      :trivia_id,
+      "trivium.title AS trivia_title",
+      "COUNT(DISTINCT games.id) AS count_games",
+      "AVG(score) AS avg_score").
+    group(:trivia_id)
   end
 
   private

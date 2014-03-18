@@ -76,3 +76,4 @@ end
 gem 'byebug', group: [:development, :test]
 
 gem 'ckeditor_rails'
+gem 'whenever', require: false

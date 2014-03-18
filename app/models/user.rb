@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
   scope :system_users, ->{order(first_name: :asc)}
   has_attached_file :avatar, :styles => { :large => "300x300>", :medium => "100x100>", :small => "50x50" }, :default_url => "/assets/:style/missing.jpg"
 
+  before_save :capitalize_first_name
+
   def self.find_for_facebook_oauth(auth)
     where(auth.slice(:provider, :uid)).first_or_create do |user|
       user.provider = auth.provider
@@ -45,5 +47,11 @@ class User < ActiveRecord::Base
 
   def first_sign_in?
     self.sign_in_count == 1
+  end
+
+  private
+
+  def capitalize_first_name
+    self.first_name = self.first_name.try(&:humanize).try(&:titleize)
   end
 end
