@@ -1,27 +1,3 @@
-<% if flash[:alert] -%>
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="alert alert-dismissable alert-warning">
-        <button class="close" data-dismiss="alert" type="button">×</button>
-        <%= flash[:alert] %>
-      </div>
-    </div>
-  </div>
-<% end -%>
-<% if @question.errors.any? -%>
-  <div class="row">
-    <div class="col-lg-offset-2">
-      <div class="alert alert-dismissable alert-danger">
-        <h4>Se encontro <%= pluralize(@question.errors.count, "error") %> no es posible crear la Pregunta</h4>
-        <% @question.errors.full_messages.each do |msg| %>
-          <ul>
-            <%= content_tag :label, msg %>
-          </ul>
-        <% end -%>
-      </div>
-    </div>
-  </div>
-<% end -%>
 <%= hidden_field_tag 'finish', 'false'%>
 <fieldset>
   <div class="form-group">

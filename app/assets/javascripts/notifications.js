@@ -10,6 +10,7 @@ $(document).ready(function() {
       success: function(data){
         if(data.result){
           $("#notification_" + notification_id).parent().parent().remove();
+          $(".general-alert").remove();
         }
       }
     });

@@ -1,16 +1,6 @@
 <div class="page-header">
   <h1>Nueva Notificación</h1>
 </div>
-<% if flash[:alert] -%>
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="alert alert-dismissable alert-warning">
-        <button class="close" data-dismiss="alert" type="button">×</button>
-        <%= flash[:alert] %>
-      </div>
-    </div>
-  </div>
-<% end -%>
 <% if @notification.errors.any? -%>
   <div class="row">
     <div class="col-lg-offset-2">

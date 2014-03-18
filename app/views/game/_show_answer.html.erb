@@ -1,9 +1,10 @@
 <% if @show_answer -%>
   <div id="user_answer" class="row message-answer">
     <div class="col-lg-12">
-        <div class="alert alert-dismissable <%= alert_succes_or_warning(@answer.was_correct)%>">
-          <h4 class="text-center"><%=flash[:notice]%></h4>
-          <% unless @answer.was_correct -%>
+        <div class="alert alert-dismissable game_container">
+          <% if @answer.was_correct -%>
+            <p> Correcto! <%= @answer.question.answer %> es la respuesta correcta.</p>
+          <% else -%>
             <p> La respuesta correcta es: <%= @answer.question.answer %></p>
           <% end -%>
           <% unless @finish -%>

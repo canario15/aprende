@@ -1,24 +1,4 @@
 <div class="page-header" id="banner">
-  <% if flash[:error] -%>
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="alert alert-dismissable alert-danger">
-          <button data-dismiss="alert" class="close" type="button">×</button>
-          <%= content_tag :label, flash[:error], id: "flash_error" %>
-        </div>
-      </div>
-    </div>
-  <% end -%>
-  <% if flash[:notice] -%>
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="alert alert-dismissable alert-success">
-          <button data-dismiss="alert" class="close" type="button">×</button>
-          <%= content_tag :label, flash[:notice], id: "flash_notice" %>
-        </div>
-      </div>
-    </div>
-  <% end -%>
   <div class="row">
     <div class="col-lg-6">
       <h1>Aprende jugando</h1>
