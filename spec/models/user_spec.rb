@@ -40,11 +40,21 @@ describe User do
 
   end
 
-  describe 'User scope order by name asc' do
-    it'Creates users'do
-      b_user = User.make!(first_name: 'b_user')
-      a_user = User.make!(first_name: 'a_user')
-      expect(User.system_users).to eq([a_user,b_user])
+  describe 'scope' do
+    describe 'order by name asc' do
+      it 'Creates users'do
+        b_user = User.make!(first_name: 'b_user')
+        a_user = User.make!(first_name: 'a_user')
+        expect(User.system_users).to eq([a_user,b_user])
+      end
+
+      it'uppercase and lowercase' do
+        b_user_lower = User.make!(first_name: 'b_user')
+        b_user_upper = User.make!(first_name: 'B_user')
+        a_user_upper = User.make!(first_name: 'A_user')
+        a_user_lower = User.make!(first_name: 'a_user')
+        expect(User.system_users).to eq([a_user_upper,a_user_lower,b_user_lower,b_user_upper])
+      end
     end
   end
 
@@ -89,6 +99,18 @@ describe User do
     it 'body'do
       expect(ActionMailer::Base.deliveries.last.body ).to match("confirmation_token")
     end
+  end
 
+  describe "callbacks" do
+    it 'capitalize_first_name at create' do
+      user = User.make!(first_name: 'a user')
+      expect(user.first_name).to match("A User")
+    end
+
+    it 'capitalize_first_name at update' do
+      user = User.make!
+      user.update(first_name: 'a user')
+      expect(user.first_name).to match("A User")
+    end
   end
 end

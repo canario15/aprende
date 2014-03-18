@@ -45,6 +45,14 @@ describe Teacher do
         a_teacher = Teacher.make!(first_name: 'a_teacher')
         expect(Teacher.system_teachers).to eq([a_teacher,b_teacher])
       end
+
+      it'uppercase and lowercase' do
+        b_teacher_lower = Teacher.make!(first_name: 'b_teacher')
+        b_teacher_upper = Teacher.make!(first_name: 'B_teacher')
+        a_teacher_upper = Teacher.make!(first_name: 'A_teacher')
+        a_teacher_lower = Teacher.make!(first_name: 'a_teacher')
+        expect(Teacher.system_teachers).to eq([a_teacher_upper,a_teacher_lower,b_teacher_lower,b_teacher_upper])
+      end
     end
 
     describe "with games week ago" do
@@ -72,7 +80,7 @@ describe Teacher do
 
       it "half of the games in this week" do
         Game.all.each_slice(8).first.each do |g|
-          g.update(updated_at: 1.week.ago)
+          g.update(updated_at: (1.week + 1.second).ago)
         end
         teachers = Teacher.with_games_week_ago
         expect(teachers.length).to eq(2)
@@ -80,7 +88,7 @@ describe Teacher do
 
       it "even games in this week" do
         Game.all.each_with_index do |g,index|
-          g.update(updated_at: 1.week.ago)  if index.even?
+          g.update(updated_at: (1.week + 1.second).ago)  if index.even?
         end
         teachers = Teacher.with_games_week_ago
         expect(teachers.length).to eq(4)
@@ -88,7 +96,7 @@ describe Teacher do
 
       it "empty games in this week" do
         Game.all.each do |g|
-          g.update(updated_at: 1.week.ago)
+          g.update(updated_at: (1.week + 1.second).ago)
         end
         teachers = Teacher.with_games_week_ago
         expect(teachers.length).to eq(0)
@@ -164,6 +172,19 @@ describe Teacher do
 
     it 'body' do
       expect(ActionMailer::Base.deliveries.last.body ).to match("Estadística de los juegos")
+    end
+  end
+
+  describe "callbacks" do
+    it 'capitalize_first_name at create' do
+      teacher = Teacher.make!(first_name: 'a teacher')
+      expect(teacher.first_name).to match("A Teacher")
+    end
+
+    it 'capitalize_first_name at update' do
+      teacher = Teacher.make!
+      teacher.update(first_name: 'a teacher')
+      expect(teacher.first_name).to match("A Teacher")
     end
   end
 end
