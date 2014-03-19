@@ -22,7 +22,7 @@
           <td><%= game.correct_answers.count %></td>
           <td><%= game.score%></td>
           <td><%= link_to 'Ver Detalles', game_results_user_path(game) %></td>
-          <td><%= link_to "PDF", game_results_user_path(game, format: :pdf) %></td>
+          <td><%= link_to "PDF", game_results_user_path(game, format: :pdf), target: "_blank" %></td>
         </tr>
       <% end -%>
     </tbody>

@@ -5,18 +5,14 @@ class InstitutesController < ApplicationController
 
   def new
     @institute = Institute.new
-    set_states
-    @cities = @states.first.cities.order_name
   end
 
   def create
     @institute = Institute.new(institute_params)
     respond_to do |format|
       if @institute.save
-        format.html {redirect_to institutes_path, notice:  "Instituto #{@institute.name} creado."}
+        format.html { redirect_to institutes_path, notice:  "Instituto #{@institute.name} creado." }
       else
-        set_states
-        @cities = State.find(params[:institute_state]).cities.order_name
         format.html { render action: 'new' }
       end
     end
@@ -26,10 +22,8 @@ class InstitutesController < ApplicationController
     @institute = Institute.find(params[:id])
     respond_to do |format|
       if @institute.update(institute_params)
-        format.html {redirect_to institutes_path, :notice => "Instituto #{@institute.name} actualizado."}
+        format.html { redirect_to institutes_path, :notice => "Instituto #{@institute.name} actualizado." }
       else
-        set_states
-        @cities = State.find(params[:institute_state]).cities.order_name
         format.html { render action: 'edit' }
       end
     end
@@ -37,8 +31,6 @@ class InstitutesController < ApplicationController
 
   def edit
     @institute = Institute.find(params[:id])
-    set_states
-    @cities = @institute.state.cities.order_name
   end
 
   def update_city
@@ -47,10 +39,6 @@ class InstitutesController < ApplicationController
   end
 
   private
-
-  def set_states
-    @states = State.all
-  end
 
   def institute_params
     params.require(:institute).permit(:name, :contact, :phone, :email, :city_id )

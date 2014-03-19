@@ -15,8 +15,12 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def member_signed_in?
+    ([:admin,:teacher,:user].any?{ |member| eval("#{member}_signed_in?") unless resource_name == member })
+  end
+
   def layout_by_resource
-    if devise_controller?
+    if devise_controller? && !((is_a? Devise::RegistrationsController) && (["edit","update"].include? action_name))
       "landing_page"
     else
       "application"
@@ -30,5 +34,4 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-
 end

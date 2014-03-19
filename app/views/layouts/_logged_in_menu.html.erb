@@ -43,10 +43,10 @@
       <% end -%>
       <ul class="nav navbar-nav navbar-right">
         <% if current_teacher -%>
-          <%= li_ul_current_page? current_teacher.email,"#",[["Ver cuenta","#"]],[["Edite sus datos",edit_teacher_path(current_teacher.id)],["Salir",destroy_teacher_session_path, method: :delete]] %>
+          <%= li_ul_current_page? current_teacher.email,"#",[["Edite sus datos",edit_teacher_path(current_teacher.id)],["Salir",destroy_teacher_session_path, method: :delete]] %>
         <% end-%>
         <% if current_user -%>
-          <%= li_ul_current_page? current_user.email,"#",[["Ver cuenta","#"]],[["Edite sus datos",edit_user_path(current_user.id)],["Salir",destroy_user_session_path, method: :delete]] %>
+          <%= li_ul_current_page? current_user.email,"#",[["Edite sus datos",edit_user_path(current_user.id)],["Salir",destroy_user_session_path, method: :delete]] %>
         <% end-%>
         <% if current_admin -%>
           <%= li_ul_current_page? current_admin.email,"#",[["Salir",destroy_admin_session_path, method: :delete]] %>

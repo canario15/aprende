@@ -1,5 +1,5 @@
 <div class="page-header">
-  <%= link_to "Abrir en PDF", game_results_user_path(@presenter.game, format: :pdf), class: "btn btn-primary pull-right" %>
+  <%= link_to "Abrir en PDF", game_results_user_path(@presenter.game, format: :pdf), target: "_blank", class: "btn btn-primary pull-right" %>
   <h1 id="tables">Resultado de la trivia <%= @presenter.trivia_game.title %></h1>
 </div>
 <div>

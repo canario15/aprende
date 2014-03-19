@@ -4,6 +4,10 @@ class WelcomeController < ApplicationController
   def index
     if current_user
       redirect_to home_path
+    elsif current_teacher
+      redirect_to games_teacher_path
+    elsif current_admin
+      redirect_to courses_path
     end
   end
 

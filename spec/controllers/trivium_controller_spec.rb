@@ -574,6 +574,10 @@ describe TriviumController do
       post :clone, id: @trivia.id
       expect(flash[:notice]).to match("Nueva trivia clonada: ")
     end
-  end
 
+    it "notice messages correct link" do
+      post :clone, id: @trivia.id
+      expect(flash[:link][:url]).to match(edit_trivia_path(Trivia.last))
+    end
+  end
 end

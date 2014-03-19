@@ -1,16 +1,20 @@
-<h2>Change your password</h2>
-
-<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
-  <%= f.hidden_field :reset_password_token %>
-  <div>
-    <%= f.label :password, "New password" %><br/>
-    <%= f.password_field :password, :autofocus => true %>
+<h2>Cambia tu contraseña</h2>
+<div class="col-lg-5">
+  <div class="well">
+    <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { method: :put }) do |f| %>
+      <%= f.hidden_field :reset_password_token %>
+      <div class="form-group">
+        <%= f.label :password, "Nueva Contraseña", class: 'col-lg-10 control-label' %>
+        <%= f.password_field :password, autofocus: true, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :password_confirmation, "Confirme Nueva Contraseña", class: 'col-lg-10 control-label' %>
+        <%= f.password_field :password_confirmation,class: 'form-control' %>
+      </div>
+      <div><%= f.submit "Cambiar mi contraseña", class: 'btn btn-primary' %></div>
+    <% end %>
+    <%= render "users/shared/links" %>
   </div>
-  <div>
-    <%= f.label :password_confirmation, "Confirm new password" %><br/>
-    <%= f.password_field :password_confirmation %>
-  </div>
-  <div><%= f.submit "Change my password" %></div>
-<% end %>
+</div>
 
-<%= render "users/shared/links" %>
+

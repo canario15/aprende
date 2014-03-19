@@ -28,7 +28,7 @@ Aprende::Application.routes.draw do
     end
   end
 
-  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" , registrations:  "users/registrations" }
+  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" , :sessions => "users/sessions",registrations:  "users/registrations" }
   resources :users
 
   devise_for :teachers, :controllers => {:registrations => "teachers/registrations", :sessions => "teachers/sessions" }
@@ -42,7 +42,7 @@ Aprende::Application.routes.draw do
       get 'update_city'
     end
   end
-  devise_for :admins
+  devise_for :admins, :controllers => { :sessions => "admins/sessions" }
   resources :admins
   resources :notifications
 

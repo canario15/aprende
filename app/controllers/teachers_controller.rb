@@ -14,7 +14,7 @@ class TeachersController < ApplicationController
     @teacher = Teacher.find_by(id: params[:id])
     respond_to do |format|
       if @teacher.update(teacher_params)
-        format.html {redirect_to teacher_path, :notice => "Datos de #{@teacher.name} actualizados."}
+        format.html {redirect_to games_teacher_path(@teacher), :notice => "Datos de #{@teacher.name} actualizados."}
       else
         format.html { render action: 'edit' }
       end
@@ -46,8 +46,7 @@ class TeachersController < ApplicationController
   private
 
   def teacher_params
-    (params[:teacher]).merge!(update_without_password: true)
-    params.require(:teacher).permit(:first_name, :last_name, :phone, :description, :city_id, {institute_ids: []}, :inactive, :update_without_password)
+    params.require(:teacher).permit(:first_name, :last_name, :phone, :description, :city_id, {institute_ids: []}, :inactive)
   end
 
 end

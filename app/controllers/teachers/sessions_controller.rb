@@ -1,4 +1,11 @@
 class Teachers::SessionsController < Devise::SessionsController
+  def new
+    if member_signed_in?
+      redirect_to welcome_index_path
+    else
+      super
+    end
+  end
 
   def create
     teacher = Teacher.find_by(email: params[:teacher][:email])
