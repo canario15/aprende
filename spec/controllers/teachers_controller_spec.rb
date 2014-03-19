@@ -79,7 +79,7 @@ describe TeachersController do
     it "redirects to the index of teachers" do
       params = {:id => @teacher.id, :teacher => {:phone => "2222" }}
       patch 'update', params
-      expect(response).to redirect_to(teacher_path)
+      expect(response).to redirect_to(games_teacher_path)
     end
 
     it "the teacher data, and assigns its value to the flash notice" do
@@ -102,7 +102,7 @@ describe TeachersController do
       params = {:id => @teacher.id, :teacher => {:phone => "2222", institute_ids:[ @institute1.id, @institute2.id]}}
       patch 'update', params
       expect(@teacher.institutes.count).to be(2)
-      expect(response).to redirect_to(teacher_path)
+      expect(response).to redirect_to(games_teacher_path)
     end
 
     it "doesn't update the teacher with invalid literals for the institutes ids" do

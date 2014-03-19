@@ -14,7 +14,7 @@ class TeachersController < ApplicationController
     @teacher = Teacher.find_by(id: params[:id])
     respond_to do |format|
       if @teacher.update(teacher_params)
-        format.html {redirect_to games_teacher_path(@teacher), :notice => "Datos de #{@teacher.name} actualizados."}
+        format.html {redirect_to games_teacher_path, :notice => "Datos de #{@teacher.name} actualizados."}
       else
         format.html { render action: 'edit' }
       end

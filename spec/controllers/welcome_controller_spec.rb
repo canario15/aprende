@@ -8,7 +8,7 @@ describe WelcomeController do
       @teacher.confirm!
       sign_in @teacher
       get :index
-      expect(response).to redirect_to(games_teacher_path(@teacher))
+      expect(response).to redirect_to(games_teacher_path)
     end
 
     it "redirect user" do
