@@ -22,7 +22,34 @@ $(document).ready(function(){
       $("#welcome-message").hide();
   });
 
-  $('.ckeditor').ckeditor();
+  $('.ckeditor').ckeditor({
+    language: "es",
+    toolbarGroups: [
+    { name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
+    { name: 'editing',     groups: [ 'find', 'selection', 'spellchecker' ] },
+    { name: 'links' },
+    { name: 'insert' },
+    { name: 'tools' },
+    { name: 'document',    groups: [ 'document', 'doctools' ] },
+    { name: 'others' },
+    '/',
+    { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+    { name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align' ] },
+    { name: 'styles' },
+    { name: 'colors' }]
+   });
+
+   $('.ckeditor_read_only').ckeditor({
+    ToolbarStartExpanded: false,
+    toolbar: [],
+    readOnly: true,
+    removePlugins: 'elementspath, Anchor',
+    resize_enabled: false,
+    width: "100%",
+    height:"400px"
+   });
+
+   $(".cke_inner cke_reset").style.display = "none"
 
   $(".contents_selection").change(function() {
     $("div[id*='div_containable_']").addClass("hidden").removeClass("show");
