@@ -7,6 +7,7 @@
     <p><%= @trivia.description %></p>
     <%= form_for :game, url: game_create_path(@trivia.id), :html => {:class => "text-center"} do |f| %>
       <p>
+        <%= render 'trivium/content', content: @trivia.content %>
         <%= f.submit "Iniciar Juego", class: "btn btn-primary btn-lg" %>
       </p>
     <% end -%>
