@@ -5,7 +5,6 @@ describe TeacherMailer do
     before :each do
       @teacher = Teacher.make!
       user = User.make!
-      user.confirm!
       trivia = Trivia.make!(teacher: @teacher)
       question = Question.make!(trivia: trivia)
       game = Game.make!(trivia: trivia)

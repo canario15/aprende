@@ -5,7 +5,6 @@ describe HomeController do
   describe "GET 'index' with user" do
     before :each do
       @user = User.make!
-      @user.confirm!
       sign_in @user
     end
     it "returns http success" do
@@ -87,7 +86,6 @@ describe HomeController do
     context "with confirmation" do
       render_views
       before :each do
-        @user.confirm!
         sign_in @user
       end
 
@@ -104,6 +102,7 @@ describe HomeController do
 
     context "without confirmation" do
       before :each do
+        @user.update(confirmed_at: nil)
         sign_in @user
       end
 

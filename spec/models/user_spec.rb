@@ -85,7 +85,7 @@ describe User do
 
   describe "Mailers at Create" do
     before(:each) do
-      @user = User.make!
+      @user = User.make!(confirmed_at: nil)
     end
 
     it 'to'do

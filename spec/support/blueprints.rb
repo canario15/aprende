@@ -16,6 +16,7 @@ User.blueprint do
   last_name { "Apellido #{sn}" }
   group { "Grupo #{sn}" }
   school { "Escuela #{sn}" }
+  confirmed_at { Time.now.utc }
 end
 
 Question.blueprint do
@@ -129,6 +130,7 @@ Teacher.blueprint do
   password { "1234567890" }
   password_confirmation { "1234567890" }
   inactive {false}
+  confirmed_at { Time.now.utc }
 end
 
 Teacher.blueprint(:filled) do
@@ -139,6 +141,7 @@ Teacher.blueprint(:filled) do
   password_confirmation { "1234567890" }
   inactive {false}
   city { City.make! }
+  confirmed_at { Time.now.utc }
 end
 
 State.blueprint do

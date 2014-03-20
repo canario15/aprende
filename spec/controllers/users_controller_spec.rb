@@ -60,7 +60,6 @@ describe UsersController do
   describe "GET 'sign_in'" do
     before :each do
       @user = User.make!
-      @user.confirm!
       sign_in @user
     end
 

@@ -5,7 +5,6 @@ describe GameController do
   describe "GET 'index', teacher without game" do
     before :each do
       @teacher = Teacher.make!
-      @teacher.confirm!
       sign_in @teacher
     end
 
@@ -18,7 +17,6 @@ describe GameController do
   describe "GET 'index', user without games" do
     before :each do
       @user = User.make!
-      @user.confirm!
       sign_in @user
     end
 
@@ -32,7 +30,6 @@ describe GameController do
     render_views
     before :each do
       @teacher = Teacher.make!
-      @teacher.confirm!
       sign_in @teacher
       @trivia = Trivia.make!(teacher: @teacher)
       @question = Question.make!(trivia: @trivia)
@@ -57,7 +54,6 @@ describe GameController do
     before :each do
       @teacher = Teacher.make!
       @user = User.make!
-      @user.confirm!
       @trivia = Trivia.make!(teacher: @teacher)
       @question = Question.make!(trivia: @trivia)
       @game = Game.make!(trivia: @trivia)
@@ -82,7 +78,6 @@ describe GameController do
     render_views
     before :each do
       @teacher = Teacher.make!
-      @teacher.confirm!
       sign_in @teacher
       @trivia = Trivia.make!(teacher: @teacher)
       @question = Question.make!(trivia: @trivia)
@@ -111,7 +106,6 @@ describe GameController do
     before :each do
       @teacher = Teacher.make!
       @user = User.make!
-      @user.confirm!
       @trivia = Trivia.make!(teacher: @teacher)
       @question = Question.make!(trivia: @trivia)
       @game = Game.make!(trivia: @trivia)
@@ -145,7 +139,6 @@ describe GameController do
       before :each do
         level = @game.trivia.level
         other_level = Level.make!(:second)
-
         Trivia.make!(:filled,course: Course.make!( level: level))
         Trivia.make!(:filled,course: Course.make!( level: level))
         @trivia1= Trivia.make!(:filled,course: Course.make!( level: other_level))
@@ -188,7 +181,6 @@ describe GameController do
     render_views
     before :each do
       @user = User.make!
-      @user.confirm!
       sign_in @user
       @teacher = Teacher.make!
       @trivia = Trivia.make!(teacher: @teacher)
@@ -255,7 +247,6 @@ describe GameController do
     context "with confirmation" do
       render_views
       before :each do
-        @teacher.confirm!
         sign_in @teacher
       end
 
@@ -272,6 +263,7 @@ describe GameController do
 
     context "without confirmation" do
       before :each do
+        @teacher.update(confirmed_at: nil)
         sign_in @teacher
       end
 

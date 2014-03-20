@@ -7,7 +7,6 @@ describe TriviumController do
 
   before :each do
     @teacher = Teacher.make!
-    @teacher.confirm!
     sign_in @teacher
   end
 
@@ -74,7 +73,6 @@ describe TriviumController do
 
      context "not select contents" do
         let(:contents){ @trivia.contents_init.each{|c|c[:containable_type] = "" } }
-
         it "redirect to questions" do
           contents_params = {content_attributes:
             Hash[contents.map.with_index do |content,index|
@@ -220,7 +218,6 @@ describe TriviumController do
       context "contents #{type} redirect to questions"  do
         let(:trivia){ Trivia.make!(content: Content.make!(containable: eval(type).make!))}
         let(:contents){ trivia.contents_init }
-
         it "not select" do
           contents_params = {content_attributes:
             Hash[contents.map.with_index do |content,index|

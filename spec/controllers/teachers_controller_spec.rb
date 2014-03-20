@@ -118,7 +118,6 @@ describe TeachersController do
       xhr :post, :inactivate_or_activate, {teacher_id: @teacher.id}
       t = Teacher.find @teacher.id
       expect(t.inactive).to be(true)
-
     end
 
     it "activate teacher" do
@@ -132,7 +131,6 @@ describe TeachersController do
    describe "GET 'sign_in'" do
     before :each do
       @teacher = Teacher.make!
-      @teacher.confirm!
       sign_in @teacher
     end
 

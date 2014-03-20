@@ -116,7 +116,6 @@ describe Game do
       (1..4).each do |index_t|
         teacher = Teacher.make!
         user = User.make!
-        user.confirm!
         trivia = Trivia.make!(teacher: teacher)
 
         (1..4).each do |index_g|

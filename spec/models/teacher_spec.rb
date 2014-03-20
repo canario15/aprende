@@ -60,7 +60,6 @@ describe Teacher do
         (1..4).each do |index_t|
           teacher = Teacher.make!
           user = User.make!
-          user.confirm!
           trivia = Trivia.make!(teacher: teacher)
 
           (1..4).each do |index_g|
@@ -131,7 +130,7 @@ describe Teacher do
 
   describe "Mailers at Create" do
     before(:each) do
-      @teacher = Teacher.make!
+      @teacher = Teacher.make!(confirmed_at: nil)
     end
 
     it 'to' do
@@ -151,7 +150,6 @@ describe Teacher do
     before :each do
       @teacher = Teacher.make!
       user = User.make!
-      user.confirm!
       trivia = Trivia.make!(teacher: @teacher)
       question = Question.make!(trivia:trivia)
       game = Game.make!(trivia: trivia)

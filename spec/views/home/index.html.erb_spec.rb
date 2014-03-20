@@ -4,7 +4,6 @@ describe "home/index.html.erb" do
   before :each do
     City.make!
     @user = User.make!
-    @user.confirm!
     visit new_user_session_path
     fill_in "user_email", with: @user.email
     fill_in "user_password", with: "1234567890"
