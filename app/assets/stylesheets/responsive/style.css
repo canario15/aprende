@@ -198,6 +198,16 @@ hr {
 	right: 0;
 }
 
+/* Sections Teacher */
+.section#teacher {
+	right: 150px;
+}
+
+/* Sections Student */
+.section#student {
+	right: 0;
+}
+
 /* Switch Section */
 .switch-section {
 	width: 50px;
@@ -227,7 +237,13 @@ hr {
 	top: 50%;
 	left: 0;
 }
-.section-about i, .section-services i, .section-folio i, .section-blog i, .section-contact i {
+.section-about i,
+.section-services i,
+.section-folio i,
+.section-blog i,
+.section-contact i,
+.section-teacher i,
+.section-student i {
 	width: 50px;
 	height: 50px;
 	line-height: 50px;
@@ -242,7 +258,13 @@ hr {
 	-webkit-transition: all linear 0.25s;
 	-o-transition: all linear 0.25s;
 }
-.section-about i:hover, .section-services i:hover, .section-folio i:hover, .section-blog i:hover, .section-contact i:hover {
+.section-about i:hover,
+.section-services i:hover,
+.section-folio i:hover,
+.section-blog i:hover,
+.section-contact i:hover,
+.section-teacher i:hover,
+.section-student i:hover  {
 	background: rgba(0,0,0,0.1);
 	font-size: 30px;
 	opacity: 1;
@@ -264,6 +286,14 @@ hr {
 	opacity: 1;
 }
 .section-contact i.active {
+	font-size: 30px;
+	opacity: 1;
+}
+.section-teacher i.active {
+	font-size: 30px;
+	opacity: 1;
+}
+.section-student i.active {
 	font-size: 30px;
 	opacity: 1;
 }
@@ -776,6 +806,12 @@ body {
 .section#contact {
 	right: 0;
 }
+.section#teacher {
+	right: 96px;
+}
+.section#student {
+	right: 0;
+}
 .contact-form input[type=text], .contact-form textarea {
 	margin: 0 auto 10px;
 	min-width: 300px;
@@ -829,6 +865,12 @@ body {
 	right: 64px;
 }
 .section#contact {
+	right: 0;
+}
+.section#teacher {
+	right: 64px;
+}
+.section#student {
 	right: 0;
 }
 .contact-form input[type=text], .contact-form textarea {
