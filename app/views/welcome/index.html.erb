@@ -1,26 +1,62 @@
-<div class="page-header" id="banner">
-  <div class="row">
-    <div class="col-lg-6">
-      <h1>Aprende jugando</h1>
-      <p class="lead">Aprenda te facilitara a preparar tus parciales y examenes. </p>
-      <div class="well">
-        <a href="http://carboncostume.com/" target="_blank">
-          <span style="float: left; margin-right: 15px;">
-            <%= image_tag 'computer-arms.jpg', height: '270', style: 'border-radius: 4px' %>
-          </span>
-        </a>
-        <a href="/" target="_blank">
-          <h4 style="margin-bottom: 0.4em; color: #fff;">Hola, soy Aprenda!</h4>
-          <div style="color: #fff;" class="clearfix">Vamos a aprender mientras nos divertimos jugando.</div>
-        </a>
-      </div>
-    </div>
-    <div class="col-lg-6">
-      <div class="well">
-        <%= render partial: 'users/registrations/form' %>
-      </div>
-    </div>
-    <div class="col-lg-6" style="padding: 15px 15px 0 15px;">
+  <!-- Slider -->
+  <div id="slides">
+    <ul class="slides-container">
+      <!-- Slider Single Item -->
+      <li><a href="#"><%= image_tag "slide1.jpg" %></a>
+        <div class="slides-detail">
+          <h1>Con <span>Aprenda</span></h1>
+          <span class="lead">Enseñar y aprender es una <strong>experiencia</strong> unica</span></div>
+      </li>
+
+      <!-- Slider Single Item -->
+      <li><a href="#"><%= image_tag "slide2.jpg" %></a>
+        <div class="slides-detail">
+          <h1>Comienza ha <span>enseñar</span></h1>
+          <span class="lead">Haz mas <strong>divertidas</strong> tus clases</span></div>
+      </li>
+
+      <!-- Slider Single Item -->
+      <li><a href="#"><%= image_tag "slide3.jpg" %></a>
+          <div class="slides-detail">
+          <h1>Comienza ha <span>aprender</span></h1>
+          <span class="lead">Clases mas <strong>divertidas</strong> que nunca</span></div>
+      </li>
+    </ul>
+
+    <!-- Slider Navigation -->
+    <div class="slides-navigation"><a href="#" class="prev"><i class="icon-angle-left"></i></a> <a href="#"   class="next"><i class="icon-angle-right"></i></a>
     </div>
   </div>
+
+
+<!-- Teacher Section -->
+<div id="blog" class="section">
+  <div class="section-title"><i class="icon-briefcase"></i><strong>Profesor</strong>
+    <p>ingresar a <span>enseñar</span></p>
+  </div>
+
+  <!-- Teacher Content -->
+  <div class="container" >
+  </div>
 </div>
+
+<!-- Student Section -->
+<div id="contact" class="section">
+  <div class="section-title"><i class="icon-smile"></i><strong>Alumno</strong>
+    <p>ingresar a <span>aprender</span></p>
+  </div>
+
+  <!-- Student Content -->
+  <div class="container">
+  </div>
+</div>
+
+<!-- Switch Section -->
+<div class="switch-section">
+  <i class="icon-reorder icon-label"></i>
+  <p class="switch-section-cont">
+    <a href="#" class="section-blog"><i class="icon-briefcase"></i></a>
+    <a href="#" class="section-contact"><i class="icon-smile"></i></a>
+  </p>
+</div>
+<a href="#" class="section-close">×</a>

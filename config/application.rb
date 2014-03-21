@@ -9,6 +9,7 @@ Bundler.require(:default, Rails.env)
 module Aprende
   class Application < Rails::Application
     require 'constants'
+    config.assets.paths << Rails.root.join('app', 'assets', 'font')
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
