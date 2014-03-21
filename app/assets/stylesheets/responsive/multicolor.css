@@ -29,3 +29,13 @@
 .section#contact, .section-contact i.active {
 	background: #F33;
 }
+
+/* Sections Teacher */
+.section#teacher, .section-teacher i.active {
+  background: #669;
+}
+
+/* Sections Student */
+.section#student, .section-student i.active {
+  background: #F33;
+}

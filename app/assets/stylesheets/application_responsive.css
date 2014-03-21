@@ -10,9 +10,7 @@
  *
 *= require responsive/animations.css
 *= require responsive/bootstrap.css
-*= require responsive/bootstrap.min.css
 *= require responsive/bootstrap-responsive.css
-*= require responsive/bootstrap-responsive.min.css
 *= require responsive/fancybox.css
 *= require responsive/flexslider.css
 *= require responsive/font-awesome.css

@@ -1,7 +1,7 @@
 // JavaScript Functions ( Statti Template )
-
 $(document).ready(function () {
-  
+  /* global variables*/
+  var sections = $(".section-teacher i, .section-student i, .section-about i, .section-services i, .section-folio i, .section-blog i, .section-contact i")
   /* --- Open Section --- */
   $(".section").click(function () {
     $(this).addClass("section-expand");
@@ -15,14 +15,14 @@ $(document).ready(function () {
     $(".section").removeClass("section-expand");
     $(".switch-section").hide(250);
     $(".section-close").hide(250);
-    $(".section-about i, .section-services i, .section-folio i, .section-blog i, .section-contact i").removeClass("active");
+    sections.removeClass("active");
   })
 
   /* --- Side Menu --- */
   $(".switch-section").click(function () {
     $(this).toggleClass("switch-section-open");
   })
-  
+
   /* --- Switch Section --- */
   $(".section-about").click(function () {
     $(".section").removeClass("section-expand");
@@ -64,36 +64,64 @@ $(document).ready(function () {
     $(".section-contact i").toggleClass("active");
   })
 
+  $(".section-teacher").click(function () {
+    $(".section").removeClass("section-expand");
+    $("#teacher").addClass("section-expand");
+  })
+  $("#teacher").click(function () {
+    $(".section-teacher i").toggleClass("active");
+  })
+
+  $(".section-student").click(function () {
+    $(".section").removeClass("section-expand");
+    $("#student").addClass("section-expand");
+  })
+  $("#student").click(function () {
+    $(".section-student i").toggleClass("active");
+  })
+
   /* --- GoTo Section --- */
   $(".goto-about").click(function (e) {
     $("#about").addClass("section-expand").siblings().removeClass("section-expand");
 	$(".section-about i").addClass("active");
-    $(".section-services i, .section-folio i, .section-blog i, .section-contact i").removeClass("active");
+    sections.removeClass("active");
 	e.stopPropagation();
   })
   $(".goto-services").click(function (e) {
     $("#services").addClass("section-expand").siblings().removeClass("section-expand");
 	$(".section-services i").addClass("active");
-    $(".section-about i, .section-folio i, .section-blog i, .section-contact i").removeClass("active");
+    sections.removeClass("active");
 	e.stopPropagation();
   })
   $(".goto-folio").click(function (e) {
     $("#folio").addClass("section-expand").siblings().removeClass("section-expand");
 	$(".section-folio i").addClass("active");
-    $(".section-about i, .section-services i, .section-blog i, .section-contact i").removeClass("active");
+    sections.removeClass("active");
 	e.stopPropagation();
   })
   $(".goto-blog").click(function (e) {
     $("#blog").addClass("section-expand").siblings().removeClass("section-expand");
 	$(".section-blog i").addClass("active");
-    $(".section-about i, .section-services i, .section-folio i, .section-contact i").removeClass("active");
+    sections.removeClass("active");
 	e.stopPropagation();
   })
   $(".goto-contact").click(function (e) {
     $("#contact").addClass("section-expand").siblings().removeClass("section-expand");
 	$(".section-contact i").addClass("active");
-    $(".section-about i, .section-services i, .section-folio i, .section-blog i").removeClass("active");
+   sections.removeClass("active");
 	e.stopPropagation();
+  })
+  $(".goto-teacher").click(function (e) {
+    $("#teacher").addClass("section-expand").siblings().removeClass("section-expand");
+  $(".section-teacher i").addClass("active");
+    sections.removeClass("active");
+  e.stopPropagation();
+  })
+  $(".goto-student").click(function (e) {
+    $("#student").addClass("section-expand").siblings().removeClass("section-expand");
+  $(".section-student i").addClass("active");
+    sections.removeClass("active");
+  e.stopPropagation();
   })
 
   /* --- Active Filter Menu --- */
@@ -102,9 +130,9 @@ $(document).ready(function () {
     $(this).addClass("active");
     e.preventDefault();
   });
-  
+
   /* --- Masonry --- */
-  $("#folio, .section-folio, .goto-folio, #blog, .section-blog, .goto-blog").on("click",function(){
+  $("#folio, .section-folio, .goto-folio, #blog, .section-blog, .goto-blog, .goto-teacher, .goto-student").on("click",function(){
 
   var $container = $(".masonry");
   $container.imagesLoaded(function () {
@@ -121,12 +149,12 @@ $(document).ready(function () {
   });
 
   });
-  
+
   /* --- Item Description --- */
   $(".item").click(function () {
     $(this).toggleClass("open");
   })
-  
+
   /* --- Fancybox --- */
   $(".view-fancybox").fancybox({
     openEffect: 'elastic',
@@ -134,10 +162,10 @@ $(document).ready(function () {
     next: '<i class="icon-smile"></i>',
     prev: '<a title="Previous" class="fancybox-nav fancybox-prev" href="javascript:;"><span></span></a>'
   });
-  
+
   /* --- NiceScroll --- */
   $(".section").niceScroll();
-  
+
   /* --- Slider --- */
   $('#slides').superslides({
     slide_easing: 'easeInOutCubic',
@@ -157,7 +185,7 @@ $(document).ready(function () {
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
   var map = new google.maps.Map(document.getElementById("map-canvas"),mapOptions);
-  
+
   var image = "img/marker.png";
   var marker = new google.maps.Marker({
     position: mapOptions.center,
