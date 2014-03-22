@@ -177,7 +177,6 @@ GEM
       cocaine (~> 0.5.3)
       mime-types
     pdf-core (0.1.6)
-    pg (0.17.0)
     polyamorous (0.6.4)
       activerecord (>= 3.0)
     polyglot (0.3.3)
@@ -307,7 +306,6 @@ DEPENDENCIES
   machinist (>= 2.0.0.beta2)
   omniauth-facebook
   paperclip (~> 3.0)
-  pg
   prawn
   prawn_rails
   rails (= 4.0.0)

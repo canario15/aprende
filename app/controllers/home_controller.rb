@@ -8,5 +8,6 @@ class HomeController < ApplicationController
     else
       @trivium = Trivia.with_questions
     end
+    render 'home_responsive'
   end
 end

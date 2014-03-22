@@ -22,7 +22,7 @@ $(document).ready(function(){
       $("#welcome-message").hide();
   });
 
-  $('.ckeditor').ckeditor({
+  /*$('.ckeditor').ckeditor({
     language: "es",
     toolbarGroups: [
     { name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
@@ -47,7 +47,7 @@ $(document).ready(function(){
     resize_enabled: false,
     width: "100%",
     height:"400px"
-   });
+   }); */
 
   $(".contents_selection").change(function() {
     $("div[id*='div_containable_']").addClass("hidden").removeClass("show");
