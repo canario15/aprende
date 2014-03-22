@@ -22,7 +22,7 @@ $(document).ready(function(){
       $("#welcome-message").hide();
   });
 
-  $('.ckeditor').ckeditor();
+  //$('.ckeditor').ckeditor();
 
   $(".contents_selection").change(function() {
     $("div[id*='div_containable_']").addClass("hidden").removeClass("show");
