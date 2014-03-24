@@ -885,3 +885,7 @@ body {
 	display: block;
 }
 }
+
+.thumb {
+	opacity: 0.4;
+}
