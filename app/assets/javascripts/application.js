@@ -49,8 +49,6 @@ $(document).ready(function(){
     height:"400px"
    });
 
-   $(".cke_inner cke_reset").style.display = "none"
-
   $(".contents_selection").change(function() {
     $("div[id*='div_containable_']").addClass("hidden").removeClass("show");
     $("input[class*='hidden_field_'").val("");
