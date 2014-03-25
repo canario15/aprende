@@ -1,13 +1,32 @@
-<h2>Olvidaste tu contraseña?</h2>
-<div class="col-lg-5">
-  <div class="well">
-    <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { method: :post }) do |f| %>
-      <div class="form-group">
-        <%= f.label :email, class: 'col-lg-2 control-label' %>
-        <%= f.email_field :email, autofocus: true, class: 'form-control' %>
+<!-- Student Section -->
+<div id="student" class="section section-expand">
+  <div class="section-title"><i class="icon-smile"></i><strong>Alumno</strong>
+    <p>¿Olvidaste tu <span>contraseña?</span></p>
+  </div>
+  <!-- Student Section -->
+  <div class="container">
+    <hr />
+    <h2>Enviar <span>instrucciones</span></h2>
+    <div class="row">
+      <div class="offset3">
+      <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, class: 'contact-form' } ) do |f| %>
+        <fieldset>
+          <%= f.email_field :email, :autofocus => true, class: "span3", placeholder: "Mail" %>
+          <button type="submit" class="btn btn-large">Enviar</button>
+        </fieldset>
+      <% end %>
       </div>
-      <div><%= f.submit "Enviar instrucciones", class: 'btn btn-primary' %></div>
-    <% end %>
+    </div>
     <%= render "users/shared/links" %>
   </div>
 </div>
+
+<!-- Switch Section -->
+<div class="switch-section">
+  <p class="switch-section-cont">
+    <a href="/" class="section-home"><span class="icon-home"></span></a>
+    <a href="/teachers/sign_in" class="section-teacher" ><span class="icon-briefcase"></span></a>
+    <a href="/users/sign_in" class="section-student active"><span class="icon-smile"></span></a>
+  </p>
+</div>
+<a href="/" class="section-close">×</a>

@@ -1,128 +1,5 @@
 // JavaScript Functions ( Statti Template )
 $(document).ready(function () {
-  /* global variables*/
-  var sections = $(".section-teacher i, .section-student i, .section-about i, .section-services i, .section-folio i, .section-blog i, .section-contact i")
-  /* --- Open Section --- */
-  $(".section").click(function () {
-    $(this).addClass("section-expand");
-    $(".switch-section").show(250);
-    $(".section-close").show(250);
-    $(".switch-section").addClass("switch-section-open");
-  })
-
-  /* --- Close Section --- */
-  $(".section-close").click(function () {
-    $(".section").removeClass("section-expand");
-    $(".switch-section").hide(250);
-    $(".section-close").hide(250);
-    sections.removeClass("active");
-  })
-
-  /* --- Side Menu --- */
-  $(".switch-section").click(function () {
-    $(this).toggleClass("switch-section-open");
-  })
-
-  /* --- Switch Section --- */
-  $(".section-about").click(function () {
-    $(".section").removeClass("section-expand");
-    $("#about").addClass("section-expand");
-  })
-  $("#about").click(function () {
-    $(".section-about i").toggleClass("active");
-  })
-
-  $(".section-services").click(function () {
-    $(".section").removeClass("section-expand");
-    $("#services").addClass("section-expand");
-  })
-  $("#services").click(function () {
-    $(".section-services i").toggleClass("active");
-  })
-
-  $(".section-folio").click(function () {
-    $(".section").removeClass("section-expand");
-    $("#folio").addClass("section-expand");
-  })
-  $("#folio").click(function () {
-    $(".section-folio i").toggleClass("active");
-  })
-
-  $(".section-blog").click(function () {
-    $(".section").removeClass("section-expand");
-    $("#blog").addClass("section-expand");
-  })
-  $("#blog").click(function () {
-    $(".section-blog i").toggleClass("active");
-  })
-
-  $(".section-contact").click(function () {
-    $(".section").removeClass("section-expand");
-    $("#contact").addClass("section-expand");
-  })
-  $("#contact").click(function () {
-    $(".section-contact i").toggleClass("active");
-  })
-
-  $(".section-teacher").click(function () {
-    $(".section").removeClass("section-expand");
-    $("#teacher").addClass("section-expand");
-  })
-  $("#teacher").click(function () {
-    $(".section-teacher i").toggleClass("active");
-  })
-
-  $(".section-student").click(function () {
-    $(".section").removeClass("section-expand");
-    $("#student").addClass("section-expand");
-  })
-  $("#student").click(function () {
-    $(".section-student i").toggleClass("active");
-  })
-
-  /* --- GoTo Section --- */
-  $(".goto-about").click(function (e) {
-    $("#about").addClass("section-expand").siblings().removeClass("section-expand");
-	$(".section-about i").addClass("active");
-    sections.removeClass("active");
-	e.stopPropagation();
-  })
-  $(".goto-services").click(function (e) {
-    $("#services").addClass("section-expand").siblings().removeClass("section-expand");
-	$(".section-services i").addClass("active");
-    sections.removeClass("active");
-	e.stopPropagation();
-  })
-  $(".goto-folio").click(function (e) {
-    $("#folio").addClass("section-expand").siblings().removeClass("section-expand");
-	$(".section-folio i").addClass("active");
-    sections.removeClass("active");
-	e.stopPropagation();
-  })
-  $(".goto-blog").click(function (e) {
-    $("#blog").addClass("section-expand").siblings().removeClass("section-expand");
-	$(".section-blog i").addClass("active");
-    sections.removeClass("active");
-	e.stopPropagation();
-  })
-  $(".goto-contact").click(function (e) {
-    $("#contact").addClass("section-expand").siblings().removeClass("section-expand");
-	$(".section-contact i").addClass("active");
-   sections.removeClass("active");
-	e.stopPropagation();
-  })
-  $(".goto-teacher").click(function (e) {
-    $("#teacher").addClass("section-expand").siblings().removeClass("section-expand");
-  $(".section-teacher i").addClass("active");
-    sections.removeClass("active");
-  e.stopPropagation();
-  })
-  $(".goto-student").click(function (e) {
-    $("#student").addClass("section-expand").siblings().removeClass("section-expand");
-  $(".section-student i").addClass("active");
-    sections.removeClass("active");
-  e.stopPropagation();
-  })
 
   /* --- Active Filter Menu --- */
   $(".switch-section a i, .filter a").click(function (e) {
@@ -132,8 +9,6 @@ $(document).ready(function () {
   });
 
   /* --- Masonry --- */
-  $("#folio, .section-folio, .goto-folio, #blog, .section-blog, .goto-blog, .goto-teacher, .goto-student").on("click",function(){
-
   var $container = $(".masonry");
   $container.imagesLoaded(function () {
     $container.isotope({
@@ -146,8 +21,6 @@ $(document).ready(function () {
       filter: selector
     });
     return false;
-  });
-
   });
 
   /* --- Item Description --- */
@@ -176,25 +49,35 @@ $(document).ready(function () {
     scrollable: true
   });
 
-  $("#contact, .section-contact, .goto-contact").on("click",function(){
-
-  /* --- Google Map --- */
-  var mapOptions = {
-    center: new google.maps.LatLng(40.751126,-73.993399),
-    zoom: 15,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  };
-  var map = new google.maps.Map(document.getElementById("map-canvas"),mapOptions);
-
-  var image = "img/marker.png";
-  var marker = new google.maps.Marker({
-    position: mapOptions.center,
-    map: map,
-    icon: image
+  $("#avatar_preview").click(function(){
+    $("#avatar_field").trigger('click');
   });
 
+  $('#avatar_field').on("change", function(evt){
+    $('#avatar_preview').find('span').remove();
+    if(evt.target.files.length == 0){
+      var img = $('<img/>',{
+        "class":"img-thumbnail","src":"/assets/default_" + $(".section").attr('data-type') +".png",
+        "title": "default student",
+        "style":"opacity:0.4;filter:alpha(opacity=40);"})
+      var span = $('<span/>').append(img)
+      $('#avatar_preview').append(span)
+    }
+    else{
+      var file = evt.target.files[0];
+      if (file.type.match('image.*')) {
+        var reader = new FileReader();
+        reader.onload = (function(f) {
+          return function(e) {
+            var img = $('<img/>',{"class":"img-thumbnail","src":e.target.result, "title": escape(f.name)})
+            var span = $('<span/>').append(img )
+            $('#avatar_preview').append(span)
+          };
+        })(file);
+        reader.readAsDataURL(file);
+      }
+    }
   });
-
 });
 
 /* --- Flex Slider --- */

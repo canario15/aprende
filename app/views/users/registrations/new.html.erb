@@ -1,7 +1,22 @@
-<h2>Registrate como alumno</h2>
-<div class="col-lg-6">
-  <div class="well">
+<!-- Student Section -->
+<div id="student" class="section section-expand" data-type="user">
+  <div class="section-title"><i class="icon-smile"></i><strong>Alumno</strong>
+    <p>registrate para <span>aprender</span></p>
+  </div>
+  <!-- Student Section -->
+  <div class="container">
+    <hr />
     <%= render partial: 'form' %>
     <%= render "users/shared/links" %>
   </div>
 </div>
+
+<!-- Switch Section -->
+<div class="switch-section">
+  <p class="switch-section-cont">
+    <a href="/" class="section-home"><span class="icon-home"></span></a>
+    <a href="/teachers/sign_in" class="section-teacher" ><span class="icon-briefcase"></span></a>
+    <a href="/users/sign_in" class="section-student active"><span class="icon-smile"></span></a>
+  </p>
+</div>
+<a href="/" class="section-close">×</a>

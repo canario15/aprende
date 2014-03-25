@@ -17,6 +17,7 @@
 //= require chosen-jquery
 //= require_tree .
 //= require_self
+
 $(document).ready(function(){
   $("#close").on("click", function() {
       $("#welcome-message").hide();

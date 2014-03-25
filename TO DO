@@ -1,3 +1,14 @@
 TO DO
 en function.js, en  /* --- Switch Section --- */
 Agrupar la funcionalidad de las section con una expresion regular
+
+-en function.js, en  /* --- Switch Section --- */
+-Agrupar la funcionalidad de las section con una expresion regular
+-Revisar responsive del contact-form select
+- Ciudad y departamento agregar placeholder
+- Mostrar imagen para cargar en vez de boton o simiilar.
+- Mensajes de Error??
+- Formato de Mail? (Recuperar contraseña profesor esta en ingles)
+- Registrar Usuario  revisar placeholder de Instituto y Curso.
+- Registro Ver que campos quedarian, conciderar poner sign_in y sign_up en una vista unica.
+- Mejorar Select

@@ -1,3 +1,4 @@
+
 @charset "utf-8";
 /* CSS Document */
 
@@ -197,6 +198,7 @@ hr {
 .section#contact {
 	right: 0;
 }
+
 /* Sections Teacher */
 .section#teacher {
 	right: 150px;
@@ -206,6 +208,7 @@ hr {
 .section#student {
 	right: 0;
 }
+
 /* Switch Section */
 .switch-section {
 	width: 50px;
@@ -213,19 +216,15 @@ hr {
 	background: rgba(0,0,0,0.1);
 	box-shadow: inset -2px 0 5px rgba(0,0,0,0.25);
 	cursor: pointer;
-	display: none;
 	position: absolute;
 	top: 0;
-	left: -50px;
+	left: 0;
 	z-index: 10;
 	transition: all linear 0.25s;
 	-ms-transition: all linear 0.25s;
 	-moz-transition: all linear 0.25s;
 	-webkit-transition: all linear 0.25s;
 	-o-transition: all linear 0.25s;
-}
-.switch-section-open {
-	left: 0;
 }
 .switch-section-cont {
 	margin: -125px 0 0 0;
@@ -235,7 +234,7 @@ hr {
 	top: 50%;
 	left: 0;
 }
-.section-home, .section-about, .section-services, .section-folio, .section-blog, .section-contact, .section-teacher, .section-student {
+.section-home, .section-about, .section-services, .section-folio, .section-blog, .section-contact ,.section-teacher, .section-student {
 	width: 50px;
 	height: 50px;
 	line-height: 50px;
@@ -250,7 +249,7 @@ hr {
 	-webkit-transition: all linear 0.25s;
 	-o-transition: all linear 0.25s;
 }
-.section-home:hover, .section-about:hover, .section-services:hover, .section-folio:hover, .section-blog:hover, .section-contact:hover, .section-teacher:hover, .section-student:hover  {
+.section-home:hover, .section-about:hover, .section-services:hover, .section-folio:hover, .section-blog:hover, .section-contact:hover , .section-teacher:hover, .section-student:hover {
 	background: rgba(0,0,0,0.1);
 	font-size: 30px;
 	opacity: 1;
@@ -275,11 +274,11 @@ hr {
 	font-size: 30px;
 	opacity: 1;
 }
-.section-teacher.active {
+.section-contact.active {
 	font-size: 30px;
 	opacity: 1;
 }
-.section-contact.active {
+.section-teacher.active {
 	font-size: 30px;
 	opacity: 1;
 }
@@ -357,13 +356,19 @@ hr {
 	font-size: 50px;
 	line-height: 50px;
 }
-.section .section-title p {
+.section .section-title p,
+.section .section-checkbox p
+{
 	margin: 0;
 	font: 300 14px/20px Open Sans, Arial, Helvetica, sans-serif;
 	color: rgba(255,255,255,0.75);
 }
 .section.section-expand .section-title p {
 	font-size: 20px;
+	line-height: 20px;
+}
+.section.section-expand .section-checkbox p {
+	font-size: 15px;
 	line-height: 20px;
 }
 .section.section-expand .section-title p span {
@@ -664,7 +669,12 @@ address a:hover {
 .contact-form {
 	margin: 20px 0 50px;
 }
-.contact-form input[type=text], .contact-form textarea {
+
+.contact-form input,
+.contact-form output,
+.contact-form select,
+.contact-form select option,
+.contact-form textarea {
 	margin: 0 10px 0 0;
 	padding: 15px;
 	min-width: 280px;
@@ -681,18 +691,65 @@ address a:hover {
 	color: #FFF;
 	float: left;
 }
-.contact-form input[type=text]::-ms-input-placeholder, .contact-form textarea::-ms-input-placeholder {
- color:    #FFF;
+
+.contact-form output{
+	min-height: 220px;
+	height: 220px;
+	max-height: 220px;
 }
-.contact-form input[type=text]::-moz-input-placeholder, .contact-form textarea::-moz-input-placeholder {
- color:    #FFF;
+
+.contact-form output img{
+	display: table-caption;
+	float: top;
+	min-height: 90%;
+	height: 90%;
+	max-height: 90%;
+	min-width: 90%;
+	width: 90%;
+	max-width: 90%;
+	margin: 0 auto;
 }
-.contact-form input[type=text]::-webkit-input-placeholder, .contact-form textarea::-webkit-input-placeholder {
- color:    #FFF;
+
+.contact-form select{
+	background: url('/assets/arrow.png') no-repeat;
+	background-color: rgba(0,0,0,0.1);
+	background-position: 280px 15px;
+	min-height: 50px;
+	height: 50px;
+	max-height: 50px;
+	min-width: 310px;
+	width: 310px;
+	max-width: 310px;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	-o-appearance: none;
+	-ms-appearance: none;
 }
-.contact-form input[type=text]::-o-input-placeholder, .contact-form textarea::-o-input-placeholder {
- color:    #FFF;
+
+.contact-form input::-ms-input-placeholder,
+.contact-form select::-ms-input-placeholder,
+.contact-form textarea::-ms-input-placeholder {
+	color:    #FFF;
 }
+
+.contact-form input::-moz-input-placeholder,
+.contact-form select::-moz-input-placeholder,
+.contact-form textarea::-moz-input-placeholder {
+ 	color:    #FFF;
+}
+
+.contact-form input::-webkit-input-placeholder,
+.contact-form select::-webkit-input-placeholder,
+.contact-form textarea::-webkit-input-placeholder {
+ 	color:    #FFF;
+}
+
+.contact-form input::-o-input-placeholder,
+.contact-form select::-o-input-placeholder,
+.contact-form textarea::-o-input-placeholder {
+ 	color:    #FFF;
+}
+
 .contact-form button, .contact-form button:hover, .contact-form button:focus {
 	margin: 0;
 	width: 210px;
@@ -736,7 +793,10 @@ address a:hover {
 .section {
 	margin-top: 0;
 }
-.contact-form input[type=text], .contact-form textarea {
+
+.contact-form input,
+.contact-form select,
+ .contact-form textarea {
 	min-width: 220px;
 	width: 220px;
 	max-width: 220px;
@@ -754,7 +814,10 @@ address a:hover {
 .section {
 	margin-top: 0;
 }
-.contact-form input[type=text], .contact-form textarea {
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
 	min-width: 145px;
 	width: 145px;
 	max-width: 145px;
@@ -802,7 +865,10 @@ body {
 .section#student {
 	right: 0;
 }
-.contact-form input[type=text], .contact-form textarea {
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
 	margin: 0 auto 10px;
 	min-width: 300px;
 	width: 300px;
@@ -863,7 +929,10 @@ body {
 .section#student {
 	right: 0;
 }
-.contact-form input[type=text], .contact-form textarea {
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
 	margin: 0 auto 10px;
 	min-width: 300px;
 	width: 300px;
@@ -883,9 +952,4 @@ body {
 	margin: 0 auto;
 	width: 290px;
 	display: block;
-}
-}
-
-.thumb {
-	opacity: 0.4;
 }
