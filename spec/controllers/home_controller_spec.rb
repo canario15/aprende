@@ -14,7 +14,7 @@ describe HomeController do
 
     it 'render the index template' do
       get 'index'
-      expect(response.body).to match("Inicio")
+      expect(response.body).to match("Trivia")
     end
 
     describe "Search with " do
@@ -96,7 +96,7 @@ describe HomeController do
 
       it "return render view" do
         get :index
-        expect(response.body).to match(@user.email)
+        expect(response.body).to match("Trivia")
       end
     end
 

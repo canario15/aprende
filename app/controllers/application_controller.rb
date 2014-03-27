@@ -21,9 +21,17 @@ class ApplicationController < ActionController::Base
 
   def layout_by_resource
     if devise_controller? && !((is_a? Devise::RegistrationsController) && (["edit","update"].include? action_name))
-      "landing_page"
+      if resource_name == :admin
+        "landing_page"
+      else
+        "landing_page_responsive"
+      end
     else
-      "application"
+      if admin_signed_in?
+        "application"
+      else
+        "application_responsive"
+      end
     end
   end
 

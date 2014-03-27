@@ -1,6 +1,4 @@
 class WelcomeController < ApplicationController
-  layout 'landing_page'
-
   def index
     if current_user
       redirect_to home_path

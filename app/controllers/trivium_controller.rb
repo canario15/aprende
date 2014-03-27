@@ -1,6 +1,5 @@
 class TriviumController < ApplicationController
   before_filter :authenticate_teacher!
-  layout 'application'
 
   def index
     if current_teacher

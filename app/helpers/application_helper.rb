@@ -41,13 +41,14 @@ module ApplicationHelper
       end
     end
 
-    [{type: "resource_errors" ,message: messages, style: "danger"},
-     {type: "alert", message: flash[:alert], style: "danger"},
-     {type: "notice", message: flash[:notice], style: "success"}].each do |item|
+    [{type: "resource_errors" ,message: messages, style: "danger",icon: "ban-circle"},
+     {type: "alert", message: flash[:alert], style: "danger",icon: "ban-circle"},
+     {type: "notice", message: flash[:notice], style: "success",icon: "ok"},].each do |item|
       if item[:message].present?
-        html += content_tag :div,class: "alert alert-dismissable alert-#{item[:style]} general-alert" do
+        html += content_tag :div,class: "modal alert alert-dismissable alert-#{item[:style]} general-alert" do
           link = (item[:type] == "notice") ? (link_to flash[:link][:title] ,flash[:link][:url],class: 'alert-link' if flash[:link]) : ""
           (content_tag :button,"×", class:"close","data-dismiss" => "alert", type: "button"  ) +
+          (content_tag :span,nil, class: "icon-#{item[:icon]}") +
           (content_tag :label, item[:message]) +
           (link)
         end

@@ -1,5 +1,4 @@
 class CoursesController < ApplicationController
-  layout 'application'
   before_filter :authenticate_admin!
 
   def index

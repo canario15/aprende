@@ -1,4 +1,2 @@
-<ul class="nav navbar-nav">
-  <%= li_ul_current_page? "Inicio", home_path %>
-  <%= li_ul_current_page? "Trivias realizadas", games_user_path %>
-</ul>
+<%= link_to( content_tag(:span, nil, class: "icon-home"), home_path,  class: "section-home #{'active' if(current_page? home_path)}") %>
+<%= link_to( content_tag(:span, nil, class: "icon-gamepad"), games_user_path, class: "section-home #{'active' if(current_page? games_user_path)}") %>
