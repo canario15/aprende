@@ -14,6 +14,8 @@
 *= require responsive/bootstrap-responsive.min
 *= require responsive/font-awesome
 *= require responsive/font-awesome.min
+*= require responsive/font-tiza
+*= require responsive/font-tiza.min
 *= require responsive/style
 *= require responsive/animations
 *= require responsive/superslides

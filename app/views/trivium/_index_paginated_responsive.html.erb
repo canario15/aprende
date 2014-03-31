@@ -1,0 +1,26 @@
+<!-- Trivia Masonry -->
+<div class="masonry">
+  <% trivium.each do |trivia| -%>
+
+  <!-- Trivia Single item -->
+    <div class="item <%="#{trivia.course.title.parameterize}-#{trivia.course.id}"%>">
+      <!-- <img src="/assets/black_box.jpg" alt="Portfolio" class="thumb" /> -->
+      <div class="blackboard">
+        <h1><%= trivia.title %></h1>
+        <hr/>
+        <h5><%= trivia.course %></h5>
+        <h5> <%=trivia.try(&:teacher).try(&:name) %></h5>
+      </div>
+      <span class="view">+</span>
+
+      <!-- Trivia Single Description -->
+      <div class="item-detail item-detail-blackboard">
+        <h2> ¿De que trata la trivia <span><%= trivia.title %></span>? </h2>
+        <p class="lead"><%= trivia.description %></p>
+        <%= link_to "Jugar", game_new_path(trivia.id), class:"btn btn-blackboard" %>
+        <em class="date"><%= l trivia.updated_at.to_date, format: :simple %></em>
+        <span class="item-close">×</span>
+      </div>
+    </div>
+  <% end -%>
+</div>

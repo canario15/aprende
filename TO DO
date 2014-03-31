@@ -12,3 +12,10 @@ Agrupar la funcionalidad de las section con una expresion regular
 - Registrar Usuario  revisar placeholder de Instituto y Curso.
 - Registro Ver que campos quedarian, conciderar poner sign_in y sign_up en una vista unica.
 - Mejorar Select
+- Game, eval answer: Titulo y boton agregar margen.
+- Game, eval answer: si no hay imagen no mostrar y expandir la seccion de preguntas.
+- Game, eval answer: Cambiar color de Games a verde.
+- Layout de applicacion, genralizar mas el content de los mismo ( agregar header y background color)
+- Game, eval answer: Intercambiar puntaje y profesor, cambiar el estilo al de "Termino Trivia"
+- Game, eval answer: Quitar popup y mejorar descripcion al equivocarse.
+- Teacher: first_name y last_name obligatorio.

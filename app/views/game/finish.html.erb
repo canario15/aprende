@@ -1,1 +1,29 @@
-<%= render "show_answer" %>
+<!-- Games Section -->
+<div id="blog" class="section section-expand">
+  <div class="section-title">
+    <div class="row offset1" >
+      <div class="span4 main-title-center">
+        <h4 class="main-title">
+          Puntaje <span><%=@game.score %></span><br/>
+          Pregunta<span> <%=@count_answereds %> de <%=@total_questions%></span>
+        </h4>
+      </div>
+      <div class="span3">
+        <i class="icon-gamepad"></i><strong>Juegos</strong>
+        <p>sobre las <span>trivias</span></p>
+      </div>
+      <div class="span4 main-title-center">
+        <h4 class="main-title">
+          Profesor</br>
+          <span>
+            <%= @trivia.teacher.name %><%= @trivia.teacher.last_name%>
+          </span>
+        </h4>
+      </div>
+    </div>
+  </div>
+    <!-- Games Content -->
+  <div class="container">
+    <%= render "show_answer" %>
+  </div>
+</div>

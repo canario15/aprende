@@ -8,6 +8,7 @@ class HomeController < ApplicationController
     else
       @trivium = Trivia.with_questions
     end
+    @courses = Course.all
     render 'home_responsive'
   end
 end

@@ -6,38 +6,41 @@
 
   <!-- Games Content -->
   <div class="container">
+    <!-- begin old source -->
+    <div class="page-header">
+      <h1 id="tables">Trivias realizadas - Alumno</h1>
+    </div>
+    <% unless @games_results.empty? -%>
+      <table class="table table-striped table-bordered table-hover ">
+        <thead>
+          <tr>
+            <th>Trivia</th>
+            <th>Curso</th>
+            <th>Cant. Preguntas</th>
+            <th>Preguntas Correctas</th>
+            <th>Puntaje</th>
+            <th colspan=2 >Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @games_results.each do |game| -%>
+            <tr>
+              <td><%= link_to game.trivia.title, game_new_path(game.trivia.id)%></td>
+              <td><%= game.trivia.course %></td>
+              <td><%= game.trivia.questions.count %></td>
+              <td><%= game.correct_answers.count %></td>
+              <td><%= game.score%></td>
+              <td><%= link_to 'Ver Detalles', game_results_user_path(game) %></td>
+              <td><%= link_to "PDF", game_results_user_path(game, format: :pdf), target: "_blank" %></td>
+            </tr>
+          <% end -%>
+        </tbody>
+      </table>
+    <% else -%>
+      <p>No existen trivias realizadas</p>
+    <% end -%>
+    <!-- end old source -->
+
+
   </div>
 </div>
-<!--<div class="page-header">
-  <h1 id="tables">Trivias realizadas - Alumno</h1>
-</div>
-<% unless @games_results.empty? -%>
-  <table class="table table-striped table-bordered table-hover ">
-    <thead>
-      <tr>
-        <th>Trivia</th>
-        <th>Curso</th>
-        <th>Cant. Preguntas</th>
-        <th>Preguntas Correctas</th>
-        <th>Puntaje</th>
-        <th colspan=2 >Acciones</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @games_results.each do |game| -%>
-        <tr>
-          <td><%= link_to game.trivia.title, game_new_path(game.trivia.id)%></td>
-          <td><%= game.trivia.course %></td>
-          <td><%= game.trivia.questions.count %></td>
-          <td><%= game.correct_answers.count %></td>
-          <td><%= game.score%></td>
-          <td><%= link_to 'Ver Detalles', game_results_user_path(game) %></td>
-          <td><%= link_to "PDF", game_results_user_path(game, format: :pdf), target: "_blank" %></td>
-        </tr>
-      <% end -%>
-    </tbody>
-  </table>
-<% else -%>
-  <p>No existen trivias realizadas</p>
-<% end -%>
--->

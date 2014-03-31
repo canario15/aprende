@@ -1,19 +1,33 @@
 <% if @show_answer -%>
-  <div id="user_answer" class="row message-answer">
-    <div class="col-lg-12">
-        <div class="alert alert-dismissable game_container">
-          <% if @answer.was_correct -%>
-            <p> Correcto! <%= @answer.question.answer %> es la respuesta correcta.</p>
-          <% else -%>
-            <p> La respuesta correcta es: <%= @answer.question.answer %></p>
-          <% end -%>
-          <% unless @finish -%>
-            <button class="btn btn-default" id="next_question">Siguiente Pregunta</button>
-          <% else -%>
-            <h4 class="text-center"><%=flash[:finish]%></h4>
-            <%= link_to "Seleccionar otra Trivia", home_path, class: "link-black"%>
-          <% end -%>
+  <div id="user_answer">
+    <div class="filter">
+      <h2 class="main-title">
+        <% if @answer.was_correct -%>
+          Correcto! <span><%= @answer.question.answer %></span> es la respuesta.
+        <% else -%>
+          La respuesta correcta es: <span><%= @answer.question.answer %></span>
+        <% end -%>
+      </h2>
+      <p class="lead" >
+        La Trivia <span><%= @trivia.title %> </span><br/>
+        del tipo <span><%= @trivia.type_name %></span>
+        sobre <span><%= @trivia.description %></span>
+      </p>
+    </div>
+    <div class="text-center">
+      <% unless @finish -%>
+        <div class="contact-form">
+          <p>
+            <button class="btn btn-large" id="next_question">Siguiente</button>
+          </p>
         </div>
+      <% else -%>
+        <div class="hero-unit">
+          <h2> Trivia <span>terminanda</span></h2>
+          <p><%=flash[:finish]%></p>
+          <%= link_to "Seleccionar otra Trivia", home_path, class:"btn btn-large" %>
+        </div>
+      <% end -%>
     </div>
   </div>
 <% end -%>

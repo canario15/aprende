@@ -1,15 +1,29 @@
-<div class="col-lg-12">
-  <div class="game_container">
-    <h1>Comenzando juego <%= @trivia.title %> !!</h1>
-    <h2>Profesor <%= @trivia.teacher.name %></h2>
-    <h3><%= @trivia.type_name %></h3>
-    <h3><%= @trivia.tag %></h3>
-    <p><%= @trivia.description %></p>
-    <%= form_for :game, url: game_create_path(@trivia.id), :html => {:class => "text-center"} do |f| %>
-      <p>
-        <%= render 'trivium/content', content: @trivia.content %>
-        <%= f.submit "Iniciar Juego", class: "btn btn-primary btn-lg" %>
-      </p>
-    <% end -%>
+<!-- Games Section -->
+<div id="blog" class="section section-expand">
+  <div class="section-title"><i class="icon-gamepad"></i><strong>Juegos</strong>
+    <p>sobre las <span>trivias</span></p>
+  </div>
+
+  <!-- Games Content -->
+  <div class="container">
+    <hr/>
+    <h2 class="main-title">
+      <span>Comenzando</span>
+      <%= @trivia.title %>
+    </h2>
+    <p class="lead" >
+      El profesor <span><%= @trivia.teacher.name %> </span>
+      realizo la trivia <span><%= @trivia.type_name %></span><br/>
+      sobre <span><%= @trivia.description %></span>
+    </p>
+    <hr/>
+    <div class="text-center">
+      <%= form_for :game, url: game_create_path(@trivia.id), :html => { class: 'contact-form'} do |f| %>
+        <p>
+          <%= render 'trivium/content', content: @trivia.content %>
+          <button type="submit" class="btn btn-large">Iniciar Juego</button>
+        </p>
+      <% end -%>
+    </div>
   </div>
 </div>
