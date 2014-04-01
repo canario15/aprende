@@ -3,7 +3,7 @@ $(document).ready(function() {
   $('#next_question').click(function(){
     $("#user_answer").remove();
     $(".general-alert").remove();
-    $("#user_question").removeClass('hide');
+    $("#user_question").removeClass('invisible');
   });
 
   $("input[name='select_answer']").change(function() {

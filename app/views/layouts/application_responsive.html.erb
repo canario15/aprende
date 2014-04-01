@@ -37,7 +37,12 @@
   </head>
   <body>
     <%= render "layouts/logged_in_menu" %>
-    <%= yield %>
-    <%= flash_and_messages %>
+    <div id=<%=section_id(controller_name)%> class="section section-expand">
+        <%= content_for?(:section_title) ? yield(:section_title) : section_title(controller_name) %>
+        <div class="container">
+            <%= flash_and_messages %>
+            <%= yield %>
+        </div>
+    </div>
   </body>
 </html>

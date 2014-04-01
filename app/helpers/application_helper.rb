@@ -56,4 +56,40 @@ module ApplicationHelper
     end
     html.html_safe
   end
+
+  def section_id(section)
+    case section
+    when "game"
+      "services"
+    when "trivium","home"
+      "folio"
+    when "users"
+      "student"
+    else
+      "about"
+    end
+  end
+
+  def section_title(section)
+    case section
+    when "game"
+      icon = "gamepad"
+      title = (content_tag :strong, "Juegos") + (content_tag :p, "Sobre las ".html_safe + (content_tag :span,"trivias"))
+    when "trivium","home"
+      icon = "book"
+      title = (content_tag :strong, "Trivias") + (content_tag :p, "Elegi una para ".html_safe + (content_tag :span,"comenzar"))
+    when "users"
+      icon = "smile"
+      title = (content_tag :strong, "Alumnos") + (content_tag :p, "Datos de ".html_safe + (content_tag :span,"Perfil"))
+    else
+      icon = "error"
+      title = (content_tag :strong, section)
+    end
+
+    content_tag :div, class: "section-title" do
+     (content_tag :i,nil,class: "icon-"+icon) +
+     (title)
+    end
+  end
+
 end

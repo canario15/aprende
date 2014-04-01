@@ -13,14 +13,14 @@
     <div class="span4">
       <output id="avatar_preview" >
         <span>
-          <img style ="opacity:0.4;filter:alpha(opacity=40);" src="/assets/default_user.png" >
+          <img class="default" src="/assets/default_user.png" >
         </span>
       </output>
       <%= f.file_field :avatar, accept: "image/*", class: "hidden",id: "avatar_field"  %>
       <%= render "cities/cities", f: f %>
     </div>
   </div>
-  <div class="row-fluid">
+  <div class="row-fluid margin">
     <div style="text-align:center">
       <button type="submit" class="btn btn-large">Confirmar</button>
     </div>

@@ -59,7 +59,7 @@ $(document).ready(function () {
       var img = $('<img/>',{
         "class":"img-thumbnail","src":"/assets/default_" + $(".section").attr('data-type') +".png",
         "title": "default student",
-        "style":"opacity:0.4;filter:alpha(opacity=40);"})
+        "class":"default"})
       var span = $('<span/>').append(img)
       $('#avatar_preview').append(span)
     }

@@ -1,46 +1,31 @@
-<!-- Games Section -->
-<div id="blog" class="section section-expand">
-  <div class="section-title"><i class="icon-gamepad"></i><strong>Juegos</strong>
-    <p>sobre las <span>trivias</span></p>
-  </div>
-
-  <!-- Games Content -->
-  <div class="container">
-    <!-- begin old source -->
-    <div class="page-header">
-      <h1 id="tables">Trivias realizadas - Alumno</h1>
+<!-- Services Content -->
+<% unless @games_results.empty? -%>
+  <hr />
+    <div class="flexslider">
+      <!-- Services List Carousel -->
+      <ul class="thumbnails slides">
+        <% @games_results.each do |game| -%>
+          <!-- Service Detail -->
+          <li>
+            <div class="thumbnail">
+              <i class="game"><%=game.trivia.title%></i>
+              <em class="date"><%= l game.updated_at.to_date, format: :simple %></em>
+              <h4>Profesor <span><%=game.trivia.teacher.name%></span></h4>
+              <h5><%=game.trivia.course%></h5>
+              <p class="game">Cantidad Preguntas <strong><%= game.trivia.questions.count %></strong></p>
+              <p class="game">Preguntas Correctas <strong><%= game.correct_answers.count %></strong></p>
+              <p class="game">Puntaje <strong><%= game.score %></strong></p>
+              <%= link_to 'Ver', game_results_user_path(game), class: "btn" %>
+              <%= link_to "PDF", game_results_user_path(game, format: :pdf), target: "_blank", class: "btn" %>
+            </div>
+          </li>
+        <% end -%>
+      </ul>
     </div>
-    <% unless @games_results.empty? -%>
-      <table class="table table-striped table-bordered table-hover ">
-        <thead>
-          <tr>
-            <th>Trivia</th>
-            <th>Curso</th>
-            <th>Cant. Preguntas</th>
-            <th>Preguntas Correctas</th>
-            <th>Puntaje</th>
-            <th colspan=2 >Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @games_results.each do |game| -%>
-            <tr>
-              <td><%= link_to game.trivia.title, game_new_path(game.trivia.id)%></td>
-              <td><%= game.trivia.course %></td>
-              <td><%= game.trivia.questions.count %></td>
-              <td><%= game.correct_answers.count %></td>
-              <td><%= game.score%></td>
-              <td><%= link_to 'Ver Detalles', game_results_user_path(game) %></td>
-              <td><%= link_to "PDF", game_results_user_path(game, format: :pdf), target: "_blank" %></td>
-            </tr>
-          <% end -%>
-        </tbody>
-      </table>
-    <% else -%>
-      <p>No existen trivias realizadas</p>
-    <% end -%>
-    <!-- end old source -->
-
-
+  <hr/>
+<% else -%>
+  <div class="filter">
+    <h3>No existen <span>juegos</span> realizados</h3>
   </div>
-</div>
+<% end -%>
+

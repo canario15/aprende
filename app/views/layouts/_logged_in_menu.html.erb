@@ -54,4 +54,5 @@
 <% end -%>
 <% if current_user -%>
     <%= link_to( content_tag(:span, nil,class: "icon-signout"), destroy_user_session_path, method: :delete,class: "section-logout") %>
+    <%= link_to( content_tag(:span, nil,class: "icon-user"), edit_user_path(current_user.id), class: "section-profile") %>
 <% end -%>

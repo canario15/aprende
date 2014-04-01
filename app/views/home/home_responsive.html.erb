@@ -1,21 +1,10 @@
-<!-- Trivia Section -->
-<div id="folio" class="section section-expand">
-  <div class="section-title"><i class="icon-book"></i><strong>Trivias</strong>
-    <p>Elegi una para <span>comenzar</span></p>
-  </div>
-
-  <!-- Trivia Content -->
-  <div class="container">
-
-    <!-- Filter -->
-    <div id="folio-filters" class="filter">
-      <p>
-        <a href="#" data-filter="*" class="active">Todas</a>
-        <% @courses.each do |course| %>
-          <%= link_to course.title,"#", "data-filter" => ".#{course.title.parameterize}-#{course.id}" %>
-        <% end %>
-      </p>
-    </div>
-    <%= render "trivium/index_paginated_responsive",  trivium: @trivium %>
-  </div>
+<!-- Filter -->
+<div id="folio-filters" class="filter">
+  <p>
+    <a href="#" data-filter="*" class="active">Todas</a>
+    <% @courses.each do |course| %>
+      <%= link_to course.title,"#", "data-filter" => ".#{course.title.parameterize}-#{course.id}" %>
+    <% end %>
+  </p>
 </div>
+<%= render "trivium/index_paginated_responsive",  trivium: @trivium %>

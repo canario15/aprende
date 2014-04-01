@@ -1,21 +1,20 @@
 TO DO
-en function.js, en  /* --- Switch Section --- */
-Agrupar la funcionalidad de las section con una expresion regular
-
--en function.js, en  /* --- Switch Section --- */
--Agrupar la funcionalidad de las section con una expresion regular
--Revisar responsive del contact-form select
-- Ciudad y departamento agregar placeholder
-- Mostrar imagen para cargar en vez de boton o simiilar.
-- Mensajes de Error??
-- Formato de Mail? (Recuperar contraseña profesor esta en ingles)
-- Registrar Usuario  revisar placeholder de Instituto y Curso.
-- Registro Ver que campos quedarian, conciderar poner sign_in y sign_up en una vista unica.
-- Mejorar Select
-- Game, eval answer: Titulo y boton agregar margen.
-- Game, eval answer: si no hay imagen no mostrar y expandir la seccion de preguntas.
-- Game, eval answer: Cambiar color de Games a verde.
-- Layout de applicacion, genralizar mas el content de los mismo ( agregar header y background color)
-- Game, eval answer: Intercambiar puntaje y profesor, cambiar el estilo al de "Termino Trivia"
-- Game, eval answer: Quitar popup y mejorar descripcion al equivocarse.
-- Teacher: first_name y last_name obligatorio.
+1 - Messages poner arriba o alternativa.
+1 - Cambiar Puntaje y preguntas por progress bar
+1 - Quitar profesor y info trivia para abajo.
+1 - validar mail de registro user.
+1 - sign in, ajustar remember
+1 -  respuestas del game  label blanco content negro(game_result_user)
+2 - searcher (menu lateral derecho)
+2 - Trivias order ( profesor, y mas reciente)
+3 - Probar Diferentes combincaciones de datos de Trivia (controlar Tamaño de item)
+3 - Probar Diferentes combincaciones de datos de Preguntas en eval answer (controlar Tamaño de item)
+3 - Diferentes combinacion datos game ( game_result_user)
+3 - controlar acceso restringidos (edit otro user, etc.)
+3 - placeholder de formulario oscurecer para que sea diferente al texto seleccionado
+3 - Ciudad y departamento agregar placeholder (obligatorio y no selecciona por defecto)
+3 - Registrar Usuario  revisar placeholder de Instituto y Curso. (obligatorio y no selecciona por defecto)
+3 - Teacher: first_name y last_name obligatorio.
+4 - Formato de Mail? (Recuperar contraseña profesor esta en ingles)
+5 - ¿Responsive?
+5 - Mejorar Select

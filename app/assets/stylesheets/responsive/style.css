@@ -28,6 +28,9 @@ h1 span, h2 span, h3 span, h4 span, h5 span, h6 span, p span {
 	font-weight: 700;
 }
 
+h3.eval-answer{
+	margin: 2%;
+}
 .main-title-center{
 	margin-top: 10%;
 }
@@ -63,6 +66,12 @@ hr {
 	border-top: 1px dashed rgba(255,255,255,0.5);
 	border-bottom: none;
 }
+
+label.black{
+	margin-bottom: 4%;
+	font-size: 20px;
+	color: black;
+}
 .no-margin {
 	margin: 0;
 }
@@ -79,6 +88,10 @@ hr {
 	font-weight: 300;
 	background-color: rgba(0,0,0,0.1);
 	border-radius: 5px;
+}
+
+.hero-unit.eval-answer{
+	margin-bottom: -50px;
 }
 
 /* Alert */
@@ -318,6 +331,7 @@ hr {
 	opacity: 1;
 }
 .section-close,
+.section-profile,
 .section-logout {
 	width: 50px;
 	height: 50px;
@@ -339,9 +353,17 @@ hr {
 	-o-transition: all linear 0.25s;
 }
 
+.section-profile{
+	top: 145px;
+}
+
+.section-profile,
 .section-logout {
 	font-size: 30px;
 }
+
+.section-profile:hover,
+.section-logout:hover,
 .section-close:hover {
 	background: rgba(0,0,0,0.25);
 	color: #FFF;
@@ -399,6 +421,10 @@ hr {
 	margin: 0;
 	font: 300 14px/20px Open Sans, Arial, Helvetica, sans-serif;
 	color: rgba(255,255,255,0.75);
+}
+
+.section .section-title p.black{
+	color: rgba(0,0,0,0.75);
 }
 .section.section-expand .section-title p {
 	font-size: 20px;
@@ -479,6 +505,30 @@ hr {
 	box-shadow: none;
 	text-align: center;
 }
+.thumbnails li .thumbnail i.game{
+	height: 100px;
+	font-size: 25px;
+	line-height: 40px;
+	width: 100%;
+	color: #FFF;
+	text-align: center;
+	display: block;
+	transition: all linear 0.35s;
+	-ms-transition: all linear 0.35s;
+	-moz-transition: all linear 0.35s;
+	-webkit-transition: all linear 0.35s;
+	-o-transition: all linear 0.35s;
+}
+
+.thumbnails li:hover .thumbnail i.game {
+	font-size: 40px;
+	text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+.thumbnails li .thumbnail em.date {
+	color: #FFF;
+}
+
 .thumbnails li .thumbnail i {
 	margin: auto;
 	width: 100px;
@@ -542,6 +592,11 @@ hr {
 }
 .thumbnails li .thumbnail p {
 	margin-bottom: 20px;
+	font-size: 12px;
+}
+
+.thumbnails li .thumbnail p.game {
+	margin-bottom: 5px;
 	font-size: 12px;
 }
 
@@ -708,6 +763,9 @@ address a:hover {
 }
 
 /* Contact Form */
+.margin {
+	margin:2%;
+}
 .contact-form {
 	margin: 20px 0 50px;
 }
@@ -718,6 +776,20 @@ address a:hover {
  	min-width: 280px;
 	padding: 15px;
 	width: 280px;
+	font-size: 16px;
+	color: black;
+}
+
+.contact-form .text-area {
+ 	max-width: 280px;
+ 	min-width: 280px;
+	width: 280px;
+	min-height: 80%;
+	height: 80%;
+	max-height: 80%;
+	padding: 0;
+	font-size: 16px;
+	color: black;
 }
 
 .contact-form input[type=radio]{
@@ -730,6 +802,7 @@ address a:hover {
 	max-height: 20px;
 }
 
+.contact-form div.empty,
 .contact-form input,
 .contact-form output,
 .contact-form select,
@@ -758,6 +831,19 @@ address a:hover {
 	max-height: 220px;
 }
 
+.contact-form output.large .radio,
+.contact-form output.large .text-area{
+	min-width: 100%;
+	width: 100%;
+	max-width: 100%;
+}
+
+.contact-form output.large{
+	min-width: 170%;
+	width: 170%;
+	max-width: 170%;
+}
+
 .contact-form output img{
 	display: table-caption;
 	float: top;
@@ -768,6 +854,11 @@ address a:hover {
 	width: 90%;
 	max-width: 90%;
 	margin: 0 auto;
+}
+
+.contact-form output img.default{
+	opacity: 0.4;
+	filter: alpha(opacity=40);
 }
 
 .contact-form select{
@@ -814,6 +905,13 @@ address a:hover {
 	margin: 0;
 	width: 210px;
 	height: 50px;
+}
+
+button#validate_answer.eval-answer,
+button#validate_answer.eval-answer:hover,
+button#validate_answer.eval-answer:focus
+{
+	margin: 2%;
 }
 
 /* Google Map */

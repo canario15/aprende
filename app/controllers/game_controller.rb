@@ -18,16 +18,13 @@ class GameController < ApplicationController
   end
 
   def eval_answer
-    question_id = params[:question_id]
-    save_answered_question(question_id)
-    select_answer = params[:select_answer]
     set_game
-    @answer = @game.eval_answer(question_id,select_answer)
-    @show_answer = true
-    if @answer.was_correct
-      flash.now[:notice] = "Ud. ha acertado!! Felicitaciones!"
-    else
-      flash.now[:alert] = "Respuesta equivocada :(. Siga intentando.."
+    question_id = params[:question_id]
+    unless question_answered?(question_id)
+      save_answered_question(question_id)
+      select_answer = params[:select_answer]
+      @answer = @game.eval_answer(question_id,select_answer)
+      @show_answer = true
     end
     set_trivia
     @count_answereds = answereds.count + 1
@@ -50,7 +47,7 @@ class GameController < ApplicationController
   end
 
   def index_user
-    @games_results = current_user.games_finished
+    @games_results = current_user.games_finished.order(updated_at: :desc)
   end
 
   def game_results_teacher
@@ -63,6 +60,10 @@ class GameController < ApplicationController
   end
 
 private
+
+  def question_answered?(question_id)
+    session[:answereds].include? question_id
+  end
 
   def set_trivia
     @trivia = Trivia.find(params[:trivia_id])
