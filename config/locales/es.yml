@@ -214,10 +214,18 @@ es:
         current_password: "Contraseña actual"
         password_confirmation: "La confirmación de la contraseña"
         password: "Contraseña"
+        city: "Ciudad"
+        first_name: "Nombre"
+        last_name: "Apellido"
       user:
         current_password: "Contraseña actual"
         password_confirmation: "La confirmación de la contraseña"
         password: "Contraseña"
+        city: "Ciudad"
+        level: "Curso"
+        institute: "Instituto"
+        first_name: "Nombre"
+        last_name: "Apellido"
       content:
         containable: "Contenido"
       content/containable:

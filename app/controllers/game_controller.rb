@@ -12,8 +12,10 @@ class GameController < ApplicationController
     @game = Game.create_game(current_user,@trivia)
     save_game(@game.id)
     @question = @game.new_question(answereds,@trivia)
+    @percent_score_answers = (@game.score.to_f / @game.sum_score_answers * 100)
     @count_answereds = answereds.count + 1
     @total_questions = @trivia.questions.count
+    @game_progress = (answereds.count.to_f / @total_questions * 100)
     render :eval_answer
   end
 
@@ -27,8 +29,10 @@ class GameController < ApplicationController
       @show_answer = true
     end
     set_trivia
+    @percent_score_answers = (@game.score.to_f / @game.sum_score_answers * 100)
     @count_answereds = answereds.count + 1
     @total_questions = @trivia.questions.count
+    @game_progress = (answereds.count.to_f / @total_questions * 100)
     @question = @game.new_question(answereds,@trivia)
     if @question.nil?
       @finish = true

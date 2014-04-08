@@ -87,7 +87,7 @@ describe Trivia do
     end
 
     it 'with questions limit 3' do
-      expect(Trivia.with_questions_and_limit).to include(@t1,@t2,@t3)
+      expect(Trivia.with_questions_and_limit).to include(@t7,@t6,@t3)
     end
 
     it 'search with questions all' do

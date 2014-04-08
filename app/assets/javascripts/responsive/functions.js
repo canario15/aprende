@@ -12,7 +12,7 @@ $(document).ready(function () {
   var $container = $(".masonry");
   $container.imagesLoaded(function () {
     $container.isotope({
-      itemSelector: ".item",
+      itemSelector: ".item"
     });
   });
   $("#folio-filters a, #blog-filters a").click(function () {

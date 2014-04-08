@@ -1,10 +1,12 @@
 <%content_for :section_title do%>
   <div class="section-title">
     <div class="row offset1" >
-      <div class="span3 main-title-center">
-        <div class="hero-unit eval-answer">
-         <h4>Profesor</h4>
-          <p><%= @trivia.teacher.name %></p>
+      <div class="span3  main-title-center">
+        <h5 class="progress-title">
+          Pregunta <span><%=@total_questions%></span> de <span><%=@total_questions%></span>
+        </h5>
+        <div class="progress">
+          <div class="bar" style="width: 100%"></div>
         </div>
       </div>
       <div class="span5">
@@ -12,12 +14,22 @@
         <p>sobre las <span>trivias</span></p>
       </div>
       <div class="span3 main-title-center">
-        <div class="hero-unit eval-answer">
-          <div class="pull-left"><h4>Puntaje</h4><h4>Pregunta</h4></div>
-          <div class="pull-rigth" ><p><%=@game.score %></p><p><%=@count_answereds %> de <%=@total_questions%></p></div>
+        <h5 class="progress-title">Puntaje <span><%=@game.score %></span></h5>
+        <div class="progress">
+          <div class="bar" style="width: <%=@percent_score_answers%>%"></div>
         </div>
       </div>
     </div>
   </div>
 <%end%>
+<hr/>
 <%= render "show_answer" %>
+
+<div class="filter">
+  <p class="lead" >
+    La Trivia <span><%= @trivia.title %> </span>
+    del tipo <span><%= @trivia.type_name %></span><br/>
+    sobre <span><%= @trivia.description %></span>
+    realizada por <span><%= @trivia.teacher.name %></span>
+  </p>
+</div>

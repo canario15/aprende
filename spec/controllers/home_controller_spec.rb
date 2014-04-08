@@ -29,43 +29,43 @@ describe HomeController do
       it 'trivia title' do
         @trivia0.update(title: "Title Test 0")
         @trivia3.update(title: "Title Test 3")
-        get :index, @params
-        expect(assigns[:trivium]).to eq([@trivia0,@trivia3])
+        xhr :get, :search, @params
+        expect(assigns[:trivium]).to eq([@trivia3,@trivia0])
       end
 
       it 'trivia tag' do
         @trivia2.update(tag: "Tag Test 2")
         @trivia3.update(tag: "Tag Test 3")
-        get :index, @params
-        expect(assigns[:trivium]).to eq([@trivia2,@trivia3])
+        xhr :get, :search, @params
+        expect(assigns[:trivium]).to eq([@trivia3,@trivia2])
       end
 
       it 'trivia teacher city' do
         @trivia0.teacher.city.update(name: "City Test 0")
         @trivia1.teacher.city.update(name: "City Test 1")
-        get :index, @params
-        expect(assigns[:trivium]).to eq([@trivia0,@trivia1])
+        xhr :get, :search, @params
+        expect(assigns[:trivium]).to eq([@trivia1,@trivia0])
       end
 
       it 'trivia teacher first name' do
         @trivia1.teacher.update(first_name: "First Name Test 1")
         @trivia2.teacher.update(first_name: "First Name Test 2")
         @trivia3.teacher.update(first_name: "First Name Test 3")
-        get :index, @params
-        expect(assigns[:trivium]).to eq([@trivia1,@trivia2,@trivia3])
+        xhr :get, :search, @params
+        expect(assigns[:trivium]).to eq([@trivia3,@trivia2,@trivia1])
       end
 
       it 'trivia teacher last name' do
         @trivia0.teacher.update(last_name: "Last Name Test 0")
         @trivia1.teacher.update(last_name: "Last Name Test 1")
         @trivia2.teacher.update(last_name: "Last Name Test 2")
-        get :index, @params
-        expect(assigns[:trivium]).to eq([@trivia0,@trivia1,@trivia2])
+        xhr :get, :search, @params
+        expect(assigns[:trivium]).to eq([@trivia2,@trivia1,@trivia0])
       end
 
       it 'trivia teacher empty params' do
-        get :index
-        expect(assigns[:trivium]).to eq([@trivia0,@trivia1,@trivia2,@trivia3])
+        xhr :get, :search
+        expect(assigns[:trivium]).to eq([@trivia3,@trivia2,@trivia1,@trivia0])
       end
     end
   end

@@ -23,6 +23,16 @@ $(document).ready(function(){
       $("#welcome-message").hide();
   });
 
+  $("select[id=state_id],select[id=cities],select[id=user_level_id],select[id=user_institute_id]").on('change',function(){
+    $(this).toggleClass('placeholder',($(this).val()==""));
+
+    if($(this).attr("id")=="state_id"){
+      var cities = $("select[id=cities]");
+      cities.addClass('placeholder');
+      cities.children('option:not(:first)').remove();
+    }
+  });
+
   /*$('.ckeditor').ckeditor({
     language: "es",
     toolbarGroups: [

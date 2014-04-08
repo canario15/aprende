@@ -1,10 +1,12 @@
 <%content_for :section_title do%>
   <div class="section-title">
     <div class="row offset1" >
-      <div class="span3 main-title-center">
-        <div class="hero-unit eval-answer">
-         <h4>Profesor</h4>
-          <p class="black"><%= @trivia.teacher.name %></p>
+      <div class="span3  main-title-center">
+        <h5 class="progress-title">
+          Pregunta <span><%=@count_answereds %></span> de <span><%=@total_questions%></span>
+        </h5>
+        <div class="progress">
+          <div class="bar" style="width: <%=@game_progress%>%"></div>
         </div>
       </div>
       <div class="span5">
@@ -12,46 +14,40 @@
         <p>sobre las <span>trivias</span></p>
       </div>
       <div class="span3 main-title-center">
-        <div class="hero-unit eval-answer">
-          <div class="pull-left"><h4>Puntaje</h4><h4>Pregunta</h4></div>
-          <div class="pull-rigth" ><p class="black"><%=@game.score %></p><p class="black"><%=@count_answereds %> de <%=@total_questions%></p></div>
+        <h5 class="progress-title">Puntaje <span><%=@game.score %></span></h5>
+        <div class="progress">
+          <div class="bar" style="width: <%=@percent_score_answers%>%"></div>
         </div>
       </div>
     </div>
   </div>
 <%end%>
+<hr/>
 <%= render "show_answer" %>
 <div id="user_question" class="game_container <%=show_question(@show_answer)%>">
   <%= form_for :game, url: game_eval_answer_path(@trivia.id), :html => {:class => "contact-form"} do |f| %>
-    <div class="filter">
-      <p class="lead" >
-        La Trivia <span><%= @trivia.title %> </span><br/>
-        del tipo <span><%= @trivia.type_name %></span>
-        sobre <span><%= @trivia.description %></span>
-      </p>
-    </div>
     <h3 class="eval-answer">Pregunta <span><%= @question.description %></span></h3>
     <div class="row-fluid offset2">
       <%= hidden_field_tag "question_id", @question.id %>
       <% if @question.image.present? -%>
         <div class="span4">
           <output>
-            <span>
+
               <%= image_tag @question.image.url(:medium), alt: "Imagen de la pregunta" %>
-            </span>
+
           </output>
         </div>
       <% end -%>
       <div class="span4">
-        <output class=<%= @question.image.present? ? "" : "large"%> >
+        <output class=<%= @question.image.present? ? "short" : "large"%> >
           <span>
             <% if type_multiple_choice?(@trivia.type) -%>
               <label class="black">Respuesta</label>
               <% random_order_question(@question).each do |answer| -%>
-              <label class="radio">
-                <%= radio_button_tag "select_answer", answer, false, :class => "pull-none" %>
-                <%= answer %>
-              </label>
+                <label class="radio">
+                  <%= radio_button_tag "select_answer", answer, false, :class => "pull-none" %>
+                  <%= answer %>
+                </label>
               <% end -%>
             <% else -%>
               <label class="black" >Respuesta</label>
@@ -68,4 +64,12 @@
       </div>
     </div>
   <% end -%>
+</div>
+<div class="filter">
+  <p class="lead" >
+    La Trivia <span><%= @trivia.title %> </span>
+    del tipo <span><%= @trivia.type_name %></span><br/>
+    sobre <span><%= @trivia.description %></span>
+    realizada por <span><%= @trivia.teacher.name %></span>
+  </p>
 </div>

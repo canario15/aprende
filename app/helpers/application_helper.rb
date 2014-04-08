@@ -34,26 +34,33 @@ module ApplicationHelper
   def flash_and_messages
     html= ""
     messages = ""
+    style=""
     self.instance_variable_names.each do |name|
       variable = eval(name)
       if variable.methods.include? :errors and variable.present? and variable.errors.present?
-        messages = variable.errors.full_messages.map{|msg| content_tag(:ul,content_tag(:label, msg)) }.join.html_safe
+        messages = variable.errors.full_messages.map{|msg| content_tag(:span,content_tag(:label, msg), class: "icon-ban-circle row")}.join
+        style = "danger"
       end
     end
 
-    [{type: "resource_errors" ,message: messages, style: "danger",icon: "ban-circle"},
-     {type: "alert", message: flash[:alert], style: "danger",icon: "ban-circle"},
-     {type: "notice", message: flash[:notice], style: "success",icon: "ok"},].each do |item|
-      if item[:message].present?
-        html += content_tag :div,class: "modal alert alert-dismissable alert-#{item[:style]} general-alert" do
-          link = (item[:type] == "notice") ? (link_to flash[:link][:title] ,flash[:link][:url],class: 'alert-link' if flash[:link]) : ""
-          (content_tag :button,"×", class:"close","data-dismiss" => "alert", type: "button"  ) +
-          (content_tag :span,nil, class: "icon-#{item[:icon]}") +
-          (content_tag :label, item[:message]) +
-          (link)
-        end
+    if flash[:notice].present?
+      messages += content_tag(:span,content_tag(:label, flash[:notice]), class: "icon-ok row")
+      (messages += link_to flash[:link][:title] ,flash[:link][:url],class: 'alert-link') if flash[:link]
+      style = "success"
+    end
+
+    if flash[:alert].present?
+      messages += content_tag(:span,content_tag(:label, flash[:alert]), class: "icon-ban-circle row")
+      style = "danger"
+    end
+
+    if messages.present?
+      html += content_tag :div,class: "modal alert alert-dismissable alert-#{style} general-alert" do
+       (content_tag :button,"×", class:"close","data-dismiss" => "alert", type: "button"  ) +
+       (messages.html_safe)
       end
     end
+
     html.html_safe
   end
 

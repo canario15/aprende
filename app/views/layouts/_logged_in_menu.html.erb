@@ -55,4 +55,10 @@
 <% if current_user -%>
     <%= link_to( content_tag(:span, nil,class: "icon-signout"), destroy_user_session_path, method: :delete,class: "section-logout") %>
     <%= link_to( content_tag(:span, nil,class: "icon-user"), edit_user_path(current_user.id), class: "section-profile") %>
+    <% if current_page?(home_path) -%>
+      <%= link_to "#" , class: "section-search",id: "search-btn" do %>
+        <%= content_tag :span, nil,class: "icon-search",id: "search-span" %>
+      <% end %>
+      <%= content_tag :div,(text_field_tag 'search',nil,id: "search-input") , class: "contact-form section-search hidden",id: "search-div" %>
+    <% end -%>
 <% end -%>

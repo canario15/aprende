@@ -8,20 +8,20 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
-*= require responsive/bootstrap
-*= require responsive/bootstrap.min
-*= require responsive/bootstrap-responsive
-*= require responsive/bootstrap-responsive.min
-*= require responsive/font-awesome
-*= require responsive/font-awesome.min
-*= require responsive/font-tiza
-*= require responsive/font-tiza.min
-*= require responsive/style
-*= require responsive/animations
-*= require responsive/superslides
-*= require responsive/flexslider
-*= require responsive/masonry
-*= require responsive/fancybox
-*= require responsive/multicolor
-*= require_self
-*/
+ *= require responsive/bootstrap
+ *= require responsive/bootstrap.min
+ *= require responsive/bootstrap-responsive
+ *= require responsive/bootstrap-responsive.min
+ *= require responsive/font-awesome
+ *= require responsive/font-awesome.min
+ *= require responsive/font-tiza
+ *= require responsive/font-tiza.min
+ *= require responsive/style
+ *= require responsive/animations
+ *= require responsive/superslides
+ *= require responsive/flexslider
+ *= require responsive/masonry
+ *= require responsive/fancybox
+ *= require responsive/multicolor
+ *= require_self
+ */

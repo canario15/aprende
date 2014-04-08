@@ -1,0 +1,21 @@
+$('#trivium-paginated').html('<%= escape_javascript render "trivium/index_paginated_responsive",  trivium: @trivium %>');
+
+/* --- Masonry --- */
+var $container = $(".masonry");
+$container.imagesLoaded(function () {
+  $container.isotope({
+    itemSelector: ".item"
+  });
+});
+$("#folio-filters a, #blog-filters a").click(function () {
+  var selector = $(this).attr("data-filter");
+  $container.isotope({
+    filter: selector
+  });
+  return false;
+});
+
+/* --- Item Description --- */
+$(".item").click(function () {
+  $(this).toggleClass("open");
+});

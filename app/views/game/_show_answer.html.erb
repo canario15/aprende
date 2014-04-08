@@ -1,14 +1,9 @@
 <% if @show_answer -%>
   <div id="user_answer">
-    <div class="filter">
+    <div class="margin-big">
       <h4 class="main-title">
         <%= @answer.was_correct? ? "Correcto" : "Incorrecto" -%>, <span><%= @answer.question.answer %></span> es la respuesta.
       </h4>
-      <p class="lead" >
-        La Trivia <span><%= @trivia.title %> </span><br/>
-        del tipo <span><%= @trivia.type_name %></span>
-        sobre <span><%= @trivia.description %></span>
-      </p>
     </div>
     <div class="text-center">
       <% unless @finish -%>

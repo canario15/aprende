@@ -1,15 +1,14 @@
 <!-- Trivia Masonry -->
-<div class="masonry">
+<div class="masonry row container">
   <% trivium.each do |trivia| -%>
 
   <!-- Trivia Single item -->
-    <div class="item <%="#{trivia.course.title.parameterize}-#{trivia.course.id}"%>">
-      <!-- <img src="/assets/black_box.jpg" alt="Portfolio" class="thumb" /> -->
+    <div class="item <%= trivia.course.title.parameterize %>-<%= trivia.course.id %> ">
       <div class="blackboard">
         <h1><%= trivia.title %></h1>
         <hr/>
         <h5><%= trivia.course %></h5>
-        <h5> <%=trivia.try(&:teacher).try(&:name) %></h5>
+        <h4><%=trivia.try(&:teacher).try(&:name) %></h4>
       </div>
       <span class="view">+</span>
 

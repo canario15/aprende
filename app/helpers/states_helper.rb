@@ -5,6 +5,6 @@ module StatesHelper
   end
 
   def cities_from_state(state_id)
-    (state_id ? State.find(state_id) : State.first).cities.order_name
+    state_id ? State.find(state_id).cities.order_name : City.none
   end
 end

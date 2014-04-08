@@ -207,7 +207,7 @@ describe GameController do
     it "post create, create game and show view eval_answer" do
       params = {:trivia_id => @trivia.id}
       post('create', params)
-      expect(response.body).to match /Siga sumando puntos!!!/
+      expect(response.body).to match /Pregunta/
     end
 
     it "post create, create game and invoke eval_answer and answer TRUE" do
@@ -215,7 +215,7 @@ describe GameController do
       post('create', params)
       params = {:trivia_id => @trivia.id, :question_id => @question_1.id, :select_answer => @question_1.answer}
       post('eval_answer', params)
-      expect(response.body).to match /Ud. ha acertado!! Felicitaciones!/
+      expect(response.body).to match /Correcto/
     end
 
     it "post create, create game and invoke eval_answer and answer FALSE" do
@@ -223,7 +223,7 @@ describe GameController do
       post('create', params)
       params = {:trivia_id => @trivia.id, :question_id => @question_1.id, :select_answer => @question_2.answer}
       post('eval_answer', params)
-      expect(response.body).to match /Respuesta equivocada /
+      expect(response.body).to match /Incorrecto/
     end
 
     it "post create, create game and invoke eval_answer and Finish" do

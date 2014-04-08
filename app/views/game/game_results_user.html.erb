@@ -17,23 +17,24 @@
     <!-- Services List Carousel -->
     <ul class="thumbnails slides">
       <% @presenter.game_answers.each do |answer| -%>
-        <li>
-          <div class="thumbnail">
-            <h5>Pregunta <span><%= answer.question.description%></span></h5>
-            <h5>Tu respuesta <span><%= answer.answer %></span></h5>
+        <li class="pointer">
+          <div class="thumbnail answer" >
+            <h5>Pregunta</h5>
+            <h5 class="black" ><%= answer.question.description%></h5>
+            <h5>Tu respuesta</h5>
+            <h5 class="black" ><%= answer.answer %></h5>
             <% if answer.was_correct -%>
               <i class="icon-ok"></i>
             <% else -%>
               <i class="icon-ban-circle"></i>
             <% end -%>
-            <h5>
             <% unless answer.was_correct -%>
-              Respuesta Correcta
-              <span><%= answer.question.answer %></span>
+              <h5>Respuesta Correcta</h5>
+              <h5 class="black" ><%= answer.question.answer %></h5>
             <%else%>
-              ¡Buen <span>Trabajo</span>!
+              <h5>¡Buen <span class="black" >Trabajo</span>!</h5>
             <% end -%>
-           </h5>
+
           </div>
         </li>
       <% end -%>

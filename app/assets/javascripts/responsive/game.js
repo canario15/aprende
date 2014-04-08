@@ -2,8 +2,7 @@ $(document).ready(function() {
 
   $('#next_question').click(function(){
     $("#user_answer").remove();
-    $(".general-alert").remove();
-    $("#user_question").removeClass('invisible');
+    $("#user_question").removeClass('hide');
   });
 
   $("input[name='select_answer']").change(function() {
@@ -26,5 +25,9 @@ $(document).ready(function() {
       $('#validate_answer').attr('disabled', true);
     }
   }
+
+  $(".thumbnail.answer").on("click", function(){
+    $(this).toggleClass('answer');
+  });
 
 });

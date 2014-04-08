@@ -88,6 +88,10 @@ class Game < ActiveRecord::Base
     group(:trivia_id)
   end
 
+  def sum_score_answers
+    self.questions.map{|q| Game::POINTS[q.dificulty]}.sum
+  end
+
   private
 
   def mark_as_started

@@ -32,6 +32,7 @@ describe UsersController do
     end
 
     it "returns http success(code=200)" do
+      sign_in @user
       get 'edit', {:id => @user.id}
       expect(response.code).to eq("200")
     end

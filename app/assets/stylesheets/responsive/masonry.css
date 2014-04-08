@@ -52,28 +52,41 @@
 }
 
 .masonry .item .blackboard{
+	width: 100%;
+	height: 100%;
 	padding: 0%;
 	background: url('/assets/blackboard.jpg');
 	background-size: 100% 100%;
 	color: #FFF;
 }
 
+.masonry .item .blackboard  h4{
+	font-family: "Tiza";
+	padding: 0 15% 20% 15%;
+	word-wrap:break-word;
+}
+
+.masonry .item .blackboard h1{
+	margin: 0 10%;
+	font-family: "Tiza";
+	padding-top: 20%;
+	word-wrap:break-word;
+}
+.masonry .item .blackboard hr{
+	padding: 0%;
+}
+
 .masonry .item .blackboard h2,
 .masonry .item .blackboard h3,
-.masonry .item .blackboard h4,
 .masonry .item .blackboard h5,
 .masonry .item .blackboard h6{
 	font-family: "Tiza";
 	padding: 15%;
+	word-wrap:break-word;
 }
-.masonry .item .blackboard h1{
-	font-family: "Tiza";
-	padding-top: 15%;
-}
-.masonry .item .blackboard hr{
-	font-family: "Tiza";
-	padding: 0%;
-}
+
+
+
 /* Desktop large layout */
 @media (min-width: 1200px) {
 .masonry .item {

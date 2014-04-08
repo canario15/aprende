@@ -1,5 +1,6 @@
 var select_cities = $('#cities')
 select_cities.find('option').remove();
+select_cities.append('<option value>Ciudad</option>');
 <% @cities.each do |c| %>
   select_cities.append('<option value="<%= j c.id.to_s %>"><%= j c.name %></option>');
 <% end %>

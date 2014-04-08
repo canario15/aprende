@@ -1,3 +1,5 @@
 <% state_id = f.object.try(&:city).try(&:state).try(&:id) %>
-<%= select_tag :state_id, options_from_collection_for_select(all_state, :id, :name,state_id ), {data:  {remote: :true, url: state_cities_path(state_id, format: :js )}} %>
-<%= f.collection_select(:city_id, cities_from_state(state_id), :id, :name,{},{id: :cities}) %>
+<% state_id = resource.try(&:city).try(&:state).try(&:id) if state_id == nil %>
+<% select_class = state_id.nil? ? "placeholder" : "" %>
+<%= select_tag :state_id, options_from_collection_for_select(all_state, :id, :name,state_id ), {prompt: "Departamento",class: select_class ,data:  {remote: :true, url: state_cities_path(state_id, format: :js )}} %>
+<%= f.collection_select(:city_id, cities_from_state(state_id), :id, :name,{prompt: "Ciudad"},{id: :cities,class: select_class }) %>

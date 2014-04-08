@@ -7,8 +7,8 @@
       <%= f.email_field :email, placeholder: "Mail" %>
       <%= f.password_field :password, placeholder: "Contraseña" %>
       <%= f.password_field :password_confirmation, placeholder: "Confirmar contraseña" %>
-      <%= f.collection_select(:level_id, all_levels, :id, :title, {}) %>
-      <%= f.collection_select(:institute_id, all_institutes, :id, :name, {prompt: "Instituto"}) %>
+      <%= f.collection_select(:level_id, all_levels, :id, :title, { prompt: "Curso" }, { class: "placeholder" }) %>
+      <%= f.collection_select(:institute_id, all_institutes, :id, :name, { prompt: "Instituto" }, { class: "placeholder" }) %>
     </div>
     <div class="span4">
       <output id="avatar_preview" >

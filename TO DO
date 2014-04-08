@@ -1,20 +1,39 @@
-TO DO
+TO DO (proridad 5 queda par mas adelante)
+1 - game max score add in session.
+1 - Trivia btn game ir a el game derecho ( eliminar paso intermedio.)
+? - quitar padding y margin a Title y hr (ver content)
+1 - game - quitar Pregunta  y 1/3 imagen y 2/3 respeusta, ver boton.
+1 - Al refrescar en el paso de trivia realizada, vuelve a cargar el eval answer. (inconcistencia)
+1 - Agregar boton cambiar contraseña en perfil de usuario.
+1 - Games (Back, next y refresh) importante que quede concistente, sino el alumno puede hacer "tramapa"
+1 - Limitar title y quitar efecto over para Diferentes combincaciones de datos de game (games_user)
+
+2 - Trivias order ( profesor, y mas reciente), (profesor??)
+
+5 - ¿Responsive?
+5 - Mejorar Select
+5 - game ver si vale la pena poner un max score al guardar la trivia.
+5- Probar formularios con un margen - (queda mejor??)
+5 - Agregar fecha a la pizarra de triva?
+5 - control accesos restringido games (usuario puede jugar trivias de otro, trivias que no estan inicadas, etc.)
+
+
+PENDING
 1 - Messages poner arriba o alternativa.
 1 - Cambiar Puntaje y preguntas por progress bar
 1 - Quitar profesor y info trivia para abajo.
 1 - validar mail de registro user.
 1 - sign in, ajustar remember
-1 -  respuestas del game  label blanco content negro(game_result_user)
+1 - respuestas del game  label blanco content negro(game_result_user)
 2 - searcher (menu lateral derecho)
-2 - Trivias order ( profesor, y mas reciente)
-3 - Probar Diferentes combincaciones de datos de Trivia (controlar Tamaño de item)
-3 - Probar Diferentes combincaciones de datos de Preguntas en eval answer (controlar Tamaño de item)
-3 - Diferentes combinacion datos game ( game_result_user)
 3 - controlar acceso restringidos (edit otro user, etc.)
-3 - placeholder de formulario oscurecer para que sea diferente al texto seleccionado
+3 - placeholder de formulario oscurecer para que sea diferente al texto
+seleccionado
 3 - Ciudad y departamento agregar placeholder (obligatorio y no selecciona por defecto)
 3 - Registrar Usuario  revisar placeholder de Instituto y Curso. (obligatorio y no selecciona por defecto)
-3 - Teacher: first_name y last_name obligatorio.
+3 - Teacher y User: first_name y last_name obligatorio.
+3 - Probar Diferentes combincaciones de datos de Trivia (controlar Tamaño de item)
+3 - Diferentes combinacion datos game ( game_result_user)
+  - Los datos no deforman pero esta complicado dejar todos los recuadros del mismo tamaño y expandir y contrarer
+3 - Probar Diferentes combincaciones de datos de Preguntas en eval answer (controlar Tamaño de item)
 4 - Formato de Mail? (Recuperar contraseña profesor esta en ingles)
-5 - ¿Responsive?
-5 - Mejorar Select

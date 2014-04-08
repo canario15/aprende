@@ -9,6 +9,8 @@ require 'machinist/active_record'
 #   end
 
 User.blueprint do
+  first_name { "First Name {sn}" }
+  last_name { "Last Name {sn}" }
   email { "#{sn}@vairix.com" }
   password { "1234567890" }
   password_confirmation { "1234567890" }
@@ -16,6 +18,9 @@ User.blueprint do
   last_name { "Apellido #{sn}" }
   group { "Grupo #{sn}" }
   school { "Escuela #{sn}" }
+  city { City.make }
+  level { Level.make }
+  institute { Institute.make }
   confirmed_at { Time.now.utc }
 end
 
@@ -126,7 +131,10 @@ Question.blueprint do
 end
 
 Teacher.blueprint do
+  first_name { "#First Name {sn}" }
+  last_name { "#Last Name {sn}" }
   email { "#{sn}@vairix.com" }
+  city { City.make }
   password { "1234567890" }
   password_confirmation { "1234567890" }
   inactive {false}

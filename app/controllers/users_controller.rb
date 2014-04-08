@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_filter :authenticate_user!, except: [:index,:show,:new,:create,:destroy]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
@@ -19,6 +20,14 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    respond_to do |format|
+      if current_user == @user
+        @user = User.find(params[:id])
+        format.html { render action: 'edit' }
+      else
+        format.html {redirect_to home_path, :alert => "Acceso restringido."}
+      end
+    end
   end
 
   # POST /users
@@ -41,10 +50,14 @@ class UsersController < ApplicationController
 
   def update
     respond_to do |format|
-      if @user.update(user_params)
-        format.html {redirect_to home_path, :notice => "Datos de #{@user.name} actualizados."}
+      if current_user == @user
+        if @user.update(user_params)
+          format.html {redirect_to home_path, :notice => "Datos de #{@user.name} actualizados."}
+        else
+          format.html { render action: 'edit' }
+        end
       else
-        format.html { render action: 'edit' }
+        format.html {redirect_to home_path, :alert => "Acceso restringido."}
       end
     end
   end

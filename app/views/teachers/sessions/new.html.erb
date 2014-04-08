@@ -5,22 +5,20 @@
   </div>
   <!-- Teacher Section -->
   <div class="container">
-    <hr />
+    <hr/>
     <!-- Contact form -->
     <h2>Iniciar <span>sesión</span></h2>
     <div class="row">
       <div class="offset2">
         <%= form_for(resource, as: resource_name, html: { class: 'contact-form' } , url: session_path(resource_name) ) do |f| %>
-          <fieldset>
-            <%= f.email_field :email, autofocus: true, class: "span3", placeholder: "Mail" %>
-            <%= f.password_field :password, class: "span3", placeholder: "Contraseña" %>
-            <button type="submit" class="btn btn-large">Entrar</button>
-            <% if devise_mapping.rememberable? -%>
-              <div class="checkbox section-checkbox">
-                <%= f.check_box :remember_me %> <p>No cerrar sesión</p>
-              </div>
-            <% end -%>
-          </fieldset>
+          <%= f.email_field :email, autofocus: true, class: "span3", placeholder: "Mail" %>
+          <%= f.password_field :password, class: "span3", placeholder: "Contraseña" %>
+          <button type="submit" class="btn btn-large">Entrar</button>
+          <% if devise_mapping.rememberable? -%>
+            <div class="checkbox section-checkbox">
+              <%= f.check_box :remember_me %> <p>No cerrar sesión</p>
+            </div>
+          <% end -%>
         <% end %>
       </div>
     </div>

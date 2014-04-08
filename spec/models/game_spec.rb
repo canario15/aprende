@@ -110,7 +110,6 @@ describe Game do
     end
   end
 
-
   describe "Week ago group by trivia" do
     before :each do
       (1..4).each do |index_t|
@@ -236,6 +235,25 @@ describe Game do
           expect(g.avg_answers_was_correct).to eq(50)
         end
       end
+    end
+  end
+
+  describe "Sum score answers" do
+     before :each do
+      teacher = Teacher.make!
+      user = User.make!
+      trivia = Trivia.make!(teacher: teacher)
+      @game = Game.make!(trivia: trivia, score: 100.0)
+      (1..4).each do
+        question = Question.make!(trivia:trivia, dificulty:1)
+        Answer.make!(game:@game, question: question, was_correct: true)
+      end
+      @game.finish
+      user.games << @game
+    end
+
+    it "game finished" do
+      expect(@game.sum_score_answers).to eq(400)
     end
   end
 end

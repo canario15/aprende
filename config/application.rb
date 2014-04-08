@@ -27,5 +27,7 @@ module Aprende
 
     config.autoload_paths += [config.root.join("app/presenters")]
 
+    config.assets.precompile += ['application_responsive.css', 'responsive/application.js']
+
   end
 end
