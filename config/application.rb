@@ -25,6 +25,8 @@ module Aprende
       g.fixture_replacement :machinist
     end
 
+    config.assets.paths << "#{Rails.root}/app/assets/font"
+
     config.autoload_paths += [config.root.join("app/presenters")]
 
     config.assets.precompile += ['application_responsive.css', 'responsive/application.js']
