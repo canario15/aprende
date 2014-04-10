@@ -20,12 +20,12 @@
         </span>
       </output>
       <%= f.file_field :avatar, accept: "image/*", class: "hidden",id: "avatar_field"  %>
-      <div class="empty" >
-      </div>
     </div>
   </div>
   <div class="row-fluid margin">
     <div style="text-align:center">
+      <p><%= link_to "Cambiar contraseña", edit_user_registration_path unless @user.provider %></p>
+      <%= link_to 'Cancelar', home_path,class:"btn btn-large" %>
       <button type="submit" class="btn btn-large">Confirmar</button>
     </div>
   </div>

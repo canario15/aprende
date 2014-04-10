@@ -9,13 +9,10 @@ class GameController < ApplicationController
 
   def create
     set_trivia
+    new_game
     @game = Game.create_game(current_user,@trivia)
     save_game(@game.id)
-    @question = @game.new_question(answereds,@trivia)
-    @percent_score_answers = (@game.score.to_f / @game.sum_score_answers * 100)
-    @count_answereds = answereds.count + 1
-    @total_questions = @trivia.questions.count
-    @game_progress = (answereds.count.to_f / @total_questions * 100)
+    game_statics
     render :eval_answer
   end
 
@@ -29,11 +26,7 @@ class GameController < ApplicationController
       @show_answer = true
     end
     set_trivia
-    @percent_score_answers = (@game.score.to_f / @game.sum_score_answers * 100)
-    @count_answereds = answereds.count + 1
-    @total_questions = @trivia.questions.count
-    @game_progress = (answereds.count.to_f / @total_questions * 100)
-    @question = @game.new_question(answereds,@trivia)
+    game_statics
     if @question.nil?
       @finish = true
       flash.now[:finish] = "Ya ha respondido todas las preguntas!! Su puntaje fue: #{@game.score}"
@@ -90,7 +83,33 @@ private
     session[:game] = game_id
   end
 
+  def total_questions(trivia)
+    if session[:total_questions] == 0
+      session[:total_questions] = trivia.questions.count
+    else
+      session[:total_questions]
+    end
+  end
+
+  def sum_score_answers(game)
+    if session[:sum_score_answers] == 0
+      session[:sum_score_answers] = game.sum_score_answers
+    else
+      session[:sum_score_answers]
+    end
+  end
+
+  def game_statics
+    @percent_score_answers = (@game.score.to_f / sum_score_answers(@game) * 100)
+    @count_answereds = answereds.count + 1
+    @total_questions = total_questions(@trivia)
+    @game_progress = (answereds.count.to_f / @total_questions * 100)
+    @question = @game.new_question(answereds,@trivia)
+  end
+
   def reset_game
+    session[:total_questions] = 0
+    session[:sum_score_answers] = 0
     session[:answereds] = []
     session[:game] = nil
   end
@@ -98,5 +117,6 @@ private
   def set_game
     @game = Game.find(get_game_id) if get_game_id
   end
+  alias_method :new_game, :reset_game
 
 end

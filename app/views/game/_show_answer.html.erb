@@ -21,4 +21,14 @@
       <% end -%>
     </div>
   </div>
+<% elsif @finish -%>
+  <div id="user_answer">
+    <div class="text-center">
+      <div class="hero-unit">
+        <h2> Trivia <span>terminanda</span></h2>
+        <p><%=flash[:finish]%></p>
+        <%= link_to "Seleccionar otra Trivia", home_path, class:"btn btn-large" %>
+      </div>
+    </div>
+  </div>
 <% end -%>

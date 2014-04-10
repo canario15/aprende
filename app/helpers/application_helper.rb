@@ -64,28 +64,28 @@ module ApplicationHelper
     html.html_safe
   end
 
-  def section_id(section)
-    case section
+  def section_id
+    case controller_path
     when "game"
       "services"
     when "trivium","home"
       "folio"
-    when "users"
+    when "users","users/registrations"
       "student"
     else
       "about"
     end
   end
 
-  def section_title(section)
-    case section
+  def section_title
+    case controller_path
     when "game"
       icon = "gamepad"
       title = (content_tag :strong, "Juegos") + (content_tag :p, "Sobre las ".html_safe + (content_tag :span,"trivias"))
     when "trivium","home"
       icon = "book"
       title = (content_tag :strong, "Trivias") + (content_tag :p, "Elegi una para ".html_safe + (content_tag :span,"comenzar"))
-    when "users"
+    when "users","users/registrations"
       icon = "smile"
       title = (content_tag :strong, "Alumnos") + (content_tag :p, "Datos de ".html_safe + (content_tag :span,"Perfil"))
     else

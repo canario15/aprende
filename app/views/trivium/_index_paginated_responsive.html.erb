@@ -16,7 +16,7 @@
       <div class="item-detail item-detail-blackboard">
         <h2> ¿De que trata la trivia <span><%= trivia.title %></span>? </h2>
         <p class="lead"><%= trivia.description %></p>
-        <%= link_to "Jugar", game_new_path(trivia.id), class:"btn btn-blackboard" %>
+        <%= link_to "Jugar", game_create_path(trivia.id),method: :post, class:"btn btn-blackboard" %>
         <em class="date"><%= l trivia.updated_at.to_date, format: :simple %></em>
         <span class="item-close">×</span>
       </div>

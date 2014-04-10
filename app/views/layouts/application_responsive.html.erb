@@ -37,8 +37,8 @@
   </head>
   <body>
     <%= render "layouts/logged_in_menu" %>
-    <div id=<%=section_id(controller_name)%> class="section section-expand">
-        <%= content_for?(:section_title) ? yield(:section_title) : section_title(controller_name) %>
+    <div id=<%=section_id%> class="section section-expand">
+        <%= content_for?(:section_title) ? yield(:section_title) : section_title %>
         <div class="container">
             <%= flash_and_messages %>
             <%= yield %>
