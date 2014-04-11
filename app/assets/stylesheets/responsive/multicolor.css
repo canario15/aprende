@@ -20,6 +20,15 @@
 	background: #0CC;
 }
 
+.section#folio select option:first-child{
+  color: rgba(255,255,255,0.5);
+  background-color: rgba(0,204,204,0.9); /*##0CC*/
+}
+
+.section#folio select option{
+  background-color: rgba(0,204,204,0.8); /*#0CC*/
+}
+
 /* Sections Blog */
 .section#blog, .section-blog i.active, #blog .item .item-detail {
 	background: #669;

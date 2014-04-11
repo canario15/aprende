@@ -257,7 +257,7 @@ describe GameController do
 
       it "return render view" do
         get :index_teacher
-        expect(response.body).to match("Profesor")
+        expect(response.body).to match("trivias")
       end
     end
 

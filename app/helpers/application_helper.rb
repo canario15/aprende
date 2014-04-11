@@ -90,7 +90,7 @@ module ApplicationHelper
       title = (content_tag :strong, "Alumnos") + (content_tag :p, "Datos de ".html_safe + (content_tag :span,"Perfil"))
     else
       icon = "error"
-      title = (content_tag :strong, section)
+      title = (content_tag :strong, controller_path)
     end
 
     content_tag :div, class: "section-title" do

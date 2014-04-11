@@ -30,7 +30,7 @@ class TriviumController < ApplicationController
     else
       @levels = Level.all
       @types = Trivia::TYPES
-      @courses = Level.find(params[:trivia_level]).courses
+      @courses = params[:trivia_level].blank? ? Level.none : Level.find(params[:trivia_level]).courses
       respond_to do |format|
         format.html { render :new }
       end

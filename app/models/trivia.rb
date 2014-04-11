@@ -9,10 +9,7 @@ class Trivia < ActiveRecord::Base
   belongs_to :content, dependent: :destroy
   accepts_nested_attributes_for :content
 
-  validates :title, :presence => true
-  validates :course, :presence => true
-  validates :type, :presence => true
-  validates :teacher, :presence => true
+  validates :title,:course,:type,:teacher, presence: true
 
   scope :with_questions, -> { joins(:questions).order(updated_at: :desc).uniq }
   scope :with_questions_and_limit, -> { with_questions.limit(3) }
