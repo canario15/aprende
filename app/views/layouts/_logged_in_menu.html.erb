@@ -51,6 +51,7 @@
 <% end -%>
 <% if current_teacher -%>
     <%= link_to( content_tag(:span, nil,class: "icon-signout"), destroy_teacher_session_path, method: :delete,class: "section-logout") %>
+    <%= link_to( content_tag(:span, nil,class: "icon-user"), edit_teacher_path(current_teacher.id), class: "section-profile") %>
 <% end -%>
 <% if current_user -%>
     <%= link_to( content_tag(:span, nil,class: "icon-signout"), destroy_user_session_path, method: :delete,class: "section-logout") %>

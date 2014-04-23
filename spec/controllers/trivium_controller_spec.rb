@@ -423,7 +423,7 @@ describe TriviumController do
     it "with description nil it redirects to the new question action again " do
       params = {:id => @trivia.id, :finish => "false", :question => {:answer => "De que color es el logo de vairix", :dificulty => "1", :description => nil, :incorrect_answer_one => "Negro", :incorrect_answer_two => "Amarillo", :incorrect_answer_three => "Azul", :incorrect_answer_four => "Rojo" }}
       post 'create_question', params
-      expect(response.body).to match /Preguntas y Respuestas/
+      expect(response.body).to match /Preguntas y .+Respuestas/
     end
 
     context "does not create a question" do
@@ -442,13 +442,13 @@ describe TriviumController do
       it "without a question answer" do
         question.answer = nil
         post :create_question ,{ id:@trivia.id, finish: :true , question: question.attributes }
-        expect(response.body).to match /Preguntas y Respuestas/
+        expect(response.body).to match /Preguntas y .+Respuestas/
       end
 
       it "on trivia type multiple chooise and without a question  incorrect answer one" do
         question.incorrect_answer_one = nil
         post :create_question ,{ id:@trivia.id, finish: :true , question: question.attributes }
-        expect(response.body).to match /Preguntas y Respuestas/
+        expect(response.body).to match /Preguntas y .+Respuestas/
       end
 
     end

@@ -34,10 +34,40 @@
 	background: #669;
 }
 
+.section#blog select option:first-child{
+  color: rgba(255,255,255,0.5);
+  background-color: rgba(102,102,153,0.9); /*#669*/
+}
+
+.section#blog select option{
+  background-color: rgba(102,102,153,0.8); /*#669*/
+}
+
+.section#blog .chosen-container .chosen-results li {
+  color: white !important;
+  background-color: rgba(102,102,153,0.8) !important;
+}
+
+.section#blog .chosen-container .chosen-results li.highlighted {
+  color: rgba(255,255,255,0.5) !important;
+  background-color: rgba(102,102,153,0.9) !important;
+  background-image: none !important;
+}
+
 /* Sections Contact */
 .section#contact, .section-contact i.active {
 	background: #F33;
 }
+
+.section#contact select option:first-child{
+  color: rgba(255,255,255,0.5);
+  background-color: rgba(255,51,51,0.9); /*#F33*/
+}
+
+.section#contact select option{
+  background-color: rgba(255,51,51,0.8); /*#F33*/
+}
+
 
 /* Sections Teacher */
 .section#teacher, .section-teacher i.active {
@@ -60,7 +90,7 @@
 
 .section#student select option:first-child{
   color: rgba(255,255,255,0.5);
-  background-color: rgba(255,51,51,0.9); /*#669*/
+  background-color: rgba(255,51,51,0.9); /*#F33*/
 }
 
 .section#student select option{

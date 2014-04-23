@@ -1,5 +1,21 @@
 TO DO (proridad 5 queda par mas adelante)
 
+1 - property title del span (tooltip) menu izq
+1 - show content game user (arriba de boton Jugar o y e nel juego)
+1 - centrar form al crear una pregunta de tipo free
+1 - bug al ir a home de teacher dsd instituto pop up de registro que no debe ir
+1 - games link a curso??  (volar)
+1 - game  link trivia, editar trivia? (volar)
+
+1 - teacher cambiar contraseña
+
+1.5 - user ver detalles de game agrega rcontenido
+2 - teacher ver detalles de game agrega rcontenido
+2 - Placeholder muy oscuro no se lee
+2 - Teacher editar preguntas de trivia, place holder por default. Arreglar
+
+
+
 
 4 - Games (Back, next y refresh) importante que quede concistente, sino el alumno puede hacer "tramapa"
 - Si en la ultima pregunta voy hasta la primera y refresh puedo hacer la trivia de nuevo. (status)
@@ -13,13 +29,7 @@ TO DO (proridad 5 queda par mas adelante)
 5 - Agregar fecha a la pizarra de triva?
 5 - control accesos restringido games (usuario puede jugar trivias de otro, trivias que no estan inicadas, etc.)
 5 - Trivia new ( Permite qeu la respuesta + las 4 incorrectassean iguales MO)
-5 - Placeholder muy oscuro no se lee
+5 - input file al seleccion pdf en el trivia.
+5 - input file al seleccionar imagen en preguntas.
 
-PENDING
-1 - game max score add in session.
-1 - Trivia btn game ir a el game derecho ( eliminar paso intermedio.)
-1 - quitar padding y margin a Title y hr (ver content)
-1 - game - quitar Pregunta  y 1/3 imagen y 2/3 respeusta, ver boton.
-1 - Al refrescar en el paso de trivia realizada, vuelve a cargar el eval answer. (inconcistencia)
-1 - Agregar boton cambiar contraseña en perfil de usuario.
-1 - Limitar title y quitar efecto over para Diferentes combincaciones de datos de game (games_user)
+- listados en profesor cambiar mouse over efecto

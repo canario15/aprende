@@ -21,5 +21,66 @@
  *= require responsive/masonry
  *= require responsive/fancybox
  *= require responsive/multicolor
+ *= require chosen
  *= require_self
  */
+
+.alert-link {
+  color: rgba(0, 0, 0, 0.7);
+  font: 300 14px/20px Open Sans, Arial, Helvetica, sans-serif;
+}
+
+.alert-link:hover {
+  color: rgb(0, 0, 0);
+  font: 300 20px ;
+}
+
+.chosen-container {
+  width: 310px !important;
+  box-shadow: none !important;
+  font: normal 14px/20px Open Sans, Arial, Helvetica, sans-serif !important;
+}
+
+.chosen-choices {
+  background: rgba(0,0,0,0.1) !important;
+  border: none !important;
+}
+
+.chosen-container-active .chosen-choices {
+  box-shadow: none !important;
+}
+.chosen-container-active .chosen-choices li.search-field input[type="text"]{
+  padding: 15px !important;
+  box-shadow: none !important;
+  font: normal 14px/20px Open Sans, Arial, Helvetica, sans-serif !important;
+  color: #FFF !important;
+  float: left !important;
+}
+.chosen-container input{
+  padding: 15px !important;
+  box-shadow: none !important;
+  font: normal 14px/20px Open Sans, Arial, Helvetica, sans-serif !important;
+  float: left !important;
+}
+
+.search-choice{
+  background: rgba(0, 0, 0, 0.2) !important;
+  border: none !important;
+  box-shadow: none !important;
+  font: normal 14px/20px Open Sans, Arial, Helvetica, sans-serif !important;
+  color: rgb(255, 255, 255) !important;
+  padding: 11px !important;
+}
+
+.search-choice-close:before {
+   content: " \f00d";
+}
+
+.search-choice-close {
+  top: 2px !important;
+  right: 0px !important;
+  display: inline !important;
+  background: none !important;
+  font: normal 10px FontAwesome !important;
+  color: rgb(255, 255, 255) !important;
+}

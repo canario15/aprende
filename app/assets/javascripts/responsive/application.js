@@ -14,8 +14,8 @@
 //= require jquery_ujs
 //= require ckeditor-jquery
 //= require twitter/bootstrap
-//= require chosen-jquery
 //= require_tree .
+//= require chosen-jquery
 //= require_self
 
 $(document).ready(function(){

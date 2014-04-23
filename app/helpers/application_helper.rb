@@ -44,8 +44,10 @@ module ApplicationHelper
     end
 
     if flash[:notice].present?
-      messages += content_tag(:span,content_tag(:label, flash[:notice]), class: "icon-ok row")
-      (messages += link_to flash[:link][:title] ,flash[:link][:url],class: 'alert-link') if flash[:link]
+      notice = ( flash[:notice] )
+      notice += (link_to flash[:link][:title] ,flash[:link][:url],class: 'alert-link') if flash[:link]
+
+      messages += content_tag(:span,content_tag(:label, notice.html_safe), class: "icon-ok row")
       style = "success"
     end
 
@@ -72,6 +74,10 @@ module ApplicationHelper
       "folio"
     when "users","users/registrations"
       "student"
+    when "teachers","teachers/registrations"
+      "blog"
+    when "institutes"
+      "contact"
     else
       "about"
     end
@@ -84,10 +90,20 @@ module ApplicationHelper
       title = (content_tag :strong, "Juegos") + (content_tag :p, "Sobre las ".html_safe + (content_tag :span,"trivias"))
     when "trivium","home"
       icon = "book"
-      title = (content_tag :strong, "Trivias") + (content_tag :p, "Elegi una para ".html_safe + (content_tag :span,"comenzar"))
+      if teacher_signed_in?
+        title = (content_tag :strong, "Mis Trivias") + (content_tag :p, "Gestiona las ".html_safe + (content_tag :span,"trivias"))
+      else
+        title = (content_tag :strong, "Trivias") + (content_tag :p, "Elegi una para ".html_safe + (content_tag :span,"comenzar"))
+      end
+    when "institutes"
+      icon = "building"
+      title = (content_tag :strong, "Institutos") + (content_tag :p, "Para ".html_safe + (content_tag :span,"Enseñar"))
     when "users","users/registrations"
       icon = "smile"
       title = (content_tag :strong, "Alumnos") + (content_tag :p, "Datos de ".html_safe + (content_tag :span,"Perfil"))
+    when "teachers","teachers/registrations"
+      icon = "briefcase"
+      title = (content_tag :strong, "Profesores") + (content_tag :p, "Datos de ".html_safe + (content_tag :span,"Perfil"))
     else
       icon = "error"
       title = (content_tag :strong, controller_path)
