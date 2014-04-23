@@ -1,2 +1,2 @@
-<%= link_to( content_tag(:span, nil, class: "icon-home"), home_path,  class: "section-home #{'active' if(current_page? home_path)}") %>
-<%= link_to( content_tag(:span, nil, class: "icon-gamepad"), games_user_path, class: "section-home #{'active' if(current_page? games_user_path)}") %>
+<%= menu_item(home_path, "home", "Inicio") %>
+<%= menu_item(games_user_path, "gamepad", "Juegos") %>

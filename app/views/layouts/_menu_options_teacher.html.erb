@@ -1,4 +1,4 @@
-<%= link_to( content_tag(:span, nil, class: "icon-home"), home_path, class: "section-home #{'active' if(current_page? games_teacher_path)}") %>
-<%= link_to( content_tag(:span, nil, class: "icon-book"), trivium_path, class: "section-home #{'active' if(current_page? trivium_path)}") %>
-<%= link_to( content_tag(:span, nil, class: "icon-building"), institutes_path, class: "section-home #{'active' if(current_page? institutes_path)}") %>
-<%= link_to( content_tag(:span, nil, class: "icon-gamepad"), games_teacher_path, class: "section-home #{'active' if(current_page? games_teacher_path)}") %>
+<%= menu_item(games_teacher_path, "home", "Inicio") %>
+<%= menu_item(trivium_path, "book","Mis Trivias") %>
+<%= menu_item(institutes_path, "building","Institutos") %>
+<%= menu_item(games_teacher_path, "gamepad","Juegos") %>

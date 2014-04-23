@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def menu_item (page,icon,title)
+    active = (current_page? page) ? 'active' : ""
+    link_to( content_tag(:span, nil, class: "icon-"+icon, title: title), page, class: "section-home "+  active)
+  end
 
   def li_ul_current_page? (title,page,li_ul_list = nil,li_ul_list_two = nil)
     if li_ul_list or li_ul_list_two

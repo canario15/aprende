@@ -1,25 +1,18 @@
 TO DO (proridad 5 queda par mas adelante)
 
-1 - property title del span (tooltip) menu izq
-1 - show content game user (arriba de boton Jugar o y e nel juego)
-1 - centrar form al crear una pregunta de tipo free
-1 - bug al ir a home de teacher dsd instituto pop up de registro que no debe ir
-1 - games link a curso??  (volar)
-1 - game  link trivia, editar trivia? (volar)
 
-1 - teacher cambiar contraseña
-
+1.5 - show content game user (arriba de boton Jugar o y e nel juego)
 1.5 - user ver detalles de game agrega rcontenido
 2 - teacher ver detalles de game agrega rcontenido
+
+
 2 - Placeholder muy oscuro no se lee
 2 - Teacher editar preguntas de trivia, place holder por default. Arreglar
+2 - User Games, si en la ultima pregunta voy hasta la primera y refresh puedo hacer la trivia de nuevo. (status)
+    Si estado es pending, popup desea continuar o finalizar y comezar una nueva?
 
+----------------------------------------------------------------
 
-
-
-4 - Games (Back, next y refresh) importante que quede concistente, sino el alumno puede hacer "tramapa"
-- Si en la ultima pregunta voy hasta la primera y refresh puedo hacer la trivia de nuevo. (status)
-- posible sol, retomar un pending o crear un nuevo.
 
 
 5 - ¿Responsive?
@@ -31,5 +24,6 @@ TO DO (proridad 5 queda par mas adelante)
 5 - Trivia new ( Permite qeu la respuesta + las 4 incorrectassean iguales MO)
 5 - input file al seleccion pdf en el trivia.
 5 - input file al seleccionar imagen en preguntas.
+7 - revisar tabulaciones
+7 - listados en profesor cambiar mouse over efecto
 
-- listados en profesor cambiar mouse over efecto

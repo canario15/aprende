@@ -15,8 +15,8 @@
     <tbody>
       <% @games_results.each do |game| -%>
         <tr>
-          <td><%= link_to game.trivia.title, edit_trivia_path(game.trivia)%></td>
-          <td><%= link_to game.trivia.course, edit_course_path(game.trivia.course) %></td>
+          <td><%= game.trivia.title %></td>
+          <td><%= game.trivia.course %></td>
           <td><%= game.try(&:user).try(&:first_name) %></td>
           <td><%= game.trivia.questions.count %></td>
           <td><%= game.correct_answers.count %></td>
