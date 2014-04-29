@@ -1,8 +1,13 @@
+<% content_for :modals do %>
+  <% trivium.each do |trivia| -%>
+    <%= render 'trivium/content', content: trivia.content %>
+  <% end -%>
+<% end -%>
+
 <!-- Trivia Masonry -->
 <div class="masonry row container">
   <% trivium.each do |trivia| -%>
-
-  <!-- Trivia Single item -->
+    <!-- Trivia Single item -->
     <div class="item <%= trivia.course.title.parameterize %>-<%= trivia.course.id %> ">
       <div class="blackboard">
         <h1><%= trivia.title %></h1>
@@ -18,6 +23,7 @@
         <p class="lead"><%= trivia.description %></p>
         <%= link_to "Jugar", game_create_path(trivia.id),method: :post, class:"btn btn-blackboard" %>
         <em class="date"><%= l trivia.updated_at.to_date, format: :simple %></em>
+        <%= render 'trivium/button_content', content: trivia.content %>
         <span class="item-close">×</span>
       </div>
     </div>

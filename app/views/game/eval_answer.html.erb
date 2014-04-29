@@ -23,6 +23,8 @@
   </div>
 <%end%>
 <hr/>
+<%= render 'trivium/content', content: @trivia.content %>
+<div class="offset10 span2" ><div class="pull-left" ><%= render 'trivium/button_content', content: @trivia.content %></div></div>
 <%= render "show_answer" %>
 <div id="user_question" class="game_container <%=show_question(@show_answer)%>">
   <%= form_for :game, url: game_eval_answer_path(@trivia.id), :html => {:class => "contact-form"} do |f| %>

@@ -42,14 +42,29 @@ $(document).ready(function(){
     $("div[id*='div_containable_"+selected+"']").addClass("show").removeClass("hide");
   });
 
-  // $('.ckeditor_read_only').ckeditor({
-  //   ToolbarStartExpanded: false,
-  //   toolbar: [],
-  //   readOnly: true,
-  //   removePlugins: 'elementspath, Anchor',
-  //   resize_enabled: false,
-  //   width: "100%",
-  //   height:"400px"
-  //  });
-});
+  /* --- CKEDITOR init --- */
+  var config = {
+  language: "es",
+  ToolbarStartExpanded: false,
+  toolbarGroups: [
+    { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
+    { name: 'editing', groups: [ 'find', 'selection', 'spellchecker' ] },
+    { name: 'links' },
+    { name: 'insert' },
+    { name: 'tools' },
+    { name: 'document', groups: [ 'document', 'doctools' ] },
+    { name: 'others' },
+    { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+    { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align' ] },
+    { name: 'styles' },
+    { name: 'colors' }],
+    readOnly: true,
+    removePlugins: 'elementspath, Anchor',
+    resize_enabled: false
+  };
 
+  $("textarea[id*='text-area-modal']").each(function(){
+    CKEDITOR.replace($(this).attr("id"), config, '' );
+  });
+
+});

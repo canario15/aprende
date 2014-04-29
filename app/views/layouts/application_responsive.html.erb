@@ -36,6 +36,7 @@
     <%= javascript_include_tag "responsive/application" %>
   </head>
   <body>
+    <%= content_for?(:modals) ? yield(:modals) : nil %>
     <%= render "layouts/logged_in_menu" %>
     <div id=<%=section_id%> class="section section-expand">
         <%= content_for?(:section_title) ? yield(:section_title) : section_title %>

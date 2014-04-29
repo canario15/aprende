@@ -1,4 +1,6 @@
 <div class="page-header">
+  <%= render 'trivium/content', content: @game.trivia.content %>
+  <div class="offset10 span2 text-center"><%= render 'trivium/button_content', content: @game.trivia.content %></div>
   <%= link_to "Abrir en PDF", game_results_teacher_path(@game, format: :pdf), target: "_blank", class: "btn btn-primary pull-right" %>
   <h1 id="tables">Resultado de la trivia <%= @game.trivia.title %></h1>
 </div>
