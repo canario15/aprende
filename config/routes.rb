@@ -13,7 +13,7 @@ Aprende::Application.routes.draw do
   get "games_user" => "game#index_user", as: :games_user
   get "game/:id/game_results_teacher" => "game#game_results_teacher", as: :game_results_teacher
   get "game/:id/game_results_user" => "game#game_results_user", as: :game_results_user
-
+  patch "trivium/:trivia_id/games/:id" => "game#update", as: :update_trivium_games
 
   resources :questions
   resources :courses

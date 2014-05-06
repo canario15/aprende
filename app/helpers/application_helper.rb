@@ -119,4 +119,26 @@ module ApplicationHelper
     end
   end
 
+  def modal_content(content)
+    if content
+      content_tag :div, class: "modalDialog", id: "modal"+content.id.to_s do
+        content_tag :div do
+          html = link_to "x","#close", class: "modal-close"
+          case content.containable_type
+          when "Pdf"
+            html+= content_tag :object, nil, type: "application/pdf", width: "100%", height: "400px", data: content.containable.document
+          when "Written"
+            html+= text_area_tag "text-area-modal"+content.id.to_s,content.containable.document, disabled: :true
+          end
+          html.html_safe
+        end
+      end
+    end
+  end
+
+  def button_modal_content(content)
+    if content
+      content_tag :p, (link_to "Ver Contenido","#modal"+content.id.to_s, class: "button-modal")
+    end
+  end
 end

@@ -1,8 +1,9 @@
 <% content_for :modals do %>
   <% trivium.each do |trivia| -%>
-    <%= render 'trivium/content', content: trivia.content %>
+    <%= modal_content(trivia.content) %>
   <% end -%>
 <% end -%>
+
 
 <!-- Trivia Masonry -->
 <div class="masonry row container">
@@ -13,7 +14,8 @@
         <h1><%= trivia.title %></h1>
         <hr/>
         <h5><%= trivia.course %></h5>
-        <h4><%=trivia.try(&:teacher).try(&:name) %></h4>
+        <h4><%= trivia.try(&:teacher).try(&:name) %></h4>
+        <h6><%= l trivia.updated_at.to_date, format: :simple %></h6>
       </div>
       <span class="view">+</span>
 
@@ -21,9 +23,9 @@
       <div class="item-detail item-detail-blackboard">
         <h2> ¿De que trata la trivia <span><%= trivia.title %></span>? </h2>
         <p class="lead"><%= trivia.description %></p>
-        <%= link_to "Jugar", game_create_path(trivia.id),method: :post, class:"btn btn-blackboard" %>
+        <%= create_or_continue_game trivia %>
         <em class="date"><%= l trivia.updated_at.to_date, format: :simple %></em>
-        <%= render 'trivium/button_content', content: trivia.content %>
+        <%= button_modal_content(trivia.content) %>
         <span class="item-close">×</span>
       </div>
     </div>

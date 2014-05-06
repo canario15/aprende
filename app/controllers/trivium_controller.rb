@@ -30,7 +30,7 @@ class TriviumController < ApplicationController
     else
       @levels = Level.all
       @types = Trivia::TYPES
-      @courses = params[:trivia_level].blank? ? Level.none : Level.find(params[:trivia_level]).courses
+      @courses = params[:trivia_level].blank? ? Course.none : Level.find(params[:trivia_level]).courses
       respond_to do |format|
         format.html { render :new }
       end
@@ -54,7 +54,7 @@ class TriviumController < ApplicationController
     else
       @levels = Level.all
       @types = Trivia::TYPES
-      @courses = Level.find(params[:trivia_level]).courses
+      @courses = params[:trivia_level].blank? ? Course.none : Level.find(params[:trivia_level]).courses
       flash.now[:alert] = "No se puede editar una trivia si tiene juegos asociados" unless trivia_with_no_games
       respond_to do |format|
         format.html { render :edit  }

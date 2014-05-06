@@ -9,6 +9,7 @@ $(document).ready(function() {
         if (data){
         	$('#trivia_course_id').find('option').remove();
         	var courses = data.courses;
+          $('#trivia_course_id').append('<option value>Cursos</option>');
         	for (var i= 0; i < courses.length; i++) {
         		$('#trivia_course_id').append('<option value="' + courses[i].id + '">'+ courses[i].title +'</option>');
         	};

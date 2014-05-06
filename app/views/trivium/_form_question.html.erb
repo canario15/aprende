@@ -4,8 +4,14 @@
     <%= f.text_area :description, :autofocus => true, placeholder: "Pregunta" %>
     <%= f.select :dificulty, options_for_select(Question::DIFICULTY,:selected => "#{@question.dificulty}"),{prompt: "Dificultad"},class: "placeholder" %>
     <%= f.text_field :answer, placeholder: "Respuesta Correcta" %>
-    <%= image_tag @question.image.url(:small) if @question.id %>
     <%= f.file_field :image %>
+    <% if @question.id -%>
+      <output>
+        <span>
+          <%= image_tag @question.image.url(:small) %>
+        </span>
+      </output>
+    <% end -%>
   </div>
   <% if(type_multiple_choice?(@trivia.type)) -%>
     <div class="span4">

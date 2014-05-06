@@ -10,8 +10,24 @@ class GameController < ApplicationController
   def create
     set_trivia
     new_game
+    game_started = @trivia.game_started_by_user(current_user)
+    if game_started
+      game_started.abort
+    end
     @game = Game.create_game(current_user,@trivia)
     save_game(@game.id)
+    game_statics
+    render :eval_answer
+  end
+
+  def update
+    set_trivia
+    @game = Game.find(params[:id])
+    reset_game
+    save_game(@game.id)
+    @game.answers.each do |answer|
+      save_answered_question(answer.question.id)
+    end
     game_statics
     render :eval_answer
   end

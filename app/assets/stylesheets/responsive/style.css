@@ -921,10 +921,6 @@ select:focus:invalid {
 	float: left;
 }
 
-.contact-form select.placeholder{
-	color: rgb(150,150,150);
-}
-
 .contact-form output{
 	min-height: 220px;
 	height: 220px;
@@ -994,19 +990,42 @@ select:focus:invalid {
 	-ms-appearance: none;
 }
 
+.contact-form select.placeholder{
+	color: rgba(250,250,250,0.3);
+ 	font-weight: bold;
+ 	font-style: italic;
+}
+
 .contact-form input::-ms-input-placeholder,
 .contact-form select::-ms-input-placeholder,
-.contact-form textarea::-ms-input-placeholder,
+.contact-form textarea::-ms-input-placeholder{
+	color: rgba(250,250,250,0.3);
+ 	font-weight: bold;
+ 	font-style: italic;
+}
+
 .contact-form input::-moz-input-placeholder,
 .contact-form select::-moz-input-placeholder,
-.contact-form textarea::-moz-input-placeholder,
-.contact-form input::-webkit-input-placeholder,
-.contact-form select::-webkit-input-placeholder,
-.contact-form textarea::-webkit-input-placeholder,
+.contact-form textarea::-moz-input-placeholder{
+	color: rgba(250,250,250,0.3);
+ 	font-weight: bold;
+ 	font-style: italic;
+}
+
 .contact-form input::-o-input-placeholder,
 .contact-form select::-o-input-placeholder,
 .contact-form textarea::-o-input-placeholder {
- 	color:    #000;
+ 	color: rgba(250,250,250,0.3);
+ 	font-weight: bold;
+ 	font-style: italic;
+}
+
+.contact-form select::-webkit-input-placeholder,
+.contact-form textarea::-webkit-input-placeholder,
+.contact-form input::-webkit-input-placeholder {
+ 	color: rgba(250,250,250,0.3);
+ 	font-weight: bold;
+ 	font-style: italic;
 }
 
 .contact-form button, .contact-form button:hover, .contact-form button:focus {

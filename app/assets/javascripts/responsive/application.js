@@ -31,6 +31,12 @@ $(document).ready(function(){
       cities.addClass('placeholder');
       cities.children('option:not(:first)').remove();
     }
+
+    if($(this).attr("id")=="trivia_level"){
+      var courses = $("select[id=trivia_course_id]");
+      courses.addClass('placeholder');
+      courses.children('option:not(:first)').remove();
+    }
   });
 
   $(".contents_selection").change(function() {

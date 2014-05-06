@@ -1,32 +1,40 @@
 TO DO (proridad 5 queda par mas adelante)
 
-1 - Agregar fecha a la pizarra de triva?
-1 - Pasar trivia/content trivia/button_content a helpers
-2 - Placeholder muy oscuro no se lee
-2 - Teacher editar preguntas de trivia, place holder por default. Arreglar
-2 - User Games, si en la ultima pregunta voy hasta la primera y refresh puedo hacer la trivia de nuevo. (status)
-    Si estado es pending, popup desea continuar o finalizar y comezar una nueva?
-
 Ver parseador, quitar caracteres especiales (quitar espacios)
-
-
-
+1 - Agregar Ver contenido fin de juego
+1 - Trivia new ( Permite qeu la respuesta + las 4 incorrectassean iguales MO)
+1 - control accesos restringido games
+(usuario puede jugar trivias de otro, trivias que no estan inicadas, etc.)
+2 - input file al seleccionar imagen en preguntas.
+2 - listados en profesor cambiar mouse over efecto
+3 - revisar tabulaciones (facil ok, dificl no)
 
 ----------------------------------------------------------------
+
+5 - teacher, en grilla otros intentos -> grilla con alumos filtrado
 
 
 
 5 - ¿Responsive?
 5 - Mejorar Select
-5 - game ver si vale la pena poner un max score al guardar la trivia.
-5-  Probar formularios con un margen - (queda mejor??)
-5 - control accesos restringido games (usuario puede jugar trivias de otro, trivias que no estan inicadas, etc.)
-5 - Trivia new ( Permite qeu la respuesta + las 4 incorrectassean iguales MO)
+
+5 - game ver si vale la pena poner un max score al guardar la trivia. (Performac)
+
+- probar en browser y reoluciones!!
+
+
+
+
+
+
+
 5 - input file al seleccion pdf en el trivia.
-5 - input file al seleccionar imagen en preguntas.
-7 - revisar tabulaciones
-7 - listados en profesor cambiar mouse over efecto
- - Cargar contenido en el home de las trivias con ajax
+ 8 - Integran freeling y ntkl
+
+
+
+
+ - Cargar contenido en el home de las trivias con ajax (modal cuando se invoca)
  - Probar logica search.js en ready del div
 
-*Ver integracion con freeling
+

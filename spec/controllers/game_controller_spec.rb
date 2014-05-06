@@ -239,6 +239,32 @@ describe GameController do
     end
   end
 
+  describe "update Game" do
+    render_views
+    before :each do
+      @user = User.make!
+      sign_in @user
+      @teacher = Teacher.make!
+      @trivia = Trivia.make!(teacher: @teacher)
+      question_1 = Question.make!(:one,trivia: @trivia)
+      question_2 = Question.make!(:two,trivia: @trivia)
+      @game = Game.make!(trivia: @trivia)
+    end
+
+    it "patch update render" do
+      params = {:trivia_id => @trivia.id, id: @game.id}
+      patch :update, params
+      expect(response.body).to match /Puntaje/
+    end
+
+    it "patch update success" do
+      params = {:trivia_id => @trivia.id, id: @game.id}
+      patch :update, params
+      expect(response).to be_success
+    end
+
+  end
+
   describe "sign in confrim" do
     before :each do
       @teacher = Teacher.make!

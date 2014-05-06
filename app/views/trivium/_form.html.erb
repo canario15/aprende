@@ -6,13 +6,13 @@
       <%= f.text_area :description, placeholder: 'Descripción' %>
     </div>
     <div class="span4">
-      <%= f.collection_select(:type, @types, :first, :last, {include_blank: "Tipo"},{:class=> "placeholder"}) %>
+      <%= f.collection_select(:type, @types, :first, :last, {include_blank: "Tipo"},(f.object.type) ? {}:{ :class=> "placeholder"}) %>
       <% if @trivia.level -%>
-        <%= select_tag "trivia_level", options_from_collection_for_select(@levels, "id", "title", @trivia.level.id), include_blank: "Año" , :class=> "placeholder"  %>
+        <%= select_tag "trivia_level", options_from_collection_for_select(@levels, "id", "title", @trivia.level.id), prompt: "Año"  %>
       <% else -%>
         <%= select_tag "trivia_level", options_from_collection_for_select(@levels, "id", "title"),prompt: "Año" , :class=> "placeholder" %>
       <% end -%>
-      <%= f.collection_select(:course_id, @courses, :id, :title, {include_blank: "Cursos" }, {:class=> "placeholder"}) %>
+      <%= f.collection_select(:course_id, @courses, :id, :title, {include_blank: "Cursos" }, (f.object.course) ? {}:{ :class=> "placeholder"}) %>
    </div>
   </div>
   <%= f.fields_for_contents %>

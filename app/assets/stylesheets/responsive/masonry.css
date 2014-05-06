@@ -85,6 +85,11 @@
 	word-wrap:break-word;
 }
 
+.masonry .item .blackboard h6.date{
+	font-family: "Tiza";
+	padding: 15%;
+	word-wrap:break-word;
+}
 
 
 /* Desktop large layout */

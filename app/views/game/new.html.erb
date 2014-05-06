@@ -9,10 +9,11 @@
   sobre <span><%= @trivia.description %></span>
 </p>
 <hr/>
+<%=  content_for :modals, modal_content(@trivia.content) %>
+<div class="offset10 span2" ><div class="pull-left" ><%= button_modal_content(@trivia.content) %></div></div>
 <div class="text-center">
   <%= form_for :game, url: game_create_path(@trivia.id), :html => { class: 'contact-form'} do |f| %>
     <p>
-      <%= render 'trivium/content', content: @trivia.content %>
       <button type="submit" class="btn btn-large">Iniciar Juego</button>
     </p>
   <% end -%>

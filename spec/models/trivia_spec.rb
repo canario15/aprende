@@ -143,6 +143,25 @@ describe Trivia do
     end
   end
 
+  describe 'game started by user' do
+      before :each do
+        @user = User.make!
+        @trivia = Trivia.make!
+        @game = Game.make!(status: Game::STATUS[:created], user: @user)
+        @trivia.games << @game
+      end
+
+      it 'not exist game started' do
+        expect(@trivia.game_started_by_user(@user)).to eq(nil)
+      end
+
+      it 'exist game started' do
+        @game.update(status: Game::STATUS[:started])
+        expect(@trivia.game_started_by_user(@user)).to eq(@game)
+      end
+
+  end
+
   describe 'contents init' do
     it 'empty with all types contents' do
       expect(Trivia.make!.contents_init.count).to eq(2)

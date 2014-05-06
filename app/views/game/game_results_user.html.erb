@@ -1,6 +1,6 @@
 <hr/>
-<%= render 'trivium/content', content: @presenter.game.trivia.content %>
-<div class="offset10 span2 text-center"><%= render 'trivium/button_content', content: @presenter.game.trivia.content %></div>
+<%=  content_for :modals, modal_content(@presenter.trivia_game.content) %>
+<div class="offset10 span2 text-center"><%= button_modal_content(@presenter.trivia_game.content) %></div>
 <%= link_to "Abrir en PDF", game_results_user_path(@presenter.game, format: :pdf), target: "_blank", class: "btn btn-large pull-right" %>
 <h2 class="main-title">
   <span>Resultados</span>
