@@ -31,3 +31,9 @@ end
 
 Admin.delete_all
 Admin.create!(email: "admin@vairix.com", password: "123456789")
+
+City.delete_all
+City.create!(name: "Montevideo", state_id: 1)
+City.create!(name: "Pan de Azucar", state_id: 3)
+City.create!(name: "Maldonado", state_id: 3)
+

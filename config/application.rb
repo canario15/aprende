@@ -9,7 +9,8 @@ Bundler.require(:default, Rails.env)
 module Aprende
   class Application < Rails::Application
     require 'constants'
-    config.assets.paths << Rails.root.join('app', 'assets', 'font')
+    config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
+  
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -25,11 +26,14 @@ module Aprende
       g.fixture_replacement :machinist
     end
 
-    config.assets.paths << "#{Rails.root}/app/assets/font"
+    #config.assets.paths << "#{Rails.root}/app/assets/fonts"
 
     config.autoload_paths += [config.root.join("app/presenters")]
 
     config.assets.precompile += ['application_responsive.css', 'responsive/application.js']
+
+	config.assets.digest_exclusions = ['*.svg']
+
 
   end
 end

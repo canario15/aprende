@@ -3,16 +3,19 @@ source 'https://rubygems.org'
 ruby '2.0.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails', '4.1.0'
 
 gem 'devise'
 gem 'omniauth-facebook'
 
 gem "therubyracer"
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
+gem 'sprockets', '2.11.0'
+gem 'sprockets-rails', '2.1.3'
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 gem "paperclip", "~> 3.0"
 gem "ransack"
+gem "non-stupid-digest-assets"
 
 # PDF
 gem 'prawn'
@@ -28,28 +31,28 @@ group :test do
   gem 'database_cleaner'
   gem 'machinist', '>= 2.0.0.beta2'
   gem 'guard-rspec'
-  gem 'capybara', git: 'git://github.com/jnicklas/capybara.git'
+  #gem 'capybara', git: 'git://github.com/jnicklas/capybara.git'
   gem 'capybara-webkit', git: 'git://github.com/thoughtbot/capybara-webkit.git'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers'
 end
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
+gem 'sass-rails', '4.0.3'
 gem 'less'
 
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier'
 
 # Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-gem 'chosen-rails'
+gem 'chosen-rails', "1.1.0"
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
