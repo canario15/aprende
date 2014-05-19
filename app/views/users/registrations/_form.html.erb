@@ -13,7 +13,7 @@
     <div class="span4">
       <output id="avatar_preview" >
         <span>
-          <img class="default" src="/assets/default_user.png" >
+          <%= image_tag 'default_user.png', class: "default" %>
         </span>
       </output>
       <%= f.file_field :avatar, accept: "image/*", class: "hidden",id: "avatar_field"  %>
