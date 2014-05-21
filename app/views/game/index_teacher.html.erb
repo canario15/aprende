@@ -29,4 +29,7 @@
   </table>
 <% else -%>
   <p>No existen trivias realizadas</p>
+  <p>
+    <%= (link_to 'Nueva Trivia', new_trivia_path) if current_teacher %>
+  </p>
 <% end -%>

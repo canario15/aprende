@@ -1,1 +1,1 @@
-NonStupidDigestAssets.whitelist = [/fontawesome/]
+NonStupidDigestAssets.whitelist = [/fontawesome/,/tiza/, "blackboard.jpg"]

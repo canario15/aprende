@@ -991,7 +991,7 @@ select:focus:invalid {
 }
 
 .contact-form select.placeholder{
-	color: rgba(250,250,250,0.3);
+	color: rgba(250,250,250,0.6);
  	font-weight: bold;
  	font-style: italic;
 }
@@ -999,7 +999,7 @@ select:focus:invalid {
 .contact-form input::-ms-input-placeholder,
 .contact-form select::-ms-input-placeholder,
 .contact-form textarea::-ms-input-placeholder{
-	color: rgba(250,250,250,0.3);
+	color: rgba(250,250,250,0.6);
  	font-weight: bold;
  	font-style: italic;
 }
@@ -1007,7 +1007,7 @@ select:focus:invalid {
 .contact-form input::-moz-input-placeholder,
 .contact-form select::-moz-input-placeholder,
 .contact-form textarea::-moz-input-placeholder{
-	color: rgba(250,250,250,0.3);
+	color: rgba(250,250,250,0.6);
  	font-weight: bold;
  	font-style: italic;
 }
@@ -1015,7 +1015,7 @@ select:focus:invalid {
 .contact-form input::-o-input-placeholder,
 .contact-form select::-o-input-placeholder,
 .contact-form textarea::-o-input-placeholder {
- 	color: rgba(250,250,250,0.3);
+ 	color: rgba(250,250,250,0.6);
  	font-weight: bold;
  	font-style: italic;
 }
@@ -1023,7 +1023,7 @@ select:focus:invalid {
 .contact-form select::-webkit-input-placeholder,
 .contact-form textarea::-webkit-input-placeholder,
 .contact-form input::-webkit-input-placeholder {
- 	color: rgba(250,250,250,0.3);
+ 	color: rgba(250,250,250,0.6);
  	font-weight: bold;
  	font-style: italic;
 }
