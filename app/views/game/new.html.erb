@@ -4,7 +4,7 @@
   <%= @trivia.title %>
 </h2>
 <p class="lead" >
-  El profesor <span><%= @trivia.teacher.name %> </span>
+  El instructor <span><%= @trivia.teacher.name %> </span>
   realizo la trivia <span><%= @trivia.type_name %></span><br/>
   sobre <span><%= @trivia.description %></span>
 </p>
@@ -14,7 +14,7 @@
 <div class="text-center">
   <%= form_for :game, url: game_create_path(@trivia.id), :html => { class: 'contact-form'} do |f| %>
     <p>
-      <button type="submit" class="btn btn-large">Iniciar Juego</button>
+      <button type="submit" class="btn btn-large">Iniciar</button>
     </p>
   <% end -%>
 </div>

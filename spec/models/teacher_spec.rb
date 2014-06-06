@@ -168,11 +168,11 @@ describe Teacher do
     end
 
     it 'subject' do
-      expect(ActionMailer::Base.deliveries.last.subject ).to match("Estadística de los juegos")
+      expect(ActionMailer::Base.deliveries.last.subject ).to match("Estadística de los cuestionarios")
     end
 
     it 'body' do
-      expect(ActionMailer::Base.deliveries.last.body ).to match("Estadística de los juegos")
+      expect(ActionMailer::Base.deliveries.last.body ).to match("Estadística de los cuestionarios")
     end
   end
 

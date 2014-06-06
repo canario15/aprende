@@ -704,6 +704,7 @@ label.black{
 	border-bottom: 1px dashed rgba(255,255,255,0.5);
 	line-height: 30px;
 	text-align: center;
+	margin-top: 20px;
 }
 .filter p {
 	margin-bottom: 0;

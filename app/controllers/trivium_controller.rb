@@ -55,7 +55,7 @@ class TriviumController < ApplicationController
       @levels = Level.all
       @types = Trivia::TYPES
       @courses = params[:trivia_level].blank? ? Course.none : Level.find(params[:trivia_level]).courses
-      flash.now[:alert] = "No se puede editar una trivia si tiene juegos asociados" unless trivia_with_no_games
+      flash.now[:alert] = "No se puede editar una trivia si tiene cuestionarios completados" unless trivia_with_no_games
       respond_to do |format|
         format.html { render :edit  }
       end
@@ -88,7 +88,7 @@ class TriviumController < ApplicationController
       else
         @questions = @trivia.questions
         format.html { render :new_question }
-        flash.now[:alert] = "No se puede crear una pregunta si su trivia tiene juegos asociados" unless trivia_with_no_games
+        flash.now[:alert] = "No se puede crear una pregunta si su trivia tiene cuestionarios completados" unless trivia_with_no_games
       end
     end
   end
@@ -111,7 +111,7 @@ class TriviumController < ApplicationController
       else
        @trivia = @question.trivia
        format.html { render :edit_question }
-       flash.now[:alert] = "No se puede editar una pregunta si su trivia tiene juegos asociados" unless trivia_with_no_games
+       flash.now[:alert] = "No se puede editar una pregunta si su trivia tiene cuestionarios completados" unless trivia_with_no_games
       end
     end
   end

@@ -26,6 +26,7 @@ group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails', '~> 3.0.0.beta'
   gem 'capybara', '~> 2.2.0.beta'
+  gem "railroady"
 end
 
 group :test do

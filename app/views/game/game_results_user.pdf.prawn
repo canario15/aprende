@@ -5,7 +5,7 @@ pdf.font "Helvetica", style: :bold_italic do
   pdf.stroke_horizontal_rule
 
   pdf.move_down 20
-  pdf.text "Profesor: #{@presenter.game_teacher.try(&:first_name)}", align: :center, size: 14
+  pdf.text "Instructor: #{@presenter.game_teacher.try(&:name)}", align: :center, size: 14
 
   pdf.move_down 5
   pdf.text "Puntaje: #{ @presenter.game.score }", align: :center, size: 14

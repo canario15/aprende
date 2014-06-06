@@ -16,14 +16,14 @@ describe TeacherMailer do
     let(:mail) { TeacherMailer.trivia_statistics(@teacher) }
 
     it "renders the headers" do
-      expect(mail.subject).to eq("Estadística de los juegos")
+      expect(mail.subject).to eq("Estadística de los cuestionarios")
       expect(mail.to).to eq([@teacher.email])
       expect(mail.from).to eq(["user.vairix@gmail.com"])
     end
 
     it "renders the body" do
-      expect(mail.body.encoded).to match("Estadística de los juegos")
-      expect(mail.body.encoded).to match("Cantidad de Juegos")
+      expect(mail.body.encoded).to match("Estadística de los cuestionarios")
+      expect(mail.body.encoded).to match("Cantidad de Cuestionarios")
       expect(mail.body.encoded).to match("Promedio de Puntos")
       expect(mail.body.encoded).to match("Promedio de Preguntas Correctas")
     end

@@ -10,7 +10,7 @@
             <div class="thumbnail">
               <i class="game"><%=game.trivia.title%></i>
               <em class="date"><%= l game.updated_at.to_date, format: :simple %></em>
-              <h4>Profesor <span><%=game.trivia.teacher.name%></span></h4>
+              <h4>Instructor <span><%=game.trivia.teacher.name%></span></h4>
               <h5><%=game.trivia.course%></h5>
               <p class="game">Cantidad Preguntas <strong><%= game.trivia.questions.count %></strong></p>
               <p class="game">Preguntas Correctas <strong><%= game.correct_answers.count %></strong></p>
@@ -25,7 +25,7 @@
   <hr/>
 <% else -%>
   <div class="filter">
-    <h3>No existen <span>juegos</span> realizados</h3>
+    <h3>No existen <span>trivias</span> realizadas</h3>
   </div>
 <% end -%>
 

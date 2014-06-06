@@ -37,7 +37,7 @@ describe TeachersController do
 
     it "shows the teachers' cities'" do
       get 'index'
-      expect(response.body).to match /Listado de maestros/
+      expect(response.body).to match /Listado de instructores/
       expect(response.body).to match /Ciudad/
       expect(response.body).to match (@teacher.city.name)
     end

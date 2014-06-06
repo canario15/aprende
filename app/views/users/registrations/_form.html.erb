@@ -1,4 +1,4 @@
-<h2>Informacion del <span>alumno</span></h2>
+<h2>Informacion del <span>usuario</span></h2>
 <%= form_for(:user, :url => registration_path(:user), :html => { class: 'contact-form' } ) do |f| %>
   <div class="row-fluid offset2">
     <div class="span4">
@@ -7,8 +7,8 @@
       <%= f.email_field :email, placeholder: "Mail" %>
       <%= f.password_field :password, placeholder: "Contraseña" %>
       <%= f.password_field :password_confirmation, placeholder: "Confirmar contraseña" %>
-      <%= f.collection_select(:level_id, all_levels, :id, :title, { prompt: "Curso" }, { class: "placeholder" }) %>
-      <%= f.collection_select(:institute_id, all_institutes, :id, :name, { prompt: "Instituto" }, { class: "placeholder" }) %>
+      <%= f.collection_select(:institute_id, all_institutes, :id, :name, { prompt: "Área" }, { class: "placeholder" }) %>
+      <%= f.collection_select(:level_id, all_levels, :id, :title, { prompt: "Capacitación" }, { class: "placeholder" }) %>
     </div>
     <div class="span4">
       <output id="avatar_preview" >

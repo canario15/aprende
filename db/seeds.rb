@@ -7,9 +7,9 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Level.delete_all
-level1 = Level.create(title: "Primer año")
-level2 = Level.create(title: "Segundo año")
-level3 = Level.create(title: "Tercer año")
+level1 = Level.create(title: "Primer nivel")
+level2 = Level.create(title: "Segundo nivel")
+level3 = Level.create(title: "Tercer nivel")
 
 Course.delete_all
 Course.create(title: "Ciencias sociales",level: level1)

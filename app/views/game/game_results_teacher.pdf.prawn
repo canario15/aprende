@@ -5,7 +5,7 @@ pdf.font "Helvetica", style: :bold_italic do
   pdf.stroke_horizontal_rule
 
   pdf.move_down 20
-  pdf.text "Alumno: #{@game.user.try(&:first_name)}", align: :center, size: 14
+  pdf.text "#{@game.user.try(&:name)}", align: :center, size: 14
 
   pdf.move_down 5
   pdf.text "Puntaje: #{ @game.score }", align: :center, size: 14

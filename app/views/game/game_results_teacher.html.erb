@@ -5,7 +5,7 @@
   <h1 id="tables">Resultado de la trivia <%= @game.trivia.title %></h1>
 </div>
 <div>
-  <h2>Alumno <%= @game.user.try(&:first_name) %></h2>
+  <h2><%= @game.user.try(&:name) %></h2>
   <h3>Cantidad de Preguntas: <%= @game.trivia.questions.count %></h3>
   <h3>Puntaje: <%= @game.score %></h3>
 </div>

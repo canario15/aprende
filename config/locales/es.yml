@@ -202,7 +202,7 @@ es:
       trivia:
         title: "Título"
         type: "Tipo"
-        course: "Curso"
+        course: "Capacitación"
         content/containable: "Documento"
       question:
         description: "La pregunta"
@@ -222,8 +222,8 @@ es:
         password_confirmation: "La confirmación de la contraseña"
         password: "Contraseña"
         city: "Ciudad"
-        level: "Curso"
-        institute: "Instituto"
+        level: "Capacitación"
+        institute: "Área"
         first_name: "Nombre"
         last_name: "Apellido"
       content:

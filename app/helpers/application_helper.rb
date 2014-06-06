@@ -91,7 +91,7 @@ module ApplicationHelper
     case controller_path
     when "game"
       icon = "gamepad"
-      title = (content_tag :strong, "Juegos") + (content_tag :p, "Sobre las ".html_safe + (content_tag :span,"trivias"))
+      title = (content_tag :strong, "Resultados") + (content_tag :p, "Sobre las ".html_safe + (content_tag :span,"trivias"))
     when "trivium","home"
       icon = "book"
       if teacher_signed_in?
@@ -101,13 +101,13 @@ module ApplicationHelper
       end
     when "institutes"
       icon = "building"
-      title = (content_tag :strong, "Institutos") + (content_tag :p, "Para ".html_safe + (content_tag :span,"Enseñar"))
+      title = (content_tag :strong, "Áreas") + (content_tag :p, "Para ".html_safe + (content_tag :span,"Capacitar"))
     when "users","users/registrations"
       icon = "smile"
-      title = (content_tag :strong, "Alumnos") + (content_tag :p, "Datos de ".html_safe + (content_tag :span,"Perfil"))
+      title = (content_tag :strong, "Usuarios") + (content_tag :p, "Datos del ".html_safe + (content_tag :span,"Perfil"))
     when "teachers","teachers/registrations"
       icon = "briefcase"
-      title = (content_tag :strong, "Profesores") + (content_tag :p, "Datos de ".html_safe + (content_tag :span,"Perfil"))
+      title = (content_tag :strong, "Instructores") + (content_tag :p, "Datos del ".html_safe + (content_tag :span,"Perfil"))
     else
       icon = "error"
       title = (content_tag :strong, controller_path)

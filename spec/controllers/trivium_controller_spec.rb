@@ -369,7 +369,7 @@ describe TriviumController do
 
     it "assigns the value to the flash notice" do
       post(:update,:id => @trivia.id,trivia_level:  @trivia.course.level,trivia: @trivia.attributes)
-      expect(flash[:alert]).to eq ("No se puede editar una trivia si tiene juegos asociados")
+      expect(flash[:alert]).to eq ("No se puede editar una trivia si tiene cuestionarios completados")
     end
   end
 
@@ -494,7 +494,7 @@ describe TriviumController do
     it "cannot create a new question to a trivia with games " do
       params = {:id => @trivia.id, :finish => "false", :question => {:answer => "De que color es el logo de vairix", :dificulty => "1", :description => "Verde", :incorrect_answer_one => "Negro", :incorrect_answer_two => "Amarillo", :incorrect_answer_three => "Azul", :incorrect_answer_four => "Rojo" }}
       expect {post('create_question', params) }.to change{Question.count}.by(0)
-      expect(flash[:alert]).to eq ("No se puede crear una pregunta si su trivia tiene juegos asociados")
+      expect(flash[:alert]).to eq ("No se puede crear una pregunta si su trivia tiene cuestionarios completados")
     end
 
   end
@@ -547,7 +547,7 @@ describe TriviumController do
       params = {:id => @trivia.id, :question_id => @question.id, :finish => "false", :question => {:answer => "De que color es el logo de vairix", :dificulty => "1", :description => "Verde", :incorrect_answer_one => "Negro", :incorrect_answer_two => "Amarillo", :incorrect_answer_three => "Azul", :incorrect_answer_four => "Rojo" }}
       post 'update_question', params
       expect(response.code).to eq("200")
-      expect(flash[:alert]).to eq("No se puede editar una pregunta si su trivia tiene juegos asociados")
+      expect(flash[:alert]).to eq("No se puede editar una pregunta si su trivia tiene cuestionarios completados")
     end
 
   end

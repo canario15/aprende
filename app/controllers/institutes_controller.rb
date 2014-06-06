@@ -11,7 +11,7 @@ class InstitutesController < ApplicationController
     @institute = Institute.new(institute_params)
     respond_to do |format|
       if @institute.save
-        format.html { redirect_to institutes_path, notice:  "Instituto #{@institute.name} creado." }
+        format.html { redirect_to institutes_path, notice:  "Área #{@institute.name} creada." }
       else
         format.html { render action: 'new' }
       end
@@ -22,7 +22,7 @@ class InstitutesController < ApplicationController
     @institute = Institute.find(params[:id])
     respond_to do |format|
       if @institute.update(institute_params)
-        format.html { redirect_to institutes_path, :notice => "Instituto #{@institute.name} actualizado." }
+        format.html { redirect_to institutes_path, :notice => "Área #{@institute.name} actualizada." }
       else
         format.html { render action: 'edit' }
       end

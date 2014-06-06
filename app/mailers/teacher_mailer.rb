@@ -3,6 +3,6 @@ class TeacherMailer < ActionMailer::Base
 
   def trivia_statistics(teacher)
     @games = teacher.games.week_ago_group_by_trivia
-    mail to:  teacher.email, subject: "Estadística de los juegos"
+    mail to:  teacher.email, subject: "Estadística de los cuestionarios"
   end
 end
