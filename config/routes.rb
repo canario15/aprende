@@ -16,7 +16,7 @@ Aprende::Application.routes.draw do
   patch "trivium/:trivia_id/games/:id" => "game#update", as: :update_trivium_games
 
   resources :questions
-  resources :courses
+  resources :courses, :path => 'training'
   resources :trivium do
     collection do
       get 'update_course'
@@ -30,15 +30,23 @@ Aprende::Application.routes.draw do
   end
 
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" , :sessions => "users/sessions",registrations:  "users/registrations" }
-  resources :users
+  resources :users, :path => 'people' do
+    collection do
+      post 'create' => 'users#create', as: 'create'
+    end
+  end
 
   devise_for :teachers, :controllers => {:registrations => "teachers/registrations", :sessions => "teachers/sessions" }
 
   match 'cities/state_cities', controller: 'cities', action: 'state_cities', as: 'state_cities', via: :get
 
-  resources :teachers
+  resources :teachers, :path => 'instructors' do
+    collection do
+      post 'create' => 'teachers#create', as: 'create'
+    end
+  end
 
-  resources :institutes do
+  resources :institutes, :path => 'areas' do
     collection do
       get 'update_city'
     end

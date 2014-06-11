@@ -1,9 +1,12 @@
-<%= form_for :user, :url => create_users_url, :html => { :class => "bs-example form-horizontal"} do |f| %>
+<div class="page-header">
+  <h1 id="tables">Nuevo Instructor</h1>
+</div>
+<%= form_for :teacher, :url => create_teachers_url, :html => { :class => "bs-example form-horizontal"} do |f| %>
 
-  <% if @user.errors.any? %>
+  <% if @teacher.errors.any? %>
     <div id="error_explanation">
       <ul>
-      <% @user.errors.full_messages.each do |msg| %>
+      <% @teacher.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
@@ -29,20 +32,20 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="title" class="col-lg-2 control-label">Área</label>
+      <label for="title" class="col-lg-2 control-label">Descripción</label>
       <div class="col-lg-10">
-        <%= f.collection_select(:institute_id, all_institutes, :id, :name, { prompt: "Área" }, { class: "form-control" }) %>
+        <%= f.text_field :description, class: 'form-control', placeholder: "Descripción" %>    
       </div>
     </div>
     <div class="form-group">
-      <label for="title" class="col-lg-2 control-label">Capacitación</label>
+      <label for="title" class="col-lg-2 control-label">Teléfono</label>
       <div class="col-lg-10">
-        <%= f.collection_select(:level_id, all_levels, :id, :title, { prompt: "Capacitación" }, { class: "form-control" }) %>
+        <%= f.text_field :phone, class: 'form-control', placeholder: "Teléfono" %>
       </div>
     </div>
     <div class="form-group">
       <div class="col-lg-10 col-lg-offset-2">
-        <%= link_to 'Cancelar', users_path %>
+        <%= link_to 'Cancelar', teachers_path %>
         <%= f.submit "Guardar", class: 'btn btn-primary' %>
       </div>
     </div>

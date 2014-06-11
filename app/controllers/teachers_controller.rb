@@ -5,9 +5,30 @@ class TeachersController < ApplicationController
     @teachers= Teacher.system_teachers
   end
 
+  def new
+     @teacher = Teacher.new
+  end
+
   def edit
     @teacher = Teacher.find(params[:id])
     @institutes = Institute.all
+  end
+
+  def create
+    password = Devise.friendly_token.first(8)
+    teacher_params_pass = teacher_params.merge(:password => password, :password_confirmation => password)
+    @teacher = Teacher.new(teacher_params_pass)
+    @teacher.skip_confirmation!
+    respond_to do |format|
+      if @teacher.save
+        @teacher.send_reset_password_instructions
+        format.html { redirect_to teachers_url, notice: 'Teacher was successfully created.' }
+        format.json { render action: 'show', status: :created, location: @teacher }
+      else
+        format.html { render action: 'new' }
+        format.json { render json: @teacher.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def update
@@ -46,7 +67,7 @@ class TeachersController < ApplicationController
   private
 
   def teacher_params
-    params.require(:teacher).permit(:first_name, :last_name, :phone, :description, :city_id, {institute_ids: []}, :inactive)
+    params.require(:teacher).permit(:email, :password, :password_confirmation, :first_name, :last_name, :phone, :description, :city_id, {institute_ids: []}, :inactive)
   end
 
 end

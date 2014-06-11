@@ -1,20 +1,25 @@
-<h2>Cambia tu contraseña</h2>
-<div class="col-lg-5">
-  <div class="well">
-    <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { method: :put }) do |f| %>
+<!-- Teachers Section -->
+<div id="teacher" class="section section-expand">
+  <div class="section-title"><i class="icon-briefcase"></i><strong>Instructor</strong>
+    <p>Ingresa a tu <span>cuenta</span></p>
+  </div>
+  <!-- Teachers Section -->
+  <div class="container">
+    <hr />
+    <!-- Contact form -->
+    <h2>Cambia tu <span>contraseña</span></h2>
+    <div class="row">
+      <div class="offset2">
+      <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { method: :put, class: 'contact-form'  }) do |f| %>
       <%= f.hidden_field :reset_password_token %>
-      <div class="form-group">
-        <%= f.label :password, "Nueva Contraseña", class: 'col-lg-10 control-label' %>
-        <%= f.password_field :password, autofocus: true, class: 'form-control' %>
+        <fieldset>
+          <%= f.password_field :password, autofocus: true, placeholder: "Contraseña", class: 'span3' %>
+          <%= f.password_field :password_confirmation, placeholder: "Confirmar contraseña",class: 'span3' %>
+          <%= f.button 'Cambiar', class: 'btn btn-large' %>
+        </fieldset>
+      <% end %>
       </div>
-      <div class="form-group">
-        <%= f.label :password_confirmation, "Confirme Nueva Contraseña", class: 'col-lg-10 control-label' %>
-        <%= f.password_field :password_confirmation,class: 'form-control' %>
-      </div>
-      <div><%= f.submit "Cambiar mi contraseña", class: 'btn btn-primary' %></div>
-    <% end %>
+    </div>
     <%= render "teachers/shared/links" %>
   </div>
 </div>
-
-

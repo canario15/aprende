@@ -33,10 +33,14 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(user_params)
+    password = Devise.friendly_token.first(8)
+    user_params_pass = user_params.merge(:password => password, :password_confirmation => password)
+    @user = User.new(user_params_pass)
+    @user.skip_confirmation!
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        @user.send_reset_password_instructions
+        format.html { redirect_to users_url, notice: 'User was successfully created.' }
         format.json { render action: 'show', status: :created, location: @user }
       else
         format.html { render action: 'new' }
@@ -80,6 +84,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :institute_id, :level_id, :city_id, :avatar)
+      params.require(:user).permit(:email, :password, :password_confirmation, :first_name, :last_name, :institute_id, :level_id, :city_id, :avatar)
     end
 end

@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   belongs_to :institute
   has_many :games
   belongs_to :city
-  validates :level,:institute,:city,:first_name,:last_name, presence: true
+  validates :level,:institute, :first_name,:last_name, presence: true
 
   scope :system_users, ->{order(first_name: :asc)}
   has_attached_file :avatar, :styles => { :large => "300x300>", :medium => "100x100>", :small => "50x50" }, :default_url => "/assets/:style/missing.jpg"

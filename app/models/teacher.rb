@@ -7,7 +7,7 @@ class Teacher < ActiveRecord::Base
   has_many :trivium
   has_many :games, through: :trivium
   belongs_to :city
-  validates :city,:first_name,:last_name, presence: true
+  validates :first_name,:last_name, presence: true
 
 
   has_attached_file :avatar, :styles => { :large => "300x300>", :medium => "100x100>", :small => "50x50" }, :default_url => "/assets/:style/missing.jpg"
