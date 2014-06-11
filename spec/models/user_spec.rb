@@ -23,7 +23,6 @@ describe User do
   describe "validate the presence of attributes in User:" do
     it { should validate_presence_of :email}
     it { should validate_presence_of :password}
-    it { should validate_presence_of :city}
     it { should validate_presence_of :level}
     it { should validate_presence_of :institute}
     it { should validate_presence_of :first_name}

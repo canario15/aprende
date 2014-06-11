@@ -195,3 +195,6 @@ end
 
 Content.blueprint do
 end
+Company.blueprint do
+  # Attributes here
+end

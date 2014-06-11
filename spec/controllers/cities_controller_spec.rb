@@ -8,7 +8,7 @@ describe CitiesController do
     end
 
     it "returns http success " do
-      get :state_cities, {state_id: @state.id, format: :js}
+      xhr :get, :state_cities, {state_id: @state.id, format: :js}
       expect(response).to be_success
     end
   end
