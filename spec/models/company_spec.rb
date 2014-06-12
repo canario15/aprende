@@ -6,6 +6,11 @@ describe Company do
     it { should respond_to(:name) }
   end
 
+  describe "relations" do
+    it { should respond_to(:admin) }
+    it { should have_many(:teachers)}
+  end
+
   describe 'Company Create' do
     it 'Creates a Company'do
       expect{ Company.make! }.to change {Company.count}.by(1)

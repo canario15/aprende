@@ -7,6 +7,7 @@ class Teacher < ActiveRecord::Base
   has_many :trivium
   has_many :games, through: :trivium
   belongs_to :city
+  belongs_to :company
   validates :first_name,:last_name, presence: true
 
 
