@@ -21,6 +21,7 @@ User.blueprint do
   city { City.make }
   institute { Institute.make }
   confirmed_at { Time.now.utc }
+  company { Company.make }
 end
 
 Question.blueprint do
@@ -185,6 +186,8 @@ end
 
 Content.blueprint do
 end
+
 Company.blueprint do
-  # Attributes here
+  name  { "VAIRIX" }
+  email { "info@vairix.com"}
 end

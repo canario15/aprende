@@ -17,6 +17,7 @@ describe User do
     it { should respond_to(:institute) }
     it { should have_many(:games)}
     it { should respond_to(:city) }
+    it { should respond_to(:company) }
   end
 
   describe "validate the presence of attributes in User:" do
@@ -25,6 +26,7 @@ describe User do
     it { should validate_presence_of :institute}
     it { should validate_presence_of :first_name}
     it { should validate_presence_of :last_name}
+    it { should validate_presence_of :company}
  end
 
   describe 'User Create' do
@@ -32,25 +34,35 @@ describe User do
       expect{ User.make! }.to change {User.count}.by(1)
     end
 
-    it 'with email nil' do
+    it 'raise error when email is nil' do
       expect{User.make!(email: nil)}.to raise_error
     end
 
-    it 'with password nil' do
+    it 'raise error when password is nil' do
       expect{User.make!(password: nil)}.to raise_error
     end
 
+    it 'raise error when company is nil' do
+      expect{User.make!(company: nil)}.to raise_error
+    end
   end
 
-  describe 'scope' do
+  describe "User#name" do
+    it "concatenates first_name and last_name" do
+      user = User.make(first_name: "First", last_name: "Last")  
+      expect(user.name).to eq("First Last")
+    end
+  end
+
+  context 'using scope' do
     describe 'order by name asc' do
-      it 'Creates users'do
+      it 'orders correctly with new users'do
         b_user = User.make!(first_name: 'b_user')
         a_user = User.make!(first_name: 'a_user')
         expect(User.system_users).to eq([a_user,b_user])
       end
 
-      it'uppercase and lowercase' do
+      it 'orders correctly using uppercase and lowercase' do
         b_user_lower = User.make!(first_name: 'b_user')
         b_user_upper = User.make!(first_name: 'B_user')
         a_user_upper = User.make!(first_name: 'A_user')
@@ -61,27 +73,33 @@ describe User do
   end
 
   describe 'games' do
-    it' finished'do
-      @user = User.make!
+    it 'increases games count when a game was finished'do
+      @company = Company.make!
+      @user = User.make!(company: @company)
       expect{
-        @teacher = Teacher.make!
+        @teacher = Teacher.make!(company: @company)
         @trivia = Trivia.make!(teacher: @teacher)
         @question = Question.make!(trivia: @trivia)
-        @game = Game.make!(user:@user,trivia: @trivia)
+        @game = Game.make!(user:@user, trivia: @trivia)
+        
         Answer.make!(game:@game, question: @question)
         @game.finish
-      }.to change {@user.games_finished.count}.by(1)
+
+      }.to change { @user.games_finished.count }.by(1)
     end
 
-    it'not finished'do
-      @user = User.make!
+    it 'does not increases finished games count if the game dint finish'do
+      @company = Company.make!
+      @user = User.make!(company: @company)
       expect{
         @teacher = Teacher.make!
         @trivia = Trivia.make!(teacher: @teacher)
         @question = Question.make!(trivia: @trivia)
-        @game = Game.make!(user:@user,trivia: @trivia)
+        @game = Game.make!(user:@user, trivia: @trivia)
+
         Answer.make!(game:@game, question: @question)
-      }.to change {@user.games_finished.count}.by(0)
+
+      }.to change { @user.games_finished.count }.by(0)
     end
   end
 
@@ -90,26 +108,26 @@ describe User do
       @user = User.make!(confirmed_at: nil)
     end
 
-    it 'to'do
-      expect(ActionMailer::Base.deliveries.last.to.first ).to eq(@user.email)
+    it 'assigns email to destinatary user'do
+      expect( ActionMailer::Base.deliveries.last.to.first ).to eq(@user.email)
     end
 
-    it 'subject 'do
-      expect(ActionMailer::Base.deliveries.last.subject ).to match("Confirmation instructions")
+    it 'assigns correct text to subject'do
+      expect( ActionMailer::Base.deliveries.last.subject ).to match("Confirmation instructions")
     end
 
-    it 'body'do
-      expect(ActionMailer::Base.deliveries.last.body ).to match("confirmation_token")
+    it 'assigns confirmation token to email body'do
+      expect( ActionMailer::Base.deliveries.last.body ).to match("confirmation_token")
     end
   end
 
   describe "callbacks" do
-    it 'capitalize_first_name at create' do
+    it 'capitalize_first_name at creation' do
       user = User.make!(first_name: 'a user')
       expect(user.first_name).to match("A User")
     end
 
-    it 'capitalize_first_name at update' do
+    it 'capitalize_first_name at update user' do
       user = User.make!
       user.update(first_name: 'a user')
       expect(user.first_name).to match("A User")
