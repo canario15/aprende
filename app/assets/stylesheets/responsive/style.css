@@ -261,7 +261,10 @@ label.black{
 .section#contact {
 	right: 0;
 }
-
+/* Sections Admin */
+.section#admin {
+	right: 300px;
+}
 /* Sections Teacher */
 .section#teacher {
 	right: 150px;
@@ -297,7 +300,7 @@ label.black{
 	top: 50%;
 	left: 0;
 }
-.section-home, .section-about, .section-services, .section-folio, .section-blog, .section-contact ,.section-teacher, .section-student {
+.section-home, .section-about, .section-services, .section-folio, .section-blog, .section-contact ,.section-admin,.section-teacher, .section-student {
 	width: 50px;
 	height: 50px;
 	line-height: 50px;
@@ -312,7 +315,7 @@ label.black{
 	-webkit-transition: all linear 0.25s;
 	-o-transition: all linear 0.25s;
 }
-.section-home:hover, .section-about:hover, .section-services:hover, .section-folio:hover, .section-blog:hover, .section-contact:hover , .section-teacher:hover, .section-student:hover {
+.section-home:hover, .section-about:hover, .section-services:hover, .section-folio:hover, .section-blog:hover, .section-contact:hover , .section-admin:hover, .section-teacher:hover, .section-student:hover {
 	background: rgba(0,0,0,0.1);
 	font-size: 30px;
 	opacity: 1;
@@ -338,6 +341,10 @@ label.black{
 	opacity: 1;
 }
 .section-contact.active {
+	font-size: 30px;
+	opacity: 1;
+}
+.section-admin.active {
 	font-size: 30px;
 	opacity: 1;
 }
@@ -852,6 +859,11 @@ select:focus:invalid {
 .margin {
 	margin:2%;
 }
+
+.horizontal-margin {
+	margin:2% 0;
+}
+
 .contact-form {
 	margin: 20px 0 50px;
 }
@@ -1145,6 +1157,9 @@ body {
 .section#contact {
 	right: 0;
 }
+.section#admin {
+	right: 192px;
+}
 .section#teacher {
 	right: 96px;
 }
@@ -1208,6 +1223,9 @@ body {
 }
 .section#contact {
 	right: 0;
+}
+.section#admin {
+	right: 128px;
 }
 .section#teacher {
 	right: 64px;

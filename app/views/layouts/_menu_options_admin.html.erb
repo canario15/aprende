@@ -1,7 +1,6 @@
-<ul class="nav navbar-nav">
-  <%= li_ul_current_page? "Capacitaciones", courses_path %>
-  <%= li_ul_current_page? "Personas", users_path %>
-  <%= li_ul_current_page? "Instructores", teachers_path %>
-  <%= li_ul_current_page? "Áreas", institutes_path %>
-  <%= li_ul_current_page? "Notificaciones", notifications_path %>
-</ul>
+<%= menu_item(home_path, "home", "Inicio") %>
+<%= menu_item(courses_path, "book", "Capacitaciones") %>
+<%= menu_item(users_path, "smile", "Personas") %>
+<%= menu_item(teachers_path, "briefcase", "Instructores") %>
+<%= menu_item(institutes_path, "th-large", "Áreas") %>
+<%= menu_item(notifications_path, "bullhorn", "Notificaciones") %>

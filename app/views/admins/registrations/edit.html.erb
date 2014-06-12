@@ -1,30 +1,20 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
-
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
-  <div>
-    <%= f.label :email %><br/>
-    <%= f.email_field :email, :autofocus => true %>
+<hr/>
+<h2>Informacion del <span>administrador</span></h2>
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :patch, :class => "contact-form"}) do |f| %>
+  <div class="row-fluid offset4">
+    <div class="span4">
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Pendiente de confirmacion: <%= resource.unconfirmed_email %></div>
+      <% end %>
+      <%= f.password_field :current_password, :autocomplete => "off", placeholder: "Contraseña Actual" %>
+      <%= f.password_field :password, :autocomplete => "off", placeholder: "Contraseña Nueva" %>
+      <%= f.password_field :password_confirmation, :autocomplete => "off", placeholder: "Confirmar Contraseña Nueva" %>
+    </div>
   </div>
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? -%>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end -%>
-  <div>
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br/>
-    <%= f.password_field :password, :autocomplete => "off" %>
+  <div class="row-fluid margin">
+    <div style="text-align:center">
+      <%= link_to 'Atras', edit_admin_path(resource),class:"btn btn-large" %>
+      <button type="submit" class="btn btn-large">Confirmar</button>
+    </div>
   </div>
-  <div>
-    <%= f.label :password_confirmation %><br/>
-    <%= f.password_field :password_confirmation %>
-  </div>
-  <div>
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br/>
-    <%= f.password_field :current_password %>
-  </div>
-  <div><%= f.submit "Update" %></div>
 <% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %></p>
-
-<%= link_to "Back", :back %>

@@ -15,39 +15,18 @@
   </div>
 <% end -%>
 <% if current_admin -%>
-  <div class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-      <div class="navbar-header">
-        <a href="/home" class="navbar-brand">Capacitarse</a>
-        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-      </div>
-      <div class="navbar-collapse collapse navbar-responsive-collapse">
-        <%= render partial: 'layouts/menu_options_admin'%>
-        <div class="nav navbar-left col-lg-3">
-          <form class="navbar-form">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Buscar">
-              <span class="input-group-btn">
-                <button class="btn btn-secondary" type="button">Buscar</button>
-              </span>
-            </div>
-          </form>
-        </div>
-        <ul class="nav navbar-nav navbar-right">
-          <%= li_ul_current_page? current_admin.email,"#",[["Salir",destroy_admin_session_path, method: :delete]] %>
-        </ul>
-      </div>
-    </div>
+  <!-- Switch Section -->
+  <div class="switch-section">
+    <p class="switch-section-cont">
+      <%= render partial: 'layouts/menu_options_admin'%>
+    </p>
   </div>
 <% end -%>
 
 <!-- Section signout -->
 <% if current_admin -%>
     <%= link_to( content_tag(:span, nil,class: "icon-signout"), destroy_admin_session_path, method: :delete,class: "section-logout") %>
+    <%= link_to( content_tag(:span, nil,class: "icon-user"), edit_admin_path(current_admin.id), class: "section-profile") %>
 <% end -%>
 <% if current_teacher -%>
     <%= link_to( content_tag(:span, nil,class: "icon-signout"), destroy_teacher_session_path, method: :delete,class: "section-logout") %>

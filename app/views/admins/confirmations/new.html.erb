@@ -1,11 +1,23 @@
-<h2>Resend confirmation instructions</h2>
-
-<%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f| %>
-  <div>
-    <%= f.label :email %><br/>
-    <%= f.email_field :email, :autofocus => true %>
+<!-- Admin Section -->
+<div id="admin" class="section section-expand">
+  <div class="section-title">
+      <i class="icon-wrench"></i><strong>Admin</strong>
+      <p>administra el <span>sistema</span></p>
+    </div>
+  <!-- Admin Section -->
+  <div class="container">
+    <hr />
+    <h2>Reenviar mail de <span>confirmación</span></h2>
+    <div class="row">
+      <div class="offset3">
+      <%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post, class: 'contact-form' } ) do |f| %>
+        <fieldset>
+          <%= f.email_field :email, :autofocus => true, class: "span3", placeholder: "Mail" %>
+          <button type="submit" class="btn btn-large">Reenviar</button>
+        </fieldset>
+      <% end %>
+      </div>
+    </div>
+    <%= render "admins/shared/links" %>
   </div>
-  <div><%= f.submit "Resend confirmation instructions" %></div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

@@ -96,3 +96,17 @@
 .section#student select option{
   background-color: rgba(255,51,51,0.8); /*#F33*/
 }
+
+/* Sections Admin */
+.section#admin, .section-admin i.active {
+  background: #AD0;
+}
+
+.section#admin select option:first-child{
+  color: rgba(255,255,255,0.5);
+  background-color: rgba(170,221,0,0.9); /*#AD0*/
+}
+
+.section#admin select option{
+  background-color: rgba(170,221,0,0.8); /*#AD0*/
+}

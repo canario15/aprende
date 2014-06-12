@@ -9,3 +9,27 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+
+<!-- Admin Section -->
+<div id="admin" class="section section-expand">
+  <div class="section-title">
+      <i class="icon-wrench"></i><strong>Admin</strong>
+      <p>administra el <span>sistema</span></p>
+    </div>
+  <!-- Admin Section -->
+  <div class="container">
+    <hr />
+    <h2>Enviar <span>instrucciones</span></h2>
+    <div class="row">
+      <div class="offset3">
+      <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, class: 'contact-form' } ) do |f| %>
+        <fieldset>
+          <%= f.email_field :email, :autofocus => true, class: "span3", placeholder: "Mail" %>
+          <button type="submit" class="btn btn-large">Enviar</button>
+        </fieldset>
+      <% end %>
+      </div>
+    </div>
+    <%= render "admins/shared/links" %>
+  </div>
+</div>
