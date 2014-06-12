@@ -34,6 +34,7 @@ module Aprende
 
 	config.assets.digest_exclusions = ['*.svg']
 
+    I18n.enforce_available_locales = false
 
   end
 end

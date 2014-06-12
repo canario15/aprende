@@ -135,28 +135,6 @@ describe GameController do
       expect(response).to be_success
     end
 
-    context 'trivium_top3_at_level' do
-      before :each do
-        level = @game.trivia.level
-        other_level = Level.make!(:second)
-        Trivia.make!(:filled,course: Course.make!( level: level))
-        Trivia.make!(:filled,course: Course.make!( level: level))
-        @trivia1= Trivia.make!(:filled,course: Course.make!( level: other_level))
-        Trivia.make!(:filled,course: Course.make!( level: level))
-        Trivia.make!(:filled,course: Course.make!( level: level))
-        @trivia2 = Trivia.make!(:filled,course: Course.make!( level: other_level))
-        get :game_results_user, {:id => @game.id}
-      end
-
-      it'top 3'do
-        expect(assigns[:presenter].trivium.count).to eq(3)
-      end
-
-      it'at level by game'do
-        expect(assigns[:presenter].trivium).not_to include(@trivia1,@trivia2)
-      end
-    end
-
     it "render have pdf link" do
       get :game_results_user, {id: @game.id}
       expect(response.body).to match(game_results_user_path(@game, format: :pdf))

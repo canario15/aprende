@@ -27,7 +27,6 @@ describe TriviumController do
   describe "POST 'create'" do
     before :each do
       @trivia = Trivia.make(:filled)
-      @level = Level.make!
     end
 
     render_views
@@ -43,31 +42,31 @@ describe TriviumController do
 
     it "invalid trivia without teacher" do
       sign_out @teacher
-      params = {trivia_level: @level,:trivia => {:title => "New trivia", :course_id => @course.id, :tag => "mathematic", :description => "Trivia the mathematic", :type => 1}}
+      params = {:trivia => {:title => "New trivia", :course_id => @course.id, :tag => "mathematic", :description => "Trivia the mathematic", :type => 1}}
       expect {post('create', params) }.to change{Trivia.count}.by(0)
     end
 
     it "error without title" do
       @trivia.title = nil
-      post(:create,trivia_level: @level, trivia: @trivia.attributes)
+      post(:create, trivia: @trivia.attributes)
       expect(assigns[:trivia].errors.full_messages.first).to eq("Title can't be blank")
     end
 
     it "error without type" do
       @trivia.type = nil
-      post(:create,trivia_level: @level ,trivia: @trivia.attributes)
+      post(:create, trivia: @trivia.attributes)
       expect(assigns[:trivia].errors.full_messages.first).to eq("Type can't be blank")
     end
 
     it "error without course" do
       @trivia.course =  nil
-      post(:create,trivia_level: @level ,trivia: @trivia.attributes)
+      post(:create, trivia: @trivia.attributes)
       expect(assigns[:trivia].errors.full_messages.first).to eq("Course can't be blank")
     end
 
     it "error render new" do
       @trivia.title = nil
-      post(:create,trivia_level: @level,trivia: @trivia.attributes)
+      post(:create, trivia: @trivia.attributes)
       expect(response.body).to match("Title can\.*t be blank")
     end
 
@@ -124,7 +123,7 @@ describe TriviumController do
             end
             ]
           }
-          post(:create, trivia_level:  1 , trivia: contents_params.reverse_merge(trivia.attributes))
+          post(:create, trivia: contents_params.reverse_merge(trivia.attributes))
           expect(response.location).to eq(new_question_trivia_url(assigns[:trivia].id))
         end
 
@@ -142,7 +141,7 @@ describe TriviumController do
               end
               ]
             }
-          post(:create, trivia_level:  1 , trivia: contents_params.reverse_merge(trivia.attributes))
+          post(:create, trivia: contents_params.reverse_merge(trivia.attributes))
           expect(response.body).to match "Content containable document can\.*t be blank"
         end
 
@@ -156,7 +155,7 @@ describe TriviumController do
             end
             ]
           }
-          post(:create, trivia_level:  1 , trivia: contents_params.reverse_merge(trivia.attributes))
+          post(:create, trivia: contents_params.reverse_merge(trivia.attributes))
           expect(response.body).to match "Content containable can\.*t be blank"
         end
 
@@ -190,26 +189,25 @@ describe TriviumController do
 
     it "error without title" do
       @trivia.title = nil
-      post(:update,id: @trivia.id, trivia_level: @trivia.course.level, trivia: @trivia.attributes)
+      post(:update,id: @trivia.id, trivia: @trivia.attributes)
       expect(assigns[:trivia].errors.full_messages.first).to eq("Title can't be blank")
     end
 
     it "error without type" do
       @trivia.type = nil
-      post(:update, id: @trivia.id, trivia_level: @trivia.course.level, trivia: @trivia.attributes)
+      post(:update, id: @trivia.id, trivia: @trivia.attributes)
       expect(assigns[:trivia].errors.full_messages.first).to eq("Type can't be blank")
     end
 
     it "error without course" do
-      level = @trivia.course.level
       @trivia.course = nil
-      post(:update, id: @trivia.id, trivia_level: level, trivia: @trivia.attributes)
+      post(:update, id: @trivia.id, trivia: @trivia.attributes)
       expect(assigns[:trivia].errors.full_messages.first).to eq("Course can't be blank")
     end
 
     it "error render new" do
       @trivia.title = nil
-      post(:update,id: @trivia.id, trivia_level: @trivia.course.level, trivia: @trivia.attributes)
+      post(:update,id: @trivia.id, trivia: @trivia.attributes)
       expect(response.body).to match("Title can\.*t be blank")
     end
 
@@ -338,7 +336,7 @@ describe TriviumController do
               ]
             }
           params = contents_params.reverse_merge(trivia.attributes)
-          post(:update, id: trivia.id,trivia_level:  @trivia.course.level,trivia: params)
+          post(:update, id: trivia.id,trivia: params)
           expect(response.body).to match "Content containable document can\.*t be blank"
         end
 
@@ -353,7 +351,7 @@ describe TriviumController do
             ]
           }
           params = contents_params.reverse_merge(trivia.attributes)
-          post(:update, id: trivia.id,trivia_level:  @trivia.course.level,trivia: params)
+          post(:update, id: trivia.id,trivia: params)
           expect(response.body).to match "Content containable can\.*t be blank"
         end
       end
@@ -368,7 +366,7 @@ describe TriviumController do
     end
 
     it "assigns the value to the flash notice" do
-      post(:update,:id => @trivia.id,trivia_level:  @trivia.course.level,trivia: @trivia.attributes)
+      post(:update,:id => @trivia.id,trivia: @trivia.attributes)
       expect(flash[:alert]).to eq ("No se puede editar una trivia si tiene cuestionarios completados")
     end
   end

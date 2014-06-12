@@ -12,7 +12,6 @@ describe Trivia do
 
   describe "relations" do
     it { should respond_to(:course) }
-    it { should have_one(:level) }
     it { should have_many(:questions) }
     it { should have_many(:games) }
     it { should respond_to(:teacher) }

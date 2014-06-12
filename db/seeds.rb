@@ -6,18 +6,13 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Level.delete_all
-level1 = Level.create(title: "Primer nivel")
-level2 = Level.create(title: "Segundo nivel")
-level3 = Level.create(title: "Tercer nivel")
-
 Course.delete_all
-Course.create(title: "Ciencias sociales",level: level1)
-Course.create(title: "Ciencias Matematicas",level: level1)
-Course.create(title: "Ingles",level: level2)
-Course.create(title: "Geografia",level: level2)
-Course.create(title: "Matematica B",level: level3)
-Course.create(title: "Historia",level: level3)
+Course.create(title: "Ciencias sociales")
+Course.create(title: "Ciencias Matematicas")
+Course.create(title: "Ingles")
+Course.create(title: "Geografia")
+Course.create(title: "Matematica B")
+Course.create(title: "Historia")
 
 State.delete_all
 ['Montevideo','Canelones  ', 'Maldonado ','Salto  ','Colonia  ',

@@ -4,11 +4,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :confirmable
 
-  belongs_to :level
   belongs_to :institute
   has_many :games
   belongs_to :city
-  validates :level,:institute, :first_name,:last_name, presence: true
+  validates :institute, :first_name,:last_name, presence: true
 
   scope :system_users, ->{order(first_name: :asc)}
   has_attached_file :avatar, :styles => { :large => "300x300>", :medium => "100x100>", :small => "50x50" }, :default_url => "/assets/:style/missing.jpg"

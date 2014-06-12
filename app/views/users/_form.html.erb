@@ -35,12 +35,6 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="title" class="col-lg-2 control-label">Capacitación</label>
-      <div class="col-lg-10">
-        <%= f.collection_select(:level_id, all_levels, :id, :title, { prompt: "Capacitación" }, { class: "form-control" }) %>
-      </div>
-    </div>
-    <div class="form-group">
       <div class="col-lg-10 col-lg-offset-2">
         <%= link_to 'Cancelar', users_path %>
         <%= f.submit "Guardar", class: 'btn btn-primary' %>

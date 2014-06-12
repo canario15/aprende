@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140612120511) do
+ActiveRecord::Schema.define(version: 20140612145801) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -48,13 +48,6 @@ ActiveRecord::Schema.define(version: 20140612120511) do
   add_index "answers", ["game_id"], name: "index_answers_on_game_id"
   add_index "answers", ["question_id"], name: "index_answers_on_question_id"
 
-  create_table "categories", force: true do |t|
-    t.string   "name"
-    t.string   "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "cities", force: true do |t|
     t.string   "name"
     t.integer  "state_id"
@@ -69,10 +62,7 @@ ActiveRecord::Schema.define(version: 20140612120511) do
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "admin_id"
   end
-
-  add_index "companies", ["admin_id"], name: "index_companies_on_admin_id"
 
   create_table "contents", force: true do |t|
     t.integer  "containable_id"
@@ -83,7 +73,6 @@ ActiveRecord::Schema.define(version: 20140612120511) do
 
   create_table "courses", force: true do |t|
     t.string   "title"
-    t.integer  "level_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image_file_name"
@@ -91,8 +80,6 @@ ActiveRecord::Schema.define(version: 20140612120511) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
   end
-
-  add_index "courses", ["level_id"], name: "index_courses_on_level_id"
 
   create_table "games", force: true do |t|
     t.integer  "score",      default: 0
@@ -125,12 +112,6 @@ ActiveRecord::Schema.define(version: 20140612120511) do
 
   add_index "institutes_teachers", ["institute_id"], name: "index_institutes_teachers_on_institute_id"
   add_index "institutes_teachers", ["teacher_id"], name: "index_institutes_teachers_on_teacher_id"
-
-  create_table "levels", force: true do |t|
-    t.string   "title"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "notifications", force: true do |t|
     t.text     "description"
@@ -242,7 +223,6 @@ ActiveRecord::Schema.define(version: 20140612120511) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "last_name"
-    t.integer  "level_id"
     t.integer  "institute_id"
     t.string   "provider"
     t.string   "uid"
@@ -260,7 +240,6 @@ ActiveRecord::Schema.define(version: 20140612120511) do
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["institute_id"], name: "index_users_on_institute_id"
-  add_index "users", ["level_id"], name: "index_users_on_level_id"
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
   create_table "writtens", force: true do |t|

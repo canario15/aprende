@@ -7,7 +7,6 @@ class CoursesController < ApplicationController
 
   def new
     @course = Course.new
-    @levels = Level.all
   end
 
   def create
@@ -19,7 +18,6 @@ class CoursesController < ApplicationController
 
   def edit
     @course = Course.find(params[:id])
-    @levels = Level.all
   end
 
   def update
@@ -33,6 +31,6 @@ class CoursesController < ApplicationController
   private
 
   def course_params
-    params.require(:course).permit(:title, :level_id, :image)
+    params.require(:course).permit(:title, :image)
   end
 end

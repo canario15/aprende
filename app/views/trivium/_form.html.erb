@@ -7,11 +7,6 @@
     </div>
     <div class="span4">
       <%= f.collection_select(:type, @types, :first, :last, {include_blank: "Tipo"},(f.object.type) ? {}:{ :class=> "placeholder"}) %>
-      <% if @trivia.level -%>
-        <%= select_tag "trivia_level", options_from_collection_for_select(@levels, "id", "title", @trivia.level.id), prompt: "Nivel"  %>
-      <% else -%>
-        <%= select_tag "trivia_level", options_from_collection_for_select(@levels, "id", "title"),prompt: "Nivel" , :class=> "placeholder" %>
-      <% end -%>
       <%= f.collection_select(:course_id, @courses, :id, :title, {include_blank: "Capacitaciones" }, (f.object.course) ? {}:{ :class=> "placeholder"}) %>
    </div>
   </div>

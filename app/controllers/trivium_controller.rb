@@ -11,26 +11,24 @@ class TriviumController < ApplicationController
 
   def new
     @trivia = Trivia.new
-    @levels = Level.all
     @types = Trivia::TYPES
-    @courses = @levels.first.try(:courses)
+    @courses = Course.all
   end
 
   def update_course
-    @courses = Level.find(params[:level_id]).courses
+    @courses = Course.all
     render :json => { :courses => @courses}
   end
 
   def create
-    @trivia =Trivia.new(trivia_params.merge(teacher: current_teacher))
+    @trivia = Trivia.new(trivia_params.merge(teacher: current_teacher))
     if @trivia.save
       respond_to do |format|
         format.html { redirect_to new_question_trivia_url(@trivia.id) }
       end
     else
-      @levels = Level.all
       @types = Trivia::TYPES
-      @courses = params[:trivia_level].blank? ? Course.none : Level.find(params[:trivia_level]).courses
+       @courses = Course.all
       respond_to do |format|
         format.html { render :new }
       end
@@ -39,9 +37,8 @@ class TriviumController < ApplicationController
 
   def edit
     @trivia = Trivia.find(params[:id])
-    @levels = Level.all
     @types = Trivia::TYPES
-    @courses = @trivia.level_courses
+    @courses = Course.all
   end
 
   def update
@@ -52,9 +49,8 @@ class TriviumController < ApplicationController
         format.html { redirect_to new_question_trivia_url(@trivia.id) }
       end
     else
-      @levels = Level.all
       @types = Trivia::TYPES
-      @courses = params[:trivia_level].blank? ? Course.none : Level.find(params[:trivia_level]).courses
+      @courses = Course.all
       flash.now[:alert] = "No se puede editar una trivia si tiene cuestionarios completados" unless trivia_with_no_games
       respond_to do |format|
         format.html { render :edit  }

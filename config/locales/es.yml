@@ -222,7 +222,6 @@ es:
         password_confirmation: "La confirmación de la contraseña"
         password: "Contraseña"
         city: "Ciudad"
-        level: "Capacitación"
         institute: "Área"
         first_name: "Nombre"
         last_name: "Apellido"

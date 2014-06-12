@@ -2,10 +2,6 @@ require 'spec_helper'
 
 describe CoursesController do
   render_views
-  before :all do
-    @level = Level.make!
-  end
-
 
   before :each do
     @admin = Admin.make!
@@ -28,7 +24,7 @@ describe CoursesController do
 
   describe "POST 'create'" do
     before :each do
-      @params = {:course => {:title => "new course", :level_id => @level.id}}
+      @params = {:course => {:title => "new course" }}
     end
 
     it "create a new course" do
@@ -58,7 +54,7 @@ describe CoursesController do
     end
 
     it "returns http success and redirect_to courses_url" do
-      params = {:id=> @course.id, :course => {:title => "Update course", :level_id => @level.id}}
+      params = {:id=> @course.id, :course => {:title => "Update course" }}
       post 'update', params
       expect(response).to redirect_to(courses_url)
     end

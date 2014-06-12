@@ -14,7 +14,6 @@ describe User do
   end
 
   describe "relations" do
-    it { should respond_to(:level) }
     it { should respond_to(:institute) }
     it { should have_many(:games)}
     it { should respond_to(:city) }
@@ -23,7 +22,6 @@ describe User do
   describe "validate the presence of attributes in User:" do
     it { should validate_presence_of :email}
     it { should validate_presence_of :password}
-    it { should validate_presence_of :level}
     it { should validate_presence_of :institute}
     it { should validate_presence_of :first_name}
     it { should validate_presence_of :last_name}

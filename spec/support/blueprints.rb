@@ -19,7 +19,6 @@ User.blueprint do
   group { "Grupo #{sn}" }
   school { "Escuela #{sn}" }
   city { City.make }
-  level { Level.make }
   institute { Institute.make }
   confirmed_at { Time.now.utc }
 end
@@ -81,17 +80,8 @@ Question.blueprint(:filled_image) do
   image {File.new(File.join(Rails.root, 'spec', 'fixtures', 'Test.jpeg'))}
 end
 
-Level.blueprint do
-  title {"Primero"}
-end
-
-Level.blueprint(:second) do
-  title {"Second"}
-end
-
 Course.blueprint do
   title {"Literatura"}
-  level
 end
 
 Trivia.blueprint do

@@ -3,9 +3,9 @@ class Trivia < ActiveRecord::Base
 
   belongs_to :course
   belongs_to :teacher
-  has_one :level, :through => :course
-  has_many :questions
-  has_many :games
+  belongs_to :course
+  has_many   :questions
+  has_many   :games
   belongs_to :content, dependent: :destroy
   accepts_nested_attributes_for :content
 
@@ -18,10 +18,6 @@ class Trivia < ActiveRecord::Base
   TYPES = {1 => I18n.t('trivia.type.multiple_choice'), 2 => I18n.t('trivia.type.free')}
 
   TYPE_MULTIPLE_CHOICE = TYPES.keys.first
-
-  def level_courses
-    self.try(:level).try(:courses)
-  end
 
   def type_name
     TYPES[self.type]
