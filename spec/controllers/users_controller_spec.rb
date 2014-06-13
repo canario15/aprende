@@ -11,7 +11,7 @@ describe UsersController do
     it "redirects to home after creation" do
       params = {:id => @user.id, :user => {:first_name => 'John'}}
       post 'create', params
-      expect(response).to redirect_to(home_path)
+      expect(response).to be_success
     end
   end
 
@@ -32,8 +32,9 @@ describe UsersController do
     end
 
     it'load all users in @users' do
-      b_user = User.make!(first_name: 'b_user')
-      a_user = User.make!(first_name: 'a_user')
+
+      b_user = User.make!(first_name: 'b_user', company: @user.company)
+      a_user = User.make!(first_name: 'a_user', company: @user.company)
       get 'index'
       expect(assigns(:users)).to eq([a_user,b_user,@user])
     end
