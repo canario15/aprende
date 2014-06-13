@@ -57,17 +57,19 @@ describe User do
   context 'using scope' do
     describe 'order by name asc' do
       it 'orders correctly with new users'do
-        b_user = User.make!(first_name: 'b_user')
-        a_user = User.make!(first_name: 'a_user')
-        expect(User.system_users).to eq([a_user,b_user])
+        company = Company.make!
+        b_user = User.make!(first_name: 'b_user', company: company)
+        a_user = User.make!(first_name: 'a_user', company: company)
+        expect(User.system_users(company)).to eq([a_user,b_user])
       end
 
       it 'orders correctly using uppercase and lowercase' do
-        b_user_lower = User.make!(first_name: 'b_user')
-        b_user_upper = User.make!(first_name: 'B_user')
-        a_user_upper = User.make!(first_name: 'A_user')
-        a_user_lower = User.make!(first_name: 'a_user')
-        expect(User.system_users).to eq([a_user_upper,a_user_lower,b_user_lower,b_user_upper])
+        company = Company.make!
+        b_user_lower = User.make!(first_name: 'b_user', company: company)
+        b_user_upper = User.make!(first_name: 'B_user', company: company)
+        a_user_upper = User.make!(first_name: 'A_user', company: company)
+        a_user_lower = User.make!(first_name: 'a_user', company: company)
+        expect(User.system_users(company)).to eq([a_user_upper,a_user_lower,b_user_lower,b_user_upper])
       end
     end
   end

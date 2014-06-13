@@ -10,7 +10,8 @@ class User < ActiveRecord::Base
   belongs_to :city
   validates :institute, :company, :first_name,:last_name, presence: true
 
-  scope :system_users, ->{order(first_name: :asc)}
+  scope :system_users, -> (company) { where(company_id: company.id).order(first_name: :asc) }
+
   has_attached_file :avatar, :styles => { :large => "300x300>", :medium => "100x100>", :small => "50x50" }, :default_url => "/assets/:style/missing.jpg"
 
   before_save :capitalize_first_name

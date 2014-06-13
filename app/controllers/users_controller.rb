@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.system_users
+    @users = User.system_users(current_company)
   end
 
   # GET /users/1
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     password = Devise.friendly_token.first(8)
-    user_params_pass = user_params.merge(:password => password, :password_confirmation => password)
+    user_params_pass = user_params.merge(:password => password, :password_confirmation => password, company: current_company)
     @user = User.new(user_params_pass)
     @user.skip_confirmation!
     respond_to do |format|

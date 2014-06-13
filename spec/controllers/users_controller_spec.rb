@@ -2,6 +2,19 @@ require 'spec_helper'
 
 describe UsersController do
 
+  describe "POST 'create'" do
+    before :each do
+      @user = User.make!
+      sign_in @user
+    end
+
+    it "redirects to home after creation" do
+      params = {:id => @user.id, :user => {:first_name => 'John'}}
+      post 'create', params
+      expect(response).to redirect_to(home_path)
+    end
+  end
+
   describe "GET 'index' " do
     before :each do
       @user = User.make!
