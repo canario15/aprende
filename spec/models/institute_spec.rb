@@ -11,6 +11,7 @@ describe Institute do
   describe "relations" do
      it { should respond_to(:state) }
      it { should respond_to(:city) }
+     it { should respond_to(:company) }
      it { should have_and_belong_to_many(:teachers)}
   end
 
@@ -18,6 +19,7 @@ describe Institute do
     it "must have a name" do
       expect(subject).to validate_presence_of :name
     end
+    it { should validate_presence_of :company}
   end
 
   describe 'Institute Create' do

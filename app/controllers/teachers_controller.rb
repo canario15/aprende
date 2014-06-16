@@ -11,7 +11,7 @@ class TeachersController < ApplicationController
 
   def edit
     @teacher = Teacher.find(params[:id])
-    @institutes = Institute.all
+    @institutes = Institute.system_institutes(current_company)
   end
 
   def create

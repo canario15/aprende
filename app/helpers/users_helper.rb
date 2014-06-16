@@ -1,7 +1,7 @@
 module UsersHelper
 
   def all_institutes
-    Institute.all
+    Institute.company_institutes(current_user)
   end
 
 end

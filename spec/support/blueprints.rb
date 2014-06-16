@@ -97,7 +97,7 @@ Trivia.blueprint(:filled) do
   tag { "Trivia Tag #{sn}" }
   type { 1 }
   course { Course.make!  }
-  teacher { Teacher.make!(:filled) }
+  teacher { Teacher.make! }
   questions (1)
 end
 
@@ -106,7 +106,7 @@ Trivia.blueprint(:filled_image) do
   tag { "Trivia Tag #{sn}" }
   type { 1 }
   course { Course.make!  }
-  teacher { Teacher.make!(:filled) }
+  teacher { Teacher.make! }
   questions {[Question.make!(:filled_image)]}
 end
 
@@ -132,17 +132,6 @@ Teacher.blueprint do
   confirmed_at { Time.now.utc }
 end
 
-Teacher.blueprint(:filled) do
-  first_name { "#First Name {sn}" }
-  last_name { "#Last Name {sn}" }
-  email { "#{sn}@vairix.com" }
-  password { "1234567890" }
-  password_confirmation { "1234567890" }
-  inactive {false}
-  city { City.make! }
-  confirmed_at { Time.now.utc }
-end
-
 State.blueprint do
   name {"Colonia"}
 end
@@ -165,12 +154,14 @@ end
 Institute.blueprint do
   name {"Liceo N° 1"}
   city
+  company
 end
 
 Admin.blueprint do
   email { "#{sn}@vairix.com" }
   password { "1234567890" }
   password_confirmation { "1234567890" }
+  company 
 end
 
 Notification.blueprint do

@@ -30,7 +30,7 @@ describe TeachersController do
   describe "GET 'index with teachers' cities' logged in as Admin" do
     render_views
     before :each do
-      @teacher = Teacher.make!(:filled)
+      @teacher = Teacher.make!
       @admin = Admin.make!
       sign_in @admin
     end
@@ -62,6 +62,8 @@ describe TeachersController do
   describe "GET 'edit'" do
     before :each do
       @teacher = Teacher.make!
+      @admin = Admin.make!
+      sign_in @admin
     end
 
     it "returns http success(code=200)" do
@@ -72,7 +74,7 @@ describe TeachersController do
 
   describe "POST 'update'" do
     before :each do
-      @teacher = Teacher.make!(:filled)
+      @teacher = Teacher.make!
       sign_in @teacher
     end
 
@@ -92,7 +94,7 @@ describe TeachersController do
 
   describe "POST 'update with institutes ids'" do
     before :each do
-      @teacher = Teacher.make!(:filled)
+      @teacher = Teacher.make!
       @institute1 = Institute.make!
       @institute2 = Institute.make!
       sign_in @teacher

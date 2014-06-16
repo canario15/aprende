@@ -1,6 +1,6 @@
 class InstitutesController < ApplicationController
   def index
-    @institutes = Institute.all
+    @institutes = Institute.system_institutes(current_company)
   end
 
   def new
@@ -8,7 +8,8 @@ class InstitutesController < ApplicationController
   end
 
   def create
-    @institute = Institute.new(institute_params)
+    institute_params_aux = institute_params.merge(company: current_company)
+    @institute = Institute.new(institute_params_aux)
     respond_to do |format|
       if @institute.save
         format.html { redirect_to institutes_path, notice:  "Área #{@institute.name} creada." }
@@ -19,7 +20,7 @@ class InstitutesController < ApplicationController
   end
 
   def update
-    @institute = Institute.find(params[:id])
+    @institute = Institute.system_institutes(current_company).find(params[:id])
     respond_to do |format|
       if @institute.update(institute_params)
         format.html { redirect_to institutes_path, :notice => "Área #{@institute.name} actualizada." }
@@ -30,7 +31,7 @@ class InstitutesController < ApplicationController
   end
 
   def edit
-    @institute = Institute.find(params[:id])
+    @institute = Institute.system_institutes(current_company).find(params[:id])
   end
 
   def update_city
@@ -41,6 +42,6 @@ class InstitutesController < ApplicationController
   private
 
   def institute_params
-    params.require(:institute).permit(:name, :contact, :phone, :email, :city_id )
+    params.require(:institute).permit(:name, :contact, :phone, :email, :company_id, :city_id )
   end
 end
