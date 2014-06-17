@@ -51,4 +51,13 @@ describe Teachers::SessionsController do
     end
 
   end
+
+  it "switch" do
+    admin = Admin.make!
+    teacher = Teacher.make!(admin: admin)
+    @request.env["devise.mapping"] = Devise.mappings[:teacher]
+    sign_in teacher
+    get 'switch'
+    expect(response.location).to redirect_to(courses_path)
+  end
 end

@@ -6,5 +6,11 @@ class Admins::SessionsController < Devise::SessionsController
       super
     end
   end
+
+  def switch
+    sign_in (current_admin.teacher)
+    sign_out(current_admin)
+    redirect_to games_teacher_path
+  end
 end
 

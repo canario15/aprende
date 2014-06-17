@@ -2,8 +2,10 @@
 <%= form_for(:admin, :url => registration_path(:admin), :html => { class: 'contact-form' } ) do |f| %>
   <div class="row-fluid offset4">
     <div class="span4">
-      <%= f.text_field :first_name, autofocus: true,  placeholder: "Nombre Empresa" %>
-      <%= f.email_field :email, placeholder: "Mail" %>
+      <%= f.email_field :email, autofocus: true, placeholder: "Mail" %>
+      <%= f.fields_for :company_attributes do |ff| %>
+        <%= ff.text_field :name,  placeholder: "Nombre Empresa" %>
+      <% end %>
       <%= f.password_field :password, placeholder: "Contraseña" %>
       <%= f.password_field :password_confirmation, placeholder: "Confirmar contraseña" %>
     </div>

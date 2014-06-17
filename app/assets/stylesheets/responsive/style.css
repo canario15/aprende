@@ -356,6 +356,8 @@ label.black{
 	font-size: 30px;
 	opacity: 1;
 }
+
+.section-switch,
 .section-close,
 .section-search,
 .section-profile,
@@ -378,6 +380,10 @@ label.black{
 	-moz-transition: all linear 0.25s;
 	-webkit-transition: all linear 0.25s;
 	-o-transition: all linear 0.25s;
+}
+
+.section-switch{
+	top: 45px;
 }
 
 .section-profile{
@@ -410,12 +416,14 @@ label.black{
 	width: 11.8%;
 }
 
+.section-switch,
 .section-search,
 .section-profile,
 .section-logout {
 	font-size: 30px;
 }
 
+.section-switch:hover,
 .section-search:hover,
 .section-profile:hover,
 .section-logout:hover,

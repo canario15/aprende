@@ -16,5 +16,11 @@ class Teachers::SessionsController < Devise::SessionsController
       super
     end
   end
+
+  def switch
+    sign_in (current_teacher.admin)
+    sign_out(current_teacher)
+    redirect_to courses_path
+  end
 end
 

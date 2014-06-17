@@ -14,6 +14,7 @@ describe Teacher do
   end
 
   describe "relations" do
+    it { should have_one(:admin)}
     it { should belong_to(:city)}
     it { should belong_to(:company)}
     it { should have_and_belong_to_many(:institutes)}

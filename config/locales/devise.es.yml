@@ -51,8 +51,8 @@ es:
       failure: 'No pudimos autentificar tu cuenta de %{kind} por la siguiente razón: %{reason}.'
     mailer:
       confirmation_instructions:
-        subject: 'Instrucciones de confirmación de Aprende'
+        subject: 'Instrucciones de confirmación de Evalua'
       reset_password_instructions:
-        subject: 'Instrucciones de cambio de contraseña de Aprende'
+        subject: 'Instrucciones de cambio de contraseña de Evalua'
       unlock_instructions:
         subject: 'Instrucciones de desbloqueo'

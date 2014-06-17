@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 20140612173739) do
+=======
 ActiveRecord::Schema.define(version: 20140617114251) do
+>>>>>>> Switch Admin and Teacher. CR=PV
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -64,8 +68,11 @@ ActiveRecord::Schema.define(version: 20140617114251) do
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
+<<<<<<< HEAD
+=======
     t.integer  "limit_of_teachers"
     t.integer  "limit_of_users"
+>>>>>>> Switch Admin and Teacher. CR=PV
   end
 
   create_table "contents", force: true do |t|

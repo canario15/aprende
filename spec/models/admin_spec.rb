@@ -12,6 +12,7 @@ describe Admin do
 
   describe "relations" do
     it { should respond_to(:company) }
+    it { should respond_to(:teacher) }
   end
 
   describe "validate the presence of attributes" do

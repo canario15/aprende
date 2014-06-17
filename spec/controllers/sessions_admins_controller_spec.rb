@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Admins::SessionsController do
- describe "new signed in?" do
+  describe "new signed in?" do
     it 'teacher sign in redirects to welcome' do
       teacher = Teacher.make!
       sign_in teacher
@@ -26,5 +26,14 @@ describe Admins::SessionsController do
       expect(response.location).to redirect_to(courses_path)
     end
 
+  end
+
+  it "switch" do
+    admin = Admin.make!
+    teacher = Teacher.make!(admin: admin)
+    @request.env["devise.mapping"] = Devise.mappings[:admin]
+    sign_in admin
+    get 'switch'
+    expect(response.location).to redirect_to(games_teacher_path)
   end
 end

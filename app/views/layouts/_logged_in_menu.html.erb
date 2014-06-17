@@ -25,10 +25,12 @@
 
 <!-- Section signout -->
 <% if current_admin -%>
+    <%= link_to_if(current_admin.teacher, content_tag(:span, nil,class: "icon-exchange"), switch_admin_path, class: "section-switch") %>
     <%= link_to( content_tag(:span, nil,class: "icon-signout"), destroy_admin_session_path, method: :delete,class: "section-logout") %>
     <%= link_to( content_tag(:span, nil,class: "icon-user"), edit_admin_path(current_admin.id), class: "section-profile") %>
 <% end -%>
 <% if current_teacher -%>
+    <%= link_to_if(current_teacher.admin, content_tag(:span, nil,class: "icon-exchange"), switch_teacher_path, class: "section-switch") %>
     <%= link_to( content_tag(:span, nil,class: "icon-signout"), destroy_teacher_session_path, method: :delete,class: "section-logout") %>
     <%= link_to( content_tag(:span, nil,class: "icon-user"), edit_teacher_path(current_teacher.id), class: "section-profile") %>
 <% end -%>

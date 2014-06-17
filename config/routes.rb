@@ -37,7 +37,9 @@ Aprende::Application.routes.draw do
   end
 
   devise_for :teachers, :controllers => {:registrations => "teachers/registrations", :sessions => "teachers/sessions" }
-
+  devise_scope :teacher do
+    get 'teachers/switch', to: 'teachers/sessions#switch', as: :switch_teacher
+  end
   match 'cities/state_cities', controller: 'cities', action: 'state_cities', as: 'state_cities', via: :get
 
   resources :teachers, :path => 'instructors' do
@@ -51,7 +53,11 @@ Aprende::Application.routes.draw do
       get 'update_city'
     end
   end
-  devise_for :admins, :controllers => { :sessions => "admins/sessions" }
+
+  devise_for :admins, :controllers => { :registrations => "admins/registrations", :sessions => "admins/sessions" }
+  devise_scope :admin do
+    get 'admins/switch', to: 'admins/sessions#switch', as: :switch_admin
+  end
   resources :admins
   resources :notifications
 

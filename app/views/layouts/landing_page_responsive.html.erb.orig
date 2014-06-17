@@ -4,8 +4,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <title><%= content_for?(:title) ? yield(:title) : "Evalúa" %></title>
+    <meta property="og:title" content="Aprende"/>
+=======
+    <title><%= content_for?(:title) ? yield(:title) : "Capacitarse" %></title>
     <meta property="og:title" content="Evalua"/>
+>>>>>>> Switch Admin and Teacher. CR=PV
     <meta property="og:type" content="website"/>
     <meta property="og:url" content="http://evalua.com.uy"/>
     <meta property="og:description" content="Evalua es una herramienta de apoyo al las empresas en la capacitacion que permite reforzar el conocimiento de sus empleados a través la creación de cuestionarios."/>
