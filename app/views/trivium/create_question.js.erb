@@ -1,0 +1,6 @@
+$('#folio').append("<%=j flash_and_messages %>");
+setTimeout(function() { $('.alert-success').fadeOut('slow');  }, 3000);
+<% if @saved -%>
+  $('#new_question')[0].reset();
+  $('#trivia-questions').html("<%=j render partial: 'index_question' %>").hide();
+<% end -%>

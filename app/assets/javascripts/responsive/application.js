@@ -19,6 +19,7 @@
 //= require_self
 
 $(document).ready(function(){
+
   $("#close").on("click", function() {
       $("#welcome-message").hide();
   });
@@ -67,4 +68,13 @@ $(document).ready(function(){
     CKEDITOR.replace($(this).attr("id"), config, '' );
   });
 
+  setTimeout(function() { $('.alert-success').fadeOut('slow');  }, 3000);
+
+  $('.section-link-left, .section-link-right').on('mouseenter', function(){
+    $(this).find('.panel-title').stop().toggle('fast');
+  });
+
+  $('.section-link-left, .section-link-right').on('mouseleave', function(){
+    $(this).find('.panel-title').stop().toggle('fast');
+  });
 });

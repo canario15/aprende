@@ -17,7 +17,7 @@
         <h4><%= trivia.try(&:teacher).try(&:name) %></h4>
         <h6><%= l trivia.updated_at.to_date, format: :simple %></h6>
       </div>
-      <span class="view">+</span>
+      <span class="view"><a href="#"><i class='icon-play-circle'></i></a></span>
 
       <!-- Trivia Single Description -->
       <div class="item-detail item-detail-blackboard">

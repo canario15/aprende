@@ -24,8 +24,12 @@ $(document).ready(function () {
   });
 
   /* --- Item Description --- */
-  $(".item").click(function () {
-    $(this).toggleClass("open");
+  $(".item .icon-play-circle").click(function () {
+    $(this).closest('div.item').toggleClass("open");
+  })
+
+  $(".item-close").click(function () {
+    $(this).closest('div.item').toggleClass("open");
   })
 
   /* --- Fancybox --- */
@@ -69,7 +73,7 @@ $(document).ready(function () {
         var reader = new FileReader();
         reader.onload = (function(f) {
           return function(e) {
-            var img = $('<img/>',{"class":"img-thumbnail","src":e.target.result, "title": escape(f.name)})
+            var img = $('<img/>',{"class":"img-thumbnail","src":e.target.result, "title": escape(f.name), "width": 210})
             var span = $('<span/>').append(img )
             $('#avatar_preview').append(span)
           };

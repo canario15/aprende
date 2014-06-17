@@ -3,6 +3,11 @@
 </div>
 <%= link_to 'Nueva Área', new_institute_path %>
 <% unless @institutes.empty? -%>
+  <p>
+    <%= link_to new_institute_path, class: 'btn-add-small' do %>
+      <span class='icon-plus-sign'> Nuevo Instituto</span>
+    <% end -%>
+  </p>
   <table class="table table-striped table-bordered table-hover ">
     <thead>
       <tr>
@@ -10,6 +15,7 @@
         <th>Contacto</th>
         <th>Email</th>
         <th>Teléfono</th>
+        <th>Acciones</th>
       </tr>
     </thead>
     <tbody>

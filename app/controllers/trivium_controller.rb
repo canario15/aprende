@@ -73,14 +73,17 @@ class TriviumController < ApplicationController
   def create_question
     @trivia = Trivia.system_trivium(current_company).find(params[:id])
     @question = Question.new(question_params.merge({trivia_id: @trivia.id}))
+
+    trivia_with_no_games = @question.trivia.with_no_games?
+    @saved               = trivia_with_no_games && @question.save
+
     respond_to do |format|
-      trivia_with_no_games = @question.trivia.with_no_games?
-      if trivia_with_no_games && @question.save
-        if (params[:finish] == "true")
-          format.html { redirect_to trivium_url }
-        else
-          format.html { redirect_to new_question_trivia_url(@trivia.id) }
+      if request.xhr?
+        if @saved
+          flash[:notice] = 'La pregunta se ha guardado con exito.'
+          @questions     = @trivia.questions
         end
+        format.js
       else
         @questions = @trivia.questions
         format.html { render :new_question }

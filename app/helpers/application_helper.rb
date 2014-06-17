@@ -1,7 +1,8 @@
 module ApplicationHelper
   def menu_item (page,icon,title)
     active = (current_page? page) ? 'active' : ""
-    link_to( content_tag(:span, nil, class: "icon-"+icon, title: title), page, class: "section-home "+  active)
+    panel  = content_tag(:span, title, class: 'panel-title hide')
+    link_to( content_tag(:span, panel, class: "icon-"+icon, title: title), page, class: "section-home section-link-left "+  active)
   end
 
   def li_ul_current_page? (title,page,li_ul_list = nil,li_ul_list_two = nil)
