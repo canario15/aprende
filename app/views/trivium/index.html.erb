@@ -1,8 +1,10 @@
 <hr/>
-<p>
-  <%= (link_to 'Nueva Trivia', new_trivia_path) if current_teacher %>
-</p>
 <% unless @trivias.empty? -%>
+  <p>
+    <%= link_to new_trivia_path, class: 'btn-add-small' do %>
+      <span class='icon-plus-sign'> Nueva Trivia</span>
+    <% end -%>
+  </p>
   <table class="table table-striped table-bordered table-hover ">
     <thead>
       <tr>
@@ -20,7 +22,7 @@
           <td><%= trivia.course %></td>
           <td><%= trivia.tag %></td>
           <td><%= trivia.description %></td>
-          <td><%= link_to 'Editar', edit_trivia_path(trivia.id) if trivia.with_no_games? -%></td>
+          <td><%= link_to 'Editar', edit_trivia_path(trivia.id) if trivia.with_no_games? %></td>
           <td><%= link_to 'Preguntas', new_question_trivia_url(trivia.id) %></td>
           <td><%= link_to 'Clonar', clone_trivia_url(trivia.id), method: :post %></td>
         </tr>
@@ -28,5 +30,12 @@
     </tbody>
   </table>
 <% else -%>
-  <p>No existen trivias</p>
+  <div class='section-title'>
+    <p>No existen trivias realizadas</p>
+    <p>
+      <%= link_to new_trivia_path, class: 'btn-add' do %>
+        <span class='icon-plus-sign'> Nueva Trivia</span>
+      <% end -%>
+    </p>
+  </div>
 <% end -%>

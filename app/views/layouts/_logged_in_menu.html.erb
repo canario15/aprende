@@ -35,11 +35,11 @@
     <%= link_to( content_tag(:span, nil,class: "icon-user"), edit_teacher_path(current_teacher.id), class: "section-profile") %>
 <% end -%>
 <% if current_user -%>
-    <%= link_to( content_tag(:span, nil,class: "icon-signout"), destroy_user_session_path, method: :delete,class: "section-logout") %>
-    <%= link_to( content_tag(:span, nil,class: "icon-user"), edit_user_path(current_user.id), class: "section-profile") %>
+    <%= link_to( content_tag(:span, content_tag(:span, 'Salir', class: 'panel-title hide'),class: "icon-signout"), destroy_user_session_path, method: :delete,class: "section-logout section-link-right") %>
+    <%= link_to( content_tag(:span, content_tag(:span, 'Mis Datos', class: 'panel-title hide'),class: "icon-user"), edit_user_path(current_user.id), class: "section-profile section-link-right") %>
     <% if current_page?(home_path) -%>
-      <%= link_to "#" , class: "section-search",id: "search-btn" do %>
-        <%= content_tag :span, nil,class: "icon-search",id: "search-span" %>
+      <%= link_to "#" , class: "section-search section-link-right",id: "search-btn" do %>
+        <%= content_tag :span, content_tag(:span, 'Buscar', class: 'panel-title hide'), class: "icon-search",id: "search-span" %>
       <% end %>
       <%= content_tag :div,(text_field_tag 'search',nil,id: "search-input") , class: "contact-form section-search hidden",id: "search-div" %>
     <% end -%>

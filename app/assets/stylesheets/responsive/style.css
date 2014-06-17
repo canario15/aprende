@@ -1266,3 +1266,54 @@ body {
 	display: block;
 }
 }
+
+#image-size {
+  color: #FFF;
+  display: inline-block;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.panel-title {
+  font-size: 18px;
+  margin: 16px 5px;
+  position: fixed;
+  vertical-align: middle;
+}
+
+.section-link-left:hover {
+  color: #fff;
+  text-align: left;
+  width: 155px;
+  border-radius: 0px 5px 5px 0px;
+  -moz-border-radius: 0px 5px 5px 0px;
+  -webkit-border-radius: 0px 5px 5px 0px;
+}
+
+.section-teacher:hover,
+.section-student:hover {
+  width: 235px;
+}
+
+.section-link-left [class^="icon-"], .section-link-left [class*=" icon-"] {
+  margin: 0 0 0 8px;
+}
+
+.section-profile [class^="icon-"], .section-profile [class*=" icon-"],
+.section-logout [class^="icon-"], .section-logout [class*=" icon-"] {
+  margin: 0 8px 0 0;
+}
+
+.section-link-right .panel-title {
+  right: 38px;
+}
+
+.section-link-right:hover {
+  text-align: right;
+  width: 160px;
+  border-radius: 5px 0px 0px 5px;
+  -moz-border-radius: 5px 0px 0px 5px;
+  -webkit-border-radius: 5px 0px 0px 5px;
+}
+
+span.icon-search { float: right; }

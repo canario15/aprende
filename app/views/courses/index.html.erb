@@ -3,6 +3,11 @@
 </div>
 <%= link_to 'Nueva Capacitación', new_course_path %>
 <% unless @courses.empty? -%>
+	<p>
+	  <%= link_to new_course_path, class: 'btn-add' do %>
+	    <span class='icon-plus-sign'> Nuevo Curso</span>
+	  <% end -%>
+	</p>
 	<table class="table table-striped table-bordered table-hover ">
 	  <thead>
 	    <tr>

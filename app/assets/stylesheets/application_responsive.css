@@ -143,3 +143,16 @@
   background: rgb(0,204,204);
   opacity: 0.7;
 }
+
+.btn-add { font-size: 35px; }
+.btn-add-small { font-size: 25px; }
+
+#save_question { height: 50px; width: 210px; }
+
+a.btn-large, a.btn-large:hover { height: 25px; width: 170px; }
+
+#div_containable_Written { margin-top: 20px; }
+
+table.table th, table.table td { text-align: center; }
+
+.view .icon-play-circle { font-size: 45px; }

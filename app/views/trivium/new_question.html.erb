@@ -1,8 +1,22 @@
 <% if @trivia.with_no_games? %>
   <hr/>
   <h2>Preguntas y <span>Respuestas</span></h2>
-  <p><%= link_to 'Agregar Pregunta',"#", id: "display_question_trivia" %></p>
-
+    <% unless @questions.empty? -%>
+      <p>
+        <%= link_to '#', class: 'btn-add-small', id: 'display_question_trivia' do %>
+          <span class='icon-plus-sign'> Agregar Pregunta</span>
+        <% end -%>
+      </p>
+    <% else -%>
+      <div class='section-title'>
+        <p>No existen preguntas</p>
+        <p>
+          <%= link_to '#', class: 'btn-add-small', id: 'display_question_trivia' do %>
+            <span class='icon-plus-sign'> Agregar Pregunta</span>
+          <% end -%>
+        </p>
+      </div>
+    <% end -%>
   <% unless @question.errors.any?-%>
     <%= form_for @question, :url => create_question_trivia_path(@trivia.id), :html => {:class => "contact-form question_trivia hide"} do |f| %>
       <%= render 'form_question', f: f %>

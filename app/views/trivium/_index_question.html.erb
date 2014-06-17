@@ -1,37 +1,37 @@
-<% unless @questions.empty? -%>
-  <table class="table table-striped table-bordered table-hover ">
-    <% if @trivia.with_no_games? -%>
-      <thead>
-        <tr>
-          <th>Pregunta</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @questions.each do |question| -%>
+<div id="trivia-questions">
+  <% unless @questions.empty? -%>
+    <table id='questions' class="table table-striped table-bordered table-hover ">
+      <% if @trivia.with_no_games? -%>
+        <thead>
           <tr>
-            <td><%= question.description %></td>
-            <td>
-              <%= link_to 'Editar', edit_question_trivia_path(question.trivia.id,question.id) %>
-            </td>
+            <th>Pregunta</th>
+            <th></th>
           </tr>
-        <% end -%>
-      </tbody>
-    <% else %>
-      <thead>
-        <tr>
-          <th>Pregunta</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @questions.each do |question| -%>
+        </thead>
+        <tbody>
+          <% @questions.each do |question| -%>
+            <tr>
+              <td><%= question.description %></td>
+              <td>
+                <%= link_to 'Editar', edit_question_trivia_path(question.trivia.id,question.id) %>
+              </td>
+            </tr>
+          <% end -%>
+        </tbody>
+      <% else %>
+        <thead>
           <tr>
-            <td><%= question.description %></td>
+            <th>Pregunta</th>
           </tr>
-        <% end -%>
-      </tbody>
-    <% end -%>
-  </table>
-<% else -%>
-  <p>No existen preguntas</p>
-<% end -%>
+        </thead>
+        <tbody>
+          <% @questions.each do |question| -%>
+            <tr>
+              <td><%= question.description %></td>
+            </tr>
+          <% end -%>
+        </tbody>
+      <% end -%>
+    </table>
+  <% end -%>
+</div>
