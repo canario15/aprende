@@ -50,10 +50,6 @@ describe Trivia do
       expect{Trivia.make!(title: nil)}.to raise_error
     end
 
-    it 'without course and with title' do
-      expect{Trivia.make!(course: nil)}.to raise_error
-    end
-
     it 'without type' do
       expect{Trivia.make!(type: nil)}.to raise_error
     end
@@ -65,9 +61,6 @@ describe Trivia do
       expect(subject).to validate_presence_of :title
     end
 
-    it "must have a course" do
-      expect(subject).to validate_presence_of :course
-    end
   end
 
   describe 'trivium scope' do

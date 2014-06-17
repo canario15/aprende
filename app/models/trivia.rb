@@ -1,6 +1,7 @@
 class Trivia < ActiveRecord::Base
   self.inheritance_column = nil
-
+  
+  belongs_to :company
   belongs_to :course
   belongs_to :teacher
   belongs_to :course
@@ -9,11 +10,13 @@ class Trivia < ActiveRecord::Base
   belongs_to :content, dependent: :destroy
   accepts_nested_attributes_for :content
 
-  validates :title,:course,:type,:teacher, presence: true
+  validates :title,:type,:teacher, presence: true
 
   scope :with_questions, -> { joins(:questions).order(updated_at: :desc).uniq }
   scope :with_questions_and_limit, -> { with_questions.limit(3) }
   scope :search_with_questions, -> (q){ search({teacher_city_name_or_teacher_first_name_or_teacher_last_name_or_title_or_tag_cont: q}).result(distinct: true).with_questions }
+  scope :system_trivium, -> (company) { where(company_id: company.id) }
+
 
   TYPES = {1 => I18n.t('trivia.type.multiple_choice'), 2 => I18n.t('trivia.type.free')}
 

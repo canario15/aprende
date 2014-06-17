@@ -1,11 +1,8 @@
 require 'spec_helper'
 
 describe TriviumController do
-  before :all do
-    @course = Course.make!
-  end
-
   before :each do
+    @course = Course.make!
     @teacher = Teacher.make!
     sign_in @teacher
   end
@@ -26,7 +23,7 @@ describe TriviumController do
 
   describe "POST 'create'" do
     before :each do
-      @trivia = Trivia.make(:filled)
+      @trivia = Trivia.make(:filled, company: @teacher.company)
     end
 
     render_views
@@ -58,43 +55,37 @@ describe TriviumController do
       expect(assigns[:trivia].errors.full_messages.first).to eq("Type can't be blank")
     end
 
-    it "error without course" do
-      @trivia.course =  nil
-      post(:create, trivia: @trivia.attributes)
-      expect(assigns[:trivia].errors.full_messages.first).to eq("Course can't be blank")
-    end
-
     it "error render new" do
       @trivia.title = nil
       post(:create, trivia: @trivia.attributes)
       expect(response.body).to match("Title can\.*t be blank")
     end
 
-     context "not select contents" do
-        let(:contents){ @trivia.contents_init.each{|c|c[:containable_type] = "" } }
-        it "redirect to questions" do
-          contents_params = {content_attributes:
-            Hash[contents.map.with_index do |content,index|
-                [index.to_s,Hash[
-                    containable_attributes:
-                    Hash[ document:
-                      content.containable.document
-                    ].reverse_merge(content.containable.attributes)
-                  ].reverse_merge(content.attributes)
-                ]
-            end
-            ]
-          }
-          params = contents_params.reverse_merge(@trivia.attributes)
-          post(:create, trivia: params)
-          expect(response.location).to eq(new_question_trivia_url(assigns[:trivia].id))
-        end
+    context "not select contents" do
+      let(:contents){ @trivia.contents_init.each{|c|c[:containable_type] = "" } }
+      it "redirect to questions" do
+        contents_params = {content_attributes:
+          Hash[contents.map.with_index do |content,index|
+              [index.to_s,Hash[
+                  containable_attributes:
+                  Hash[ document:
+                    content.containable.document
+                  ].reverse_merge(content.containable.attributes)
+                ].reverse_merge(content.attributes)
+              ]
+          end
+          ]
+        }
+        params = contents_params.reverse_merge(@trivia.attributes)
+        post(:create, trivia: params)
+        expect(response.location).to eq(new_question_trivia_url(assigns[:trivia].id))
       end
+    end
 
     #Content::TYPE =["Pdf",  "Written"]
     Content::TYPE.each do |type|
       context "contents #{type} selected" do
-       let(:trivia){ Trivia.make(:filled)}
+       let(:trivia){ Trivia.make(:filled, company: @teacher.company)}
         let(:contents){
           trivia.contents_init.each{|c|
             c[:containable_type] = "" unless c[:containable_type] == type
@@ -165,7 +156,7 @@ describe TriviumController do
 
   describe "GET 'edit'" do
     before :each do
-      @trivia = Trivia.make!
+      @trivia = Trivia.make!(company: @teacher.company)
     end
 
     it "returns http success(code=200)" do
@@ -178,7 +169,7 @@ describe TriviumController do
     render_views
 
     before :each do
-      @trivia = Trivia.make!
+      @trivia = Trivia.make!(company: @teacher.company)
     end
 
     it "returns http success" do
@@ -199,12 +190,6 @@ describe TriviumController do
       expect(assigns[:trivia].errors.full_messages.first).to eq("Type can't be blank")
     end
 
-    it "error without course" do
-      @trivia.course = nil
-      post(:update, id: @trivia.id, trivia: @trivia.attributes)
-      expect(assigns[:trivia].errors.full_messages.first).to eq("Course can't be blank")
-    end
-
     it "error render new" do
       @trivia.title = nil
       post(:update,id: @trivia.id, trivia: @trivia.attributes)
@@ -214,7 +199,7 @@ describe TriviumController do
     #Content::TYPE =["Pdf",  "Written"]
     Content::TYPE.each do |type|
       context "contents #{type} redirect to questions"  do
-        let(:trivia){ Trivia.make!(content: Content.make!(containable: eval(type).make!))}
+        let(:trivia){ Trivia.make!(content: Content.make!(containable: eval(type).make!), company: @teacher.company)}
         let(:contents){ trivia.contents_init }
         it "not select" do
           contents_params = {content_attributes:
@@ -314,7 +299,7 @@ describe TriviumController do
       end
 
       context "contents #{type} fail"  do
-        let(:trivia){ Trivia.make!(:filled,content: Content.make!(containable: eval(type).make!))}
+        let(:trivia){ Trivia.make!(:filled,content: Content.make!(containable: eval(type).make!), company: @teacher.company )}
         let(:contents){
           trivia.contents_init.each{|c|
             c[:containable_type] = "" unless c[:containable_type] == type
@@ -360,7 +345,7 @@ describe TriviumController do
 
   describe "POST 'cannot update trivia with games'" do
     before :each do
-      @trivia = Trivia.make!
+      @trivia = Trivia.make!(company: @teacher.company)
       @game = Game.make!
       @trivia.games << @game
     end
@@ -373,8 +358,8 @@ describe TriviumController do
 
   describe "GET 'new_question'" do
     before :each do
-      @trivia = Trivia.make!
-      @question = Question.make!
+      @trivia = Trivia.make!(company: @teacher.company)
+      @question = Question.make!(trivia: @trivia)
     end
 
     it "returns http success(code=200) without question" do
@@ -391,7 +376,7 @@ describe TriviumController do
   describe "POST 'create_question'" do
     render_views
     before :each do
-      @trivia = Trivia.make!
+      @trivia = Trivia.make!(company: @teacher.company)
     end
 
     let(:question){Question.make(:filled)}
@@ -484,7 +469,7 @@ describe TriviumController do
   describe "POST 'cannot create_question if the trivia has a game'" do
     render_views
     before :each do
-      @trivia = Trivia.make!
+      @trivia = Trivia.make!(company: @teacher.company)
       @game = Game.make!
       @trivia.games << @game
     end
@@ -536,7 +521,7 @@ describe TriviumController do
   describe "POST 'cannot update_question of a trivia with games'" do
     render_views
     before :each do
-      @trivia = Trivia.make!
+      @trivia = Trivia.make!(company: @teacher.company)
       @question = Question.make!(trivia: @trivia)
       @game = Game.make!(trivia: @trivia)
     end
@@ -552,7 +537,7 @@ describe TriviumController do
 
  describe "POST 'clone'" do
     before :each do
-      @trivia = Trivia.make!(:filled)
+      @trivia = Trivia.make!(:filled, company: @teacher.company)
     end
 
     it "clone a trivia" do

@@ -12,23 +12,23 @@ class TriviumController < ApplicationController
   def new
     @trivia = Trivia.new
     @types = Trivia::TYPES
-    @courses = Course.all
+    @courses = Course.system_courses(current_company)
   end
 
   def update_course
-    @courses = Course.all
+    @courses = Course.system_courses(current_company)
     render :json => { :courses => @courses}
   end
 
   def create
-    @trivia = Trivia.new(trivia_params.merge(teacher: current_teacher))
+    @trivia = Trivia.new(trivia_params.merge(teacher: current_teacher, company: current_company))
     if @trivia.save
       respond_to do |format|
         format.html { redirect_to new_question_trivia_url(@trivia.id) }
       end
     else
       @types = Trivia::TYPES
-       @courses = Course.all
+       @courses = Course.system_courses(current_company)
       respond_to do |format|
         format.html { render :new }
       end
@@ -36,13 +36,13 @@ class TriviumController < ApplicationController
   end
 
   def edit
-    @trivia = Trivia.find(params[:id])
+    @trivia = Trivia.system_trivium(current_company).find(params[:id])
     @types = Trivia::TYPES
-    @courses = Course.all
+    @courses = Course.system_courses(current_company)
   end
 
   def update
-    @trivia = Trivia.find(params[:id])
+    @trivia = Trivia.system_trivium(current_company).find(params[:id])
     trivia_with_no_games = @trivia.with_no_games?
     if trivia_with_no_games && @trivia.update_attributes(trivia_params)
       respond_to do |format|
@@ -50,7 +50,7 @@ class TriviumController < ApplicationController
       end
     else
       @types = Trivia::TYPES
-      @courses = Course.all
+      @courses = Course.system_courses(current_company)
       flash.now[:alert] = "No se puede editar una trivia si tiene cuestionarios completados" unless trivia_with_no_games
       respond_to do |format|
         format.html { render :edit  }
@@ -59,19 +59,19 @@ class TriviumController < ApplicationController
   end
 
   def clone
-    trivia = Trivia.find(params[:id])
+    trivia = Trivia.system_trivium(current_company).find(params[:id])
     trivia_clone = trivia.clone_with_associations
     redirect_to trivium_url, notice: "Nueva trivia clonada: ", flash: { link: {title: trivia_clone.title,url: edit_trivia_path(trivia_clone)}}
   end
 
   def new_question
-    @trivia = Trivia.find(params[:id])
+    @trivia = Trivia.system_trivium(current_company).find(params[:id])
     @question = Question.new
     @questions = @trivia.questions
   end
 
   def create_question
-    @trivia = Trivia.find(params[:id])
+    @trivia = Trivia.system_trivium(current_company).find(params[:id])
     @question = Question.new(question_params.merge({trivia_id: @trivia.id}))
     respond_to do |format|
       trivia_with_no_games = @question.trivia.with_no_games?

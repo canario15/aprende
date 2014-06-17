@@ -3,7 +3,7 @@ class HomeController < ApplicationController
 
   def index
     @trivium = Trivia.with_questions
-    @courses = Course.all
+    @courses = Course.system_courses(current_company)
     render 'home_responsive'
   end
 

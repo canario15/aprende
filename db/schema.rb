@@ -83,7 +83,10 @@ ActiveRecord::Schema.define(version: 20140617114251) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.integer  "company_id"
   end
+
+  add_index "courses", ["company_id"], name: "index_courses_on_company_id"
 
   create_table "games", force: true do |t|
     t.integer  "score",      default: 0
@@ -206,8 +209,10 @@ ActiveRecord::Schema.define(version: 20140617114251) do
     t.integer  "type"
     t.integer  "teacher_id"
     t.integer  "content_id"
+    t.integer  "company_id"
   end
 
+  add_index "trivium", ["company_id"], name: "index_trivium_on_company_id"
   add_index "trivium", ["content_id"], name: "index_trivium_on_content_id"
   add_index "trivium", ["course_id"], name: "index_trivium_on_course_id"
   add_index "trivium", ["teacher_id"], name: "index_trivium_on_teacher_id"

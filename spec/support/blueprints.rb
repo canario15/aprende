@@ -83,6 +83,7 @@ end
 
 Course.blueprint do
   title {"Literatura"}
+  company { Company.make! }
 end
 
 Trivia.blueprint do
@@ -90,6 +91,7 @@ Trivia.blueprint do
   type {1}
   course
   teacher
+  company { Company.make! }
 end
 
 Trivia.blueprint(:filled) do
@@ -99,6 +101,7 @@ Trivia.blueprint(:filled) do
   course { Course.make!  }
   teacher { Teacher.make! }
   questions (1)
+  company  { Company.make! }
 end
 
 Trivia.blueprint(:filled_image) do
@@ -108,6 +111,7 @@ Trivia.blueprint(:filled_image) do
   course { Course.make!  }
   teacher { Teacher.make! }
   questions {[Question.make!(:filled_image)]}
+  company  { Company.make! }
 end
 
 Question.blueprint do
@@ -130,6 +134,7 @@ Teacher.blueprint do
   password_confirmation { "1234567890" }
   inactive {false}
   confirmed_at { Time.now.utc }
+  company
 end
 
 State.blueprint do

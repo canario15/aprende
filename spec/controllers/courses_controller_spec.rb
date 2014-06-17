@@ -39,7 +39,7 @@ describe CoursesController do
 
   describe "GET 'edit'" do
     before :each do
-      @course = Course.make!
+      @course = Course.make!(company: @admin.company)
     end
 
     it "returns http success(code=200)" do
@@ -50,7 +50,7 @@ describe CoursesController do
 
   describe "POST 'update'" do
     before :each do
-      @course = Course.make!
+      @course = Course.make!(company: @admin.company)
     end
 
     it "returns http success and redirect_to courses_url" do
