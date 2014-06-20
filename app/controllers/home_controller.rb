@@ -2,7 +2,7 @@ class HomeController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @trivium = Trivia.with_questions
+    @trivium = Trivia.system_trivium(current_company).with_questions
     @courses = Course.system_courses(current_company)
     render 'home_responsive'
   end
@@ -10,9 +10,9 @@ class HomeController < ApplicationController
   def search
     if params[:search]
       @q_value = params[:search][:q]
-      @trivium = Trivia.search_with_questions(@q_value)
+      @trivium = Trivia.system_trivium(current_company).search_with_questions(@q_value)
     else
-      @trivium = Trivia.with_questions
+      @trivium = Trivia.system_trivium(current_company).with_questions
     end
   end
 end

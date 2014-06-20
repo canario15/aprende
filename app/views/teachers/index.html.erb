@@ -1,7 +1,11 @@
 <div class="page-header">
   <h1 id="tables">Listado de instructores</h1>
 </div>
-<%= link_to "Nuevo Instructor", new_teacher_path %>
+<p>
+  <%= link_to new_teacher_path, class: 'btn-add-small' do %>
+    <span class='icon-plus-sign'> Nuevo Instructor</span>
+  <% end -%>
+</p>
 <% unless @teachers.empty? -%>
   <table id="teachers-table-admin" class="table table-striped table-bordered table-hover">
     <thead>
@@ -32,5 +36,5 @@
     </tbody>
   </table>
 <% else -%>
-  <p>No existen maestros.</p>
+  <p>No existen instructores.</p>
 <% end -%>

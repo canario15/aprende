@@ -1,12 +1,18 @@
 require 'spec_helper'
 
 describe TeachersController do
+  
+  before :each do
+    @admin = Admin.make!
+    sign_in @admin
+  end
+
 
   describe "GET 'index' logged in as Admin" do
     before :each do
-      @teacher = Teacher.make!
       @admin = Admin.make!
       sign_in @admin
+      @teacher = Teacher.make!(company: @admin.company)
     end
 
     it "returns http success" do
@@ -20,8 +26,8 @@ describe TeachersController do
     end
 
     it'load all teachers in @teachers' do
-      b_teacher = Teacher.make!(first_name: 'b_teacher')
-      a_teacher = Teacher.make!(first_name: 'a_teacher')
+      b_teacher = Teacher.make!(first_name: 'b_teacher', company: @admin.company)
+      a_teacher = Teacher.make!(first_name: 'a_teacher', company: @admin.company)
       get 'index'
       expect(assigns(:teachers)).to eq([@teacher,a_teacher,b_teacher])
     end
@@ -30,8 +36,8 @@ describe TeachersController do
   describe "GET 'index with teachers' cities' logged in as Admin" do
     render_views
     before :each do
-      @teacher = Teacher.make!
       @admin = Admin.make!
+      @teacher = Teacher.make!(company: @admin.company)
       sign_in @admin
     end
 
@@ -45,7 +51,8 @@ describe TeachersController do
 
   describe "GET 'index' logged in as a Teacher" do
     before :each do
-      @teacher = Teacher.make!
+      @teacher = Teacher.make!(company: @admin.company)
+      sign_out @admin
       sign_in @teacher
       get 'index'
     end
@@ -61,9 +68,9 @@ describe TeachersController do
 
   describe "GET 'edit'" do
     before :each do
-      @teacher = Teacher.make!
       @admin = Admin.make!
       sign_in @admin
+      @teacher = Teacher.make!(company: @admin.company)
     end
 
     it "returns http success(code=200)" do
@@ -74,7 +81,7 @@ describe TeachersController do
 
   describe "POST 'update'" do
     before :each do
-      @teacher = Teacher.make!
+      @teacher = Teacher.make!(company: @admin.company)
       sign_in @teacher
     end
 
@@ -94,9 +101,9 @@ describe TeachersController do
 
   describe "POST 'update with institutes ids'" do
     before :each do
-      @teacher = Teacher.make!
-      @institute1 = Institute.make!
-      @institute2 = Institute.make!
+      @teacher = Teacher.make!(company: @admin.company)
+      @institute1 = Institute.make!(company: @admin.company)
+      @institute2 = Institute.make!(company: @admin.company)
       sign_in @teacher
     end
 
@@ -116,14 +123,14 @@ describe TeachersController do
   describe "change teacher status" do
 
     it "inactivate teacher" do
-      @teacher = Teacher.make!
+      @teacher = Teacher.make!(company: @admin.company)
       xhr :post, :inactivate_or_activate, {teacher_id: @teacher.id}
       t = Teacher.find @teacher.id
       expect(t.inactive).to be(true)
     end
 
     it "activate teacher" do
-      @teacher = Teacher.make!(inactive: true)
+      @teacher = Teacher.make!(inactive: true, company: @admin.company)
       xhr :post, :inactivate_or_activate, {teacher_id: @teacher.id}
       teacher = Teacher.find @teacher.id
       expect(teacher.inactive).to be(false)
@@ -132,7 +139,7 @@ describe TeachersController do
 
    describe "GET 'sign_in'" do
     before :each do
-      @teacher = Teacher.make!
+      @teacher = Teacher.make!(company: @admin.company)
       sign_in @teacher
     end
 

@@ -2,7 +2,7 @@ class TeachersController < ApplicationController
   before_filter :authenticate_admin!, :only => [:index]
 
   def index
-    @teachers= Teacher.system_teachers
+    @teachers= Teacher.system_teachers(current_company)
   end
 
   def new
@@ -10,19 +10,19 @@ class TeachersController < ApplicationController
   end
 
   def edit
-    @teacher = Teacher.find(params[:id])
+    @teacher = Teacher.system_teachers(current_company).find(params[:id])
     @institutes = Institute.system_institutes(current_company)
   end
 
   def create
     password = Devise.friendly_token.first(8)
-    teacher_params_pass = teacher_params.merge(:password => password, :password_confirmation => password)
+    teacher_params_pass = teacher_params.merge(:password => password, :password_confirmation => password, company: current_company)
     @teacher = Teacher.new(teacher_params_pass)
     @teacher.skip_confirmation!
     respond_to do |format|
       if @teacher.save
         @teacher.send_reset_password_instructions
-        format.html { redirect_to teachers_url, notice: 'Teacher was successfully created.' }
+        format.html { redirect_to teachers_url, notice: 'El instructor fue creado correctamente.' }
         format.json { render action: 'show', status: :created, location: @teacher }
       else
         format.html { render action: 'new' }
@@ -32,7 +32,7 @@ class TeachersController < ApplicationController
   end
 
   def update
-    @teacher = Teacher.find_by(id: params[:id])
+    @teacher = Teacher.system_teachers(current_company).find_by(id: params[:id])
     respond_to do |format|
       if @teacher.update(teacher_params)
         format.html {redirect_to games_teacher_path, :notice => "Datos de #{@teacher.name} actualizados."}
@@ -43,11 +43,11 @@ class TeachersController < ApplicationController
   end
 
   def show
-    @teacher = Teacher.find(params[:id])
+    @teacher = Teacher.system_teachers(current_company).find(params[:id])
   end
 
   def inactivate_or_activate
-    teacher = Teacher.find(params[:teacher_id])
+    teacher = Teacher.system_teachers(current_company).find(params[:teacher_id])
     inactive = nil
     if teacher.inactive
       inactive = false
@@ -67,7 +67,7 @@ class TeachersController < ApplicationController
   private
 
   def teacher_params
-    params.require(:teacher).permit(:email, :password, :password_confirmation, :first_name, :last_name, :phone, :description, :city_id, {institute_ids: []}, :inactive)
+    params.require(:teacher).permit(:company_id, :email, :password, :password_confirmation, :first_name, :last_name, :phone, :description, :city_id, {institute_ids: []}, :inactive)
   end
 
 end

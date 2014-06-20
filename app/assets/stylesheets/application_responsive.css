@@ -156,3 +156,9 @@ a.btn-large, a.btn-large:hover { height: 25px; width: 170px; }
 table.table th, table.table td { text-align: center; }
 
 .view .icon-play-circle { font-size: 45px; }
+
+.submit-buttons {
+  height: 35px!important;
+  margin: 0!important;
+  width: 71px!important;
+}

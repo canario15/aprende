@@ -19,10 +19,10 @@ describe HomeController do
 
     describe "Search with " do
       before :each do
-        @trivia0 = Trivia.make!(:filled)
-        @trivia1 = Trivia.make!(:filled)
-        @trivia2 = Trivia.make!(:filled)
-        @trivia3 = Trivia.make!(:filled)
+        @trivia0 = Trivia.make!(:filled, company: @user.company)
+        @trivia1 = Trivia.make!(:filled, company: @user.company)
+        @trivia2 = Trivia.make!(:filled, company: @user.company)
+        @trivia3 = Trivia.make!(:filled, company: @user.company)
         @params = {search: { q: "Test" }}
       end
 

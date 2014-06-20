@@ -16,10 +16,12 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
+    @institutes = current_company.institutes
   end
 
   # GET /users/1/edit
   def edit
+    @institutes = current_company.institutes
     respond_to do |format|
       if current_user == @user
         @user = User.find(params[:id])
@@ -40,9 +42,10 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         @user.send_reset_password_instructions
-        format.html { redirect_to users_url, notice: 'User was successfully created.' }
+        format.html { redirect_to users_url, notice: 'Persona correctamente creada.' }
         format.json { render action: 'show', status: :created, location: @user }
       else
+        @institutes = current_company.institutes
         format.html { render action: 'new' }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
@@ -58,6 +61,7 @@ class UsersController < ApplicationController
         if @user.update(user_params)
           format.html {redirect_to home_path, :notice => "Datos de #{@user.name} actualizados."}
         else
+          @institutes = current_company.institutes
           format.html { render action: 'edit' }
         end
       else

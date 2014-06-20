@@ -105,10 +105,13 @@ module ApplicationHelper
       title = (content_tag :strong, "Áreas") + (content_tag :p, "Para ".html_safe + (content_tag :span,"Capacitar"))
     when "users","users/registrations"
       icon = "smile"
-      title = (content_tag :strong, "Usuarios") + (content_tag :p, "Datos del ".html_safe + (content_tag :span,"Perfil"))
+      title = (content_tag :strong, "Personas") + (content_tag :p, "Datos del ".html_safe + (content_tag :span,"Perfil"))
     when "teachers","teachers/registrations"
       icon = "briefcase"
       title = (content_tag :strong, "Instructores") + (content_tag :p, "Datos del ".html_safe + (content_tag :span,"Perfil"))
+    when "courses"
+      icon = "book"
+      title = (content_tag :strong, "Capacitaciones") + (content_tag :p, "Para ".html_safe + (content_tag :span,"Exponer"))
     else
       icon = "error"
       title = (content_tag :strong, controller_path)

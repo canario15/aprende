@@ -21,7 +21,7 @@ class Teacher < ActiveRecord::Base
 
   before_save :capitalize_first_name
 
-  scope :system_teachers, -> { order(first_name: :asc) }
+  scope :system_teachers, ->(company) { where(:company_id => company.id).order(first_name: :asc) }
   scope :with_games_week_ago, -> { includes(:games).where("games.updated_at >= ?",1.week.ago).references(:games) }
 
   def name

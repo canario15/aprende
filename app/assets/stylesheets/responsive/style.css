@@ -1284,14 +1284,15 @@ body {
 .section-link-left:hover {
   color: #fff;
   text-align: left;
-  width: 155px;
+  width: 195px;
   border-radius: 0px 5px 5px 0px;
   -moz-border-radius: 0px 5px 5px 0px;
   -webkit-border-radius: 0px 5px 5px 0px;
 }
 
 .section-teacher:hover,
-.section-student:hover {
+.section-student:hover,
+.section-admin:hover {
   width: 235px;
 }
 

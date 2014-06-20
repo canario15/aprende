@@ -1,44 +1,16 @@
-<%= form_for :user, :url => create_users_url, :html => { :class => "bs-example form-horizontal"} do |f| %>
-
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<%= form_for :user, :url => create_users_url, :html => { :class => "contact-form"} do |f| %>
+  <div class="row-fluid offset4">
+    <div class="span4">
+      <%= f.text_field :first_name, autofocus: true, class: 'form-control',  placeholder: "Nombre" %>
+      <%= f.text_field :last_name, class: 'form-control', placeholder: "Apellido" %>
+      <%= f.email_field :email, class: 'form-control', placeholder: "Mail" %>
+      <%= f.collection_select(:institute_id, @institutes, :id, :name, { prompt: "Área" }, { class: "form-control" }) %>
     </div>
-  <% end %>
-  <fieldset>
-    <div class="form-group">
-      <label for="title" class="col-lg-2 control-label">Nombre</label>
-      <div class="col-lg-10">
-        <%= f.text_field :first_name, autofocus: true, class: 'form-control',  placeholder: "Nombre" %>
-      </div>
+  </div>
+  <div class="row-fluid margin">
+    <div style="text-align:center">
+      <%= link_to 'Cancelar', users_path, class: "btn btn-small" %>
+      <%= f.button "Guardar", class: 'btn btn-small submit-buttons' %>
     </div>
-    <div class="form-group">
-      <label for="title" class="col-lg-2 control-label">Apellido</label>
-      <div class="col-lg-10">
-        <%= f.text_field :last_name, class: 'form-control', placeholder: "Apellido" %>
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="title" class="col-lg-2 control-label">Email</label>
-      <div class="col-lg-10">
-        <%= f.email_field :email, class: 'form-control', placeholder: "Mail" %>
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="title" class="col-lg-2 control-label">Área</label>
-      <div class="col-lg-10">
-        <%= f.collection_select(:institute_id, all_institutes, :id, :name, { prompt: "Área" }, { class: "form-control" }) %>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="col-lg-10 col-lg-offset-2">
-        <%= link_to 'Cancelar', users_path %>
-        <%= f.submit "Guardar", class: 'btn btn-primary' %>
-      </div>
-    </div>
-  </fieldset>
-<% end -%>
+  </div>
+<% end %>

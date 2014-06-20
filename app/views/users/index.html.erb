@@ -1,7 +1,11 @@
 <div class="page-header">
   <h1 id="tables">Listado de personas</h1>
 </div>
-<%= link_to "Nuevo Usuario", new_user_path %>
+<p>
+  <%= link_to new_user_path, class: 'btn-add-small' do %>
+    <span class='icon-plus-sign'> Nueva Persona</span>
+  <% end -%>
+</p>
 <% unless @users.empty? -%>
   <table class="table table-striped table-bordered table-hover">
     <thead>

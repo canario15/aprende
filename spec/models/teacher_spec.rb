@@ -44,18 +44,21 @@ describe Teacher do
 
   describe 'scope' do
     describe 'order by name asc' do
+
       it 'Creates teachers'do
-        b_teacher = Teacher.make!(first_name: 'b_teacher')
-        a_teacher = Teacher.make!(first_name: 'a_teacher')
-        expect(Teacher.system_teachers).to eq([a_teacher,b_teacher])
+        company = Company.make!
+        b_teacher = Teacher.make!(first_name: 'b_teacher', company: company)
+        a_teacher = Teacher.make!(first_name: 'a_teacher', company: company)
+        expect(Teacher.system_teachers(company)).to eq([a_teacher,b_teacher])
       end
 
       it'uppercase and lowercase' do
-        b_teacher_lower = Teacher.make!(first_name: 'b_teacher')
-        b_teacher_upper = Teacher.make!(first_name: 'B_teacher')
-        a_teacher_upper = Teacher.make!(first_name: 'A_teacher')
-        a_teacher_lower = Teacher.make!(first_name: 'a_teacher')
-        expect(Teacher.system_teachers).to eq([a_teacher_upper,a_teacher_lower,b_teacher_lower,b_teacher_upper])
+        company = Company.make!
+        b_teacher_lower = Teacher.make!(first_name: 'b_teacher', company: company)
+        b_teacher_upper = Teacher.make!(first_name: 'B_teacher', company: company)
+        a_teacher_upper = Teacher.make!(first_name: 'A_teacher', company: company)
+        a_teacher_lower = Teacher.make!(first_name: 'a_teacher', company: company)
+        expect(Teacher.system_teachers(company)).to eq([a_teacher_upper,a_teacher_lower,b_teacher_lower,b_teacher_upper])
       end
     end
 

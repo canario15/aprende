@@ -134,7 +134,7 @@ Teacher.blueprint do
   password_confirmation { "1234567890" }
   inactive {false}
   confirmed_at { Time.now.utc }
-  company
+  company { Company.make!}
 end
 
 State.blueprint do
