@@ -31,7 +31,13 @@ class InstitutesController < ApplicationController
   end
 
   def edit
-    @institute = Institute.system_institutes(current_company).find(params[:id])
+    begin
+      @institute = Institute.system_institutes(current_company).find(params[:id])
+    rescue Exception => e
+      respond_to do |format|
+        format.html { redirect_to institutes_path, :alert => "Acceso denegado" }
+      end
+    end
   end
 
   def update_city

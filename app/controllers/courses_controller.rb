@@ -22,7 +22,13 @@ class CoursesController < ApplicationController
   end
 
   def edit
-    @course = Course.system_courses(current_company).find(params[:id])
+    begin
+      @course = Course.system_courses(current_company).find(params[:id])
+    rescue Exception => e
+      respond_to do |format|
+        format.html { redirect_to courses_url, :alert => "Acceso denegado" }
+      end
+    end
   end
 
   def update

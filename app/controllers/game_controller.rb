@@ -64,12 +64,25 @@ class GameController < ApplicationController
   end
 
   def game_results_teacher
-    @game = Game.find(params[:id])
-    @game_answers = @game.answers
+    begin
+      @game = current_teacher.games_finished.find(params[:id])
+      @game_answers = @game.answers
+    rescue Exception => e
+      respond_to do |format|
+        @games_results = current_user.games_finished.order(updated_at: :desc)
+        format.html { redirect_to games_teacher_path, :alert => "Acceso denegado" }
+      end
+    end
   end
 
   def game_results_user
-    @presenter =  Game::GameResultsUserPresenter.new(Game.find(params[:id]))
+    begin
+      @presenter =  Game::GameResultsUserPresenter.new(current_user.games_finished.find(params[:id]))
+    rescue Exception => e
+      respond_to do |format|
+        format.html { redirect_to games_user_path, :alert => "Acceso denegado" }
+      end
+    end
   end
 
 private

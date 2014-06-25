@@ -1,0 +1,19 @@
+<hr/>
+<h2>Informacion de la  <span>Empresa</span></h2>
+<%= form_for @company, :url => update_company_path, :html => {class: 'contact-form'} do |f| %>
+  <div class="row-fluid offset4">
+    <div class="span4">
+      <%= f.text_field :name, autofocus: true,  placeholder: "Nombre" %>
+      <%= f.text_field :contact_name, :autofocus => true, placeholder: 'Nombre Contacto' %>
+      <%= f.email_field :email, placeholder: "Email" %>
+      <%= f.text_field :phone, :autofocus => true, placeholder: 'Teléfono' %>
+      <%= f.text_field :address, :autofocus => true, placeholder: 'Direccionón' %>
+    </div>
+  </div>
+  <div class="row-fluid margin">
+    <div style="text-align:center">
+      <%= link_to 'Cancelar', courses_path, class: "btn btn-large" %>
+      <button type="submit" class="btn btn-large">Confirmar</button>
+    </div>
+  </div>
+<% end -%>

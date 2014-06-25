@@ -36,13 +36,19 @@ class TriviumController < ApplicationController
   end
 
   def edit
-    @trivia = Trivia.system_trivium(current_company).find(params[:id])
-    @types = Trivia::TYPES
-    @courses = Course.system_courses(current_company)
+    begin
+      @trivia = current_teacher.trivium.find(params[:id])
+      @types = Trivia::TYPES
+      @courses = Course.system_courses(current_company)
+    rescue Exception => e
+      respond_to do |format|
+        format.html { redirect_to trivium_path, :alert => "Acceso denegado" }
+      end
+    end
   end
 
   def update
-    @trivia = Trivia.system_trivium(current_company).find(params[:id])
+    @trivia = current_teacher.trivium.find(params[:id])
     trivia_with_no_games = @trivia.with_no_games?
     if trivia_with_no_games && @trivia.update_attributes(trivia_params)
       respond_to do |format|
@@ -65,18 +71,23 @@ class TriviumController < ApplicationController
   end
 
   def new_question
-    @trivia = Trivia.system_trivium(current_company).find(params[:id])
-    @question = Question.new
-    @questions = @trivia.questions
+    begin
+      @trivia = current_teacher.trivium.find(params[:id])
+      @question = Question.new
+      @questions = @trivia.questions
+    rescue Exception => e
+      respond_to do |format|
+        format.html { redirect_to trivium_path, :alert => "Acceso denegado" }
+      end
+    end
   end
 
   def create_question
-    @trivia = Trivia.system_trivium(current_company).find(params[:id])
+    @trivia = current_teacher.trivium.find(params[:id])
     @question = Question.new(question_params.merge({trivia_id: @trivia.id}))
 
     trivia_with_no_games = @question.trivia.with_no_games?
     @saved               = trivia_with_no_games && @question.save
-
     respond_to do |format|
       if request.xhr?
         if @saved
@@ -93,8 +104,15 @@ class TriviumController < ApplicationController
   end
 
   def edit_question
-    @question = Question.find(params[:question_id])
-    @trivia = @question.trivia
+    begin
+      @trivia = current_teacher.trivium.find(params[:id])
+      @question = @trivia.questions.find(params[:question_id])
+    rescue Exception => e
+      debugger
+      respond_to do |format|
+        format.html { redirect_to trivium_path, :alert => "Acceso denegado" }
+      end
+    end
   end
 
   def update_question

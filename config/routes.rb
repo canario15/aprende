@@ -3,6 +3,8 @@ Aprende::Application.routes.draw do
   get "home", to: "home#index"
   get "home/search" => "home#search", as: :home_search
   get "welcome/index"
+  get "companies/edit" => "companies#edit", as: :edit_compnay
+  patch "companies/update" => "companies#update", as: :update_company
   get "trivium/:trivia_id/game/new" => "game#new", as: :game_new
   post "trivium/:trivia_id/game/new" => "game#create", as: :game_create
   post "trivium/:trivia_id/game/eval_answer" => "game#eval_answer", as: :game_eval_answer

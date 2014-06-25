@@ -25,17 +25,16 @@
 
 <!-- Section signout -->
 <% if current_admin -%>
-    <%= link_to_if(current_admin.teacher, content_tag(:span, nil,class: "icon-exchange"), switch_admin_path, class: "section-switch") %>
-    <%= link_to( content_tag(:span, nil,class: "icon-signout"), destroy_admin_session_path, method: :delete,class: "section-logout") %>
-    <%= link_to( content_tag(:span, nil,class: "icon-user"), edit_admin_path(current_admin.id), class: "section-profile") %>
+    <%= link_to_if(current_admin.teacher, content_tag(:span, content_tag(:span, 'Instructor', class: 'panel-title hide'),class: "icon-exchange"), switch_admin_path, class: "section-switch section-link-right") %>
+    <%= link_to( content_tag(:span, content_tag(:span, 'Empresa', class: 'panel-title hide'),class: "icon-user"),  edit_compnay_path, class: "section-profile section-link-right") %>
+    <%= link_to( content_tag(:span, content_tag(:span, 'Salir', class: 'panel-title hide'),class: "icon-signout"), destroy_admin_session_path, method: :delete,class: "section-logout section-link-right") %>
 <% end -%>
 <% if current_teacher -%>
-    <%= link_to_if(current_teacher.admin, content_tag(:span, nil,class: "icon-exchange"), switch_teacher_path, class: "section-switch") %>
-    <%= link_to( content_tag(:span, nil,class: "icon-signout"), destroy_teacher_session_path, method: :delete,class: "section-logout") %>
-    <%= link_to( content_tag(:span, nil,class: "icon-user"), edit_teacher_path(current_teacher.id), class: "section-profile") %>
+    <%= link_to_if(current_teacher.admin, content_tag(:span, content_tag(:span, 'Admin', class: 'panel-title hide'),class: "icon-exchange"), switch_teacher_path, class: "section-switch section-link-right") %>
+    <%= link_to( content_tag(:span, content_tag(:span, 'Mis Datos', class: 'panel-title hide'),class: "icon-user"), edit_teacher_path(current_teacher.id), class: "section-profile section-link-right") %>
+    <%= link_to( content_tag(:span, content_tag(:span, 'Salir', class: 'panel-title hide'),class: "icon-signout"), destroy_teacher_session_path, method: :delete,class: "section-logout section-link-right") %>
 <% end -%>
 <% if current_user -%>
-    <%= link_to( content_tag(:span, content_tag(:span, 'Salir', class: 'panel-title hide'),class: "icon-signout"), destroy_user_session_path, method: :delete,class: "section-logout section-link-right") %>
     <%= link_to( content_tag(:span, content_tag(:span, 'Mis Datos', class: 'panel-title hide'),class: "icon-user"), edit_user_path(current_user.id), class: "section-profile section-link-right") %>
     <% if current_page?(home_path) -%>
       <%= link_to "#" , class: "section-search section-link-right",id: "search-btn" do %>
@@ -43,4 +42,5 @@
       <% end %>
       <%= content_tag :div,(text_field_tag 'search',nil,id: "search-input") , class: "contact-form section-search hidden",id: "search-div" %>
     <% end -%>
+    <%= link_to( content_tag(:span, content_tag(:span, 'Salir', class: 'panel-title hide'),class: "icon-signout"), destroy_user_session_path, method: :delete,class: "section-logout section-link-right") %>
 <% end -%>
